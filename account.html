@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حسابي — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-logo">جمبك<span>مارت</span></div>
+  <div class="hdr-title">حسابي</div>
+  <a href="cart.html" class="hdr-cart">🛒<span class="cbadge" id="cbadge">0</span></a>
+</header>
+
+<!-- Logged-in view -->
+<main class="page" id="logged-in" style="display:none;padding-top:0">
+
+  <div class="acc-top">
+    <div class="acc-av">🧑</div>
+    <div class="acc-name" id="user-name">محمد أحمد</div>
+    <div class="acc-phone" id="user-phone">+249 91 234 5678</div>
+    <div class="acc-stats">
+      <div class="acc-stat"><strong>12</strong><span>طلب</span></div>
+      <div class="acc-stat"><strong>320</strong><span>نقطة</span></div>
+      <div class="acc-stat"><strong>⭐ 4.9</strong><span>تقييمك</span></div>
+    </div>
+  </div>
+
+  <div class="menu-wrap">
+
+    <div class="menu-lbl">الطلبات والعناوين</div>
+
+    <a href="orders.html" class="mi">
+      <div class="mi-ico" style="background:#F3EAFF">📦</div>
+      <span class="mi-lbl">طلباتي</span>
+      <span class="mi-arr">‹</span>
+    </a>
+
+    <button class="mi" onclick="showToast('قريباً!')">
+      <div class="mi-ico" style="background:#E8F5E9">📍</div>
+      <span class="mi-lbl">عناويني المحفوظة</span>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <button class="mi" onclick="showToast('قريباً!')">
+      <div class="mi-ico" style="background:#FFF8E1">❤️</div>
+      <span class="mi-lbl">منتجاتي المفضلة</span>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <div class="menu-lbl">المدفوعات والمكافآت</div>
+
+    <button class="mi" onclick="showToast('قريباً!')">
+      <div class="mi-ico" style="background:#E3F2FD">💳</div>
+      <span class="mi-lbl">طرق الدفع</span>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <button class="mi" onclick="showPoints()">
+      <div class="mi-ico" style="background:#FFF3E0">⭐</div>
+      <span class="mi-lbl">نقاط المكافآت</span>
+      <div style="background:var(--accent-light);color:var(--accent);font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px">320 نقطة</div>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <button class="mi" onclick="showPromo()">
+      <div class="mi-ico" style="background:#E8F5E9">🎁</div>
+      <span class="mi-lbl">أكواد الخصم</span>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <div class="menu-lbl">الإعدادات والمساعدة</div>
+
+    <button class="mi" onclick="showToast('قريباً!')">
+      <div class="mi-ico" style="background:#F3EAFF">🔔</div>
+      <span class="mi-lbl">الإشعارات</span>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <button class="mi" onclick="showToast('قريباً!')">
+      <div class="mi-ico" style="background:#FFF8E1">🌐</div>
+      <span class="mi-lbl">اللغة</span>
+      <div style="color:var(--text-muted);font-size:12px;font-weight:600">عربي</div>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <button class="mi" onclick="showSupport()">
+      <div class="mi-ico" style="background:#E3F2FD">💬</div>
+      <span class="mi-lbl">مركز المساعدة</span>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <button class="mi" onclick="showToast('قريباً!')">
+      <div class="mi-ico" style="background:#F3EAFF">ℹ️</div>
+      <span class="mi-lbl">عن جمبك مارت</span>
+      <span class="mi-arr">‹</span>
+    </button>
+
+    <div class="menu-lbl"></div>
+
+    <button class="menu-item danger" onclick="logout()">
+      <div class="mi-ico" style="background:#FEE2E2">🚪</div>
+      <span class="mi-lbl">تسجيل الخروج</span>
+    </button>
+
+    <div class="sp"></div>
+  </div>
+</main>
+
+<!-- Guest / Login view -->
+<main class="page" id="guest-view" style="display:none">
+  <div style="text-align:center;padding:60px 20px 32px">
+    <div style="font-size:72px;margin-bottom:16px">👤</div>
+    <h2 style="font-size:22px;font-weight:800;margin-bottom:8px;color:var(--tx)">سجّل دخولك</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:32px">لتتبع طلباتك وإدارة حسابك</p>
+  </div>
+
+  <div style="padding:0 20px">
+    <div class="fg">
+      <label class="fl-lbl">رقم الهاتف</label>
+      <input type="tel" class="fi" id="login-phone" placeholder="+249 91 234 5678" style="direction:ltr;text-align:right">
+    </div>
+    <div class="fg" id="otp-group" style="display:none">
+      <label class="fl-lbl">رمز التحقق (OTP)</label>
+      <input type="text" class="fi" id="login-otp" placeholder="1234" style="text-align:center;letter-spacing:8px;font-size:20px">
+      <div style="font-size:12px;color:var(--muted);margin-top:4px;text-align:center">تم إرسال كود إلى هاتفك</div>
+    </div>
+    <button class="big-btn primary" id="login-btn" onclick="doLogin()">إرسال رمز التحقق</button>
+
+    <div style="text-align:center;padding:16px 0;color:var(--muted);font-size:13px">أو</div>
+
+    <button class="big-btn outline" onclick="guestLogin()">تصفح كزائر</button>
+
+    <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--muted)">
+      بتسجيل دخولك توافق على <a href="#" style="color:var(--p1);font-weight:600">شروط الخدمة</a>
+    </div>
+  </div>
+  <div class="sp"></div>
+</main>
+
+<nav class="bnav">
+  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn active" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<!-- Overlays -->
+<div class="ov-back" id="overlay-backdrop" onclick="closeOverlay()"></div>
+<div class="ov-sheet" id="overlay-sheet"></div>
+
+<script src="app.js"></script>
+<script>
+  const USER_KEY = 'jambak_mart_user';
+
+  function checkAuth() {
+    const user = JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+    if (user) {
+      document.getElementById('logged-in').style.display = 'block';
+      document.getElementById('guest-view').style.display = 'none';
+      document.getElementById('user-name').textContent = user.name || 'مستخدم جمبك';
+      document.getElementById('user-phone').textContent = user.phone || '+249 ---';
+    } else {
+      document.getElementById('logged-in').style.display = 'none';
+      document.getElementById('guest-view').style.display = 'block';
+    }
+  }
+
+  let otpSent = false;
+  function doLogin() {
+    const phone = document.getElementById('login-phone').value.trim();
+    const btn = document.getElementById('login-btn');
+    if (!otpSent) {
+      if (!phone || phone.length < 8) { showToast('⚠️ أدخل رقم هاتف صحيح'); return; }
+      document.getElementById('otp-group').style.display = 'block';
+      btn.textContent = 'تأكيد الرمز';
+      otpSent = true;
+      showToast('✅ تم إرسال رمز التحقق (demo: 1234)');
+    } else {
+      const otp = document.getElementById('login-otp').value.trim();
+      if (otp === '1234') {
+        localStorage.setItem(USER_KEY, JSON.stringify({ name: 'محمد أحمد', phone }));
+        showToast('✅ تم تسجيل الدخول!', 'success');
+        setTimeout(() => checkAuth(), 500);
+      } else {
+        showToast('❌ الرمز غير صحيح، جرب 1234');
+      }
+    }
+  }
+
+  function guestLogin() {
+    localStorage.setItem(USER_KEY, JSON.stringify({ name: 'زائر', phone: '+249 --' }));
+    checkAuth();
+    showToast('👋 أهلاً بك كزائر');
+  }
+
+  function logout() {
+    if (confirm('تسجيل الخروج؟')) {
+      localStorage.removeItem(USER_KEY);
+      checkAuth();
+      showToast('تم تسجيل الخروج');
+    }
+  }
+
+  function showPoints() {
+    openOverlay(`
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:16px">⭐ نقاط المكافآت</h3>
+      <div style="text-align:center;padding:16px 0">
+        <div style="font-size:52px;font-weight:900;color:var(--primary)">320</div>
+        <div style="font-size:13px;color:var(--text-muted)">نقطة متاحة</div>
+      </div>
+      <div style="background:var(--primary-light);border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="font-size:13px;font-weight:600;color:var(--primary)">💡 كل 100 SDG = 10 نقاط</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:2px">100 نقطة = خصم 500 SDG</div>
+      </div>
+      <button onclick="closeOverlay();showToast('تم استخدام النقاط في طلبك القادم!')" style="width:100%;height:48px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer">
+        استخدام النقاط في الطلب القادم
+      </button>`);
+  }
+
+  function showPromo() {
+    openOverlay(`
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:16px">🎁 أكواد الخصم</h3>
+      ${[
+        { code:'JAMBAK10', desc:'خصم 10% على أي طلب', expire:'31 يناير 2025' },
+        { code:'WELCOME',  desc:'خصم 20% لأول طلب',   expire:'منتهي الصلاحية' },
+        { code:'KHARTOUM', desc:'خصم 15% للخرطوم',     expire:'28 فبراير 2025' },
+      ].map(p => `
+        <div style="background:var(--bg);border-radius:10px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:12px">
+          <div style="font-size:22px">🏷️</div>
+          <div style="flex:1">
+            <div style="font-size:15px;font-weight:800;color:var(--primary);letter-spacing:2px">${p.code}</div>
+            <div style="font-size:12px;color:var(--text-muted)">${p.desc}</div>
+            <div style="font-size:11px;color:var(--text-muted)">ينتهي: ${p.expire}</div>
+          </div>
+          <button onclick="navigator.clipboard?.writeText('${p.code}');showToast('✅ تم نسخ الكود')" style="padding:6px 12px;background:var(--primary-light);color:var(--primary);border:none;border-radius:8px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer">نسخ</button>
+        </div>`).join('')}`);
+  }
+
+  function showSupport() {
+    openOverlay(`
+      <h3 style="font-size:17px;font-weight:800;margin-bottom:16px">💬 مركز المساعدة</h3>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <button onclick="showToast('جاري الاتصال...');closeOverlay()" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg);border:none;border-radius:12px;font-family:inherit;cursor:pointer;text-align:right">
+          <span style="font-size:24px">📞</span>
+          <div>
+            <div style="font-size:14px;font-weight:700">اتصل بنا</div>
+            <div style="font-size:12px;color:var(--text-muted)">+249 91 000 0000</div>
+          </div>
+        </button>
+        <button onclick="showToast('فتح واتساب...');closeOverlay()" style="display:flex;align-items:center;gap:12px;padding:14px;background:#DCFCE7;border:none;border-radius:12px;font-family:inherit;cursor:pointer;text-align:right">
+          <span style="font-size:24px">💬</span>
+          <div>
+            <div style="font-size:14px;font-weight:700">واتساب</div>
+            <div style="font-size:12px;color:var(--green)">دعم فوري 24/7</div>
+          </div>
+        </button>
+        <button onclick="showToast('قريباً!');closeOverlay()" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg);border:none;border-radius:12px;font-family:inherit;cursor:pointer;text-align:right">
+          <span style="font-size:24px">❓</span>
+          <div>
+            <div style="font-size:14px;font-weight:700">الأسئلة الشائعة</div>
+            <div style="font-size:12px;color:var(--text-muted)">إجابات لأكثر الأسئلة</div>
+          </div>
+        </button>
+      </div>`);
+  }
+
+  function openOverlay(html) {
+    document.getElementById('overlay-sheet').innerHTML = html;
+    document.getElementById('overlay-backdrop').classList.add('on');
+    document.getElementById('overlay-sheet').classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOverlay() {
+    document.getElementById('overlay-backdrop').classList.remove('on');
+    document.getElementById('overlay-sheet').classList.remove('on');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('DOMContentLoaded', checkAuth);
+</script>
+</body>
+</html>

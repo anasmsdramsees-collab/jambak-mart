@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جمبك مارت — توصيل سريع في الخرطوم</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="hdr">
+  <div class="hdr-logo">جمبك<span>مارت</span></div>
+  <button class="hdr-loc" onclick="showLocPicker()">
+    📍 <span id="loc-label">الخرطوم بحري</span> ▾
+  </button>
+  <a href="cart.html" class="hdr-cart" title="السلة">
+    🛒<span class="cbadge" id="cbadge">0</span>
+  </a>
+</header>
+
+<main class="page">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-badge">⚡ توصيل خلال 60 دقيقة</div>
+    <div class="hero-scooter">🛵</div>
+    <h1 class="hero-h1">كل احتياجاتك<br><span>في ساعة!</span></h1>
+    <p class="hero-sub">بقالة · خضار · لحوم · وأكثر — في الخرطوم</p>
+    <a href="stores.html" class="hero-btn">تسوق الآن ←</a>
+  </div>
+
+  <!-- ── SEARCH ── -->
+  <div style="padding:12px 16px 4px">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" placeholder="ابحث عن منتج أو متجر..." onfocus="location.href='browse.html'">
+    </div>
+  </div>
+
+  <!-- ── CATEGORIES ── -->
+  <div class="cats" id="cats-row">
+    <button class="cat" onclick="location.href='browse.html?cat=bak'">
+      <div class="cat-ico bg1">🍞</div>
+      <span class="cat-lbl">مخبوزات</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=dairy'">
+      <div class="cat-ico bg2">🥛</div>
+      <span class="cat-lbl">ألبان وبيض</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=produce'">
+      <div class="cat-ico bg3">🥦</div>
+      <span class="cat-lbl">خضار وفاكهة</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=meat'">
+      <div class="cat-ico bg7">🥩</div>
+      <span class="cat-lbl">لحوم وسمك</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=grocery'">
+      <div class="cat-ico bg4">🛒</div>
+      <span class="cat-lbl">بقالة</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=drinks'">
+      <div class="cat-ico bg6">🧃</div>
+      <span class="cat-lbl">مشروبات</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=snacks'">
+      <div class="cat-ico bg8">🍫</div>
+      <span class="cat-lbl">حلويات</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=house'">
+      <div class="cat-ico bg5">🧹</div>
+      <span class="cat-lbl">منزليات</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=care'">
+      <div class="cat-ico bg3">🧴</div>
+      <span class="cat-lbl">عناية</span>
+    </button>
+    <button class="cat" onclick="location.href='browse.html?cat=frozen'">
+      <div class="cat-ico bg4">❄️</div>
+      <span class="cat-lbl">مجمدات</span>
+    </button>
+  </div>
+
+  <div class="dv"></div>
+
+  <!-- ── NEARBY STORES ── -->
+  <div class="sec-h">
+    <h2>🏪 المتاجر القريبة</h2>
+    <a href="stores.html">الكل</a>
+  </div>
+
+  <div id="stores-list"></div>
+
+  <div class="dv"></div>
+
+  <!-- ── TODAY'S OFFERS ── -->
+  <div class="sec-h">
+    <h2>🔥 عروض اليوم</h2>
+    <a href="browse.html?filter=offers">الكل</a>
+  </div>
+  <div class="pscroll" id="offers-scroll"></div>
+
+  <div class="dv"></div>
+
+  <!-- ── MOST POPULAR ── -->
+  <div class="sec-h">
+    <h2>⭐ الأكثر طلباً</h2>
+    <a href="browse.html">عرض الكل</a>
+  </div>
+  <div class="pgrid" id="popular-grid"></div>
+
+  <div class="dv"></div>
+
+  <!-- ── DELIVERY BANNER ── -->
+  <div style="margin:4px 16px 16px;background:var(--p4);border-radius:var(--r);padding:14px 16px;display:flex;gap:14px;align-items:center">
+    <div style="font-size:36px">⚡</div>
+    <div>
+      <div style="font-size:14px;font-weight:800;color:var(--p1);margin-bottom:3px">توصيل خلال 60 دقيقة</div>
+      <div style="font-size:12px;color:var(--muted)">متاح يومياً من 7 ص حتى 12 م · الخرطوم · أم درمان · بحري</div>
+    </div>
+  </div>
+
+  <div class="sp"></div>
+</main>
+
+<!-- ── FLOATING CART BAR ── -->
+<a href="cart.html" class="cart-bar" id="cart-bar">
+  <span class="cb-ico">🛒</span>
+  <span class="cb-label">عرض السلة</span>
+  <span class="cb-count" id="cb-count">0</span>
+  <span class="cb-total" id="cb-total">0 SDG</span>
+</a>
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="bnav">
+  <a href="index.html" class="bn active" data-page="index.html">
+    <span class="ico">🏠</span>الرئيسية
+  </a>
+  <a href="browse.html" class="bn" data-page="browse.html">
+    <span class="ico">🔍</span>تصفح
+  </a>
+  <a href="orders.html" class="bn" data-page="orders.html">
+    <span class="ico">📦</span>طلباتي
+    <span class="bn-dot" id="bn-orders"></span>
+  </a>
+  <a href="account.html" class="bn" data-page="account.html">
+    <span class="ico">👤</span>حسابي
+  </a>
+</nav>
+
+<!-- ── LOCATION PICKER ── -->
+<div class="ov-back" id="loc-back" onclick="hideLocPicker()"></div>
+<div class="ov-sheet" id="loc-sheet">
+  <h3 style="font-size:17px;font-weight:800;margin-bottom:16px;color:var(--tx)">📍 اختر منطقتك</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <button class="topt" onclick="setLoc('الخرطوم')"><strong>الخرطوم</strong></button>
+    <button class="topt" onclick="setLoc('الخرطوم بحري')"><strong>الخرطوم بحري</strong></button>
+    <button class="topt" onclick="setLoc('أم درمان')"><strong>أم درمان</strong></button>
+    <button class="topt" onclick="setLoc('الرياض')"><strong>الرياض</strong></button>
+    <button class="topt" onclick="setLoc('الكلاكلة')"><strong>الكلاكلة</strong></button>
+    <button class="topt" onclick="setLoc('شمبات')"><strong>شمبات</strong></button>
+    <button class="topt" onclick="setLoc('الحاج يوسف')"><strong>الحاج يوسف</strong></button>
+    <button class="topt" onclick="setLoc('بري')"><strong>بري</strong></button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Render stores
+    renderStoreList('stores-list', STORES);
+
+    // Offers
+    renderScroll('offers-scroll', PRODUCTS.filter(p => p.discount > 0));
+
+    // Popular
+    renderGrid('popular-grid', PRODUCTS.filter(p =>
+      ['grocery','dairy','bak'].includes(p.cat)
+    ).slice(0, 6));
+  });
+
+  function showLocPicker() {
+    document.getElementById('loc-back').classList.add('on');
+    document.getElementById('loc-sheet').classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function hideLocPicker() {
+    document.getElementById('loc-back').classList.remove('on');
+    document.getElementById('loc-sheet').classList.remove('on');
+    document.body.style.overflow = '';
+  }
+  function setLoc(name) {
+    document.getElementById('loc-label').textContent = name;
+    hideLocPicker();
+    showToast('📍 تم تغيير الموقع إلى ' + name);
+  }
+</script>
+</body>
+</html>

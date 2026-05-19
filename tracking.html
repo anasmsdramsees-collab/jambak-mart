@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تتبع الطلب — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body style="background:var(--p1)">
+
+<header class="hdr" style="background:transparent;border:none;box-shadow:none;position:absolute">
+  <a href="orders.html" class="hdr-back" style="background:rgba(255,255,255,.15)">←</a>
+  <div class="hdr-title" style="color:#fff">تتبع الطلب</div>
+  <a href="cart.html" class="hdr-cart" style="background:rgba(255,255,255,.15)">
+    🛒<span class="cbadge" id="cbadge">0</span>
+  </a>
+</header>
+
+<main class="page" style="padding-top:0">
+
+  <!-- ── TOP SECTION (purple) ── -->
+  <div class="trk-top" style="padding-top:80px">
+    <div class="trk-check">🛵</div>
+    <div class="trk-title" id="status-text">المندوب في الطريق</div>
+    <div class="trk-sub">الوصول خلال <span id="eta-display">28</span> دقيقة تقريباً</div>
+    <div class="trk-num"># JM-7823</div>
+  </div>
+
+  <!-- ── BOTTOM SHEET (white) ── -->
+  <div class="trk-sheet">
+
+    <!-- Horizontal Timeline -->
+    <div class="h-timeline" id="h-timeline"
+         style="--prog:50%">
+      <div class="ht-step done" id="step-order">
+        <div class="ht-dot">✅</div>
+        <div class="ht-lbl">استلام<br>الطلب</div>
+      </div>
+      <div class="ht-step done" id="step-prep">
+        <div class="ht-dot">✅</div>
+        <div class="ht-lbl">جاري<br>التجهيز</div>
+      </div>
+      <div class="ht-step active" id="step-delivery">
+        <div class="ht-dot">🛵</div>
+        <div class="ht-lbl">في<br>الطريق</div>
+      </div>
+      <div class="ht-step" id="step-done">
+        <div class="ht-dot" style="color:var(--muted);font-size:16px">🏠</div>
+        <div class="ht-lbl">تم<br>التوصيل</div>
+      </div>
+    </div>
+
+    <!-- Map mock -->
+    <div class="map-box">
+      <div class="map-scooter">🛵</div>
+      <div class="map-home">🏠</div>
+      <div class="map-store">🏪</div>
+      <div class="map-line"></div>
+      <div class="map-lbl">📍 الخرطوم بحري</div>
+    </div>
+
+    <!-- ETA box -->
+    <div class="eta-box">
+      <div class="clock">⏱️</div>
+      <div style="flex:1">
+        <div class="eta-lbl">الوقت المتبقي للتوصيل</div>
+        <div class="eta-val" id="countdown">28:45</div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);text-align:center">دقيقة<br>ثانية</div>
+    </div>
+
+    <!-- Driver card -->
+    <div class="driver-card">
+      <div class="driver-av">🧑</div>
+      <div style="flex:1">
+        <div class="driver-name">أحمد محمد</div>
+        <div class="driver-meta">دراجة نارية · رقم: XK-452</div>
+        <div style="font-size:12px;color:var(--yel);margin-top:2px">★★★★★</div>
+      </div>
+      <button class="driver-call" onclick="showToast('📞 جاري الاتصال...')" title="اتصل بالمندوب">📞</button>
+    </div>
+
+    <!-- Order items -->
+    <div>
+      <div style="font-size:15px;font-weight:800;color:var(--tx);margin-bottom:10px">منتجات طلبك</div>
+      <div id="order-items-list" style="display:flex;flex-direction:column;gap:8px"></div>
+    </div>
+
+    <!-- Support -->
+    <div style="margin-top:16px">
+      <button onclick="showToast('📞 جاري الاتصال بخدمة العملاء...')" class="big-btn outline">
+        📞 تواصل مع الدعم
+      </button>
+    </div>
+
+    <div class="sp"></div>
+  </div>
+</main>
+
+<nav class="bnav">
+  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn active" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  // Set timeline progress
+  const tl = document.getElementById('h-timeline');
+  tl.style.setProperty('--prog', '50%');
+
+  // Override ::after width dynamically
+  (function(){
+    const s = document.createElement('style');
+    s.textContent = `#h-timeline::after{width:50%}`;
+    document.head.appendChild(s);
+  })();
+
+  // Countdown timer
+  let secs = 28 * 60 + 45;
+  function tick() {
+    if (secs <= 0) {
+      document.getElementById('countdown').textContent = '00:00';
+      document.getElementById('status-text').textContent = '✅ تم التوصيل!';
+      document.getElementById('eta-display').textContent = '0';
+      document.getElementById('step-delivery').classList.remove('active');
+      document.getElementById('step-done').classList.add('done');
+      // update timeline to full
+      document.querySelector('style[data-trk]') && document.querySelector('style[data-trk]').remove();
+      const s = document.createElement('style');
+      s.setAttribute('data-trk','');
+      s.textContent = `#h-timeline::after{width:100%}`;
+      document.head.appendChild(s);
+      return;
+    }
+    secs--;
+    const m = Math.floor(secs / 60).toString().padStart(2,'0');
+    const s2 = (secs % 60).toString().padStart(2,'0');
+    document.getElementById('countdown').textContent = m + ':' + s2;
+    document.getElementById('eta-display').textContent = Math.ceil(secs/60);
+  }
+  setInterval(tick, 1000);
+
+  // Order items
+  document.addEventListener('DOMContentLoaded', () => {
+    const demo = [
+      {emoji:'🍞', name:'عيش أبيض ملكي', qty:2, price:89},
+      {emoji:'🥛', name:'حليب نيدو 400g', qty:1, price:2200},
+      {emoji:'🍅', name:'طماطم طازجة', qty:2, price:350},
+    ];
+    const stored = JSON.parse(localStorage.getItem('jambak_mart_cart') || '[]');
+    const items = stored.length ? stored : demo;
+
+    document.getElementById('order-items-list').innerHTML = items.map(i => `
+      <div style="display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:10px">
+        <div style="font-size:28px">${i.emoji}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:700;color:var(--tx)">${i.name}</div>
+          <div style="font-size:11px;color:var(--muted)">الكمية: ${i.qty}</div>
+        </div>
+        <div style="font-size:13px;font-weight:800;color:var(--p1)">${(i.price*i.qty).toLocaleString()} SDG</div>
+      </div>`).join('');
+  });
+</script>
+</body>
+</html>

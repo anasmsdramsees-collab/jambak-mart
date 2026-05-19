@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كل المتاجر — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="hdr">
+  <a href="index.html" class="hdr-back">←</a>
+  <div class="hdr-title">كل المتاجر</div>
+  <a href="cart.html" class="hdr-cart">🛒<span class="cbadge" id="cbadge">0</span></a>
+</header>
+
+<main class="page">
+
+  <!-- Search -->
+  <div style="padding:12px 16px 8px">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" id="store-search" placeholder="ابحث عن متجر..." oninput="filterStores(this.value)">
+    </div>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="ftabs" id="store-ftabs">
+    <button class="ftab on" onclick="filterByType('all',this)">الكل</button>
+    <button class="ftab" onclick="filterByType('سوبر ماركت',this)">سوبر ماركت</button>
+    <button class="ftab" onclick="filterByType('بقالة',this)">بقالة</button>
+    <button class="ftab" onclick="filterByType('لحوم وسمك',this)">لحوم وسمك</button>
+    <button class="ftab" onclick="filterByType('خضار وفاكهة',this)">خضار وفاكهة</button>
+    <button class="ftab" onclick="filterByType('مجمدات',this)">مجمدات</button>
+  </div>
+
+  <div class="sp2"></div>
+  <div id="stores-container"></div>
+  <div class="sp"></div>
+</main>
+
+<nav class="bnav">
+  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  let currentType = 'all';
+  let searchQ = '';
+
+  document.addEventListener('DOMContentLoaded', renderAll);
+
+  function renderAll() {
+    let list = STORES;
+    if (currentType !== 'all') list = list.filter(s => s.type === currentType);
+    if (searchQ) list = list.filter(s =>
+      s.name.includes(searchQ) || s.type.includes(searchQ)
+    );
+    renderStoreList('stores-container', list);
+  }
+
+  function filterByType(type, btn) {
+    currentType = type;
+    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    renderAll();
+  }
+
+  function filterStores(q) {
+    searchQ = q;
+    renderAll();
+  }
+</script>
+</body>
+</html>

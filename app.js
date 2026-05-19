@@ -1,0 +1,392 @@
+/* ═══════════════════════════════════════
+   جمبك مارت — App Logic
+   ═══════════════════════════════════════ */
+
+/* ═══════════════════════════════════════
+   جمبك مارت v2 — Stores Data
+   ═══════════════════════════════════════ */
+const STORES = [
+  {
+    id:'s1', name:'الانفال ماركت', type:'سوبر ماركت',
+    emoji:'🏪', color:'#1a6b3a',
+    rating:4.8, time:'25-40', delivery:500, featured:true,
+    cats:['grocery','dairy','produce','bak','drinks','house','care']
+  },
+  {
+    id:'s2', name:'جمبك مارت', type:'بقالة متكاملة',
+    emoji:'🛒', color:'#3B0F8C',
+    rating:4.9, time:'20-35', delivery:500, featured:true,
+    cats:['bak','dairy','produce','meat','grocery','drinks','snacks','house','care','frozen']
+  },
+  {
+    id:'s3', name:'سنا مارت', type:'سوبر ماركت',
+    emoji:'🏬', color:'#c7501e',
+    rating:4.6, time:'30-45', delivery:500, featured:false,
+    cats:['grocery','dairy','bak','drinks','snacks','house']
+  },
+  {
+    id:'s4', name:'التسامح', type:'بقالة',
+    emoji:'🛍️', color:'#1565c0',
+    rating:4.5, time:'35-50', delivery:400, featured:false,
+    cats:['grocery','bak','dairy','drinks']
+  },
+  {
+    id:'s5', name:'الجزيرة للخضار والفاكهة', type:'خضار وفاكهة',
+    emoji:'🥬', color:'#2e7d32',
+    rating:4.7, time:'25-40', delivery:300, featured:false,
+    cats:['produce']
+  },
+  {
+    id:'s6', name:'مسلخ النور', type:'لحوم وسمك',
+    emoji:'🥩', color:'#b71c1c',
+    rating:4.6, time:'30-50', delivery:600, featured:false,
+    cats:['meat']
+  },
+  {
+    id:'s7', name:'المجمدات الممتازة', type:'مجمدات',
+    emoji:'❄️', color:'#0277bd',
+    rating:4.4, time:'40-55', delivery:500, featured:false,
+    cats:['frozen','drinks']
+  },
+];
+
+function renderStoreList(containerId, stores) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  if (!stores || stores.length === 0) {
+    el.innerHTML = `<div class="empty"><div class="ei">🏪</div><h3>لا توجد متاجر</h3><p>لا توجد متاجر تطابق بحثك</p></div>`;
+    return;
+  }
+  el.innerHTML = stores.map(s => `
+    <a href="store.html#id=${s.id}" class="store-card">
+      <div class="store-logo" style="background:${s.color}22">
+        <span style="font-size:28px">${s.emoji}</span>
+      </div>
+      <div class="store-info">
+        <div class="store-name">${s.name}</div>
+        <div class="store-type">${s.type}</div>
+        <div class="store-meta">
+          <span class="m">⭐ ${s.rating}</span>
+          <span class="m">🕒 ${s.time} د</span>
+          <span class="m">🛵 ${s.delivery.toLocaleString()} SDG</span>
+        </div>
+      </div>
+      <button class="store-fav" onclick="event.preventDefault()" title="المفضلة">🤍</button>
+    </a>`).join('');
+}
+
+window.STORES = STORES;
+window.renderStoreList = renderStoreList;
+
+// ── Cart State ──
+const CART_KEY = 'jambak_mart_cart';
+
+let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+function saveCart() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  updateCartUI();
+}
+
+function getCartItem(id) {
+  return cart.find(i => i.id === id);
+}
+
+function addToCart(product) {
+  const existing = getCartItem(product.id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  saveCart();
+  showToast('✅ تمت الإضافة إلى السلة', 'success');
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
+}
+
+function updateQty(id, delta) {
+  const item = getCartItem(id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) removeFromCart(id);
+  else saveCart();
+}
+
+function getCartCount() {
+  return cart.reduce((sum, i) => sum + i.qty, 0);
+}
+
+function getCartTotal() {
+  return cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+}
+
+function updateCartUI() {
+  const count = getCartCount();
+  const total = getCartTotal();
+
+  // header badges (old & new class names)
+  document.querySelectorAll('.cart-badge,.bn-badge,.cbadge').forEach(el => {
+    el.textContent = count;
+    el.classList.toggle('show', count > 0);
+    el.classList.toggle('on', count > 0);
+  });
+
+  // floating cart bar
+  const cartBar = document.getElementById('cart-bar');
+  if (cartBar) {
+    cartBar.classList.toggle('show', count > 0);
+    const cbCount = document.getElementById('cb-count');
+    if (cbCount) cbCount.textContent = count;
+    const cbTotal = document.getElementById('cb-total');
+    if (cbTotal) cbTotal.textContent = total.toLocaleString() + ' SDG';
+  }
+
+  // orders badge
+  document.querySelectorAll('.bn-dot').forEach(el => {
+    el.classList.toggle('on', count > 0);
+    el.textContent = count > 0 ? count : '';
+  });
+
+  // render cart items if on cart page
+  const cartList = document.getElementById('cart-list');
+  if (cartList) renderCartList(cartList);
+
+  const cartTotal = document.getElementById('cart-total');
+  if (cartTotal) cartTotal.textContent = total.toLocaleString() + ' SDG';
+
+  const orderTotal = document.getElementById('order-total');
+  if (orderTotal) orderTotal.textContent = (total + 500).toLocaleString() + ' SDG';
+}
+
+function renderCartList(container) {
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="empty">
+        <div class="ei">🛒</div>
+        <h3>السلة فارغة</h3>
+        <p>أضف منتجات من الصفحة الرئيسية</p>
+        <a href="index.html" class="big-btn primary" style="width:auto;padding:0 28px;margin:0 auto">تسوق الآن</a>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = cart.map(item => `
+    <div class="cart-item" id="ci-${item.id}">
+      <div class="ci-img">${item.emoji}</div>
+      <div class="ci-info">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-unit">${item.unit}</div>
+        <div class="ci-price">${(item.price * item.qty).toLocaleString()} SDG</div>
+      </div>
+      <div class="qty-ctrl">
+        <button onclick="updateQty('${item.id}',-1)">−</button>
+        <span class="qn">${item.qty}</span>
+        <button onclick="updateQty('${item.id}',1)">+</button>
+      </div>
+      <button class="ci-del" onclick="removeFromCart('${item.id}')" title="حذف">🗑️</button>
+    </div>
+  `).join('');
+}
+
+// ── Products Data ──
+const PRODUCTS = [
+  // مخبوزات
+  { id:'p01', cat:'bak',     emoji:'🍞', name:'عيش أبيض ملكي',          unit:'رغيف واحد',         price:89,   discount:0 },
+  { id:'p02', cat:'bak',     emoji:'🥖', name:'خبز توست أبيض 500g',     unit:'كيس 500 غرام',      price:650,  discount:0 },
+  { id:'p03', cat:'bak',     emoji:'🥐', name:'كرواسون بالزبدة 6 قطع',  unit:'علبة 6 قطع',        price:1200, discount:10 },
+  { id:'p04', cat:'bak',     emoji:'🫓', name:'خبز برغل أسمر',           unit:'رغيف واحد',         price:95,   discount:0 },
+  { id:'p05', cat:'bak',     emoji:'🧁', name:'كعك سمسم سوداني',         unit:'كيس 200 غرام',      price:380,  discount:0 },
+  { id:'p06', cat:'bak',     emoji:'🍰', name:'كيكة إسفنجية',            unit:'علبة 400 غرام',     price:1800, discount:15 },
+
+  // ألبان وبيض
+  { id:'p07', cat:'dairy',   emoji:'🥛', name:'حليب نيدو كامل الدسم 400g', unit:'علبة 400 غرام',  price:2200, discount:0 },
+  { id:'p08', cat:'dairy',   emoji:'🥚', name:'بيض كرتون كبير 30 بيضة',  unit:'كرتون 30 بيضة',    price:1800, discount:0 },
+  { id:'p09', cat:'dairy',   emoji:'🧀', name:'جبنة بيضاء طازجة 500g',   unit:'علبة 500 غرام',    price:1200, discount:0 },
+  { id:'p10', cat:'dairy',   emoji:'🫙', name:'زبادي طبيعي 500ml',       unit:'كوب 500 مل',        price:320,  discount:0 },
+  { id:'p11', cat:'dairy',   emoji:'🧈', name:'زبدة بلدية 250g',          unit:'علبة 250 غرام',    price:1500, discount:0 },
+  { id:'p12', cat:'dairy',   emoji:'🥛', name:'حليب طازج مبستر 1L',      unit:'1 لتر',             price:550,  discount:5 },
+
+  // خضار وفاكهة
+  { id:'p13', cat:'produce', emoji:'🍅', name:'طماطم طازجة',              unit:'1 كيلو',            price:350,  discount:0 },
+  { id:'p14', cat:'produce', emoji:'🧅', name:'بصل جاف',                  unit:'1 كيلو',            price:280,  discount:0 },
+  { id:'p15', cat:'produce', emoji:'🥔', name:'بطاطس محلية',              unit:'1 كيلو',            price:320,  discount:0 },
+  { id:'p16', cat:'produce', emoji:'🍌', name:'موز حديث',                 unit:'1 كيلو',            price:850,  discount:0 },
+  { id:'p17', cat:'produce', emoji:'🥭', name:'مانجو شنبار',              unit:'1 كيلو',            price:1200, discount:20 },
+  { id:'p18', cat:'produce', emoji:'🥦', name:'بامية خضراء',              unit:'500 غرام',          price:480,  discount:0 },
+
+  // لحوم وسمك
+  { id:'p19', cat:'meat',    emoji:'🥩', name:'لحم بقري مفروم',           unit:'500 غرام',          price:3500, discount:0 },
+  { id:'p20', cat:'meat',    emoji:'🍗', name:'فخذ دجاج طازج',            unit:'1 كيلو',            price:2800, discount:0 },
+  { id:'p21', cat:'meat',    emoji:'🐟', name:'سمك بلطي طازج',            unit:'1 كيلو',            price:3200, discount:0 },
+  { id:'p22', cat:'meat',    emoji:'🥚', name:'كفتة لحم جاهزة',           unit:'500 غرام',          price:4000, discount:10 },
+
+  // بقالة
+  { id:'p23', cat:'grocery', emoji:'🍚', name:'أرز بسمتي هندي 2kg',      unit:'كيس 2 كيلو',        price:2800, discount:0 },
+  { id:'p24', cat:'grocery', emoji:'🫙', name:'زيت عباد الشمس 1L',       unit:'زجاجة 1 لتر',       price:1500, discount:0 },
+  { id:'p25', cat:'grocery', emoji:'🍬', name:'سكر أبيض 2kg',             unit:'كيس 2 كيلو',        price:1200, discount:0 },
+  { id:'p26', cat:'grocery', emoji:'🫖', name:'شاي أحمر احمر 500g',       unit:'علبة 500 غرام',    price:750,  discount:0 },
+  { id:'p27', cat:'grocery', emoji:'☕', name:'نسكافيه كلاسيك 200g',     unit:'جرة 200 غرام',      price:3200, discount:0 },
+  { id:'p28', cat:'grocery', emoji:'🧂', name:'ملح ناعم يودي 1kg',        unit:'1 كيلو',            price:180,  discount:0 },
+
+  // مشروبات
+  { id:'p29', cat:'drinks',  emoji:'💧', name:'مياه معدنية باردة 1.5L',   unit:'زجاجة 1.5 لتر',    price:200,  discount:0 },
+  { id:'p30', cat:'drinks',  emoji:'🧃', name:'عصير برتقال طبيعي 1L',    unit:'علبة 1 لتر',        price:680,  discount:0 },
+  { id:'p31', cat:'drinks',  emoji:'🥤', name:'بيبسي كولا 330ml',         unit:'علبة 330 مل',       price:250,  discount:0 },
+  { id:'p32', cat:'drinks',  emoji:'🧋', name:'لبن بالعسل 500ml',         unit:'500 مل',            price:420,  discount:0 },
+
+  // حلويات وسناكس
+  { id:'p33', cat:'snacks',  emoji:'🍫', name:'شوكولاتة ميلك 100g',       unit:'100 غرام',          price:850,  discount:0 },
+  { id:'p34', cat:'snacks',  emoji:'🍪', name:'بسكويت ماري مالح',         unit:'علبة 200 غرام',    price:450,  discount:0 },
+  { id:'p35', cat:'snacks',  emoji:'🥜', name:'فول سوداني محمص',          unit:'200 غرام',          price:350,  discount:0 },
+  { id:'p36', cat:'snacks',  emoji:'🍬', name:'حلوى مصاصة مشكلة',         unit:'كيس 500 غرام',     price:600,  discount:15 },
+
+  // منزليات
+  { id:'p37', cat:'house',   emoji:'🧹', name:'منظف أرضيات بالليمون',    unit:'زجاجة 1 لتر',      price:680,  discount:0 },
+  { id:'p38', cat:'house',   emoji:'🧴', name:'سائل غسيل الصحون ماما',   unit:'زجاجة 500 مل',     price:520,  discount:0 },
+  { id:'p39', cat:'house',   emoji:'🧻', name:'مناديل ورقية 12 رول',     unit:'12 رول',            price:1800, discount:10 },
+  { id:'p40', cat:'house',   emoji:'🪣', name:'صابون غسيل ملابس 500g',   unit:'500 غرام',          price:450,  discount:0 },
+
+  // عناية شخصية
+  { id:'p41', cat:'care',    emoji:'🧼', name:'صابون ديتول مضاد للبكتيريا', unit:'قطعة 125 غرام',  price:380,  discount:0 },
+  { id:'p42', cat:'care',    emoji:'🪥', name:'فرشاة أسنان ناعمة',        unit:'قطعة واحدة',        price:250,  discount:0 },
+  { id:'p43', cat:'care',    emoji:'🧴', name:'شامبو هيد & شولدرز',      unit:'زجاجة 400 مل',     price:2200, discount:0 },
+
+  // مجمدات
+  { id:'p44', cat:'frozen',  emoji:'🍦', name:'آيس كريم فانيلا 1L',      unit:'1 لتر',             price:1500, discount:0 },
+  { id:'p45', cat:'frozen',  emoji:'🥟', name:'سمبوسة جاهزة 20 قطعة',   unit:'علبة 20 قطعة',     price:2800, discount:20 },
+  { id:'p46', cat:'frozen',  emoji:'🌮', name:'دجاج مقلي مجمد 1kg',      unit:'1 كيلو',            price:3500, discount:0 },
+];
+
+// ── Product Card Renderer ──
+function renderProductCard(p) {
+  const inCart = getCartItem(p.id);
+  const oldPrice = p.discount > 0 ? Math.round(p.price / (1 - p.discount/100)) : null;
+
+  return `
+    <div class="pcard" onclick="openProduct('${p.id}')">
+      <div class="pcard-img">
+        <span>${p.emoji}</span>
+        ${p.discount > 0 ? `<div class="disc-tag">-${p.discount}%</div>` : ''}
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">${p.name}</div>
+        <div class="pcard-unit">${p.unit}</div>
+        <div class="pcard-foot">
+          <div>
+            <div class="pcard-price">${p.price.toLocaleString()} <small>SDG</small></div>
+            ${oldPrice ? `<div class="pcard-old">${oldPrice.toLocaleString()} SDG</div>` : ''}
+          </div>
+          ${inCart
+            ? `<div class="qty-ctrl" onclick="event.stopPropagation()">
+                 <button onclick="updateQty('${p.id}',-1)">−</button>
+                 <span class="qn" id="qn-${p.id}">${inCart.qty}</span>
+                 <button onclick="updateQty('${p.id}',1)">+</button>
+               </div>`
+            : `<button class="add-btn" onclick="event.stopPropagation();addToCart(PRODUCTS.find(x=>x.id==='${p.id}'))">+</button>`
+          }
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Render Product Grid ──
+function renderGrid(containerId, products) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = products.map(renderProductCard).join('');
+}
+
+function renderScroll(containerId, products) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = products.map(renderProductCard).join('');
+}
+
+// ── Open Product (simple overlay or navigate) ──
+function openProduct(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+
+  // Simple bottom sheet
+  let sheet = document.getElementById('product-sheet');
+  if (!sheet) {
+    sheet = document.createElement('div');
+    sheet.id = 'product-sheet';
+    sheet.style.cssText = `
+      position:fixed; inset:0; z-index:300;
+      display:flex; flex-direction:column; justify-content:flex-end;
+    `;
+    document.body.appendChild(sheet);
+  }
+
+  const inCart = getCartItem(p.id);
+
+  sheet.innerHTML = `
+    <div onclick="closeSheet()" style="flex:1;background:rgba(0,0,0,0.45)"></div>
+    <div style="background:#fff;border-radius:24px 24px 0 0;padding:24px 20px 40px;max-width:540px;width:100%;margin:0 auto">
+      <div style="text-align:center;font-size:80px;margin-bottom:12px">${p.emoji}</div>
+      <h2 style="font-size:18px;font-weight:800;color:var(--tx);margin-bottom:4px">${p.name}</h2>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">${p.unit}</p>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+        <div style="font-size:24px;font-weight:900;color:var(--p1)">${p.price.toLocaleString()} SDG</div>
+        ${p.discount > 0 ? `<div style="background:var(--acc);color:#fff;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px">خصم ${p.discount}%</div>` : ''}
+      </div>
+      <button onclick="addToCart(PRODUCTS.find(x=>x.id==='${p.id}'));closeSheet()" style="
+        width:100%;height:52px;background:var(--p1);color:#fff;border:none;
+        border-radius:14px;font-family:inherit;font-size:16px;font-weight:800;cursor:pointer
+      ">🛒  أضف إلى السلة</button>
+    </div>
+  `;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSheet() {
+  const sheet = document.getElementById('product-sheet');
+  if (sheet) sheet.remove();
+  document.body.style.overflow = '';
+}
+
+// ── Toast ──
+function showToast(msg, type = '') {
+  let toast = document.getElementById('app-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'app-toast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.className = `toast${type === 'success' || type === 'g' ? ' g' : ''}`;
+  setTimeout(() => toast.classList.add('on'), 10);
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => toast.classList.remove('on'), 2200);
+}
+
+// ── Init ──
+document.addEventListener('DOMContentLoaded', () => {
+  updateCartUI();
+
+  // Set active nav item based on current page
+  const page = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.bn-item').forEach(item => {
+    if (item.dataset.page === page) item.classList.add('active');
+  });
+});
+
+// Export globals
+window.PRODUCTS = PRODUCTS;
+window.addToCart = addToCart;
+window.updateQty = updateQty;
+window.removeFromCart = removeFromCart;
+window.renderGrid = renderGrid;
+window.renderScroll = renderScroll;
+window.openProduct = openProduct;
+window.closeSheet = closeSheet;
+window.showToast = showToast;
+window.cart = cart;
+window.getCartTotal = getCartTotal;
+window.getCartCount = getCartCount;

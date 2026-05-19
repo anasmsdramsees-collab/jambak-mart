@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المتجر — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="hdr" id="page-hdr" style="background:transparent;border-bottom:none;box-shadow:none;position:absolute">
+  <a href="stores.html" class="hdr-back" style="background:rgba(255,255,255,.18);backdrop-filter:blur(6px)">←</a>
+  <div style="flex:1"></div>
+  <a href="cart.html" class="hdr-cart">🛒<span class="cbadge" id="cbadge">0</span></a>
+</header>
+
+<main class="page" style="padding-top:0">
+
+  <!-- Store hero banner -->
+  <div class="store-hero-banner" id="store-hero" style="padding-top:72px">
+    <div class="store-hero-inner">
+      <div class="store-hero-logo" id="store-logo-big"></div>
+      <div>
+        <div class="store-hero-name" id="store-name-big">جاري التحميل...</div>
+        <div class="store-hero-meta" id="store-meta-big"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category filter tabs -->
+  <div class="ftabs" id="cat-ftabs" style="top:0">
+    <button class="ftab on" onclick="filterCat('all',this)">الكل</button>
+  </div>
+
+  <!-- Product grid -->
+  <div class="pgrid" id="product-grid"></div>
+  <div class="sp"></div>
+</main>
+
+<!-- Floating cart bar -->
+<a href="cart.html" class="cart-bar" id="cart-bar">
+  <span class="cb-ico">🛒</span>
+  <span class="cb-label">عرض السلة</span>
+  <span class="cb-count" id="cb-count">0</span>
+  <span class="cb-total" id="cb-total">0 SDG</span>
+</a>
+
+<nav class="bnav">
+  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  // Support both ?id= (direct .html) and #id= (after serve redirect)
+  const qParams = new URLSearchParams(location.search);
+  const hParams = new URLSearchParams(location.hash.replace(/^#/,''));
+  const storeId = qParams.get('id') || hParams.get('id') || 's1';
+  let activeCat = 'all';
+  let store = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    store = STORES.find(s => s.id === storeId) || STORES[0];
+    if (!store) return;
+
+    // Hero
+    const hero = document.getElementById('store-hero');
+    hero.style.background = `linear-gradient(135deg, ${store.color}cc, ${store.color})`;
+
+    const logoEl = document.getElementById('store-logo-big');
+    logoEl.innerHTML = store.img
+      ? `<img src="${store.img}" alt="${store.name}">`
+      : `<span style="font-size:32px">${store.emoji}</span>`;
+    logoEl.style.background = store.img ? '' : 'rgba(255,255,255,.2)';
+
+    document.getElementById('store-name-big').textContent = store.name;
+    document.title = store.name + ' — جمبك مارت';
+
+    document.getElementById('store-meta-big').innerHTML = `
+      <span>⭐ ${store.rating}</span>
+      <span>🕒 ${store.time} دقيقة</span>
+      <span>🛵 ${store.delivery.toLocaleString()} SDG</span>
+    `;
+
+    // Build category tabs
+    const tabsEl = document.getElementById('cat-ftabs');
+    const uniqueCats = store.cats || [];
+    const catLabels = {
+      bak:'مخبوزات', dairy:'ألبان وبيض', produce:'خضار وفاكهة',
+      meat:'لحوم وسمك', grocery:'بقالة', drinks:'مشروبات',
+      snacks:'حلويات', house:'منزليات', care:'عناية', frozen:'مجمدات'
+    };
+    uniqueCats.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'ftab';
+      btn.textContent = catLabels[c] || c;
+      btn.onclick = () => filterCat(c, btn);
+      tabsEl.appendChild(btn);
+    });
+
+    // Render products
+    renderStoreProd('all');
+  });
+
+  function filterCat(cat, btn) {
+    activeCat = cat;
+    document.querySelectorAll('#cat-ftabs .ftab').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    renderStoreProd(cat);
+  }
+
+  function renderStoreProd(cat) {
+    const cats = store ? store.cats : null;
+    let prods = cats
+      ? PRODUCTS.filter(p => cats.includes(p.cat))
+      : PRODUCTS;
+    if (cat !== 'all') prods = prods.filter(p => p.cat === cat);
+    renderGrid('product-grid', prods);
+  }
+</script>
+</body>
+</html>

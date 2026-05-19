@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إتمام الطلب — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="hdr">
+  <a href="cart.html" class="hdr-back" id="hdr-back">←</a>
+  <div class="hdr-title" id="hdr-title">عنوان التوصيل</div>
+  <div style="font-size:13px;color:var(--muted);direction:ltr" id="step-indicator">1 / 3</div>
+</header>
+
+<!-- Progress bar -->
+<div style="height:3px;background:var(--bdr);position:sticky;top:var(--hh);z-index:90">
+  <div id="prog" style="height:100%;background:var(--p1);width:33%;transition:width .4s"></div>
+</div>
+
+<main class="page" id="checkout-main">
+
+  <!-- ── STEP 1: Address ── -->
+  <div id="step-1">
+    <div class="co-sec">
+      <h3>📍 عنوان التوصيل</h3>
+      <div class="fl">
+        <div class="fg">
+          <label class="fl-lbl">الاسم الأول</label>
+          <input class="fi" type="text" id="fname" placeholder="محمد">
+        </div>
+        <div class="fg">
+          <label class="fl-lbl">الاسم الأخير</label>
+          <input class="fi" type="text" id="lname" placeholder="أحمد">
+        </div>
+      </div>
+      <div class="fg">
+        <label class="fl-lbl">رقم الهاتف</label>
+        <input class="fi" type="tel" id="phone" placeholder="+249 9X XXX XXXX" style="direction:ltr;text-align:right">
+      </div>
+      <div class="fg">
+        <label class="fl-lbl">المنطقة / الحي</label>
+        <select class="fi" id="area">
+          <option value="">اختر المنطقة</option>
+          <optgroup label="الخرطوم">
+            <option>الخرطوم 2</option><option>الرياض</option>
+            <option>الكلاكلة</option><option>المقرن</option>
+            <option>بري</option><option>السجانة</option>
+          </optgroup>
+          <optgroup label="الخرطوم بحري">
+            <option>الخرطوم بحري</option><option>شمبات</option>
+            <option>الحاج يوسف</option><option>سوبا</option>
+          </optgroup>
+          <optgroup label="أم درمان">
+            <option>أم درمان</option><option>الثورة</option>
+            <option>ودنوباوي</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="fl-lbl">الشارع / رقم المنزل</label>
+        <input class="fi" type="text" id="street" placeholder="شارع 60، منزل رقم 12">
+      </div>
+      <div class="fg" style="margin-bottom:0">
+        <label class="fl-lbl">ملاحظات التوصيل (اختياري)</label>
+        <input class="fi" type="text" id="notes" placeholder="مثال: الطابق الثاني، اتصل قبل الوصول">
+      </div>
+    </div>
+
+    <div class="co-sec">
+      <h3>⏰ وقت التوصيل</h3>
+      <div class="time-opts">
+        <div class="topt on" onclick="selTime(this,'asap')">
+          <strong>⚡ أسرع ما يمكن</strong>
+          <span>خلال 60 دقيقة</span>
+        </div>
+        <div class="topt" onclick="selTime(this,'morning')">
+          <strong>🌅 الصباح</strong>
+          <span>8:00 – 11:00 ص</span>
+        </div>
+        <div class="topt" onclick="selTime(this,'noon')">
+          <strong>☀️ الظهر</strong>
+          <span>12:00 – 3:00 م</span>
+        </div>
+        <div class="topt" onclick="selTime(this,'evening')">
+          <strong>🌆 المساء</strong>
+          <span>4:00 – 8:00 م</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:16px">
+      <button class="big-btn primary" onclick="goStep2()">متابعة — طريقة الدفع ←</button>
+    </div>
+    <div class="sp"></div>
+  </div>
+
+  <!-- ── STEP 2: Payment ── -->
+  <div id="step-2" style="display:none">
+
+    <div class="co-sec">
+      <h3>💳 طريقة الدفع</h3>
+
+      <!-- MTN MoMo -->
+      <div class="pay-opt on" onclick="selPay(this)">
+        <div class="pay-logo">
+          <img src="pay-momo.png" alt="MTN MoMo">
+        </div>
+        <div class="pay-name">MTN موبايل موني</div>
+        <div class="pay-radio"></div>
+      </div>
+
+      <!-- Bede / Zain -->
+      <div class="pay-opt" onclick="selPay(this)">
+        <div class="pay-logo" style="background:#f0f0f0;border-radius:8px">
+          <img src="pay-bede.webp" alt="Bede">
+        </div>
+        <div class="pay-name">بيدي — زين فينتك</div>
+        <div class="pay-radio"></div>
+      </div>
+
+      <!-- MyCashi -->
+      <div class="pay-opt" onclick="selPay(this)">
+        <div class="pay-logo">
+          <img src="pay-cashi.png" alt="كاشي">
+        </div>
+        <div class="pay-name">كاشي (MyCashi)</div>
+        <div class="pay-radio"></div>
+      </div>
+
+      <!-- Cash -->
+      <div class="pay-opt" onclick="selPay(this)">
+        <div class="pay-logo" style="background:var(--grn2);border-radius:8px;font-size:24px">
+          💵
+        </div>
+        <div class="pay-name">الدفع عند الاستلام</div>
+        <div class="pay-radio"></div>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="co-sec">
+      <h3>🧾 ملخص الطلب</h3>
+      <div id="checkout-items" style="margin-bottom:12px"></div>
+      <div class="sp2"></div>
+      <div class="sr"><span>المجموع</span><span id="co-sub">0 SDG</span></div>
+      <div class="sr"><span>التوصيل</span><span style="color:var(--grn)">500 SDG</span></div>
+      <div class="sr tot"><span>الإجمالي</span><span class="v" id="co-total">0 SDG</span></div>
+    </div>
+
+    <div style="padding:16px;display:flex;gap:10px">
+      <button onclick="goStep1()" class="big-btn outline" style="flex:1">← رجوع</button>
+      <button onclick="goStep3()" class="big-btn acc" style="flex:2">تأكيد الطلب ✓</button>
+    </div>
+    <div class="sp"></div>
+  </div>
+
+  <!-- ── STEP 3: Confirmation ── -->
+  <div id="step-3" style="display:none">
+    <div style="text-align:center;padding:48px 20px">
+      <div style="font-size:72px;margin-bottom:16px">🎉</div>
+      <h2 style="font-size:24px;font-weight:900;color:var(--p1);margin-bottom:8px">تم استلام طلبك!</h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:4px">رقم الطلب</p>
+      <div id="order-num" style="font-size:22px;font-weight:900;color:var(--acc);margin-bottom:20px"></div>
+
+      <div style="background:var(--p4);border-radius:var(--r);padding:16px;margin-bottom:24px">
+        <div style="font-size:14px;font-weight:700;color:var(--tx2);margin-bottom:6px">⏱️ وقت التوصيل المتوقع</div>
+        <div id="eta-time" style="font-size:32px;font-weight:900;color:var(--p1)">45 – 60 دقيقة</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="tracking.html" class="big-btn primary">📍 تتبع الطلب</a>
+        <a href="index.html" class="big-btn outline">🏠 العودة للرئيسية</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script src="app.js"></script>
+<script>
+  let selTimeVal = 'asap';
+
+  function selTime(el, val) {
+    document.querySelectorAll('.topt').forEach(t => t.classList.remove('on'));
+    el.classList.add('on');
+    selTimeVal = val;
+  }
+
+  function selPay(el) {
+    document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('on'));
+    el.classList.add('on');
+  }
+
+  function goStep2() {
+    const fname = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const area  = document.getElementById('area').value;
+    if (!fname || !phone || !area) {
+      showToast('⚠️ يرجى ملء الحقول المطلوبة');
+      return;
+    }
+    document.getElementById('step-1').style.display = 'none';
+    document.getElementById('step-2').style.display = 'block';
+    document.getElementById('prog').style.width = '66%';
+    document.getElementById('hdr-title').textContent = 'طريقة الدفع';
+    document.getElementById('step-indicator').textContent = '2 / 3';
+    document.getElementById('hdr-back').onclick = goStep1;
+
+    const sub = getCartTotal();
+    document.getElementById('co-sub').textContent = sub.toLocaleString() + ' SDG';
+    document.getElementById('co-total').textContent = (sub + 500).toLocaleString() + ' SDG';
+    document.getElementById('checkout-items').innerHTML = cart.map(i =>
+      `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--bdr)">
+        <div style="font-size:13px">${i.emoji} ${i.name} × ${i.qty}</div>
+        <div style="font-size:13px;font-weight:800;color:var(--p1)">${(i.price*i.qty).toLocaleString()} SDG</div>
+      </div>`
+    ).join('');
+    window.scrollTo(0, 0);
+  }
+
+  function goStep1() {
+    document.getElementById('step-2').style.display = 'none';
+    document.getElementById('step-1').style.display = 'block';
+    document.getElementById('prog').style.width = '33%';
+    document.getElementById('hdr-title').textContent = 'عنوان التوصيل';
+    document.getElementById('step-indicator').textContent = '1 / 3';
+    document.getElementById('hdr-back').href = 'cart.html';
+    document.getElementById('hdr-back').onclick = null;
+  }
+
+  function goStep3() {
+    document.getElementById('step-2').style.display = 'none';
+    document.getElementById('step-3').style.display = 'block';
+    document.getElementById('prog').style.width = '100%';
+    document.getElementById('hdr-title').textContent = 'تم الطلب!';
+    document.getElementById('step-indicator').textContent = '3 / 3';
+    document.getElementById('hdr-back').style.display = 'none';
+
+    document.getElementById('order-num').textContent = 'JM-' + Math.floor(Math.random()*9000+1000);
+    const etas = {asap:'45 – 60 دقيقة', morning:'خلال ساعة', noon:'خلال ساعة', evening:'خلال ساعة'};
+    document.getElementById('eta-time').textContent = etas[selTimeVal] || '45 – 60 دقيقة';
+
+    localStorage.setItem('jambak_mart_cart', '[]');
+    cart.splice(0, cart.length);
+    updateCartUI();
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>

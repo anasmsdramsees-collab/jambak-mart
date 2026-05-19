@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طلباتي — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-logo">جمبك<span>مارت</span></div>
+  <div class="hdr-title">طلباتي</div>
+  <a href="cart.html" class="hdr-cart">🛒<span class="cbadge" id="cbadge">0</span></a>
+</header>
+
+<main class="page">
+
+  <!-- Filter tabs -->
+  <div class="ftabs" style="position:sticky;top:var(--hh)">
+    <button class="ftab on" onclick="filterOrders('all',this)">الكل</button>
+    <button class="ftab" onclick="filterOrders('progress',this)">🛵 جاري التوصيل</button>
+    <button class="ftab" onclick="filterOrders('delivered',this)">✅ مكتمل</button>
+    <button class="ftab" onclick="filterOrders('cancelled',this)">❌ ملغي</button>
+  </div>
+
+  <div class="sp2"></div>
+
+  <!-- Active order callout -->
+  <div id="active-order-card" style="margin:0 16px 12px">
+    <a href="tracking.html" style="text-decoration:none;display:block;
+      background:linear-gradient(135deg,var(--p2),var(--p1));
+      border-radius:var(--r);padding:14px;color:#fff">
+      <div style="font-size:11px;opacity:.8;margin-bottom:4px">طلب قيد التوصيل</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="font-size:32px">🛵</div>
+        <div style="flex:1">
+          <div style="font-size:15px;font-weight:800">JM-7823 — في الطريق</div>
+          <div style="font-size:12px;opacity:.8">الوصول خلال 28 دقيقة تقريباً</div>
+        </div>
+        <div style="font-size:22px">←</div>
+      </div>
+    </a>
+  </div>
+
+  <div id="orders-container"></div>
+  <div class="sp"></div>
+</main>
+
+<nav class="bnav">
+  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn active" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  const ORDERS = [
+    {id:'JM-7823', date:'اليوم - 11:02 ص', status:'progress', items:'عيش أبيض · حليب نيدو · طماطم', total:4250},
+    {id:'JM-7765', date:'أمس - 3:30 م', status:'delivered', items:'أرز بسمتي · زيت دوار الشمس · بصل', total:5180},
+    {id:'JM-7701', date:'2 يناير 2025', status:'delivered', items:'دجاج طازج · خضار مشكلة · بيض', total:6800},
+    {id:'JM-7689', date:'31 ديسمبر 2024', status:'delivered', items:'نسكافيه · شاي · سكر · مياه معدنية', total:4200},
+    {id:'JM-7612', date:'28 ديسمبر 2024', status:'cancelled', items:'سمبوسة مجمدة · آيس كريم', total:4300},
+  ];
+
+  let currentFilter = 'all';
+
+  function filterOrders(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    renderOrders();
+  }
+
+  function renderOrders() {
+    const list = currentFilter === 'all' ? ORDERS : ORDERS.filter(o => o.status === currentFilter);
+    const container = document.getElementById('orders-container');
+
+    if (list.length === 0) {
+      container.innerHTML = `<div class="empty"><div class="ei">📦</div><h3>لا توجد طلبات</h3><p>طلباتك ستظهر هنا</p><a href="index.html" class="big-btn primary" style="width:auto;padding:0 28px;margin:0 auto">تسوق الآن</a></div>`;
+      return;
+    }
+
+    container.innerHTML = list.map(o => `
+      <div class="ocard" onclick="location.href='${o.status==='progress'?'tracking':'orders'}.html'">
+        <div class="ocard-head">
+          <div>
+            <div class="onum">${o.id}</div>
+            <div class="odate">${o.date}</div>
+          </div>
+          <span class="ostatus ${o.status==='delivered'?'s-done':o.status==='progress'?'s-prog':'s-cancel'}">
+            ${o.status==='delivered'?'✅ مكتمل':o.status==='progress'?'🛵 قيد التوصيل':'❌ ملغي'}
+          </span>
+        </div>
+        <div class="oitems">${o.items}</div>
+        <div class="ofoot">
+          <div class="ototal">${o.total.toLocaleString()} SDG</div>
+          ${o.status==='delivered'
+            ? `<button class="reo-btn" onclick="event.stopPropagation();showToast('✅ تمت الإضافة للسلة')">🔄 أعد الطلب</button>`
+            : o.status==='progress'
+            ? `<button class="reo-btn" style="background:var(--p1);color:#fff" onclick="event.stopPropagation();location.href='tracking.html'">📍 تتبع</button>`
+            : `<button class="reo-btn" onclick="event.stopPropagation()">↩️ إعادة الطلب</button>`
+          }
+        </div>
+      </div>`).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', renderOrders);
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تصفح المنتجات — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="hdr">
+  <a href="index.html" class="hdr-back">←</a>
+  <div class="search-wrap">
+    <span class="si">🔍</span>
+    <input type="text" placeholder="ابحث عن منتج..." id="search-input" oninput="doSearch(this.value)">
+  </div>
+  <a href="cart.html" class="hdr-cart">🛒<span class="cbadge" id="cbadge">0</span></a>
+</header>
+
+<!-- Filter tabs -->
+<div class="ftabs" id="filter-tabs">
+  <button class="ftab on" data-cat="all"     onclick="filterCat('all',this)">الكل</button>
+  <button class="ftab" data-cat="bak"     onclick="filterCat('bak',this)">🍞 مخبوزات</button>
+  <button class="ftab" data-cat="dairy"   onclick="filterCat('dairy',this)">🥛 ألبان وبيض</button>
+  <button class="ftab" data-cat="produce" onclick="filterCat('produce',this)">🥦 خضار وفاكهة</button>
+  <button class="ftab" data-cat="meat"    onclick="filterCat('meat',this)">🥩 لحوم وسمك</button>
+  <button class="ftab" data-cat="grocery" onclick="filterCat('grocery',this)">🫙 بقالة</button>
+  <button class="ftab" data-cat="drinks"  onclick="filterCat('drinks',this)">🧃 مشروبات</button>
+  <button class="ftab" data-cat="snacks"  onclick="filterCat('snacks',this)">🍪 حلويات</button>
+  <button class="ftab" data-cat="house"   onclick="filterCat('house',this)">🧹 منزليات</button>
+  <button class="ftab" data-cat="care"    onclick="filterCat('care',this)">🧴 عناية</button>
+  <button class="ftab" data-cat="frozen"  onclick="filterCat('frozen',this)">❄️ مجمدات</button>
+</div>
+
+<main class="page">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px">
+    <div style="font-size:13px;color:var(--text-muted)" id="results-count"></div>
+    <select id="sort-select" onchange="doSort(this.value)" style="
+      background:var(--white);border:1.5px solid var(--border);border-radius:8px;
+      padding:6px 10px;font-family:inherit;font-size:13px;color:var(--text);outline:none;cursor:pointer
+    ">
+      <option value="default">الترتيب الافتراضي</option>
+      <option value="price-asc">السعر: من الأقل</option>
+      <option value="price-desc">السعر: من الأعلى</option>
+      <option value="discount">الأعلى خصماً</option>
+    </select>
+  </div>
+
+  <!-- Empty state -->
+  <div id="empty-browse" style="display:none" class="empty">
+    <div class="ei">🔍</div>
+    <h3>لا توجد نتائج</h3>
+    <p>جرب بحثاً مختلفاً</p>
+  </div>
+
+  <div class="pgrid" id="browse-grid"></div>
+
+  <!-- Floating cart bar -->
+  <a href="cart.html" class="cart-bar" id="cart-bar">
+    <span class="cb-ico">🛒</span>
+    <span class="cb-label">عرض السلة</span>
+    <span class="cb-count" id="cb-count">0</span>
+    <span class="cb-total" id="cb-total">0 SDG</span>
+  </a>
+
+  <div class="sp"></div>
+</main>
+
+<nav class="bnav">
+  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn active" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  let currentCat = 'all';
+  let currentSearch = '';
+  let currentSort = 'default';
+
+  function getFiltered() {
+    let list = [...PRODUCTS];
+    if (currentCat !== 'all') list = list.filter(p => p.cat === currentCat);
+    if (currentSearch.trim()) {
+      const q = currentSearch.trim().toLowerCase();
+      list = list.filter(p => p.name.includes(currentSearch.trim()) || p.name.toLowerCase().includes(q));
+    }
+    if (currentSort === 'price-asc') list.sort((a,b) => a.price - b.price);
+    else if (currentSort === 'price-desc') list.sort((a,b) => b.price - a.price);
+    else if (currentSort === 'discount') list.sort((a,b) => b.discount - a.discount);
+    return list;
+  }
+
+  function renderBrowse() {
+    const list = getFiltered();
+    const grid = document.getElementById('browse-grid');
+    const empty = document.getElementById('empty-browse');
+    const count = document.getElementById('results-count');
+
+    count.textContent = list.length + ' منتج';
+
+    if (list.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+    } else {
+      empty.style.display = 'none';
+      grid.innerHTML = list.map(renderProductCard).join('');
+    }
+  }
+
+  function filterCat(cat, btn) {
+    currentCat = cat;
+    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+    renderBrowse();
+  }
+
+  function doSearch(q) {
+    currentSearch = q;
+    renderBrowse();
+  }
+
+  function doSort(val) {
+    currentSort = val;
+    renderBrowse();
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check URL params
+    const params = new URLSearchParams(location.search);
+    const cat = params.get('cat');
+    const filter = params.get('filter');
+
+    if (cat) {
+      const btn = document.querySelector(`[data-cat="${cat}"]`);
+      if (btn) filterCat(cat, btn);
+      else renderBrowse();
+    } else if (filter === 'offers') {
+      currentCat = 'offers';
+      // Special: show discounted items
+      document.querySelectorAll('.ftab').forEach(b => b.classList.remove('on'));
+      const all = getFiltered();
+      const offers = PRODUCTS.filter(p => p.discount > 0);
+      document.getElementById('browse-grid').innerHTML = offers.map(renderProductCard).join('');
+      document.getElementById('results-count').textContent = offers.length + ' منتج';
+    } else {
+      renderBrowse();
+    }
+  });
+</script>
+</body>
+</html>

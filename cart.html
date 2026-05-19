@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>السلة — جمبك مارت</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="hdr">
+  <a href="index.html" class="hdr-back">←</a>
+  <div class="hdr-title">🛒 السلة</div>
+  <button id="clear-btn" onclick="clearCart()"
+    style="background:none;border:none;font-size:13px;color:var(--red);font-family:inherit;font-weight:700;cursor:pointer;display:none">
+    مسح الكل
+  </button>
+</header>
+
+<main class="page">
+  <div class="sp2"></div>
+  <div id="cart-list"></div>
+
+  <div id="cart-summary-wrap" style="display:none">
+    <div class="summ-box">
+      <!-- Promo code -->
+      <div class="fg" style="margin-bottom:14px">
+        <label class="fl-lbl">🎁 كود خصم</label>
+        <div class="promo-row">
+          <input type="text" class="fi" id="promo-input" placeholder="أدخل كود الخصم">
+          <button class="promo-btn" onclick="applyPromo()">تطبيق</button>
+        </div>
+        <div id="promo-msg" style="font-size:12px;margin-top:5px;display:none"></div>
+      </div>
+
+      <div class="sr"><span>المجموع الجزئي</span><span id="subtotal-val">0 SDG</span></div>
+      <div class="sr"><span>رسوم التوصيل</span><span style="color:var(--grn);font-weight:700">500 SDG</span></div>
+      <div class="sr"><span>الخصم</span><span id="discount-val" style="color:var(--acc)">−0 SDG</span></div>
+      <div class="sr tot"><span>الإجمالي</span><span class="v" id="cart-total-val">0 SDG</span></div>
+
+      <div style="margin-top:14px">
+        <a href="checkout.html" class="big-btn acc">متابعة الدفع ←</a>
+      </div>
+
+      <!-- Trust badges -->
+      <div style="display:flex;gap:0;justify-content:space-around;margin-top:16px;padding-top:14px;border-top:1px solid var(--bdr)">
+        <div style="text-align:center">
+          <div style="font-size:24px">⚡</div>
+          <div style="font-size:10px;color:var(--muted);font-weight:700">توصيل سريع</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:24px">🔒</div>
+          <div style="font-size:10px;color:var(--muted);font-weight:700">دفع آمن</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:24px">↩️</div>
+          <div style="font-size:10px;color:var(--muted);font-weight:700">إرجاع مجاني</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sp"></div>
+</main>
+
+<nav class="bnav">
+  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  const PROMOS = {'JAMBAK10':10,'KHARTOUM':15,'WELCOME':20};
+  let appliedDiscount = 0;
+
+  function refreshPage() {
+    const hasItems = cart.length > 0;
+    document.getElementById('cart-summary-wrap').style.display = hasItems ? 'block' : 'none';
+    document.getElementById('clear-btn').style.display = hasItems ? 'inline' : 'none';
+
+    const sub = getCartTotal();
+    document.getElementById('subtotal-val').textContent = sub.toLocaleString() + ' SDG';
+    const disc = Math.round(sub * appliedDiscount / 100);
+    document.getElementById('discount-val').textContent = '−' + disc.toLocaleString() + ' SDG';
+    document.getElementById('cart-total-val').textContent = (sub + 500 - disc).toLocaleString() + ' SDG';
+
+    renderCartList(document.getElementById('cart-list'));
+    const count = getCartCount();
+    document.querySelectorAll('.cbadge,.cart-badge,.bn-badge').forEach(el => {
+      el.textContent = count;
+      el.classList.toggle('on', count > 0);
+    });
+  }
+
+  function clearCart() {
+    if (cart.length === 0) return;
+    cart.length = 0;
+    localStorage.setItem('jambak_mart_cart', '[]');
+    refreshPage();
+    showToast('🗑️ تم مسح السلة');
+  }
+
+  function applyPromo() {
+    const code = document.getElementById('promo-input').value.toUpperCase().trim();
+    const msg = document.getElementById('promo-msg');
+    const pct = PROMOS[code];
+    if (pct) {
+      appliedDiscount = pct;
+      msg.style.display = 'block';
+      msg.style.color = 'var(--grn)';
+      msg.textContent = '✅ تم تطبيق خصم ' + pct + '%';
+      refreshPage();
+    } else {
+      msg.style.display = 'block';
+      msg.style.color = 'var(--red)';
+      msg.textContent = '❌ الكود غير صحيح';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', refreshPage);
+
+  const _origUpd = updateQty;
+  window.updateQty = function(id, delta) {
+    _origUpd(id, delta);
+    refreshPage();
+  };
+  window.removeFromCart = function(id) {
+    cart.splice(0, cart.length, ...cart.filter(i => i.id !== id));
+    localStorage.setItem('jambak_mart_cart', JSON.stringify(cart));
+    refreshPage();
+  };
+</script>
+</body>
+</html>
