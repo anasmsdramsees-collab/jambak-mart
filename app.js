@@ -192,6 +192,88 @@ function renderCartList(container) {
   `).join('');
 }
 
+// ── Category Image Pools ──
+const UNS = 'https://images.unsplash.com/photo-';
+const CAT_IMG_POOLS = {
+  bak: [
+    UNS+'1509440159596-0249088772ff?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1555507036-ab1f4038808a?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1549931319-a545dcf3bc73?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1565299624946-baaa23fcbddc?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1517433670267-44f50f5e9c8b?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1578985545062-69928b1d9587?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  dairy: [
+    UNS+'1563636619-e9143da7973b?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1499793983690-e29da59ef1c2?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1486297678162-eb2a19b0a32d?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1488477181895-64d0ab93abb4?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1607083206869-e3a0a4e4f62c?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1550583724-b2692b85b150?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  produce: [
+    UNS+'1546793665-c74683f339c1?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1518977676872-5796bb3c2e24?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1508747703725-719af1e60b25?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1571771894640-23f286c58f48?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1601493700678-29afb3d8c540?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1540420773420-3366772f4999?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  meat: [
+    UNS+'1607623814075-e51df1bdc82f?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1604503468853-30af36b20d5c?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1534482421-64566f976cfa?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1529042394853-16e43ecbce9e?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  grocery: [
+    UNS+'1586201375761-83865001e31c?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1474979078801-d46bdab95f79?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1582540337-6dfb8de2d80c?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1507133750040-4a209f4f9100?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1495474472287-4d71a5e10e24?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1518596938-73e9d8b22e2e?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  drinks: [
+    UNS+'1570831739-370d0ad25b68?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1600271886742-f049cd451bba?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1554866585-cd94860890b7?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1563636619-e9143da7973b?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  snacks: [
+    UNS+'1548907994-b8e24b7c2987?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1558961363-fa8fdf82db35?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1536304993831-8c1f0b6ab4cf?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1549057446-ec7dcef113cf?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  house: [
+    UNS+'1585421514738-01798e348b17?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1563396983-4c7ded01d92f?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1584464491033-6d6d11ee04b6?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1534483509719-3feaee7c30da?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  care: [
+    UNS+'1556228578-0d85b1a4d571?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1570555640-da01df9b5d96?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1571781926291-c477ebfd024b?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+  frozen: [
+    UNS+'1497034825429-c343d7c6a68f?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1565299624946-baaa23fcbddc?w=300&h=300&fit=crop&auto=format&q=75',
+    UNS+'1604503468853-30af36b20d5c?w=300&h=300&fit=crop&auto=format&q=75',
+  ],
+};
+
+// Assign each product a specific image from its category pool
+function getProductImg(p) {
+  const pool = CAT_IMG_POOLS[p.cat];
+  if (!pool || pool.length === 0) return '';
+  const idx = parseInt(p.id.replace('p',''), 10) % pool.length;
+  return pool[idx];
+}
+
+window.CAT_IMG_POOLS = CAT_IMG_POOLS;
+window.getProductImg = getProductImg;
+
 // ── Products Data ──
 const PRODUCTS = [
   // مخبوزات
@@ -266,10 +348,14 @@ function renderProductCard(p) {
   const inCart = getCartItem(p.id);
   const oldPrice = p.discount > 0 ? Math.round(p.price / (1 - p.discount/100)) : null;
 
+  const imgSrc = getProductImg(p);
+
   return `
     <div class="pcard" onclick="openProduct('${p.id}')">
       <div class="pcard-img">
-        <span>${p.emoji}</span>
+        ${imgSrc
+          ? `<img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')"><span style="display:none;font-size:54px">${p.emoji}</span>`
+          : `<span>${p.emoji}</span>`}
         ${p.discount > 0 ? `<div class="disc-tag">-${p.discount}%</div>` : ''}
       </div>
       <div class="pcard-body">
