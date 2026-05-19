@@ -62,9 +62,14 @@ body{
   background:var(--p5);border-radius:10px;flex-shrink:0;
 }
 .hdr-logo{
-  font-size:22px;font-weight:900;color:var(--p1);white-space:nowrap;flex-shrink:0;letter-spacing:-.5px;
+  display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0;text-decoration:none;
 }
-.hdr-logo span{color:var(--acc)}
+.hdr-logo .logo-img{
+  height:34px;width:auto;object-fit:contain;display:block;
+}
+.hdr-logo .logo-mart{
+  font-size:18px;font-weight:900;color:var(--acc);letter-spacing:-.5px;
+}
 .hdr-title{font-size:17px;font-weight:800;color:var(--tx);flex:1}
 
 .hdr-loc{
