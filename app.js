@@ -265,6 +265,7 @@ const CAT_IMG_POOLS = {
 
 // Assign each product a specific image from its category pool
 function getProductImg(p) {
+  if (p.img) return p.img;
   const pool = CAT_IMG_POOLS[p.cat];
   if (!pool || pool.length === 0) return '';
   const idx = parseInt(p.id.replace('p',''), 10) % pool.length;
@@ -277,86 +278,86 @@ window.getProductImg = getProductImg;
 // ── Products Data ──
 const PRODUCTS = [
   // مخبوزات
-  { id:'p01', cat:'bak', emoji:'🍞', name:'خبز توست أبيض 600 غرام', unit:'كيس 600 غرام', price:750, discount:0 },
-  { id:'p02', cat:'bak', emoji:'🥖', name:'خبز بر أسمر سن', unit:'كيس 400 غرام', price:480, discount:0 },
-  { id:'p03', cat:'bak', emoji:'🥐', name:'كرواسون بالزبدة 6 قطع', unit:'علبة 6 قطع', price:1280, discount:10 },
-  { id:'p04', cat:'bak', emoji:'🧁', name:'كعك البيت بالسمسم', unit:'كيس 200 غرام', price:400, discount:0 },
-  { id:'p05', cat:'bak', emoji:'🍰', name:'كيكة إسفنجية بالفانيلا', unit:'علبة 400 غرام', price:1920, discount:15 },
-  { id:'p06', cat:'bak', emoji:'🫓', name:'بسكويت بيلفيتا بالهيل 8 قطع', unit:'448 غرام', price:1600, discount:0 },
+  { id:'p01', cat:'bak', emoji:'🍞', name:'خبز توست أبيض 600 غرام', unit:'كيس 600 غرام', price:750, discount:0, img:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p02', cat:'bak', emoji:'🥖', name:'خبز بر أسمر سن', unit:'كيس 400 غرام', price:480, discount:0, img:'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p03', cat:'bak', emoji:'🥐', name:'كرواسون بالزبدة 6 قطع', unit:'علبة 6 قطع', price:1280, discount:10, img:'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p04', cat:'bak', emoji:'🧁', name:'كعك البيت بالسمسم', unit:'كيس 200 غرام', price:400, discount:0, img:'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p05', cat:'bak', emoji:'🍰', name:'كيكة إسفنجية بالفانيلا', unit:'علبة 400 غرام', price:1920, discount:15, img:'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p06', cat:'bak', emoji:'🫓', name:'بسكويت بيلفيتا بالهيل 8 قطع', unit:'448 غرام', price:1600, discount:0, img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // ألبان وبيض
-  { id:'p07', cat:'dairy', emoji:'🥛', name:'حليب المراعي كامل الدسم 1 لتر', unit:'1 لتر', price:800, discount:0 },
-  { id:'p08', cat:'dairy', emoji:'🥛', name:'حليب المراعي قليل الدسم 1 لتر × 4', unit:'4 لتر', price:2880, discount:0 },
-  { id:'p09', cat:'dairy', emoji:'🥚', name:'بيض طازج كبير 15 بيضة', unit:'15 بيضة', price:1920, discount:0 },
-  { id:'p10', cat:'dairy', emoji:'🧀', name:'جبن كرافت مثلثات 16 قطعة', unit:'16 قطعة', price:2240, discount:0 },
-  { id:'p11', cat:'dairy', emoji:'🫙', name:'زبادي المراعي طبيعي 500 غرام', unit:'500 غرام', price:800, discount:0 },
-  { id:'p12', cat:'dairy', emoji:'🧈', name:'زبدة أنكور نيوزيلندية 250 غرام', unit:'250 غرام', price:2400, discount:0 },
-  { id:'p13', cat:'dairy', emoji:'🥛', name:'حليب نيدو كامل الدسم 400 غرام', unit:'400 غرام', price:2880, discount:0 },
-  { id:'p14', cat:'dairy', emoji:'🧀', name:'جبن بيضاء طازجة الصافي 500 غرام', unit:'500 غرام', price:1440, discount:0 },
+  { id:'p07', cat:'dairy', emoji:'🥛', name:'حليب المراعي كامل الدسم 1 لتر', unit:'1 لتر', price:800, discount:0, img:'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p08', cat:'dairy', emoji:'🥛', name:'حليب المراعي قليل الدسم 1 لتر × 4', unit:'4 لتر', price:2880, discount:0, img:'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p09', cat:'dairy', emoji:'🥚', name:'بيض طازج كبير 15 بيضة', unit:'15 بيضة', price:1920, discount:0, img:'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p10', cat:'dairy', emoji:'🧀', name:'جبن كرافت مثلثات 16 قطعة', unit:'16 قطعة', price:2240, discount:0, img:'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p11', cat:'dairy', emoji:'🫙', name:'زبادي المراعي طبيعي 500 غرام', unit:'500 غرام', price:800, discount:0, img:'https://images.unsplash.com/photo-1488477181895-64d0ab93abb4?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p12', cat:'dairy', emoji:'🧈', name:'زبدة أنكور نيوزيلندية 250 غرام', unit:'250 غرام', price:2400, discount:0, img:'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p13', cat:'dairy', emoji:'🥛', name:'حليب نيدو كامل الدسم 400 غرام', unit:'400 غرام', price:2880, discount:0, img:'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p14', cat:'dairy', emoji:'🧀', name:'جبن بيضاء طازجة الصافي 500 غرام', unit:'500 غرام', price:1440, discount:0, img:'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // خضار وفاكهة
-  { id:'p15', cat:'produce', emoji:'🍅', name:'طماطم طازجة محلية', unit:'1 كيلو', price:350, discount:0 },
-  { id:'p16', cat:'produce', emoji:'🧅', name:'بصل جاف أبيض', unit:'1 كيلو', price:280, discount:0 },
-  { id:'p17', cat:'produce', emoji:'🥔', name:'بطاطس طازجة محلية', unit:'1 كيلو', price:320, discount:0 },
-  { id:'p18', cat:'produce', emoji:'🍌', name:'موز طازج', unit:'1 كيلو', price:960, discount:0 },
-  { id:'p19', cat:'produce', emoji:'🥭', name:'مانجو شنبار سوداني', unit:'1 كيلو', price:1280, discount:20 },
-  { id:'p20', cat:'produce', emoji:'🥦', name:'بامية خضراء طازجة', unit:'500 غرام', price:480, discount:0 },
-  { id:'p21', cat:'produce', emoji:'🍋', name:'ليمون طازج', unit:'1 كيلو', price:640, discount:0 },
-  { id:'p22', cat:'produce', emoji:'🧄', name:'ثوم مجروش 250 غرام', unit:'250 غرام', price:480, discount:0 },
+  { id:'p15', cat:'produce', emoji:'🍅', name:'طماطم طازجة محلية', unit:'1 كيلو', price:350, discount:0, img:'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p16', cat:'produce', emoji:'🧅', name:'بصل جاف أبيض', unit:'1 كيلو', price:280, discount:0, img:'https://images.unsplash.com/photo-1518977676872-5796bb3c2e24?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p17', cat:'produce', emoji:'🥔', name:'بطاطس طازجة محلية', unit:'1 كيلو', price:320, discount:0, img:'https://images.unsplash.com/photo-1508747703725-719af1e60b25?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p18', cat:'produce', emoji:'🍌', name:'موز طازج', unit:'1 كيلو', price:960, discount:0, img:'https://images.unsplash.com/photo-1571771894640-23f286c58f48?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p19', cat:'produce', emoji:'🥭', name:'مانجو شنبار سوداني', unit:'1 كيلو', price:1280, discount:20, img:'https://images.unsplash.com/photo-1601493700678-29afb3d8c540?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p20', cat:'produce', emoji:'🥦', name:'بامية خضراء طازجة', unit:'500 غرام', price:480, discount:0, img:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p21', cat:'produce', emoji:'🍋', name:'ليمون طازج', unit:'1 كيلو', price:640, discount:0, img:'https://images.unsplash.com/photo-1582979512177-24c845800e13?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p22', cat:'produce', emoji:'🧄', name:'ثوم مجروش 250 غرام', unit:'250 غرام', price:480, discount:0, img:'https://images.unsplash.com/photo-1615485290382-441ff0b4e0e4?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // لحوم وسمك
-  { id:'p23', cat:'meat', emoji:'🥩', name:'لحم بقري مفروم طازج', unit:'500 غرام', price:3500, discount:0 },
-  { id:'p24', cat:'meat', emoji:'🍗', name:'فخذ دجاج طازج بدون عظم', unit:'1 كيلو', price:2800, discount:0 },
-  { id:'p25', cat:'meat', emoji:'🐟', name:'سمك بلطي طازج', unit:'1 كيلو', price:3200, discount:0 },
-  { id:'p26', cat:'meat', emoji:'🥚', name:'كفتة لحم جاهزة', unit:'500 غرام', price:4000, discount:10 },
-  { id:'p27', cat:'meat', emoji:'🍗', name:'صدر دجاج مقطع طازج', unit:'1 كيلو', price:3040, discount:0 },
+  { id:'p23', cat:'meat', emoji:'🥩', name:'لحم بقري مفروم طازج', unit:'500 غرام', price:3500, discount:0, img:'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p24', cat:'meat', emoji:'🍗', name:'فخذ دجاج طازج بدون عظم', unit:'1 كيلو', price:2800, discount:0, img:'https://images.unsplash.com/photo-1604503468853-30af36b20d5c?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p25', cat:'meat', emoji:'🐟', name:'سمك بلطي طازج', unit:'1 كيلو', price:3200, discount:0, img:'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p26', cat:'meat', emoji:'🥚', name:'كفتة لحم جاهزة', unit:'500 غرام', price:4000, discount:10, img:'https://images.unsplash.com/photo-1529042394853-16e43ecbce9e?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p27', cat:'meat', emoji:'🍗', name:'صدر دجاج مقطع طازج', unit:'1 كيلو', price:3040, discount:0, img:'https://images.unsplash.com/photo-1604503468853-30af36b20d5c?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // بقالة
-  { id:'p28', cat:'grocery', emoji:'🍚', name:'أرز بسمتي طويل الحبة 2 كجم', unit:'2 كيلو', price:2400, discount:0 },
-  { id:'p29', cat:'grocery', emoji:'🫙', name:'زيت عافية دوار الشمس 1.5 لتر', unit:'1.5 لتر', price:2880, discount:0 },
-  { id:'p30', cat:'grocery', emoji:'🍬', name:'سكر أبيض ناعم 2 كجم', unit:'2 كيلو', price:1280, discount:0 },
-  { id:'p31', cat:'grocery', emoji:'🫖', name:'شاي ليبتون أصفر 100 كيس', unit:'100 كيس', price:1920, discount:0 },
-  { id:'p32', cat:'grocery', emoji:'☕', name:'نسكافيه كلاسيك 200 غرام', unit:'200 غرام', price:3520, discount:0 },
-  { id:'p33', cat:'grocery', emoji:'🌾', name:'طحين القمح الكامل البيكر 2 كجم', unit:'2 كيلو', price:1280, discount:0 },
-  { id:'p34', cat:'grocery', emoji:'🧂', name:'ملح ناعم يودي 1 كجم', unit:'1 كيلو', price:480, discount:0 },
-  { id:'p35', cat:'grocery', emoji:'🥫', name:'طماطم مفرومة هاينز 400 غرام', unit:'400 غرام', price:960, discount:0 },
-  { id:'p36', cat:'grocery', emoji:'🍯', name:'عسل طبيعي سدر 500 غرام', unit:'500 غرام', price:4800, discount:0 },
+  { id:'p28', cat:'grocery', emoji:'🍚', name:'أرز بسمتي طويل الحبة 2 كجم', unit:'2 كيلو', price:2400, discount:0, img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p29', cat:'grocery', emoji:'🫙', name:'زيت عافية دوار الشمس 1.5 لتر', unit:'1.5 لتر', price:2880, discount:0, img:'https://images.unsplash.com/photo-1474979078801-d46bdab95f79?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p30', cat:'grocery', emoji:'🍬', name:'سكر أبيض ناعم 2 كجم', unit:'2 كيلو', price:1280, discount:0, img:'https://images.unsplash.com/photo-1582540337-6dfb8de2d80c?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p31', cat:'grocery', emoji:'🫖', name:'شاي ليبتون أصفر 100 كيس', unit:'100 كيس', price:1920, discount:0, img:'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p32', cat:'grocery', emoji:'☕', name:'نسكافيه كلاسيك 200 غرام', unit:'200 غرام', price:3520, discount:0, img:'https://images.unsplash.com/photo-1495474472287-4d71a5e10e24?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p33', cat:'grocery', emoji:'🌾', name:'طحين القمح الكامل البيكر 2 كجم', unit:'2 كيلو', price:1280, discount:0, img:'https://images.unsplash.com/photo-1574323347-6ce8c2cf5bfd?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p34', cat:'grocery', emoji:'🧂', name:'ملح ناعم يودي 1 كجم', unit:'1 كيلو', price:480, discount:0, img:'https://images.unsplash.com/photo-1518596938-73e9d8b22e2e?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p35', cat:'grocery', emoji:'🥫', name:'طماطم مفرومة هاينز 400 غرام', unit:'400 غرام', price:960, discount:0, img:'https://images.unsplash.com/photo-1585620385456-4759f9b5c7d9?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p36', cat:'grocery', emoji:'🍯', name:'عسل طبيعي سدر 500 غرام', unit:'500 غرام', price:4800, discount:0, img:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // مشروبات
-  { id:'p37', cat:'drinks', emoji:'💧', name:'مياه معدنية نيفيا 1.5 لتر × 12', unit:'18 لتر', price:1920, discount:0 },
-  { id:'p38', cat:'drinks', emoji:'💧', name:'مياه باردة 500 مل', unit:'500 مل', price:160, discount:0 },
-  { id:'p39', cat:'drinks', emoji:'🥤', name:'بيبسي كولا 330 مل × 6 علب', unit:'1.98 لتر', price:2400, discount:0 },
-  { id:'p40', cat:'drinks', emoji:'🧃', name:'عصير المراعي برتقال 1 لتر', unit:'1 لتر', price:1120, discount:0 },
-  { id:'p41', cat:'drinks', emoji:'🧃', name:'عصير لمعي مانجو 250 مل × 6', unit:'1.5 لتر', price:2240, discount:15 },
-  { id:'p42', cat:'drinks', emoji:'🥛', name:'لبن المراعي بالفراولة 200 مل × 6', unit:'1.2 لتر', price:1440, discount:0 },
+  { id:'p37', cat:'drinks', emoji:'💧', name:'مياه معدنية نيفيا 1.5 لتر × 12', unit:'18 لتر', price:1920, discount:0, img:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p38', cat:'drinks', emoji:'💧', name:'مياه باردة 500 مل', unit:'500 مل', price:160, discount:0, img:'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p39', cat:'drinks', emoji:'🥤', name:'بيبسي كولا 330 مل × 6 علب', unit:'1.98 لتر', price:2400, discount:0, img:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p40', cat:'drinks', emoji:'🧃', name:'عصير المراعي برتقال 1 لتر', unit:'1 لتر', price:1120, discount:0, img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p41', cat:'drinks', emoji:'🧃', name:'عصير لمعي مانجو 250 مل × 6', unit:'1.5 لتر', price:2240, discount:15, img:'https://images.unsplash.com/photo-1570831739-370d0ad25b68?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p42', cat:'drinks', emoji:'🥛', name:'لبن المراعي بالفراولة 200 مل × 6', unit:'1.2 لتر', price:1440, discount:0, img:'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // حلويات وسناكس
-  { id:'p43', cat:'snacks', emoji:'🍫', name:'فيريرو روشيه 24 حبة 300 غرام', unit:'300 غرام', price:6240, discount:15 },
-  { id:'p44', cat:'snacks', emoji:'🍫', name:'لينت ليندور شوكولاتة حليب 100 غرام', unit:'100 غرام', price:1280, discount:0 },
-  { id:'p45', cat:'snacks', emoji:'🥜', name:'فول سوداني محمص بالملح', unit:'200 غرام', price:400, discount:0 },
-  { id:'p46', cat:'snacks', emoji:'🍪', name:'بسكويت ماري أصلي', unit:'علبة 200 غرام', price:480, discount:0 },
-  { id:'p47', cat:'snacks', emoji:'🥣', name:'كيلوغز كوكو بوبز 480 غرام', unit:'480 غرام', price:4000, discount:0 },
-  { id:'p48', cat:'snacks', emoji:'🍬', name:'حلوى مصاصة مشكلة', unit:'كيس 500 غرام', price:640, discount:0 },
+  { id:'p43', cat:'snacks', emoji:'🍫', name:'فيريرو روشيه 24 حبة 300 غرام', unit:'300 غرام', price:6240, discount:15, img:'https://images.unsplash.com/photo-1548907994-b8e24b7c2987?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p44', cat:'snacks', emoji:'🍫', name:'لينت ليندور شوكولاتة حليب 100 غرام', unit:'100 غرام', price:1280, discount:0, img:'https://images.unsplash.com/photo-1548907994-b8e24b7c2987?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p45', cat:'snacks', emoji:'🥜', name:'فول سوداني محمص بالملح', unit:'200 غرام', price:400, discount:0, img:'https://images.unsplash.com/photo-1536304993831-8c1f0b6ab4cf?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p46', cat:'snacks', emoji:'🍪', name:'بسكويت ماري أصلي', unit:'علبة 200 غرام', price:480, discount:0, img:'https://images.unsplash.com/photo-1549057446-ec7dcef113cf?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p47', cat:'snacks', emoji:'🥣', name:'كيلوغز كوكو بوبز 480 غرام', unit:'480 غرام', price:4000, discount:0, img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p48', cat:'snacks', emoji:'🍬', name:'حلوى مصاصة مشكلة', unit:'كيس 500 غرام', price:640, discount:0, img:'https://images.unsplash.com/photo-1549057446-ec7dcef113cf?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // منزليات
-  { id:'p49', cat:'house', emoji:'🧴', name:'أريال مسحوق غسيل فاعل 2.5 كجم', unit:'2.5 كيلو', price:3840, discount:0 },
-  { id:'p50', cat:'house', emoji:'🧴', name:'فيري ليمون سائل صحون 500 مل', unit:'500 مل', price:1280, discount:0 },
-  { id:'p51', cat:'house', emoji:'🌺', name:'داوني كلنر قيم العشب 3 لتر', unit:'3 لتر', price:3520, discount:10 },
-  { id:'p52', cat:'house', emoji:'💧', name:'كلوركس مبيض سائل 2 لتر', unit:'2 لتر', price:1920, discount:0 },
-  { id:'p53', cat:'house', emoji:'🧻', name:'فاين مناشف مطبخ 12 رول', unit:'12 رول', price:4480, discount:0 },
-  { id:'p54', cat:'house', emoji:'🧹', name:'جيف كريم منظف مع كريستال 500 مل', unit:'500 مل', price:1600, discount:0 },
+  { id:'p49', cat:'house', emoji:'🧴', name:'أريال مسحوق غسيل فاعل 2.5 كجم', unit:'2.5 كيلو', price:3840, discount:0, img:'https://images.unsplash.com/photo-1585421514738-01798e348b17?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p50', cat:'house', emoji:'🧴', name:'فيري ليمون سائل صحون 500 مل', unit:'500 مل', price:1280, discount:0, img:'https://images.unsplash.com/photo-1563396983-4c7ded01d92f?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p51', cat:'house', emoji:'🌺', name:'داوني كلنر قيم العشب 3 لتر', unit:'3 لتر', price:3520, discount:10, img:'https://images.unsplash.com/photo-1584464491033-6d6d11ee04b6?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p52', cat:'house', emoji:'💧', name:'كلوركس مبيض سائل 2 لتر', unit:'2 لتر', price:1920, discount:0, img:'https://images.unsplash.com/photo-1534483509719-3feaee7c30da?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p53', cat:'house', emoji:'🧻', name:'فاين مناشف مطبخ 12 رول', unit:'12 رول', price:4480, discount:0, img:'https://images.unsplash.com/photo-1584464491033-6d6d11ee04b6?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p54', cat:'house', emoji:'🧹', name:'جيف كريم منظف مع كريستال 500 مل', unit:'500 مل', price:1600, discount:0, img:'https://images.unsplash.com/photo-1563396983-4c7ded01d92f?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // عناية شخصية
-  { id:'p55', cat:'care', emoji:'🧼', name:'صابون ديتول مضاد للبكتيريا 125 غرام', unit:'125 غرام', price:480, discount:0 },
-  { id:'p56', cat:'care', emoji:'🪥', name:'فرشاة أسنان أورال-بي ناعمة', unit:'قطعة', price:800, discount:0 },
-  { id:'p57', cat:'care', emoji:'🧴', name:'شامبو هيد شولدرز قشرة 400 مل', unit:'400 مل', price:2400, discount:0 },
-  { id:'p58', cat:'care', emoji:'🧴', name:'كريم نيفيا ترطيب 200 مل', unit:'200 مل', price:1280, discount:0 },
+  { id:'p55', cat:'care', emoji:'🧼', name:'صابون ديتول مضاد للبكتيريا 125 غرام', unit:'125 غرام', price:480, discount:0, img:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p56', cat:'care', emoji:'🪥', name:'فرشاة أسنان أورال-بي ناعمة', unit:'قطعة', price:800, discount:0, img:'https://images.unsplash.com/photo-1570555640-da01df9b5d96?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p57', cat:'care', emoji:'🧴', name:'شامبو هيد شولدرز قشرة 400 مل', unit:'400 مل', price:2400, discount:0, img:'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p58', cat:'care', emoji:'🧴', name:'كريم نيفيا ترطيب 200 مل', unit:'200 مل', price:1280, discount:0, img:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&h=300&fit=crop&auto=format&q=80' },
 
   // مجمدات
-  { id:'p59', cat:'frozen', emoji:'🍦', name:'آيس كريم فانيلا كيلو', unit:'1 لتر', price:1600, discount:0 },
-  { id:'p60', cat:'frozen', emoji:'🥟', name:'سمبوسة لحم جاهزة 20 قطعة', unit:'20 قطعة', price:2880, discount:20 },
-  { id:'p61', cat:'frozen', emoji:'🌮', name:'دجاج مقلي مجمد 1 كجم', unit:'1 كيلو', price:3520, discount:0 },
-  { id:'p62', cat:'frozen', emoji:'🐟', name:'قريدس مجمد مقشر 500 غرام', unit:'500 غرام', price:4800, discount:15 },
+  { id:'p59', cat:'frozen', emoji:'🍦', name:'آيس كريم فانيلا كيلو', unit:'1 لتر', price:1600, discount:0, img:'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p60', cat:'frozen', emoji:'🥟', name:'سمبوسة لحم جاهزة 20 قطعة', unit:'20 قطعة', price:2880, discount:20, img:'https://images.unsplash.com/photo-1565299624946-baaa23fcbddc?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p61', cat:'frozen', emoji:'🌮', name:'دجاج مقلي مجمد 1 كجم', unit:'1 كيلو', price:3520, discount:0, img:'https://images.unsplash.com/photo-1604503468853-30af36b20d5c?w=300&h=300&fit=crop&auto=format&q=80' },
+  { id:'p62', cat:'frozen', emoji:'🐟', name:'قريدس مجمد مقشر 500 غرام', unit:'500 غرام', price:4800, discount:15, img:'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=300&h=300&fit=crop&auto=format&q=80' },
 ];
 
 // ── Product Card Renderer ──
