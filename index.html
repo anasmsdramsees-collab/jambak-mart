@@ -111,18 +111,22 @@
     </button>
   </div>
 
-  <!-- ── HERO BANNER (full-width slider) ── -->
+  <!-- ── SLIDESHOW ── -->
   <div class="hero-slider" id="hero-slider">
     <div class="hero-slides" id="hero-slides">
       <a href="stores.html" class="hero-slide">
-        <img src="banner-delivery.png" alt="توصيل خلال 25 دقيقة">
+        <img src="banner-mart.jpg" alt="جمبك مارت">
       </a>
       <a href="browse.html?filter=offers" class="hero-slide">
         <img src="banner-offers.png" alt="عروض اليوم">
       </a>
+      <a href="stores.html" class="hero-slide">
+        <img src="banner-delivery.png" alt="توصيل سريع">
+      </a>
     </div>
     <div class="hero-dots" id="hero-dots">
       <span class="hdot active"></span>
+      <span class="hdot"></span>
       <span class="hdot"></span>
     </div>
   </div>
@@ -265,24 +269,25 @@
       ['meat','frozen','care','produce'].includes(p.cat)
     ).slice(0, 8));
 
-    // Hero slider auto-play
+    // Slideshow — auto-play 3 slides
+    const totalSlides = 3;
     let slide = 0;
     const slides = document.getElementById('hero-slides');
     const dots = document.querySelectorAll('.hdot');
     function goSlide(n) {
-      slide = n;
+      slide = (n + totalSlides) % totalSlides;
       slides.style.transform = `translateX(${slide * 100}%)`;
       dots.forEach((d,i) => d.classList.toggle('active', i === slide));
     }
     dots.forEach((d,i) => d.addEventListener('click', () => goSlide(i)));
-    setInterval(() => goSlide(slide === 0 ? 1 : 0), 4000);
+    const autoPlay = setInterval(() => goSlide(slide + 1), 3500);
 
     // Touch swipe
     let startX = 0;
     slides.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
     slides.addEventListener('touchend', e => {
       const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 50) goSlide(dx > 0 ? 0 : 1);
+      if (Math.abs(dx) > 40) { clearInterval(autoPlay); goSlide(dx > 0 ? slide - 1 : slide + 1); }
     }, {passive:true});
   });
 
