@@ -9,100 +9,162 @@
 <body>
 
 <header class="hdr">
-  <div class="hdr-logo"><img src="logo.jpg" alt="جمبك مارت" class="logo-img"><span class="logo-mart">مارت</span></div>
-  <div class="hdr-title">طلباتي</div>
-  <a href="cart.html" class="hdr-cart">🛒<span class="cbadge" id="cbadge">0</span></a>
+  <a href="index.html" class="hdr-back">←</a>
+  <div class="hdr-title">الطلبات</div>
+  <div style="width:40px"></div>
 </header>
 
-<main class="page">
+<main class="page" style="background:#F5F5F5;padding-top:0">
 
-  <!-- Filter tabs -->
-  <div class="ftabs" style="position:sticky;top:var(--hh)">
-    <button class="ftab on" onclick="filterOrders('all',this)">الكل</button>
-    <button class="ftab" onclick="filterOrders('progress',this)">🛵 جاري التوصيل</button>
-    <button class="ftab" onclick="filterOrders('delivered',this)">✅ مكتمل</button>
-    <button class="ftab" onclick="filterOrders('cancelled',this)">❌ ملغي</button>
+  <!-- Search + Filter -->
+  <div class="ord-search-bar">
+    <div class="ord-search-inner">
+      <span style="color:#aaa">🔍</span>
+      <input type="text" placeholder="ابحث في طلباتك..." style="border:none;outline:none;font-family:inherit;font-size:13px;flex:1;background:transparent;color:#333">
+    </div>
+    <button class="ord-filter-btn" onclick="showToast('فلتر — قريباً!')">آخر 3 أشهر ▾</button>
   </div>
 
-  <div class="sp2"></div>
+  <!-- Active order -->
+  <div id="active-order-wrap"></div>
 
-  <!-- Active order callout -->
-  <div id="active-order-card" style="margin:0 16px 12px">
-    <a href="tracking.html" style="text-decoration:none;display:block;
-      background:linear-gradient(135deg,var(--p2),var(--p1));
-      border-radius:var(--r);padding:14px;color:#fff">
-      <div style="font-size:11px;opacity:.8;margin-bottom:4px">طلب قيد التوصيل</div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="font-size:32px">🛵</div>
-        <div style="flex:1">
-          <div style="font-size:15px;font-weight:800">JM-7823 — في الطريق</div>
-          <div style="font-size:12px;opacity:.8">الوصول خلال 28 دقيقة تقريباً</div>
-        </div>
-        <div style="font-size:22px">←</div>
-      </div>
-    </a>
-  </div>
+  <!-- Completed orders -->
+  <div class="ord-section-title">مكتملة</div>
+  <div id="orders-list"></div>
 
-  <div id="orders-container"></div>
   <div class="sp"></div>
 </main>
 
 <nav class="bnav">
-  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
-  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
-  <a href="orders.html" class="bn active" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
-  <a href="account.html" class="bn" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+  <a href="index.html" class="bn"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn active"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn"><span class="ico">👤</span>حسابي</a>
 </nav>
 
 <script src="app.js"></script>
 <script>
   const ORDERS = [
-    {id:'JM-7823', date:'اليوم - 11:02 ص', status:'progress', items:'عيش أبيض · حليب نيدو · طماطم', total:4250},
-    {id:'JM-7765', date:'أمس - 3:30 م', status:'delivered', items:'أرز بسمتي · زيت دوار الشمس · بصل', total:5180},
-    {id:'JM-7701', date:'2 يناير 2025', status:'delivered', items:'دجاج طازج · خضار مشكلة · بيض', total:6800},
-    {id:'JM-7689', date:'31 ديسمبر 2024', status:'delivered', items:'نسكافيه · شاي · سكر · مياه معدنية', total:4200},
-    {id:'JM-7612', date:'28 ديسمبر 2024', status:'cancelled', items:'سمبوسة مجمدة · آيس كريم', total:4300},
+    {
+      id: 'JM-7823',
+      store: 'جمبك مارت',
+      date: 'اليوم · 11:02 ص',
+      status: 'progress',
+      img: '🛵',
+      items: [
+        { name: 'عيش أبيض 700 جرام', img: '🍞' },
+        { name: 'حليب نيدو 400 جرام', img: '🥛' },
+      ],
+      total: 4250,
+    },
+    {
+      id: 'JM-7765',
+      store: 'جمبك مارت',
+      date: 'أمس · 3:30 م',
+      status: 'delivered',
+      img: '📦',
+      items: [
+        { name: 'أرز بسمتي 2 كيلو', img: '🍚' },
+        { name: 'زيت دوار الشمس 1.5 لتر', img: '🫙' },
+        { name: 'بصل أبيض 1 كيلو', img: '🧅' },
+      ],
+      total: 5180,
+    },
+    {
+      id: 'JM-7701',
+      store: 'هايبر مول',
+      date: '2 يناير 2025',
+      status: 'delivered',
+      img: '📦',
+      items: [
+        { name: 'دجاج طازج 1 كيلو', img: '🍗' },
+        { name: 'خضار مشكلة 500 جرام', img: '🥦' },
+        { name: 'بيض بلدي 30 بيضة', img: '🥚' },
+      ],
+      total: 6800,
+    },
+    {
+      id: 'JM-7689',
+      store: 'جمبك مارت',
+      date: '31 ديسمبر 2024',
+      status: 'delivered',
+      img: '📦',
+      items: [
+        { name: 'نسكافيه كلاسيك 200 جرام', img: '☕' },
+        { name: 'شاي أحمر 100 كيس', img: '🍵' },
+        { name: 'مياه معدنية 6 زجاجات', img: '💧' },
+      ],
+      total: 4200,
+    },
+    {
+      id: 'JM-7612',
+      store: 'جمبك مارت',
+      date: '28 ديسمبر 2024',
+      status: 'cancelled',
+      img: '❌',
+      items: [
+        { name: 'سمبوسة مجمدة 20 قطعة', img: '🥟' },
+        { name: 'آيس كريم فانيلا 1 لتر', img: '🍦' },
+      ],
+      total: 4300,
+    },
   ];
 
-  let currentFilter = 'all';
-
-  function filterOrders(filter, btn) {
-    currentFilter = filter;
-    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    renderOrders();
-  }
-
   function renderOrders() {
-    const list = currentFilter === 'all' ? ORDERS : ORDERS.filter(o => o.status === currentFilter);
-    const container = document.getElementById('orders-container');
-
-    if (list.length === 0) {
-      container.innerHTML = `<div class="empty"><div class="ei">📦</div><h3>لا توجد طلبات</h3><p>طلباتك ستظهر هنا</p><a href="index.html" class="big-btn primary" style="width:auto;padding:0 28px;margin:0 auto">تسوق الآن</a></div>`;
-      return;
+    // Active order callout
+    const active = ORDERS.find(o => o.status === 'progress');
+    const activeWrap = document.getElementById('active-order-wrap');
+    if (active) {
+      activeWrap.innerHTML = `
+        <a href="tracking.html" style="text-decoration:none;display:block;margin:12px 16px;
+          background:linear-gradient(135deg,var(--p2),var(--p1));border-radius:16px;padding:14px;color:#fff">
+          <div style="font-size:10px;opacity:.75;margin-bottom:6px;font-weight:600">طلب قيد التوصيل</div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="font-size:34px">🛵</div>
+            <div style="flex:1">
+              <div style="font-size:15px;font-weight:800">${active.id} · في الطريق</div>
+              <div style="font-size:12px;opacity:.8;margin-top:2px">الوصول خلال 28 دقيقة تقريباً</div>
+            </div>
+            <div style="font-size:22px">‹</div>
+          </div>
+        </a>`;
     }
 
-    container.innerHTML = list.map(o => `
-      <div class="ocard" onclick="location.href='${o.status==='progress'?'tracking':'orders'}.html'">
-        <div class="ocard-head">
+    // Completed + cancelled orders
+    const done = ORDERS.filter(o => o.status !== 'progress');
+    const list = document.getElementById('orders-list');
+    list.innerHTML = done.map(o => `
+      <div class="ord-card" onclick="location.href='${o.status === 'progress' ? 'tracking' : 'orders'}.html'">
+        <div class="ord-card-head">
           <div>
-            <div class="onum">${o.id}</div>
-            <div class="odate">${o.date}</div>
+            <span class="ord-id">${o.id}</span>
+            <span class="ord-store-badge">${o.store}</span>
           </div>
-          <span class="ostatus ${o.status==='delivered'?'s-done':o.status==='progress'?'s-prog':'s-cancel'}">
-            ${o.status==='delivered'?'✅ مكتمل':o.status==='progress'?'🛵 قيد التوصيل':'❌ ملغي'}
+          <span class="ord-status ${o.status === 'delivered' ? 'os-done' : 'os-cancel'}">
+            ${o.status === 'delivered' ? '✅ تم التوصيل' : '❌ ملغي'}
           </span>
         </div>
-        <div class="oitems">${o.items}</div>
-        <div class="ofoot">
-          <div class="ototal">${o.total.toLocaleString()} SDG</div>
-          ${o.status==='delivered'
-            ? `<button class="reo-btn" onclick="event.stopPropagation();showToast('✅ تمت الإضافة للسلة')">🔄 أعد الطلب</button>`
-            : o.status==='progress'
-            ? `<button class="reo-btn" style="background:var(--p1);color:#fff" onclick="event.stopPropagation();location.href='tracking.html'">📍 تتبع</button>`
-            : `<button class="reo-btn" onclick="event.stopPropagation()">↩️ إعادة الطلب</button>`
-          }
+        <div class="ord-date">${o.date}</div>
+        ${o.items.map(item => `
+          <div class="ord-item-row">
+            <span class="ord-item-ico">${item.img}</span>
+            <span class="ord-item-name">${item.name}</span>
+          </div>`).join('')}
+        <div class="ord-card-foot">
+          <span class="ord-total">${o.total.toLocaleString()} SDG</span>
+          <a href="index.html" class="ord-reorder-btn" onclick="event.stopPropagation();showToast('✅ تمت الإضافة للسلة')">
+            🔄 إعادة الطلب
+          </a>
         </div>
+        ${o.status === 'delivered' ? `
+        <div class="ord-review-row">
+          <span class="ord-review-label">شارك تجربتك</span>
+          <div class="ord-review-btns">
+            <button onclick="event.stopPropagation();showToast('شكراً على تقييم المتجر!')">المتجر</button>
+            <button onclick="event.stopPropagation();showToast('شكراً على تقييم المنتج!')">المنتج</button>
+            <button onclick="event.stopPropagation();showToast('شكراً على تقييم التوصيل!')">التوصيل</button>
+          </div>
+        </div>` : ''}
       </div>`).join('');
   }
 

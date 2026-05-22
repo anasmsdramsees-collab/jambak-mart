@@ -15,108 +15,148 @@
 </header>
 
 <!-- Logged-in view -->
-<main class="page" id="logged-in" style="display:none;padding-top:0">
+<main class="page" id="logged-in" style="display:none;padding-top:0;background:#F5F5F5">
 
-  <div class="acc-top">
-    <div class="acc-av">🧑</div>
-    <div class="acc-name" id="user-name">محمد أحمد</div>
-    <div class="acc-phone" id="user-phone">+249 91 234 5678</div>
-    <div class="acc-stats">
-      <div class="acc-stat"><strong>12</strong><span>طلب</span></div>
-      <div class="acc-stat"><strong>320</strong><span>نقطة</span></div>
-      <div class="acc-stat"><strong>⭐ 4.9</strong><span>تقييمك</span></div>
+  <!-- Profile Header -->
+  <div class="acc-profile-hdr">
+    <div class="acc-avatar" id="acc-avatar">م</div>
+    <div class="acc-info">
+      <div class="acc-fullname" id="user-name">محمد أحمد</div>
+      <div class="acc-email" id="user-phone">+249 91 234 5678</div>
     </div>
+    <button class="acc-edit-btn" onclick="showToast('تعديل الملف الشخصي — قريباً!')">تعديل</button>
   </div>
 
-  <div class="menu-wrap">
+  <!-- Loyalty Card -->
+  <div class="loyalty-card">
+    <div class="loyalty-brand">
+      <img src="logo.jpg" alt="" class="loyalty-logo">
+      <span class="loyalty-one">ONE</span>
+    </div>
+    <div class="loyalty-right">
+      <span class="loyalty-label">مدخراتك الإجمالية</span>
+      <span class="loyalty-pts">⭐ <strong id="user-pts">320</strong> نقطة</span>
+    </div>
+    <span class="loyalty-arrow">›</span>
+  </div>
 
-    <div class="menu-lbl">الطلبات والعناوين</div>
-
-    <a href="orders.html" class="mi">
-      <div class="mi-ico" style="background:#F3EAFF">📦</div>
-      <span class="mi-lbl">طلباتي</span>
-      <span class="mi-arr">‹</span>
+  <!-- Stats Grid -->
+  <div class="acc-stats-grid">
+    <a href="orders.html" class="acc-stat-card">
+      <div class="asc-ico">📦</div>
+      <div class="asc-label">طلباتي</div>
+      <div class="asc-sub">إدارة وتتبع</div>
     </a>
-
-    <button class="mi" onclick="showToast('قريباً!')">
-      <div class="mi-ico" style="background:#E8F5E9">📍</div>
-      <span class="mi-lbl">عناويني المحفوظة</span>
-      <span class="mi-arr">‹</span>
+    <button class="acc-stat-card" onclick="showToast('المرتجعات — قريباً!')">
+      <div class="asc-ico">↩️</div>
+      <div class="asc-label">المرتجعات</div>
+      <div class="asc-sub">0 طلبات نشطة</div>
     </button>
-
-    <button class="mi" onclick="showToast('قريباً!')">
-      <div class="mi-ico" style="background:#FFF8E1">❤️</div>
-      <span class="mi-lbl">منتجاتي المفضلة</span>
-      <span class="mi-arr">‹</span>
+    <button class="acc-stat-card" onclick="showPoints()">
+      <div class="asc-ico">💰</div>
+      <div class="asc-label">رصيدي</div>
+      <div class="asc-sub">0.00 SDG</div>
     </button>
-
-    <div class="menu-lbl">المدفوعات والمكافآت</div>
-
-    <button class="mi" onclick="showToast('قريباً!')">
-      <div class="mi-ico" style="background:#E3F2FD">💳</div>
-      <span class="mi-lbl">طرق الدفع</span>
-      <span class="mi-arr">‹</span>
+    <button class="acc-stat-card" onclick="showToast('قائمة الأمنيات — قريباً!')">
+      <div class="asc-ico">❤️</div>
+      <div class="asc-label">قائمة الأمنيات</div>
+      <div class="asc-sub">0 منتجات</div>
     </button>
-
-    <button class="mi" onclick="showPoints()">
-      <div class="mi-ico" style="background:#FFF3E0">⭐</div>
-      <span class="mi-lbl">نقاط المكافآت</span>
-      <div style="background:var(--accent-light);color:var(--accent);font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px">320 نقطة</div>
-      <span class="mi-arr">‹</span>
-    </button>
-
-    <button class="mi" onclick="showPromo()">
-      <div class="mi-ico" style="background:#E8F5E9">🎁</div>
-      <span class="mi-lbl">أكواد الخصم</span>
-      <span class="mi-arr">‹</span>
-    </button>
-
-    <div class="menu-lbl">الإعدادات والمساعدة</div>
-
-    <button class="mi" onclick="showToast('قريباً!')">
-      <div class="mi-ico" style="background:#F3EAFF">🔔</div>
-      <span class="mi-lbl">الإشعارات</span>
-      <span class="mi-arr">‹</span>
-    </button>
-
-    <button class="mi" onclick="showToast('قريباً!')">
-      <div class="mi-ico" style="background:#FFF8E1">🌐</div>
-      <span class="mi-lbl">اللغة</span>
-      <div style="color:var(--text-muted);font-size:12px;font-weight:600">عربي</div>
-      <span class="mi-arr">‹</span>
-    </button>
-
-    <button class="mi" onclick="showSupport()">
-      <div class="mi-ico" style="background:#E3F2FD">💬</div>
-      <span class="mi-lbl">مركز المساعدة</span>
-      <span class="mi-arr">‹</span>
-    </button>
-
-    <button class="mi" onclick="showToast('قريباً!')">
-      <div class="mi-ico" style="background:#F3EAFF">ℹ️</div>
-      <span class="mi-lbl">عن جمبك مارت</span>
-      <span class="mi-arr">‹</span>
-    </button>
-
-    <div class="menu-lbl"></div>
-
-    <button class="menu-item danger" onclick="logout()">
-      <div class="mi-ico" style="background:#FEE2E2">🚪</div>
-      <span class="mi-lbl">تسجيل الخروج</span>
-    </button>
-
-    <div class="sp"></div>
   </div>
+
+  <!-- My Account Section -->
+  <div class="acc-section-card">
+    <div class="acc-sec-title">حسابي</div>
+    <a href="#" class="acc-row" onclick="showToast('العناوين — قريباً!');return false">
+      <span class="acc-row-ico">📍</span>
+      <span class="acc-row-lbl">العناوين</span>
+      <span class="acc-row-arr">›</span>
+    </a>
+    <button class="acc-row" onclick="showToast('البطاقات المحفوظة — قريباً!')">
+      <span class="acc-row-ico">💳</span>
+      <span class="acc-row-lbl">البطاقات المحفوظة</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+    <button class="acc-row" onclick="showPromo()">
+      <span class="acc-row-ico">🎁</span>
+      <span class="acc-row-lbl">أكواد الخصم</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+    <button class="acc-row" onclick="showToast('رمز QR — قريباً!')">
+      <span class="acc-row-ico">📱</span>
+      <span class="acc-row-lbl">رمز QR الخاص بي</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+  </div>
+
+  <!-- Settings Section -->
+  <div class="acc-section-card">
+    <div class="acc-sec-title">الإعدادات</div>
+    <button class="acc-row" onclick="showToast('الدولة — قريباً!')">
+      <span class="acc-row-ico">🌍</span>
+      <span class="acc-row-lbl">الدولة</span>
+      <span class="acc-row-val">السودان 🇸🇩</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+    <button class="acc-row" onclick="showToast('اللغة — قريباً!')">
+      <span class="acc-row-ico">🌐</span>
+      <span class="acc-row-lbl">اللغة</span>
+      <span class="acc-row-val">العربية</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+    <button class="acc-row" onclick="showToast('الأمان — قريباً!')">
+      <span class="acc-row-ico">🔒</span>
+      <span class="acc-row-lbl">الأمان</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+    <button class="acc-row" onclick="showToast('الإشعارات — قريباً!')">
+      <span class="acc-row-ico">🔔</span>
+      <span class="acc-row-lbl">الإشعارات</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+    <button class="acc-row" onclick="showSupport()">
+      <span class="acc-row-ico">💬</span>
+      <span class="acc-row-lbl">مركز المساعدة</span>
+      <span class="acc-row-arr">›</span>
+    </button>
+  </div>
+
+  <!-- Sign Out -->
+  <div class="acc-section-card">
+    <button class="acc-row acc-signout" onclick="logout()">
+      <span class="acc-row-ico">🚪</span>
+      <span class="acc-row-lbl" style="color:#E53935">تسجيل الخروج</span>
+    </button>
+  </div>
+
+  <!-- Sell With Us -->
+  <div class="acc-sell-card">
+    <div class="acc-sell-title">بع معنا في جمبك مارت</div>
+    <div class="acc-sell-sub">انضم لآلاف التجار</div>
+    <div class="acc-social-row">
+      <a href="#" onclick="showToast('فيسبوك');return false" class="social-btn">f</a>
+      <a href="#" onclick="showToast('تويتر');return false" class="social-btn">𝕏</a>
+      <a href="#" onclick="showToast('انستقرام');return false" class="social-btn">📷</a>
+      <a href="#" onclick="showToast('لينكدإن');return false" class="social-btn">in</a>
+    </div>
+    <div class="acc-footer-links">
+      <a href="#" onclick="return false">شروط الاستخدام</a> ·
+      <a href="#" onclick="return false">سياسة الخصوصية</a> ·
+      <a href="#" onclick="return false">سياسة الإرجاع</a>
+    </div>
+    <div class="acc-version">جمبك مارت v2.0 · © 2026</div>
+  </div>
+
+  <div class="sp"></div>
 </main>
 
-<!-- Guest / Login view -->
+<!-- Guest view -->
 <main class="page" id="guest-view" style="display:none">
   <div style="text-align:center;padding:60px 20px 32px">
     <div style="font-size:72px;margin-bottom:16px">👤</div>
     <h2 style="font-size:22px;font-weight:800;margin-bottom:8px;color:var(--tx)">سجّل دخولك</h2>
     <p style="font-size:14px;color:var(--muted);margin-bottom:32px">لتتبع طلباتك وإدارة حسابك</p>
   </div>
-
   <div style="padding:0 20px">
     <div class="fg">
       <label class="fl-lbl">رقم الهاتف</label>
@@ -128,23 +168,17 @@
       <div style="font-size:12px;color:var(--muted);margin-top:4px;text-align:center">تم إرسال كود إلى هاتفك</div>
     </div>
     <button class="big-btn primary" id="login-btn" onclick="doLogin()">إرسال رمز التحقق</button>
-
     <div style="text-align:center;padding:16px 0;color:var(--muted);font-size:13px">أو</div>
-
     <button class="big-btn outline" onclick="guestLogin()">تصفح كزائر</button>
-
-    <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--muted)">
-      بتسجيل دخولك توافق على <a href="#" style="color:var(--p1);font-weight:600">شروط الخدمة</a>
-    </div>
   </div>
   <div class="sp"></div>
 </main>
 
 <nav class="bnav">
-  <a href="index.html" class="bn" data-page="index.html"><span class="ico">🏠</span>الرئيسية</a>
-  <a href="browse.html" class="bn" data-page="browse.html"><span class="ico">🔍</span>تصفح</a>
-  <a href="orders.html" class="bn" data-page="orders.html"><span class="ico">📦</span>طلباتي</a>
-  <a href="account.html" class="bn active" data-page="account.html"><span class="ico">👤</span>حسابي</a>
+  <a href="index.html" class="bn"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn active"><span class="ico">👤</span>حسابي</a>
 </nav>
 
 <!-- Overlays -->
@@ -162,6 +196,8 @@
       document.getElementById('guest-view').style.display = 'none';
       document.getElementById('user-name').textContent = user.name || 'مستخدم جمبك';
       document.getElementById('user-phone').textContent = user.phone || '+249 ---';
+      const initials = (user.name || 'م')[0];
+      document.getElementById('acc-avatar').textContent = initials;
     } else {
       document.getElementById('logged-in').style.display = 'none';
       document.getElementById('guest-view').style.display = 'block';
@@ -182,11 +218,9 @@
       const otp = document.getElementById('login-otp').value.trim();
       if (otp === '1234') {
         localStorage.setItem(USER_KEY, JSON.stringify({ name: 'محمد أحمد', phone }));
-        showToast('✅ تم تسجيل الدخول!', 'success');
-        setTimeout(() => checkAuth(), 500);
-      } else {
-        showToast('❌ الرمز غير صحيح، جرب 1234');
-      }
+        showToast('✅ تم تسجيل الدخول!');
+        setTimeout(checkAuth, 500);
+      } else { showToast('❌ الرمز غير صحيح، جرب 1234'); }
     }
   }
 
@@ -208,34 +242,32 @@
     openOverlay(`
       <h3 style="font-size:17px;font-weight:800;margin-bottom:16px">⭐ نقاط المكافآت</h3>
       <div style="text-align:center;padding:16px 0">
-        <div style="font-size:52px;font-weight:900;color:var(--primary)">320</div>
-        <div style="font-size:13px;color:var(--text-muted)">نقطة متاحة</div>
+        <div style="font-size:52px;font-weight:900;color:var(--p1)">320</div>
+        <div style="font-size:13px;color:var(--muted)">نقطة متاحة</div>
       </div>
-      <div style="background:var(--primary-light);border-radius:10px;padding:12px;margin-bottom:12px">
-        <div style="font-size:13px;font-weight:600;color:var(--primary)">💡 كل 100 SDG = 10 نقاط</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:2px">100 نقطة = خصم 500 SDG</div>
+      <div style="background:var(--p4);border-radius:10px;padding:12px;margin-bottom:12px">
+        <div style="font-size:13px;font-weight:600;color:var(--p1)">💡 كل 100 SDG = 10 نقاط</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">100 نقطة = خصم 500 SDG</div>
       </div>
-      <button onclick="closeOverlay();showToast('تم استخدام النقاط في طلبك القادم!')" style="width:100%;height:48px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer">
-        استخدام النقاط في الطلب القادم
-      </button>`);
+      <button onclick="closeOverlay();showToast('تم!')" style="width:100%;height:48px;background:var(--p1);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer">استخدام النقاط</button>`);
   }
 
   function showPromo() {
     openOverlay(`
       <h3 style="font-size:17px;font-weight:800;margin-bottom:16px">🎁 أكواد الخصم</h3>
       ${[
-        { code:'JAMBAK10', desc:'خصم 10% على أي طلب', expire:'31 يناير 2025' },
+        { code:'JAMBAK10', desc:'خصم 10% على أي طلب', expire:'31 يناير 2026' },
         { code:'WELCOME',  desc:'خصم 20% لأول طلب',   expire:'منتهي الصلاحية' },
-        { code:'KHARTOUM', desc:'خصم 15% للخرطوم',     expire:'28 فبراير 2025' },
+        { code:'KHARTOUM', desc:'خصم 15% للخرطوم',     expire:'28 فبراير 2026' },
       ].map(p => `
-        <div style="background:var(--bg);border-radius:10px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:12px">
+        <div style="background:#F5F5F5;border-radius:10px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:12px">
           <div style="font-size:22px">🏷️</div>
           <div style="flex:1">
-            <div style="font-size:15px;font-weight:800;color:var(--primary);letter-spacing:2px">${p.code}</div>
-            <div style="font-size:12px;color:var(--text-muted)">${p.desc}</div>
-            <div style="font-size:11px;color:var(--text-muted)">ينتهي: ${p.expire}</div>
+            <div style="font-size:15px;font-weight:800;color:var(--p1);letter-spacing:2px">${p.code}</div>
+            <div style="font-size:12px;color:#888">${p.desc}</div>
+            <div style="font-size:11px;color:#aaa">ينتهي: ${p.expire}</div>
           </div>
-          <button onclick="navigator.clipboard?.writeText('${p.code}');showToast('✅ تم نسخ الكود')" style="padding:6px 12px;background:var(--primary-light);color:var(--primary);border:none;border-radius:8px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer">نسخ</button>
+          <button onclick="navigator.clipboard?.writeText('${p.code}');showToast('✅ تم نسخ الكود')" style="padding:6px 12px;background:var(--p4);color:var(--p1);border:none;border-radius:8px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer">نسخ</button>
         </div>`).join('')}`);
   }
 
@@ -243,26 +275,13 @@
     openOverlay(`
       <h3 style="font-size:17px;font-weight:800;margin-bottom:16px">💬 مركز المساعدة</h3>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <button onclick="showToast('جاري الاتصال...');closeOverlay()" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg);border:none;border-radius:12px;font-family:inherit;cursor:pointer;text-align:right">
+        <button onclick="showToast('جاري الاتصال...');closeOverlay()" style="display:flex;align-items:center;gap:12px;padding:14px;background:#F5F5F5;border:none;border-radius:12px;font-family:inherit;cursor:pointer;text-align:right">
           <span style="font-size:24px">📞</span>
-          <div>
-            <div style="font-size:14px;font-weight:700">اتصل بنا</div>
-            <div style="font-size:12px;color:var(--text-muted)">+249 91 000 0000</div>
-          </div>
+          <div><div style="font-size:14px;font-weight:700">اتصل بنا</div><div style="font-size:12px;color:#888">+249 91 000 0000</div></div>
         </button>
         <button onclick="showToast('فتح واتساب...');closeOverlay()" style="display:flex;align-items:center;gap:12px;padding:14px;background:#DCFCE7;border:none;border-radius:12px;font-family:inherit;cursor:pointer;text-align:right">
           <span style="font-size:24px">💬</span>
-          <div>
-            <div style="font-size:14px;font-weight:700">واتساب</div>
-            <div style="font-size:12px;color:var(--green)">دعم فوري 24/7</div>
-          </div>
-        </button>
-        <button onclick="showToast('قريباً!');closeOverlay()" style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg);border:none;border-radius:12px;font-family:inherit;cursor:pointer;text-align:right">
-          <span style="font-size:24px">❓</span>
-          <div>
-            <div style="font-size:14px;font-weight:700">الأسئلة الشائعة</div>
-            <div style="font-size:12px;color:var(--text-muted)">إجابات لأكثر الأسئلة</div>
-          </div>
+          <div><div style="font-size:14px;font-weight:700">واتساب</div><div style="font-size:12px;color:#16A34A">دعم فوري 24/7</div></div>
         </button>
       </div>`);
   }
@@ -273,7 +292,6 @@
     document.getElementById('overlay-sheet').classList.add('on');
     document.body.style.overflow = 'hidden';
   }
-
   function closeOverlay() {
     document.getElementById('overlay-backdrop').classList.remove('on');
     document.getElementById('overlay-sheet').classList.remove('on');

@@ -975,3 +975,260 @@ body { background: #F5F5F5; }
 .jambak-cat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
 .jambak-cat-name { font-size: 14px; font-weight: 800; color: #fff; }
 .jambak-cat-ico { font-size: 36px; }
+
+/* ═══════════════════════════════════════
+   ACCOUNT PAGE — NOON STYLE
+   ═══════════════════════════════════════ */
+.acc-profile-hdr {
+  background: #fff;
+  padding: 20px 16px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid #EEE;
+}
+.acc-avatar {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--p1), var(--p2));
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.acc-info { flex: 1; }
+.acc-fullname { font-size: 16px; font-weight: 800; color: #1a1a1a; }
+.acc-email { font-size: 12px; color: #888; margin-top: 2px; }
+.acc-edit-btn {
+  background: #F5F5F5;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Loyalty card */
+.loyalty-card {
+  background: linear-gradient(135deg, var(--p1), var(--acc));
+  margin: 12px 16px;
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.loyalty-logo { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; background: #fff; }
+.loyalty-one { font-size: 12px; font-weight: 900; color: #FFD700; background: rgba(0,0,0,.25); padding: 2px 8px; border-radius: 999px; }
+.loyalty-brand { display: flex; align-items: center; gap: 6px; }
+.loyalty-right { flex: 1; text-align: left; }
+.loyalty-label { display: block; font-size: 10px; color: rgba(255,255,255,.75); }
+.loyalty-pts { font-size: 14px; font-weight: 800; color: #fff; }
+.loyalty-arrow { font-size: 22px; color: rgba(255,255,255,.7); }
+
+/* Stats grid */
+.acc-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 16px 12px;
+}
+.acc-stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+}
+.asc-ico { font-size: 26px; margin-bottom: 4px; }
+.asc-label { font-size: 14px; font-weight: 800; color: #1a1a1a; }
+.asc-sub { font-size: 11px; color: #999; }
+
+/* Section cards */
+.acc-section-card {
+  background: #fff;
+  border-radius: 16px;
+  margin: 0 16px 12px;
+  overflow: hidden;
+}
+.acc-sec-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #999;
+  padding: 14px 16px 8px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.acc-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  text-align: right;
+  border-top: 1px solid #F5F5F5;
+  text-decoration: none;
+}
+.acc-row:first-of-type { border-top: none; }
+.acc-row-ico { font-size: 20px; flex-shrink: 0; }
+.acc-row-lbl { flex: 1; font-size: 14px; font-weight: 600; color: #1a1a1a; }
+.acc-row-val { font-size: 13px; color: #888; }
+.acc-row-arr { font-size: 20px; color: #CCC; }
+
+/* Social + footer */
+.acc-sell-card {
+  background: #fff;
+  border-radius: 16px;
+  margin: 0 16px 12px;
+  padding: 20px 16px;
+  text-align: center;
+}
+.acc-sell-title { font-size: 15px; font-weight: 800; color: var(--p1); }
+.acc-sell-sub { font-size: 12px; color: #999; margin: 4px 0 16px; }
+.acc-social-row { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; }
+.social-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: #F5F5F5;
+  border: none;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: #333;
+  text-decoration: none;
+}
+.acc-footer-links { font-size: 11px; color: #999; line-height: 2; }
+.acc-footer-links a { color: #888; text-decoration: none; }
+.acc-version { font-size: 10px; color: #bbb; margin-top: 10px; }
+
+/* ═══════════════════════════════════════
+   ORDERS PAGE — NOON STYLE
+   ═══════════════════════════════════════ */
+.ord-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #EEE;
+  position: sticky;
+  top: var(--hh);
+  z-index: 80;
+}
+.ord-search-inner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F5F5F5;
+  border-radius: 10px;
+  padding: 9px 12px;
+}
+.ord-filter-btn {
+  background: #F5F5F5;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.ord-section-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1a1a1a;
+  padding: 16px 16px 8px;
+}
+.ord-card {
+  background: #fff;
+  margin: 0 16px 10px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ord-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px 8px;
+}
+.ord-id { font-size: 12px; font-weight: 800; color: #333; margin-left: 8px; }
+.ord-store-badge {
+  background: var(--p4);
+  color: var(--p1);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.ord-status { font-size: 12px; font-weight: 700; }
+.os-done { color: #16A34A; }
+.os-cancel { color: #DC2626; }
+.ord-date { font-size: 11px; color: #aaa; padding: 0 14px 8px; }
+.ord-item-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-top: 1px solid #F5F5F5;
+}
+.ord-item-ico { font-size: 28px; flex-shrink: 0; }
+.ord-item-name { font-size: 13px; font-weight: 600; color: #333; }
+.ord-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-top: 1px solid #F0F0F0;
+}
+.ord-total { font-size: 14px; font-weight: 800; color: #1a1a1a; }
+.ord-reorder-btn {
+  background: var(--p4);
+  color: var(--p1);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.ord-review-row {
+  background: #FAFAFA;
+  padding: 12px 14px;
+  border-top: 1px solid #F0F0F0;
+}
+.ord-review-label { font-size: 12px; color: #888; font-weight: 600; display: block; margin-bottom: 8px; }
+.ord-review-btns { display: flex; gap: 8px; }
+.ord-review-btns button {
+  flex: 1;
+  padding: 8px;
+  border: 1.5px solid #DDD;
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  cursor: pointer;
+}
