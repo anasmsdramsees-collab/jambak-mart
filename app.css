@@ -734,10 +734,11 @@ body { background: #F5F5F5; }
   color: var(--p1);
 }
 .app-tab-logo {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
+  background: #fff;
 }
 .app-tab-ico {
   width: 34px;
