@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هايبر مول — خصومات تصل إلى 80%</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ── APP SWITCHER ── -->
+<div class="app-sw-wrap">
+  <div class="app-sw">
+    <button class="app-tab" onclick="location.href='jambak.html'">
+      <span class="app-tab-ico" style="background:linear-gradient(135deg,#3B0F8C,#FF6B35);color:#fff;font-size:15px;font-weight:900">ج</span>
+      <span>جمبك</span>
+    </button>
+    <button class="app-tab active" onclick="void(0)">
+      <span class="app-tab-ico" style="background:#1565C0;color:#fff">🏬</span>
+      <span>هايبر مول</span>
+    </button>
+    <button class="app-tab" onclick="location.href='taga.html'">
+      <span class="app-tab-ico" style="background:#E53935;color:#fff">🍽️</span>
+      <span>طقة</span>
+    </button>
+    <button class="app-tab" onclick="location.href='index.html'">
+      <img src="logo.jpg" alt="جمبك مارت" class="app-tab-logo">
+      <span>جمبك مارت</span>
+    </button>
+    <button class="app-tab" onclick="showToast('المزيد قريباً!')">
+      <span class="app-tab-ico" style="background:#7B1FA2;color:#fff">⋯</span>
+      <span>المزيد</span>
+    </button>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header class="hdr hdr-home hdr-blue" style="top:57px;background:linear-gradient(135deg,#1565C0,#0D47A1)!important;border-bottom:none;">
+  <button class="hdr-loc" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);" onclick="showToast('📍 الخرطوم')">
+    📍 <span>الخرطوم</span> ▾
+  </button>
+  <div style="flex:1;font-size:16px;font-weight:900;color:#fff;text-align:center;">هايبر مول</div>
+  <a href="cart.html" class="hdr-cart" style="background:rgba(255,255,255,.2);" title="السلة">
+    🛒<span class="cbadge" id="cbadge">0</span>
+  </a>
+</header>
+
+<!-- ── DELIVERY STRIP ── -->
+<div class="delivery-strip" style="background:#E3F2FD;color:#1565C0;border-bottom:1px solid #BBDEFB;">
+  🏬 <strong>توصيل خلال 24 ساعة</strong> · هايبر مول الخرطوم
+</div>
+
+<main class="page page-home">
+
+  <!-- ── SEARCH ── -->
+  <div class="srch-wrap">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" placeholder='ابحث في هايبر مول...' onfocus="showToast('البحث قريباً!')" readonly>
+    </div>
+  </div>
+
+  <!-- ── HERO BANNER ── -->
+  <div class="hm-banner-grad" style="margin-top:0;">
+    <div class="hm-banner-pct">80%</div>
+    <div class="hm-banner-txt">خصومات تصل إلى 80%</div>
+    <div style="font-size:12px;opacity:.75;margin-top:6px;">على آلاف المنتجات في هايبر مول</div>
+    <a href="#categories" style="display:inline-block;margin-top:14px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:8px 22px;font-family:inherit;font-size:13px;font-weight:800;text-decoration:none;">تصفح العروض ↓</a>
+  </div>
+
+  <!-- ── CATEGORY CARDS ── -->
+  <div id="categories"></div>
+  <div class="hm-grid">
+    <a href="#" class="hm-card" onclick="showToast('العروض المميزة'); return false;">
+      <span class="hm-card-ico">🏷️</span>
+      <div>
+        <div class="hm-card-name">العروض المميزة</div>
+        <div class="hm-card-badge">حتى 70% خصم</div>
+      </div>
+    </a>
+    <a href="#" class="hm-card" onclick="showToast('المواد الأساسية'); return false;">
+      <span class="hm-card-ico">🛒</span>
+      <div>
+        <div class="hm-card-name">مواد أساسية</div>
+        <div class="hm-card-badge">حتى 60% خصم</div>
+      </div>
+    </a>
+    <a href="#" class="hm-card" onclick="showToast('تخزين المطبخ'); return false;">
+      <span class="hm-card-ico">🫙</span>
+      <div>
+        <div class="hm-card-name">تخزين المطبخ</div>
+        <div class="hm-card-badge">من 500 SDG</div>
+      </div>
+    </a>
+    <a href="#" class="hm-card" onclick="showToast('الأجهزة الكهربائية'); return false;">
+      <span class="hm-card-ico">🔌</span>
+      <div>
+        <div class="hm-card-name">أجهزة كهربائية</div>
+        <div class="hm-card-badge">من 1,200 SDG</div>
+      </div>
+    </a>
+    <a href="#" class="hm-card" onclick="showToast('المشروبات'); return false;">
+      <span class="hm-card-ico">🥤</span>
+      <div>
+        <div class="hm-card-name">مشروبات</div>
+        <div class="hm-card-badge">حتى 70% خصم</div>
+      </div>
+    </a>
+    <a href="#" class="hm-card" onclick="showToast('ديكور المنزل'); return false;">
+      <span class="hm-card-ico">🏠</span>
+      <div>
+        <div class="hm-card-name">ديكور المنزل</div>
+        <div class="hm-card-badge">حتى 50% خصم</div>
+      </div>
+    </a>
+    <a href="#" class="hm-card" onclick="showToast('نظافة المنزل'); return false;">
+      <span class="hm-card-ico">🧹</span>
+      <div>
+        <div class="hm-card-name">نظافة المنزل</div>
+        <div class="hm-card-badge">حتى 50% خصم</div>
+      </div>
+    </a>
+    <a href="#" class="hm-card" onclick="showToast('مستلزمات أطفال'); return false;">
+      <span class="hm-card-ico">👶</span>
+      <div>
+        <div class="hm-card-name">مستلزمات أطفال</div>
+        <div class="hm-card-badge">من 800 SDG</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- ── EXPLORE ALL ── -->
+  <a href="#" class="hm-explore" onclick="showToast('تصفح الكل قريباً!'); return false;">
+    استكشف كل الفئات في هايبر مول 🏬
+  </a>
+
+  <div class="dv"></div>
+
+  <!-- ── PROMO STRIP ── -->
+  <div style="margin:0 16px 16px;background:linear-gradient(135deg,#E3F2FD,#BBDEFB);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;">
+    <span style="font-size:42px;">🚚</span>
+    <div>
+      <div style="font-size:14px;font-weight:800;color:#1565C0;">توصيل مجاني</div>
+      <div style="font-size:11px;color:#1976D2;margin-top:2px;">على الطلبات فوق 5,000 SDG</div>
+    </div>
+    <div style="margin-right:auto;background:#1565C0;color:#fff;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;" onclick="showToast('تسوق الآن!')">تسوق</div>
+  </div>
+
+  <!-- ── NEW ARRIVALS ── -->
+  <div class="sec-h">
+    <h2>🆕 وصل جديد لهايبر مول</h2>
+    <a href="#">الكل</a>
+  </div>
+  <div class="pscroll" id="new-scroll"></div>
+
+  <!-- ── FLASH DEALS ── -->
+  <div class="dv"></div>
+  <div class="sec-h">
+    <h2>⚡ صفقات فلاش</h2>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span style="font-size:11px;color:var(--muted)">تنتهي في</span>
+      <span id="countdown" style="font-size:12px;font-weight:800;color:#E53935;background:#FEE2E2;padding:2px 8px;border-radius:999px;">02:47:15</span>
+    </div>
+  </div>
+  <div class="pgrid" id="flash-grid"></div>
+
+  <div class="sp"></div>
+</main>
+
+<!-- ── FLOATING CART BAR ── -->
+<a href="cart.html" class="cart-bar" id="cart-bar">
+  <span class="cb-ico">🛒</span>
+  <span class="cb-label">عرض السلة</span>
+  <span class="cb-count" id="cb-count">0</span>
+  <span class="cb-total" id="cb-total">0 SDG</span>
+</a>
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="bnav">
+  <a href="hypermall.html" class="bn active">
+    <span class="ico">🏠</span>الرئيسية
+  </a>
+  <a href="browse.html" class="bn">
+    <span class="ico">🔍</span>تصفح
+  </a>
+  <a href="orders.html" class="bn">
+    <span class="ico">📦</span>طلباتي
+    <span class="bn-dot" id="bn-orders"></span>
+  </a>
+  <a href="account.html" class="bn">
+    <span class="ico">👤</span>حسابي
+  </a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    renderScroll('new-scroll', PRODUCTS.slice(0, 8));
+    renderGrid('flash-grid', PRODUCTS.filter(p => p.discount > 0).slice(0, 6));
+  });
+
+  // Flash deal countdown
+  let seconds = 2 * 3600 + 47 * 60 + 15;
+  function tick() {
+    if (seconds <= 0) return;
+    seconds--;
+    const h = String(Math.floor(seconds/3600)).padStart(2,'0');
+    const m = String(Math.floor((seconds%3600)/60)).padStart(2,'0');
+    const s = String(seconds%60).padStart(2,'0');
+    const el = document.getElementById('countdown');
+    if (el) el.textContent = `${h}:${m}:${s}`;
+  }
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>

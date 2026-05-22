@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جمبك — تسوق كل شيء</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ── APP SWITCHER ── -->
+<div class="app-sw-wrap">
+  <div class="app-sw">
+    <button class="app-tab active" onclick="void(0)">
+      <span class="app-tab-ico" style="background:linear-gradient(135deg,#3B0F8C,#FF6B35);color:#fff;font-size:15px;font-weight:900">ج</span>
+      <span>جمبك</span>
+    </button>
+    <button class="app-tab" onclick="location.href='hypermall.html'">
+      <span class="app-tab-ico" style="background:#1565C0;color:#fff">🏬</span>
+      <span>هايبر مول</span>
+    </button>
+    <button class="app-tab" onclick="location.href='taga.html'">
+      <span class="app-tab-ico" style="background:#E53935;color:#fff">🍽️</span>
+      <span>طقة</span>
+    </button>
+    <button class="app-tab" onclick="location.href='index.html'">
+      <img src="logo.jpg" alt="جمبك مارت" class="app-tab-logo">
+      <span>جمبك مارت</span>
+    </button>
+    <button class="app-tab" onclick="showToast('المزيد قريباً!')">
+      <span class="app-tab-ico" style="background:#7B1FA2;color:#fff">⋯</span>
+      <span>المزيد</span>
+    </button>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header class="hdr hdr-home">
+  <button class="hdr-loc" onclick="showLocPicker()">
+    📍 <span id="loc-label">الخرطوم</span> ▾
+  </button>
+  <div style="flex:1"></div>
+  <a href="cart.html" class="hdr-cart" title="السلة">
+    🛒<span class="cbadge" id="cbadge">0</span>
+  </a>
+</header>
+
+<!-- ── DELIVERY STRIP ── -->
+<div class="delivery-strip">
+  ⚡ <strong>توصيل سريع في الخرطوم</strong> · إلكترونيات، موضة، منزل وأكثر
+</div>
+
+<main class="page page-home">
+
+  <!-- ── SEARCH ── -->
+  <div class="srch-wrap">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" placeholder='ابحث في جمبك...' onfocus="location.href='browse.html'" readonly>
+    </div>
+  </div>
+
+  <!-- ── CATEGORY TABS ── -->
+  <div class="cat-tabs">
+    <button class="cat-tab cat-tab-active">
+      <span class="ct-ico" style="background:#F3E5F5">🛍️</span>
+      <span>الكل</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#E3F2FD">📱</span>
+      <span>إلكترونيات</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#FCE4EC">👗</span>
+      <span>موضة</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#E0F7FA">🏠</span>
+      <span>منزل</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#FDE8F0">💄</span>
+      <span>جمال</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#E8F5E9">🏃</span>
+      <span>رياضة</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#FFF8E1">📚</span>
+      <span>كتب</span>
+    </button>
+  </div>
+
+  <!-- ── HERO BANNER ── -->
+  <div style="margin:12px 16px 0;background:linear-gradient(135deg,#1a0550 0%,#3B0F8C 50%,#5a1dc8 100%);border-radius:24px;padding:24px 20px;position:relative;overflow:hidden;min-height:160px;display:flex;flex-direction:column;justify-content:center;">
+    <!-- Decorative circles -->
+    <div style="position:absolute;top:-60px;left:-40px;width:220px;height:220px;background:rgba(124,58,237,.25);border-radius:50%;pointer-events:none"></div>
+    <div style="position:absolute;bottom:-40px;left:60px;width:140px;height:140px;background:rgba(255,107,53,.15);border-radius:50%;pointer-events:none"></div>
+    <span style="position:absolute;bottom:12px;left:18px;font-size:68px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.25));animation:float 3s ease-in-out infinite">🛍️</span>
+    <div style="position:relative;z-index:1">
+      <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 12px;font-size:11px;font-weight:700;color:#fff;margin-bottom:10px;">🌟 مارت بلس</div>
+      <h1 style="font-size:28px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:6px;">تسوق <span style="color:#FFC107">كل شيء</span></h1>
+      <p style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:14px;">الخرطوم بين يديك — توصيل فوري</p>
+      <a href="browse.html" style="display:inline-flex;align-items:center;gap:6px;background:#FF6B35;color:#fff;border:none;border-radius:999px;padding:10px 22px;font-family:inherit;font-size:13px;font-weight:800;text-decoration:none;">تسوق الآن ←</a>
+    </div>
+  </div>
+
+  <!-- ── CATEGORY CARDS GRID ── -->
+  <div style="padding:16px 16px 4px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <h2 style="font-size:16px;font-weight:800;color:var(--tx)">استكشف الفئات</h2>
+      <a href="browse.html" style="font-size:12px;color:var(--p2);text-decoration:none;font-weight:700">الكل</a>
+    </div>
+    <div class="jambak-cat-grid">
+      <a href="browse.html?filter=offers" class="jambak-cat-card" style="background:linear-gradient(135deg,#FF6B35,#e8500a)">
+        <div>
+          <div class="jambak-cat-name">عروض اليوم</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:3px">حتى 50% خصم</div>
+        </div>
+        <span class="jambak-cat-ico">🔥</span>
+      </a>
+      <a href="browse.html?cat=electronics" class="jambak-cat-card" style="background:linear-gradient(135deg,#1E88E5,#1565C0)">
+        <div>
+          <div class="jambak-cat-name">إلكترونيات</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:3px">أحدث الأجهزة</div>
+        </div>
+        <span class="jambak-cat-ico">📱</span>
+      </a>
+      <a href="browse.html?cat=fashion" class="jambak-cat-card" style="background:linear-gradient(135deg,#E91E63,#AD1457)">
+        <div>
+          <div class="jambak-cat-name">موضة وملابس</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:3px">أحدث الصيحات</div>
+        </div>
+        <span class="jambak-cat-ico">👗</span>
+      </a>
+      <a href="browse.html?cat=home" class="jambak-cat-card" style="background:linear-gradient(135deg,#00ACC1,#006064)">
+        <div>
+          <div class="jambak-cat-name">منزل وديكور</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:3px">جمّل منزلك</div>
+        </div>
+        <span class="jambak-cat-ico">🏠</span>
+      </a>
+      <a href="browse.html?cat=beauty" class="jambak-cat-card" style="background:linear-gradient(135deg,#AB47BC,#6A1B9A)">
+        <div>
+          <div class="jambak-cat-name">جمال وعناية</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:3px">بريقك دايماً</div>
+        </div>
+        <span class="jambak-cat-ico">💄</span>
+      </a>
+      <a href="browse.html?cat=sports" class="jambak-cat-card" style="background:linear-gradient(135deg,#43A047,#1B5E20)">
+        <div>
+          <div class="jambak-cat-name">رياضة</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.8);margin-top:3px">معدات & ملابس</div>
+        </div>
+        <span class="jambak-cat-ico">🏃</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Explore All -->
+  <div style="padding:0 16px 4px">
+    <a href="browse.html" style="display:block;text-align:center;background:linear-gradient(135deg,#3B0F8C,#5a1dc8);color:#fff;font-family:inherit;font-size:14px;font-weight:800;padding:15px;border-radius:14px;text-decoration:none;">🛍️ استكشف كل الفئات</a>
+  </div>
+
+  <div class="dv"></div>
+
+  <!-- ── MOST POPULAR ── -->
+  <div class="sec-h">
+    <h2>⭐ الأكثر طلباً</h2>
+    <a href="browse.html">عرض الكل</a>
+  </div>
+  <div class="pgrid" id="popular-grid"></div>
+
+  <div class="dv"></div>
+
+  <!-- ── NEW ARRIVALS ── -->
+  <div class="sec-h">
+    <h2>🆕 وصل حديثاً</h2>
+    <a href="browse.html">عرض الكل</a>
+  </div>
+  <div class="pscroll" id="new-scroll"></div>
+
+  <!-- ── PROMO BANNERS ── -->
+  <div class="dv"></div>
+  <div class="banners">
+    <div class="banner banner-purple">
+      <span class="banner-ico">🎁</span>
+      <div>
+        <div class="banner-h">توصيل مجاني</div>
+        <div class="banner-s">على أول طلب من جمبك</div>
+        <a href="browse.html" class="banner-btn">اطلب الآن</a>
+      </div>
+    </div>
+    <div class="banner banner-orange">
+      <span class="banner-ico">🌟</span>
+      <div>
+        <div class="banner-h">جمبك بلس</div>
+        <div class="banner-s">عروض حصرية لك</div>
+        <a href="#" class="banner-btn">اشترك</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sp"></div>
+</main>
+
+<!-- ── FLOATING CART BAR ── -->
+<a href="cart.html" class="cart-bar" id="cart-bar">
+  <span class="cb-ico">🛒</span>
+  <span class="cb-label">عرض السلة</span>
+  <span class="cb-count" id="cb-count">0</span>
+  <span class="cb-total" id="cb-total">0 SDG</span>
+</a>
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="bnav">
+  <a href="jambak.html" class="bn active">
+    <span class="ico">🏠</span>الرئيسية
+  </a>
+  <a href="browse.html" class="bn">
+    <span class="ico">🔍</span>تصفح
+  </a>
+  <a href="orders.html" class="bn">
+    <span class="ico">📦</span>طلباتي
+    <span class="bn-dot" id="bn-orders"></span>
+  </a>
+  <a href="account.html" class="bn">
+    <span class="ico">👤</span>حسابي
+  </a>
+</nav>
+
+<!-- ── LOCATION PICKER ── -->
+<div class="ov-back" id="loc-back" onclick="hideLocPicker()"></div>
+<div class="ov-sheet" id="loc-sheet">
+  <h3 style="font-size:17px;font-weight:800;margin-bottom:16px;color:var(--tx)">📍 اختر منطقتك</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <button class="topt" onclick="setLoc('الخرطوم')"><strong>الخرطوم</strong></button>
+    <button class="topt" onclick="setLoc('الخرطوم بحري')"><strong>الخرطوم بحري</strong></button>
+    <button class="topt" onclick="setLoc('أم درمان')"><strong>أم درمان</strong></button>
+    <button class="topt" onclick="setLoc('الرياض')"><strong>الرياض</strong></button>
+    <button class="topt" onclick="setLoc('الكلاكلة')"><strong>الكلاكلة</strong></button>
+    <button class="topt" onclick="setLoc('شمبات')"><strong>شمبات</strong></button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    renderGrid('popular-grid', PRODUCTS.slice(0, 6));
+    renderScroll('new-scroll', PRODUCTS.slice(4, 12));
+  });
+
+  function showLocPicker() {
+    document.getElementById('loc-back').classList.add('on');
+    document.getElementById('loc-sheet').classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function hideLocPicker() {
+    document.getElementById('loc-back').classList.remove('on');
+    document.getElementById('loc-sheet').classList.remove('on');
+    document.body.style.overflow = '';
+  }
+  function setLoc(name) {
+    document.getElementById('loc-label').textContent = name;
+    hideLocPicker();
+    showToast('📍 تم تغيير الموقع إلى ' + name);
+  }
+</script>
+</body>
+</html>

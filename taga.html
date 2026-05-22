@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طقة — توصيل الطعام</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ── APP SWITCHER ── -->
+<div class="app-sw-wrap">
+  <div class="app-sw">
+    <button class="app-tab" onclick="location.href='jambak.html'">
+      <span class="app-tab-ico" style="background:linear-gradient(135deg,#3B0F8C,#FF6B35);color:#fff;font-size:15px;font-weight:900">ج</span>
+      <span>جمبك</span>
+    </button>
+    <button class="app-tab" onclick="location.href='hypermall.html'">
+      <span class="app-tab-ico" style="background:#1565C0;color:#fff">🏬</span>
+      <span>هايبر مول</span>
+    </button>
+    <button class="app-tab active" onclick="void(0)">
+      <span class="app-tab-ico" style="background:#E53935;color:#fff">🍽️</span>
+      <span>طقة</span>
+    </button>
+    <button class="app-tab" onclick="location.href='index.html'">
+      <img src="logo.jpg" alt="جمبك مارت" class="app-tab-logo">
+      <span>جمبك مارت</span>
+    </button>
+    <button class="app-tab" onclick="showToast('المزيد قريباً!')">
+      <span class="app-tab-ico" style="background:#7B1FA2;color:#fff">⋯</span>
+      <span>المزيد</span>
+    </button>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header class="hdr hdr-home" style="top:57px;background:linear-gradient(135deg,#E53935,#B71C1C)!important;border-bottom:none;">
+  <div style="display:flex;flex-direction:column;justify-content:center;flex:1">
+    <div style="font-size:17px;font-weight:900;color:#fff;">طقة للتوصيل</div>
+    <div style="font-size:10px;color:rgba(255,255,255,.75);margin-top:1px;">الخرطوم · 25-40 دقيقة</div>
+  </div>
+  <a href="cart.html" class="hdr-cart" style="background:rgba(255,255,255,.2);" title="السلة">
+    🛒<span class="cbadge" id="cbadge">0</span>
+  </a>
+</header>
+
+<!-- ── DELIVERY STRIP ── -->
+<div class="delivery-strip" style="background:#FFEBEE;color:#C62828;border-bottom:1px solid #FFCDD2;">
+  🍽️ <strong>توصيل طعام</strong> · 25-40 دقيقة · الخرطوم وضواحيها
+</div>
+
+<main class="page page-home">
+
+  <!-- ── SEARCH ── -->
+  <div class="srch-wrap">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" placeholder='ابحث في طقة...' onfocus="showToast('البحث قريباً!')" readonly>
+    </div>
+  </div>
+
+  <!-- ── FOOD CATEGORY TABS ── -->
+  <div class="food-cat-row">
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#FFF3E0">🍰</div>
+      <span class="food-cat-label">حلويات</span>
+    </div>
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#E8F5E9">🥘</div>
+      <span class="food-cat-label">سوداني</span>
+    </div>
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#FFF8E1">🫓</div>
+      <span class="food-cat-label">مصري</span>
+    </div>
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#E3F2FD">🍣</div>
+      <span class="food-cat-label">آسيوي</span>
+    </div>
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#FCE4EC">🍕</div>
+      <span class="food-cat-label">بيتزا</span>
+    </div>
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#FBE9E7">🌯</div>
+      <span class="food-cat-label">شاورما</span>
+    </div>
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#EFEBE9">☕</div>
+      <span class="food-cat-label">مشروبات</span>
+    </div>
+    <div class="food-cat-item">
+      <div class="food-cat-circle" style="background:#E8F5E9">🥗</div>
+      <span class="food-cat-label">صحي</span>
+    </div>
+  </div>
+
+  <!-- ── HERO BANNER ── -->
+  <div class="taga-banner">
+    <div class="taga-banner-h">🎉 عروض التوصيل</div>
+    <div class="taga-banner-s">توصيل مجاني على أول طلب من طقة</div>
+    <a href="#" style="display:inline-block;margin-top:12px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:8px 22px;font-family:inherit;font-size:13px;font-weight:800;text-decoration:none;" onclick="showToast('اطلب الآن!');return false;">اطلب الآن ←</a>
+  </div>
+
+  <!-- ── NEARBY RESTAURANTS ── -->
+  <div class="sec-h" style="padding-top:20px;">
+    <h2>🏪 المطاعم القريبة منك</h2>
+    <button style="font-size:12px;color:var(--p2);font-weight:700;background:none;border:none;font-family:inherit;cursor:pointer;" onclick="showToast('عرض الكل')">الكل</button>
+  </div>
+
+  <div class="rest-list">
+
+    <div class="rest-card" onclick="showToast('مامولا — قريباً!')">
+      <div class="rest-logo">🍫</div>
+      <div class="rest-body">
+        <div class="rest-name">مامولا</div>
+        <div class="rest-cuisine">حلويات ومخبوزات</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 0.6 كم</span>
+          <span class="rest-rating">⭐ 4.8</span>
+          <span class="rest-del rest-del-free">مجاني</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+    <div class="rest-card" onclick="showToast('البيت السوداني — قريباً!')">
+      <div class="rest-logo">🥘</div>
+      <div class="rest-body">
+        <div class="rest-name">البيت السوداني</div>
+        <div class="rest-cuisine">أكل سوداني أصيل</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 1.2 كم</span>
+          <span class="rest-rating">⭐ 4.9</span>
+          <span class="rest-del rest-del-free">مجاني</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+    <div class="rest-card" onclick="showToast('شاورما الريان — قريباً!')">
+      <div class="rest-logo">🌯</div>
+      <div class="rest-body">
+        <div class="rest-name">شاورما الريان</div>
+        <div class="rest-cuisine">شاورما وساندويتشات</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 1.8 كم</span>
+          <span class="rest-rating">⭐ 4.7</span>
+          <span class="rest-del rest-del-free">مجاني</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+    <div class="rest-card" onclick="showToast('بيتزا الخرطوم — قريباً!')">
+      <div class="rest-logo">🍕</div>
+      <div class="rest-body">
+        <div class="rest-name">بيتزا الخرطوم</div>
+        <div class="rest-cuisine">بيتزا وباستا</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 2.5 كم</span>
+          <span class="rest-rating">⭐ 4.6</span>
+          <span class="rest-del rest-del-paid">200 SDG</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+    <div class="rest-card" onclick="showToast('قهوة الديوان — قريباً!')">
+      <div class="rest-logo">☕</div>
+      <div class="rest-body">
+        <div class="rest-name">قهوة الديوان</div>
+        <div class="rest-cuisine">قهوة ومشروبات</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 0.9 كم</span>
+          <span class="rest-rating">⭐ 4.9</span>
+          <span class="rest-del rest-del-free">مجاني</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+    <div class="rest-card" onclick="showToast('ريفريش — قريباً!')">
+      <div class="rest-logo">🥗</div>
+      <div class="rest-body">
+        <div class="rest-name">ريفريش</div>
+        <div class="rest-cuisine">أكل صحي وسلطات</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 3.1 كم</span>
+          <span class="rest-rating">⭐ 4.5</span>
+          <span class="rest-del rest-del-free">مجاني</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+    <div class="rest-card" onclick="showToast('فول وطعمية الصباح — قريباً!')">
+      <div class="rest-logo">🔥</div>
+      <div class="rest-body">
+        <div class="rest-name">فول وطعمية الصباح</div>
+        <div class="rest-cuisine">فول ومدمس</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 0.4 كم</span>
+          <span class="rest-rating">⭐ 4.8</span>
+          <span class="rest-del rest-del-free">مجاني</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+    <div class="rest-card" onclick="showToast('كبسة الملوك — قريباً!')">
+      <div class="rest-logo">🍗</div>
+      <div class="rest-body">
+        <div class="rest-name">كبسة الملوك</div>
+        <div class="rest-cuisine">كبسة ومندي</div>
+        <div class="rest-meta">
+          <span class="rest-dist">📍 2.0 كم</span>
+          <span class="rest-rating">⭐ 4.7</span>
+          <span class="rest-del rest-del-paid">150 SDG</span>
+        </div>
+      </div>
+      <span style="font-size:20px;color:var(--muted)">›</span>
+    </div>
+
+  </div>
+
+  <!-- ── MOST ORDERED ── -->
+  <div class="dv"></div>
+  <div class="sec-h">
+    <h2>🔥 الأكثر طلباً</h2>
+    <button style="font-size:12px;color:var(--p2);font-weight:700;background:none;border:none;font-family:inherit;cursor:pointer;" onclick="showToast('عرض الكل')">الكل</button>
+  </div>
+
+  <!-- Horizontal scrollable restaurant cards -->
+  <div style="display:flex;overflow-x:auto;scrollbar-width:none;padding:0 16px 16px;gap:12px;">
+    <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('مامولا')">
+      <div style="height:90px;background:linear-gradient(135deg,#5D4037,#3E2723);display:flex;align-items:center;justify-content:center;font-size:44px;">🍫</div>
+      <div style="padding:10px;">
+        <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">مامولا</div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">حلويات ومخبوزات</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.8</span>
+          <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('البيت السوداني')">
+      <div style="height:90px;background:linear-gradient(135deg,#388E3C,#1B5E20);display:flex;align-items:center;justify-content:center;font-size:44px;">🥘</div>
+      <div style="padding:10px;">
+        <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">البيت السوداني</div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">أكل سوداني أصيل</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.9</span>
+          <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('شاورما الريان')">
+      <div style="height:90px;background:linear-gradient(135deg,#E64A19,#BF360C);display:flex;align-items:center;justify-content:center;font-size:44px;">🌯</div>
+      <div style="padding:10px;">
+        <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">شاورما الريان</div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">شاورما وساندويتشات</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.7</span>
+          <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('قهوة الديوان')">
+      <div style="height:90px;background:linear-gradient(135deg,#4E342E,#3E2723);display:flex;align-items:center;justify-content:center;font-size:44px;">☕</div>
+      <div style="padding:10px;">
+        <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">قهوة الديوان</div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">قهوة ومشروبات</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.9</span>
+          <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('فول وطعمية الصباح')">
+      <div style="height:90px;background:linear-gradient(135deg,#F57F17,#E65100);display:flex;align-items:center;justify-content:center;font-size:44px;">🔥</div>
+      <div style="padding:10px;">
+        <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">فول الصباح</div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">فول ومدمس</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.8</span>
+          <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROMO BANNER ── -->
+  <div style="margin:0 16px 8px;background:linear-gradient(135deg,#FFEBEE,#FFCDD2);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;">
+    <span style="font-size:42px;">🎁</span>
+    <div>
+      <div style="font-size:14px;font-weight:800;color:#C62828;">اشترك في طقة بلس</div>
+      <div style="font-size:11px;color:#E53935;margin-top:2px;">توصيل مجاني غير محدود لمدة شهر</div>
+    </div>
+    <div style="margin-right:auto;background:#E53935;color:#fff;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;" onclick="showToast('طقة بلس قريباً!')">اشترك</div>
+  </div>
+
+  <div class="sp"></div>
+</main>
+
+<!-- ── FLOATING CART BAR ── -->
+<a href="cart.html" class="cart-bar" id="cart-bar">
+  <span class="cb-ico">🛒</span>
+  <span class="cb-label">عرض السلة</span>
+  <span class="cb-count" id="cb-count">0</span>
+  <span class="cb-total" id="cb-total">0 SDG</span>
+</a>
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="bnav">
+  <a href="taga.html" class="bn">
+    <span class="ico">🏠</span>الرئيسية
+  </a>
+  <a href="browse.html" class="bn">
+    <span class="ico">🔍</span>تصفح
+  </a>
+  <a href="orders.html" class="bn active">
+    <span class="ico">📦</span>طلباتي
+    <span class="bn-dot" id="bn-orders"></span>
+  </a>
+  <a href="account.html" class="bn">
+    <span class="ico">👤</span>حسابي
+  </a>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
