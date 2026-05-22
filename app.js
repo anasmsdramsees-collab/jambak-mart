@@ -371,7 +371,7 @@ function renderProductCard(p) {
     <div class="pcard" onclick="openProduct('${p.id}')">
       <div class="pcard-img">
         ${imgSrc
-          ? `<img src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')"><span style="display:none;font-size:54px">${p.emoji}</span>`
+          ? `<img src="${imgSrc}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling&&(this.nextElementSibling.style.display='flex')"><span style="display:none;font-size:54px">${p.emoji}</span>`
           : `<span>${p.emoji}</span>`}
         ${p.discount > 0 ? `<div class="disc-tag">-${p.discount}%</div>` : ''}
       </div>
