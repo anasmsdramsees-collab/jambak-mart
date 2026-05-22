@@ -10,7 +10,10 @@
 
 <!-- ── HEADER ── -->
 <header class="hdr">
-  <div class="hdr-logo"><img src="logo.jpg" alt="جمبك مارت" class="logo-img"><span class="logo-mart">مارت</span></div>
+  <a href="index.html" class="hdr-logo">
+    <img src="logo.jpg" alt="جمبك مارت" class="logo-img">
+    <span class="logo-mart">مارت</span>
+  </a>
   <button class="hdr-loc" onclick="showLocPicker()">
     📍 <span id="loc-label">الخرطوم بحري</span> ▾
   </button>
@@ -21,76 +24,77 @@
 
 <main class="page">
 
-  <!-- ── HERO ── -->
-  <div class="hero">
-    <div class="hero-badge">⚡ توصيل خلال 60 دقيقة</div>
-    <div class="hero-scooter">🛵</div>
-    <h1 class="hero-h1">كل احتياجاتك<br><span>في ساعة!</span></h1>
-    <p class="hero-sub">بقالة · خضار · لحوم · وأكثر — في الخرطوم</p>
-    <a href="stores.html" class="hero-btn">تسوق الآن ←</a>
-  </div>
-
-  <!-- ── SEARCH ── -->
-  <div style="padding:12px 16px 4px">
+  <!-- ── STICKY SEARCH ── -->
+  <div class="srch-wrap">
     <div class="search-wrap">
       <span class="si">🔍</span>
-      <input type="text" placeholder="ابحث عن منتج أو متجر..." onfocus="location.href='browse.html'">
+      <input type="text" placeholder="ابحث عن منتج أو متجر..." onfocus="location.href='browse.html'" readonly>
+    </div>
+  </div>
+
+  <!-- ── PROMO BANNERS ── -->
+  <div class="banners">
+    <div class="banner banner-purple">
+      <div class="banner-ico">⚡</div>
+      <div>
+        <div class="banner-h">توصيل خلال 60 دقيقة</div>
+        <div class="banner-s">بقالة · خضار · لحوم · وأكثر</div>
+        <a href="stores.html" class="banner-btn">اطلب الآن</a>
+      </div>
+    </div>
+    <div class="banner banner-orange">
+      <div class="banner-ico">🔥</div>
+      <div>
+        <div class="banner-h">عروض اليوم</div>
+        <div class="banner-s">خصومات تصل إلى 20%</div>
+        <a href="browse.html?filter=offers" class="banner-btn">تصفح</a>
+      </div>
     </div>
   </div>
 
   <!-- ── CATEGORIES ── -->
   <div class="cats" id="cats-row">
     <button class="cat" onclick="location.href='browse.html?cat=bak'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=80&h=80&fit=crop&auto=format&q=80" alt="مخبوزات" loading="lazy" onerror="this.outerHTML='🍞'"></div>
+      <div class="cat-ico bg-bak"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=80&h=80&fit=crop&auto=format&q=80" alt="مخبوزات" loading="lazy" onerror="this.outerHTML='🍞'"></div>
       <span class="cat-lbl">مخبوزات</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=dairy'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=80&h=80&fit=crop&auto=format&q=80" alt="ألبان وبيض" loading="lazy" onerror="this.outerHTML='🥛'"></div>
+      <div class="cat-ico bg-dairy"><img src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=80&h=80&fit=crop&auto=format&q=80" alt="ألبان وبيض" loading="lazy" onerror="this.outerHTML='🥛'"></div>
       <span class="cat-lbl">ألبان وبيض</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=produce'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=80&h=80&fit=crop&auto=format&q=80" alt="خضار وفاكهة" loading="lazy" onerror="this.outerHTML='🥦'"></div>
+      <div class="cat-ico bg-produce"><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=80&h=80&fit=crop&auto=format&q=80" alt="خضار وفاكهة" loading="lazy" onerror="this.outerHTML='🥦'"></div>
       <span class="cat-lbl">خضار وفاكهة</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=meat'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=80&h=80&fit=crop&auto=format&q=80" alt="لحوم وسمك" loading="lazy" onerror="this.outerHTML='🥩'"></div>
+      <div class="cat-ico bg-meat"><img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=80&h=80&fit=crop&auto=format&q=80" alt="لحوم وسمك" loading="lazy" onerror="this.outerHTML='🥩'"></div>
       <span class="cat-lbl">لحوم وسمك</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=grocery'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=80&h=80&fit=crop&auto=format&q=80" alt="بقالة" loading="lazy" onerror="this.outerHTML='🛒'"></div>
+      <div class="cat-ico bg-grocery"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=80&h=80&fit=crop&auto=format&q=80" alt="بقالة" loading="lazy" onerror="this.outerHTML='🛒'"></div>
       <span class="cat-lbl">بقالة</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=drinks'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=80&h=80&fit=crop&auto=format&q=80" alt="مشروبات" loading="lazy" onerror="this.outerHTML='🧃'"></div>
+      <div class="cat-ico bg-drinks"><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=80&h=80&fit=crop&auto=format&q=80" alt="مشروبات" loading="lazy" onerror="this.outerHTML='🧃'"></div>
       <span class="cat-lbl">مشروبات</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=snacks'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1548907994-b8e24b7c2987?w=80&h=80&fit=crop&auto=format&q=80" alt="حلويات" loading="lazy" onerror="this.outerHTML='🍫'"></div>
+      <div class="cat-ico bg-snacks"><img src="https://images.unsplash.com/photo-1548907994-b8e24b7c2987?w=80&h=80&fit=crop&auto=format&q=80" alt="حلويات" loading="lazy" onerror="this.outerHTML='🍫'"></div>
       <span class="cat-lbl">حلويات</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=house'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?w=80&h=80&fit=crop&auto=format&q=80" alt="منزليات" loading="lazy" onerror="this.outerHTML='🧹'"></div>
+      <div class="cat-ico bg-house"><img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?w=80&h=80&fit=crop&auto=format&q=80" alt="منزليات" loading="lazy" onerror="this.outerHTML='🧹'"></div>
       <span class="cat-lbl">منزليات</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=care'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=80&h=80&fit=crop&auto=format&q=80" alt="عناية" loading="lazy" onerror="this.outerHTML='🧴'"></div>
+      <div class="cat-ico bg-care"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=80&h=80&fit=crop&auto=format&q=80" alt="عناية" loading="lazy" onerror="this.outerHTML='🧴'"></div>
       <span class="cat-lbl">عناية</span>
     </button>
     <button class="cat" onclick="location.href='browse.html?cat=frozen'">
-      <div class="cat-ico"><img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=80&h=80&fit=crop&auto=format&q=80" alt="مجمدات" loading="lazy" onerror="this.outerHTML='❄️'"></div>
+      <div class="cat-ico bg-frozen"><img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=80&h=80&fit=crop&auto=format&q=80" alt="مجمدات" loading="lazy" onerror="this.outerHTML='❄️'"></div>
       <span class="cat-lbl">مجمدات</span>
     </button>
   </div>
-
-  <div class="dv"></div>
-
-  <!-- ── NEARBY STORES ── -->
-  <div class="sec-h">
-    <h2>🏪 المتاجر القريبة</h2>
-    <a href="stores.html">الكل</a>
-  </div>
-
-  <div id="stores-list"></div>
 
   <div class="dv"></div>
 
@@ -103,6 +107,15 @@
 
   <div class="dv"></div>
 
+  <!-- ── NEARBY STORES ── -->
+  <div class="sec-h">
+    <h2>🏪 المتاجر القريبة</h2>
+    <a href="stores.html">الكل</a>
+  </div>
+  <div id="stores-list"></div>
+
+  <div class="dv"></div>
+
   <!-- ── MOST POPULAR ── -->
   <div class="sec-h">
     <h2>⭐ الأكثر طلباً</h2>
@@ -112,14 +125,12 @@
 
   <div class="dv"></div>
 
-  <!-- ── DELIVERY BANNER ── -->
-  <div style="margin:4px 16px 16px;background:var(--p4);border-radius:var(--r);padding:14px 16px;display:flex;gap:14px;align-items:center">
-    <div style="font-size:36px">⚡</div>
-    <div>
-      <div style="font-size:14px;font-weight:800;color:var(--p1);margin-bottom:3px">توصيل خلال 60 دقيقة</div>
-      <div style="font-size:12px;color:var(--muted)">متاح يومياً من 7 ص حتى 12 م · الخرطوم · أم درمان · بحري</div>
-    </div>
+  <!-- ── NEW ARRIVALS ── -->
+  <div class="sec-h">
+    <h2>🆕 وصل حديثاً</h2>
+    <a href="browse.html">عرض الكل</a>
   </div>
+  <div class="pscroll" id="new-scroll"></div>
 
   <div class="sp"></div>
 </main>
@@ -168,16 +179,14 @@
 <script src="app.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Render stores
     renderStoreList('stores-list', STORES);
-
-    // Offers
     renderScroll('offers-scroll', PRODUCTS.filter(p => p.discount > 0));
-
-    // Popular
     renderGrid('popular-grid', PRODUCTS.filter(p =>
-      ['grocery','dairy','bak'].includes(p.cat)
+      ['grocery','dairy','bak','drinks'].includes(p.cat)
     ).slice(0, 6));
+    renderScroll('new-scroll', PRODUCTS.filter(p =>
+      ['meat','frozen','care','produce'].includes(p.cat)
+    ).slice(0, 8));
   });
 
   function showLocPicker() {

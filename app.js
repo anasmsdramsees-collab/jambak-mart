@@ -66,8 +66,8 @@ function renderStoreList(containerId, stores) {
         <div class="store-name">${s.name}</div>
         <div class="store-type">${s.type}</div>
         <div class="store-meta">
+          <span class="express-tag">⚡ في ${s.time.split('-')[0]} د</span>
           <span class="m">⭐ ${s.rating}</span>
-          <span class="m">🕒 ${s.time} د</span>
           <span class="m">🛵 ${s.delivery.toLocaleString()} SDG</span>
         </div>
       </div>
@@ -277,70 +277,86 @@ window.getProductImg = getProductImg;
 // ── Products Data ──
 const PRODUCTS = [
   // مخبوزات
-  { id:'p01', cat:'bak',     emoji:'🍞', name:'عيش أبيض ملكي',          unit:'رغيف واحد',         price:89,   discount:0 },
-  { id:'p02', cat:'bak',     emoji:'🥖', name:'خبز توست أبيض 500g',     unit:'كيس 500 غرام',      price:650,  discount:0 },
-  { id:'p03', cat:'bak',     emoji:'🥐', name:'كرواسون بالزبدة 6 قطع',  unit:'علبة 6 قطع',        price:1200, discount:10 },
-  { id:'p04', cat:'bak',     emoji:'🫓', name:'خبز برغل أسمر',           unit:'رغيف واحد',         price:95,   discount:0 },
-  { id:'p05', cat:'bak',     emoji:'🧁', name:'كعك سمسم سوداني',         unit:'كيس 200 غرام',      price:380,  discount:0 },
-  { id:'p06', cat:'bak',     emoji:'🍰', name:'كيكة إسفنجية',            unit:'علبة 400 غرام',     price:1800, discount:15 },
+  { id:'p01', cat:'bak', emoji:'🍞', name:'خبز توست أبيض 600 غرام', unit:'كيس 600 غرام', price:750, discount:0 },
+  { id:'p02', cat:'bak', emoji:'🥖', name:'خبز بر أسمر سن', unit:'كيس 400 غرام', price:480, discount:0 },
+  { id:'p03', cat:'bak', emoji:'🥐', name:'كرواسون بالزبدة 6 قطع', unit:'علبة 6 قطع', price:1280, discount:10 },
+  { id:'p04', cat:'bak', emoji:'🧁', name:'كعك البيت بالسمسم', unit:'كيس 200 غرام', price:400, discount:0 },
+  { id:'p05', cat:'bak', emoji:'🍰', name:'كيكة إسفنجية بالفانيلا', unit:'علبة 400 غرام', price:1920, discount:15 },
+  { id:'p06', cat:'bak', emoji:'🫓', name:'بسكويت بيلفيتا بالهيل 8 قطع', unit:'448 غرام', price:1600, discount:0 },
 
   // ألبان وبيض
-  { id:'p07', cat:'dairy',   emoji:'🥛', name:'حليب نيدو كامل الدسم 400g', unit:'علبة 400 غرام',  price:2200, discount:0 },
-  { id:'p08', cat:'dairy',   emoji:'🥚', name:'بيض كرتون كبير 30 بيضة',  unit:'كرتون 30 بيضة',    price:1800, discount:0 },
-  { id:'p09', cat:'dairy',   emoji:'🧀', name:'جبنة بيضاء طازجة 500g',   unit:'علبة 500 غرام',    price:1200, discount:0 },
-  { id:'p10', cat:'dairy',   emoji:'🫙', name:'زبادي طبيعي 500ml',       unit:'كوب 500 مل',        price:320,  discount:0 },
-  { id:'p11', cat:'dairy',   emoji:'🧈', name:'زبدة بلدية 250g',          unit:'علبة 250 غرام',    price:1500, discount:0 },
-  { id:'p12', cat:'dairy',   emoji:'🥛', name:'حليب طازج مبستر 1L',      unit:'1 لتر',             price:550,  discount:5 },
+  { id:'p07', cat:'dairy', emoji:'🥛', name:'حليب المراعي كامل الدسم 1 لتر', unit:'1 لتر', price:800, discount:0 },
+  { id:'p08', cat:'dairy', emoji:'🥛', name:'حليب المراعي قليل الدسم 1 لتر × 4', unit:'4 لتر', price:2880, discount:0 },
+  { id:'p09', cat:'dairy', emoji:'🥚', name:'بيض طازج كبير 15 بيضة', unit:'15 بيضة', price:1920, discount:0 },
+  { id:'p10', cat:'dairy', emoji:'🧀', name:'جبن كرافت مثلثات 16 قطعة', unit:'16 قطعة', price:2240, discount:0 },
+  { id:'p11', cat:'dairy', emoji:'🫙', name:'زبادي المراعي طبيعي 500 غرام', unit:'500 غرام', price:800, discount:0 },
+  { id:'p12', cat:'dairy', emoji:'🧈', name:'زبدة أنكور نيوزيلندية 250 غرام', unit:'250 غرام', price:2400, discount:0 },
+  { id:'p13', cat:'dairy', emoji:'🥛', name:'حليب نيدو كامل الدسم 400 غرام', unit:'400 غرام', price:2880, discount:0 },
+  { id:'p14', cat:'dairy', emoji:'🧀', name:'جبن بيضاء طازجة الصافي 500 غرام', unit:'500 غرام', price:1440, discount:0 },
 
   // خضار وفاكهة
-  { id:'p13', cat:'produce', emoji:'🍅', name:'طماطم طازجة',              unit:'1 كيلو',            price:350,  discount:0 },
-  { id:'p14', cat:'produce', emoji:'🧅', name:'بصل جاف',                  unit:'1 كيلو',            price:280,  discount:0 },
-  { id:'p15', cat:'produce', emoji:'🥔', name:'بطاطس محلية',              unit:'1 كيلو',            price:320,  discount:0 },
-  { id:'p16', cat:'produce', emoji:'🍌', name:'موز حديث',                 unit:'1 كيلو',            price:850,  discount:0 },
-  { id:'p17', cat:'produce', emoji:'🥭', name:'مانجو شنبار',              unit:'1 كيلو',            price:1200, discount:20 },
-  { id:'p18', cat:'produce', emoji:'🥦', name:'بامية خضراء',              unit:'500 غرام',          price:480,  discount:0 },
+  { id:'p15', cat:'produce', emoji:'🍅', name:'طماطم طازجة محلية', unit:'1 كيلو', price:350, discount:0 },
+  { id:'p16', cat:'produce', emoji:'🧅', name:'بصل جاف أبيض', unit:'1 كيلو', price:280, discount:0 },
+  { id:'p17', cat:'produce', emoji:'🥔', name:'بطاطس طازجة محلية', unit:'1 كيلو', price:320, discount:0 },
+  { id:'p18', cat:'produce', emoji:'🍌', name:'موز طازج', unit:'1 كيلو', price:960, discount:0 },
+  { id:'p19', cat:'produce', emoji:'🥭', name:'مانجو شنبار سوداني', unit:'1 كيلو', price:1280, discount:20 },
+  { id:'p20', cat:'produce', emoji:'🥦', name:'بامية خضراء طازجة', unit:'500 غرام', price:480, discount:0 },
+  { id:'p21', cat:'produce', emoji:'🍋', name:'ليمون طازج', unit:'1 كيلو', price:640, discount:0 },
+  { id:'p22', cat:'produce', emoji:'🧄', name:'ثوم مجروش 250 غرام', unit:'250 غرام', price:480, discount:0 },
 
   // لحوم وسمك
-  { id:'p19', cat:'meat',    emoji:'🥩', name:'لحم بقري مفروم',           unit:'500 غرام',          price:3500, discount:0 },
-  { id:'p20', cat:'meat',    emoji:'🍗', name:'فخذ دجاج طازج',            unit:'1 كيلو',            price:2800, discount:0 },
-  { id:'p21', cat:'meat',    emoji:'🐟', name:'سمك بلطي طازج',            unit:'1 كيلو',            price:3200, discount:0 },
-  { id:'p22', cat:'meat',    emoji:'🥚', name:'كفتة لحم جاهزة',           unit:'500 غرام',          price:4000, discount:10 },
+  { id:'p23', cat:'meat', emoji:'🥩', name:'لحم بقري مفروم طازج', unit:'500 غرام', price:3500, discount:0 },
+  { id:'p24', cat:'meat', emoji:'🍗', name:'فخذ دجاج طازج بدون عظم', unit:'1 كيلو', price:2800, discount:0 },
+  { id:'p25', cat:'meat', emoji:'🐟', name:'سمك بلطي طازج', unit:'1 كيلو', price:3200, discount:0 },
+  { id:'p26', cat:'meat', emoji:'🥚', name:'كفتة لحم جاهزة', unit:'500 غرام', price:4000, discount:10 },
+  { id:'p27', cat:'meat', emoji:'🍗', name:'صدر دجاج مقطع طازج', unit:'1 كيلو', price:3040, discount:0 },
 
   // بقالة
-  { id:'p23', cat:'grocery', emoji:'🍚', name:'أرز بسمتي هندي 2kg',      unit:'كيس 2 كيلو',        price:2800, discount:0 },
-  { id:'p24', cat:'grocery', emoji:'🫙', name:'زيت عباد الشمس 1L',       unit:'زجاجة 1 لتر',       price:1500, discount:0 },
-  { id:'p25', cat:'grocery', emoji:'🍬', name:'سكر أبيض 2kg',             unit:'كيس 2 كيلو',        price:1200, discount:0 },
-  { id:'p26', cat:'grocery', emoji:'🫖', name:'شاي أحمر احمر 500g',       unit:'علبة 500 غرام',    price:750,  discount:0 },
-  { id:'p27', cat:'grocery', emoji:'☕', name:'نسكافيه كلاسيك 200g',     unit:'جرة 200 غرام',      price:3200, discount:0 },
-  { id:'p28', cat:'grocery', emoji:'🧂', name:'ملح ناعم يودي 1kg',        unit:'1 كيلو',            price:180,  discount:0 },
+  { id:'p28', cat:'grocery', emoji:'🍚', name:'أرز بسمتي طويل الحبة 2 كجم', unit:'2 كيلو', price:2400, discount:0 },
+  { id:'p29', cat:'grocery', emoji:'🫙', name:'زيت عافية دوار الشمس 1.5 لتر', unit:'1.5 لتر', price:2880, discount:0 },
+  { id:'p30', cat:'grocery', emoji:'🍬', name:'سكر أبيض ناعم 2 كجم', unit:'2 كيلو', price:1280, discount:0 },
+  { id:'p31', cat:'grocery', emoji:'🫖', name:'شاي ليبتون أصفر 100 كيس', unit:'100 كيس', price:1920, discount:0 },
+  { id:'p32', cat:'grocery', emoji:'☕', name:'نسكافيه كلاسيك 200 غرام', unit:'200 غرام', price:3520, discount:0 },
+  { id:'p33', cat:'grocery', emoji:'🌾', name:'طحين القمح الكامل البيكر 2 كجم', unit:'2 كيلو', price:1280, discount:0 },
+  { id:'p34', cat:'grocery', emoji:'🧂', name:'ملح ناعم يودي 1 كجم', unit:'1 كيلو', price:480, discount:0 },
+  { id:'p35', cat:'grocery', emoji:'🥫', name:'طماطم مفرومة هاينز 400 غرام', unit:'400 غرام', price:960, discount:0 },
+  { id:'p36', cat:'grocery', emoji:'🍯', name:'عسل طبيعي سدر 500 غرام', unit:'500 غرام', price:4800, discount:0 },
 
   // مشروبات
-  { id:'p29', cat:'drinks',  emoji:'💧', name:'مياه معدنية باردة 1.5L',   unit:'زجاجة 1.5 لتر',    price:200,  discount:0 },
-  { id:'p30', cat:'drinks',  emoji:'🧃', name:'عصير برتقال طبيعي 1L',    unit:'علبة 1 لتر',        price:680,  discount:0 },
-  { id:'p31', cat:'drinks',  emoji:'🥤', name:'بيبسي كولا 330ml',         unit:'علبة 330 مل',       price:250,  discount:0 },
-  { id:'p32', cat:'drinks',  emoji:'🧋', name:'لبن بالعسل 500ml',         unit:'500 مل',            price:420,  discount:0 },
+  { id:'p37', cat:'drinks', emoji:'💧', name:'مياه معدنية نيفيا 1.5 لتر × 12', unit:'18 لتر', price:1920, discount:0 },
+  { id:'p38', cat:'drinks', emoji:'💧', name:'مياه باردة 500 مل', unit:'500 مل', price:160, discount:0 },
+  { id:'p39', cat:'drinks', emoji:'🥤', name:'بيبسي كولا 330 مل × 6 علب', unit:'1.98 لتر', price:2400, discount:0 },
+  { id:'p40', cat:'drinks', emoji:'🧃', name:'عصير المراعي برتقال 1 لتر', unit:'1 لتر', price:1120, discount:0 },
+  { id:'p41', cat:'drinks', emoji:'🧃', name:'عصير لمعي مانجو 250 مل × 6', unit:'1.5 لتر', price:2240, discount:15 },
+  { id:'p42', cat:'drinks', emoji:'🥛', name:'لبن المراعي بالفراولة 200 مل × 6', unit:'1.2 لتر', price:1440, discount:0 },
 
   // حلويات وسناكس
-  { id:'p33', cat:'snacks',  emoji:'🍫', name:'شوكولاتة ميلك 100g',       unit:'100 غرام',          price:850,  discount:0 },
-  { id:'p34', cat:'snacks',  emoji:'🍪', name:'بسكويت ماري مالح',         unit:'علبة 200 غرام',    price:450,  discount:0 },
-  { id:'p35', cat:'snacks',  emoji:'🥜', name:'فول سوداني محمص',          unit:'200 غرام',          price:350,  discount:0 },
-  { id:'p36', cat:'snacks',  emoji:'🍬', name:'حلوى مصاصة مشكلة',         unit:'كيس 500 غرام',     price:600,  discount:15 },
+  { id:'p43', cat:'snacks', emoji:'🍫', name:'فيريرو روشيه 24 حبة 300 غرام', unit:'300 غرام', price:6240, discount:15 },
+  { id:'p44', cat:'snacks', emoji:'🍫', name:'لينت ليندور شوكولاتة حليب 100 غرام', unit:'100 غرام', price:1280, discount:0 },
+  { id:'p45', cat:'snacks', emoji:'🥜', name:'فول سوداني محمص بالملح', unit:'200 غرام', price:400, discount:0 },
+  { id:'p46', cat:'snacks', emoji:'🍪', name:'بسكويت ماري أصلي', unit:'علبة 200 غرام', price:480, discount:0 },
+  { id:'p47', cat:'snacks', emoji:'🥣', name:'كيلوغز كوكو بوبز 480 غرام', unit:'480 غرام', price:4000, discount:0 },
+  { id:'p48', cat:'snacks', emoji:'🍬', name:'حلوى مصاصة مشكلة', unit:'كيس 500 غرام', price:640, discount:0 },
 
   // منزليات
-  { id:'p37', cat:'house',   emoji:'🧹', name:'منظف أرضيات بالليمون',    unit:'زجاجة 1 لتر',      price:680,  discount:0 },
-  { id:'p38', cat:'house',   emoji:'🧴', name:'سائل غسيل الصحون ماما',   unit:'زجاجة 500 مل',     price:520,  discount:0 },
-  { id:'p39', cat:'house',   emoji:'🧻', name:'مناديل ورقية 12 رول',     unit:'12 رول',            price:1800, discount:10 },
-  { id:'p40', cat:'house',   emoji:'🪣', name:'صابون غسيل ملابس 500g',   unit:'500 غرام',          price:450,  discount:0 },
+  { id:'p49', cat:'house', emoji:'🧴', name:'أريال مسحوق غسيل فاعل 2.5 كجم', unit:'2.5 كيلو', price:3840, discount:0 },
+  { id:'p50', cat:'house', emoji:'🧴', name:'فيري ليمون سائل صحون 500 مل', unit:'500 مل', price:1280, discount:0 },
+  { id:'p51', cat:'house', emoji:'🌺', name:'داوني كلنر قيم العشب 3 لتر', unit:'3 لتر', price:3520, discount:10 },
+  { id:'p52', cat:'house', emoji:'💧', name:'كلوركس مبيض سائل 2 لتر', unit:'2 لتر', price:1920, discount:0 },
+  { id:'p53', cat:'house', emoji:'🧻', name:'فاين مناشف مطبخ 12 رول', unit:'12 رول', price:4480, discount:0 },
+  { id:'p54', cat:'house', emoji:'🧹', name:'جيف كريم منظف مع كريستال 500 مل', unit:'500 مل', price:1600, discount:0 },
 
   // عناية شخصية
-  { id:'p41', cat:'care',    emoji:'🧼', name:'صابون ديتول مضاد للبكتيريا', unit:'قطعة 125 غرام',  price:380,  discount:0 },
-  { id:'p42', cat:'care',    emoji:'🪥', name:'فرشاة أسنان ناعمة',        unit:'قطعة واحدة',        price:250,  discount:0 },
-  { id:'p43', cat:'care',    emoji:'🧴', name:'شامبو هيد & شولدرز',      unit:'زجاجة 400 مل',     price:2200, discount:0 },
+  { id:'p55', cat:'care', emoji:'🧼', name:'صابون ديتول مضاد للبكتيريا 125 غرام', unit:'125 غرام', price:480, discount:0 },
+  { id:'p56', cat:'care', emoji:'🪥', name:'فرشاة أسنان أورال-بي ناعمة', unit:'قطعة', price:800, discount:0 },
+  { id:'p57', cat:'care', emoji:'🧴', name:'شامبو هيد شولدرز قشرة 400 مل', unit:'400 مل', price:2400, discount:0 },
+  { id:'p58', cat:'care', emoji:'🧴', name:'كريم نيفيا ترطيب 200 مل', unit:'200 مل', price:1280, discount:0 },
 
   // مجمدات
-  { id:'p44', cat:'frozen',  emoji:'🍦', name:'آيس كريم فانيلا 1L',      unit:'1 لتر',             price:1500, discount:0 },
-  { id:'p45', cat:'frozen',  emoji:'🥟', name:'سمبوسة جاهزة 20 قطعة',   unit:'علبة 20 قطعة',     price:2800, discount:20 },
-  { id:'p46', cat:'frozen',  emoji:'🌮', name:'دجاج مقلي مجمد 1kg',      unit:'1 كيلو',            price:3500, discount:0 },
+  { id:'p59', cat:'frozen', emoji:'🍦', name:'آيس كريم فانيلا كيلو', unit:'1 لتر', price:1600, discount:0 },
+  { id:'p60', cat:'frozen', emoji:'🥟', name:'سمبوسة لحم جاهزة 20 قطعة', unit:'20 قطعة', price:2880, discount:20 },
+  { id:'p61', cat:'frozen', emoji:'🌮', name:'دجاج مقلي مجمد 1 كجم', unit:'1 كيلو', price:3520, discount:0 },
+  { id:'p62', cat:'frozen', emoji:'🐟', name:'قريدس مجمد مقشر 500 غرام', unit:'500 غرام', price:4800, discount:15 },
 ];
 
 // ── Product Card Renderer ──

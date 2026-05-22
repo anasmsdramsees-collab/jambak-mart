@@ -612,3 +612,80 @@ select.fi{cursor:pointer}
   .cart-bar{max-width:calc(540px - 32px)}
   .toast{bottom:calc(var(--bnh) + 20px)}
 }
+
+/* ── NOON-STYLE ADDITIONS ── */
+
+/* Override bg to cleaner gray */
+body { background: #F5F5F5; }
+.pcard-img { background: #FAFAFA; }
+
+/* Sticky search bar below header */
+.srch-wrap {
+  background: var(--wh);
+  padding: 10px 16px;
+  position: sticky;
+  top: var(--hh);
+  z-index: 80;
+  border-bottom: 1px solid var(--bdr);
+}
+
+/* Promo banners */
+.banners {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 14px 16px 4px;
+  scrollbar-width: none;
+}
+.banners::-webkit-scrollbar { display: none; }
+.banner {
+  flex-shrink: 0;
+  border-radius: 20px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 270px;
+  max-width: 300px;
+}
+.banner-purple { background: linear-gradient(135deg, #1a0550, #3B0F8C); color: #fff; }
+.banner-orange { background: linear-gradient(135deg, #e8500a, #FF6B35); color: #fff; }
+.banner-ico { font-size: 38px; flex-shrink: 0; }
+.banner-h { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+.banner-s { font-size: 11px; opacity: 0.85; margin-bottom: 10px; }
+.banner-btn {
+  display: inline-block;
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Category icon colored backgrounds */
+.bg-bak    { background: #FFF3E0; }
+.bg-dairy  { background: #E3F2FD; }
+.bg-produce{ background: #E8F5E9; }
+.bg-meat   { background: #FCE4EC; }
+.bg-grocery{ background: #F3E5F5; }
+.bg-drinks { background: #E0F7FA; }
+.bg-snacks { background: #FFF8E1; }
+.bg-house  { background: #E8EAF6; }
+.bg-care   { background: #FDE8F0; }
+.bg-frozen { background: #E1F5FE; }
+
+/* Express delivery badge on store cards */
+.express-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #E8F5E9;
+  color: #2E7D32;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
