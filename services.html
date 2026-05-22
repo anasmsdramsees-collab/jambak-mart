@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جمبك خدمات — خدمات منزلية</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ── APP SWITCHER ── -->
+<div class="app-sw-wrap">
+  <div class="app-sw">
+    <button class="app-tab" onclick="location.href='jambak.html'">
+      <span class="app-tab-ico" style="background:linear-gradient(135deg,#3B0F8C,#FF6B35);color:#fff;font-size:15px;font-weight:900">ج</span>
+      <span>جمبك</span>
+    </button>
+    <button class="app-tab" onclick="location.href='hypermall.html'">
+      <span class="app-tab-ico" style="background:#1565C0;color:#fff">🏬</span>
+      <span>هايبر مول</span>
+    </button>
+    <button class="app-tab" onclick="location.href='taga.html'">
+      <span class="app-tab-ico" style="background:#E53935;color:#fff">🍽️</span>
+      <span>طقة</span>
+    </button>
+    <button class="app-tab active">
+      <span class="app-tab-ico" style="background:linear-gradient(135deg,#00897B,#004D40);color:#fff">🛠️</span>
+      <span>الخدمات</span>
+    </button>
+    <button class="app-tab" onclick="location.href='index.html'">
+      <img src="logo.jpg" alt="جمبك مارت" class="app-tab-logo">
+      <span>جمبك مارت</span>
+    </button>
+  </div>
+</div>
+
+<header class="hdr" style="top:57px">
+  <div style="width:40px"></div>
+  <div class="hdr-title">جمبك خدمات</div>
+  <a href="cart.html" class="hdr-cart">🛒<span class="cbadge" id="cbadge">0</span></a>
+</header>
+
+<main class="page" style="background:#F5F5F5;padding-top:0">
+
+  <!-- Delivery strip -->
+  <div class="delivery-strip" style="background:#E0F2F1;color:#00695C;border-color:#B2DFDB">
+    🛠️ <strong>خدمات منزلية موثوقة</strong> · احجز في دقائق
+  </div>
+
+  <!-- Search -->
+  <div class="srch-wrap" style="top:calc(var(--hh) + 57px)">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" placeholder="ابحث عن خدمة..." readonly onclick="showToast('البحث — قريباً!')">
+    </div>
+  </div>
+
+  <!-- Hero banner -->
+  <div class="svc-hero">
+    <div class="svc-hero-txt">
+      <div class="svc-hero-h">خدمات منزلية<br>احترافية</div>
+      <div class="svc-hero-s">تنظيف · صيانة · عناية</div>
+      <a href="#svc-grid" class="svc-hero-btn">احجز الآن</a>
+    </div>
+    <div class="svc-hero-ico">🏠</div>
+  </div>
+
+  <!-- Category tabs -->
+  <div class="cat-tabs" style="background:#fff;border-bottom:1px solid #EEE">
+    <button class="cat-tab cat-tab-active">
+      <span class="ct-ico" style="background:#E0F2F1">🧹</span><span>الكل</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#FCE4EC">💆</span><span>عناية</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#E3F2FD">🔧</span><span>صيانة</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#F3E5F5">🧺</span><span>غسيل</span>
+    </button>
+    <button class="cat-tab">
+      <span class="ct-ico" style="background:#FFF8E1">🌿</span><span>حدائق</span>
+    </button>
+  </div>
+
+  <!-- Services Grid -->
+  <div id="svc-grid" style="padding:12px 16px">
+    <div class="svc-section-title">💆 عناية شخصية</div>
+    <div class="svc-grid">
+      <button class="svc-card" onclick="bookService('مساج للسيدات')">
+        <div class="svc-ico" style="background:#FCE4EC">💆</div>
+        <div class="svc-name">مساج للسيدات</div>
+        <div class="svc-price">من 3,500 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('مانيكير وباديكير')">
+        <div class="svc-ico" style="background:#F8BBD0">💅</div>
+        <div class="svc-name">مانيكير وباديكير</div>
+        <div class="svc-price">من 1,500 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('عناية بالبشرة')">
+        <div class="svc-ico" style="background:#E1BEE7">✨</div>
+        <div class="svc-name">عناية بالبشرة</div>
+        <div class="svc-price">من 2,000 SDG</div>
+      </button>
+    </div>
+
+    <div class="svc-section-title">🧹 تنظيف المنزل</div>
+    <div class="svc-grid">
+      <button class="svc-card" onclick="bookService('تنظيف زيارة واحدة')">
+        <div class="svc-ico" style="background:#E0F2F1">🧹</div>
+        <div class="svc-name">تنظيف زيارة واحدة</div>
+        <div class="svc-price">من 2,500 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('تنظيف شهري')">
+        <div class="svc-ico" style="background:#B2EBF2">📅</div>
+        <div class="svc-name">باقة شهرية</div>
+        <div class="svc-price">من 8,000 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('كوي الملابس')">
+        <div class="svc-ico" style="background:#DCEDC8">👔</div>
+        <div class="svc-name">كوي الملابس</div>
+        <div class="svc-price">من 800 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('تنظيف شامل')">
+        <div class="svc-ico" style="background:#E0F2F1">🏠</div>
+        <div class="svc-name">تنظيف شامل</div>
+        <div class="svc-price">من 5,000 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('غسيل ملابس')">
+        <div class="svc-ico" style="background:#E3F2FD">🧺</div>
+        <div class="svc-name">غسيل ملابس</div>
+        <div class="svc-price">من 1,200 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('تنظيف سجاد')">
+        <div class="svc-ico" style="background:#FFF3E0">🪞</div>
+        <div class="svc-name">تنظيف سجاد</div>
+        <div class="svc-price">من 1,800 SDG</div>
+      </button>
+    </div>
+
+    <div class="svc-section-title">🔧 صيانة ومعالجة</div>
+    <div class="svc-grid">
+      <button class="svc-card" onclick="bookService('صيانة منزل')">
+        <div class="svc-ico" style="background:#E8EAF6">🔧</div>
+        <div class="svc-name">صيانة منزل</div>
+        <div class="svc-price">من 1,500 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('إصلاح كهرباء')">
+        <div class="svc-ico" style="background:#FFF9C4">⚡</div>
+        <div class="svc-name">إصلاح كهرباء</div>
+        <div class="svc-price">من 1,000 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('سباكة')">
+        <div class="svc-ico" style="background:#E3F2FD">🚿</div>
+        <div class="svc-name">سباكة</div>
+        <div class="svc-price">من 1,200 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('صيانة مكيفات')">
+        <div class="svc-ico" style="background:#E1F5FE">❄️</div>
+        <div class="svc-name">صيانة مكيفات</div>
+        <div class="svc-price">من 2,000 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('مكافحة حشرات')">
+        <div class="svc-ico" style="background:#F1F8E9">🐛</div>
+        <div class="svc-name">مكافحة حشرات</div>
+        <div class="svc-price">من 3,000 SDG</div>
+      </button>
+      <button class="svc-card" onclick="bookService('دهانات')">
+        <div class="svc-ico" style="background:#FCE4EC">🖌️</div>
+        <div class="svc-name">دهانات</div>
+        <div class="svc-price">من 4,000 SDG</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="sp"></div>
+</main>
+
+<nav class="bnav">
+  <a href="index.html" class="bn"><span class="ico">🏠</span>الرئيسية</a>
+  <a href="browse.html" class="bn"><span class="ico">🔍</span>تصفح</a>
+  <a href="orders.html" class="bn"><span class="ico">📦</span>طلباتي</a>
+  <a href="account.html" class="bn"><span class="ico">👤</span>حسابي</a>
+</nav>
+
+<script src="app.js"></script>
+<script>
+  function bookService(name) {
+    showToast('✅ تم تسجيل طلبك لـ ' + name + ' — سنتصل بك قريباً');
+  }
+</script>
+</body>
+</html>
