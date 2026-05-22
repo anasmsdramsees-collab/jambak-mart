@@ -167,44 +167,53 @@
     <a href="browse.html" style="display:block;text-align:center;background:linear-gradient(135deg,#3B0F8C,#5a1dc8);color:#fff;font-family:inherit;font-size:14px;font-weight:800;padding:15px;border-radius:14px;text-decoration:none;">🛍️ استكشف كل الفئات</a>
   </div>
 
+  <!-- ── FLASH SALE ── -->
   <div class="dv"></div>
-
-  <!-- ── MOST POPULAR ── -->
   <div class="sec-h">
-    <h2>⭐ الأكثر طلباً</h2>
-    <a href="browse.html">عرض الكل</a>
+    <h2>⚡ فلاش سيل</h2>
+    <span id="flash-timer" style="font-size:12px;font-weight:800;color:var(--red);background:#FEE2E2;padding:3px 10px;border-radius:999px">00:00:00</span>
   </div>
-  <div class="pgrid" id="popular-grid"></div>
+  <div class="mkt-scroll" id="flash-scroll"></div>
 
+  <!-- ── ELECTRONICS ── -->
   <div class="dv"></div>
-
-  <!-- ── NEW ARRIVALS ── -->
   <div class="sec-h">
-    <h2>🆕 وصل حديثاً</h2>
-    <a href="browse.html">عرض الكل</a>
+    <h2>📱 إلكترونيات</h2>
+    <a href="#">الكل</a>
   </div>
-  <div class="pscroll" id="new-scroll"></div>
+  <div class="mkt-scroll" id="electronics-scroll"></div>
 
-  <!-- ── PROMO BANNERS ── -->
+  <!-- ── FASHION ── -->
   <div class="dv"></div>
-  <div class="banners">
-    <div class="banner banner-purple">
-      <span class="banner-ico">🎁</span>
-      <div>
-        <div class="banner-h">توصيل مجاني</div>
-        <div class="banner-s">على أول طلب من جمبك</div>
-        <a href="browse.html" class="banner-btn">اطلب الآن</a>
-      </div>
-    </div>
-    <div class="banner banner-orange">
-      <span class="banner-ico">🌟</span>
-      <div>
-        <div class="banner-h">جمبك بلس</div>
-        <div class="banner-s">عروض حصرية لك</div>
-        <a href="#" class="banner-btn">اشترك</a>
-      </div>
-    </div>
+  <div class="sec-h">
+    <h2>👗 موضة وملابس</h2>
+    <a href="#">الكل</a>
   </div>
+  <div class="mkt-scroll" id="fashion-scroll"></div>
+
+  <!-- ── HOME ── -->
+  <div class="dv"></div>
+  <div class="sec-h">
+    <h2>🏠 منزل وديكور</h2>
+    <a href="#">الكل</a>
+  </div>
+  <div class="mkt-scroll" id="home-scroll"></div>
+
+  <!-- ── BEAUTY ── -->
+  <div class="dv"></div>
+  <div class="sec-h">
+    <h2>💄 جمال وعناية</h2>
+    <a href="#">الكل</a>
+  </div>
+  <div class="mkt-scroll" id="beauty-scroll"></div>
+
+  <!-- ── SPORTS ── -->
+  <div class="dv"></div>
+  <div class="sec-h">
+    <h2>🏃 رياضة</h2>
+    <a href="#">الكل</a>
+  </div>
+  <div class="mkt-scroll" id="sports-scroll"></div>
 
   <div class="sp"></div>
 </main>
@@ -250,9 +259,98 @@
 
 <script src="app.js"></script>
 <script>
+const MKT = {
+  flash: [
+    { id:'f1', name:'سماعات بلوتوث لاسلكية', price:9500, oldPrice:18000, img:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop&auto=format&q=80', badge:'-47%' },
+    { id:'f2', name:'ساعة ذكية رياضية', price:22000, oldPrice:40000, img:'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300&h=300&fit=crop&auto=format&q=80', badge:'-45%' },
+    { id:'f3', name:'حذاء رياضي نايك', price:28000, oldPrice:52000, img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop&auto=format&q=80', badge:'-46%' },
+    { id:'f4', name:'مكبر صوت بلوتوث JBL', price:15000, oldPrice:28000, img:'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&h=300&fit=crop&auto=format&q=80', badge:'-46%' },
+    { id:'f5', name:'بطارية محمولة 20000mAh', price:7500, oldPrice:14000, img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&h=300&fit=crop&auto=format&q=80', badge:'-46%' },
+  ],
+  electronics: [
+    { id:'e1', name:'سماعات بلوتوث لاسلكية', price:12000, img:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'e2', name:'ساعة ذكية متعددة المهام', price:35000, img:'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'e3', name:'مكبر صوت محمول', price:18000, img:'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'e4', name:'شاحن سريع 65W', price:5500, img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'e5', name:'بطارية محمولة 20000mAh', price:9000, img:'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'e6', name:'كابل شحن USB-C متين', price:2000, img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop&auto=format&q=80' },
+  ],
+  fashion: [
+    { id:'fa1', name:'تيشيرت قطن بيور', price:4500, img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'fa2', name:'جاكيت رياضي خفيف', price:14000, img:'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'fa3', name:'حذاء رياضي كاجوال', price:28000, img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'fa4', name:'حقيبة يد جلد صناعي', price:18000, img:'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'fa5', name:'قبعة كاب كلاسيك', price:3500, img:'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'fa6', name:'نظارة شمسية عصرية', price:8500, img:'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&h=300&fit=crop&auto=format&q=80' },
+  ],
+  home: [
+    { id:'h1', name:'كوب حراري ستانلس 500ml', price:5500, img:'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'h2', name:'إبريق كهربائي 1.7 لتر', price:9500, img:'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'h3', name:'منظم مكتب خشبي', price:6000, img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'h4', name:'إطار صورة 20×30 سم', price:3000, img:'https://images.unsplash.com/photo-1513519245088-0e12902e35a6?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'h5', name:'وسادة ديكور مخمل', price:4500, img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'h6', name:'شمعة عطرية فاخرة', price:5000, img:'https://images.unsplash.com/photo-1602028915047-37269d1a73f7?w=300&h=300&fit=crop&auto=format&q=80' },
+  ],
+  beauty: [
+    { id:'b1', name:'كريم مرطب للوجه SPF50', price:4500, img:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'b2', name:'شامبو طبيعي بالأرغان', price:3500, img:'https://images.unsplash.com/photo-1556760544-74068565f05c?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'b3', name:'عطر رجالي فاخر 100ml', price:22000, img:'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'b4', name:'مجموعة عناية بالبشرة', price:12000, img:'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'b5', name:'أحمر شفاه مات فاخر', price:3000, img:'https://images.unsplash.com/photo-1586495777744-4e6232bf2177?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'b6', name:'زيت الشعر بجوز الهند', price:2500, img:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=300&h=300&fit=crop&auto=format&q=80' },
+  ],
+  sports: [
+    { id:'s1', name:'كرة قدم مقاس 5', price:7500, img:'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'s2', name:'حصيرة يوغا مضادة للانزلاق', price:5500, img:'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'s3', name:'زجاجة مياه رياضية 1 لتر', price:3500, img:'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'s4', name:'قفازات رفع أثقال', price:6000, img:'https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'s5', name:'حذاء جري خفيف', price:32000, img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=300&fit=crop&auto=format&q=80' },
+    { id:'s6', name:'حبل تمرين قابل للتعديل', price:4500, img:'https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=300&h=300&fit=crop&auto=format&q=80' },
+  ],
+};
+
+function renderMktScroll(id, items) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = items.map(p => `
+    <div class="mkt-card" onclick="showToast('✅ تمت الإضافة للسلة')">
+      <div class="mkt-img">
+        <img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
+        ${p.badge ? `<span class="mkt-badge">${p.badge}</span>` : ''}
+      </div>
+      <div class="mkt-body">
+        <div class="mkt-name">${p.name}</div>
+        <div class="mkt-prices">
+          <span class="mkt-price">${p.price.toLocaleString()} SDG</span>
+          ${p.oldPrice ? `<span class="mkt-old">${p.oldPrice.toLocaleString()}</span>` : ''}
+        </div>
+        <button class="mkt-add-btn">+ أضف</button>
+      </div>
+    </div>`).join('');
+}
+
+// Flash sale countdown
+function startFlashTimer() {
+  let secs = 2 * 3600 + 34 * 60 + 17;
+  const el = document.getElementById('flash-timer');
+  setInterval(() => {
+    if (secs <= 0) return;
+    secs--;
+    const h = String(Math.floor(secs/3600)).padStart(2,'0');
+    const m = String(Math.floor((secs%3600)/60)).padStart(2,'0');
+    const s = String(secs%60).padStart(2,'0');
+    el.textContent = `${h}:${m}:${s}`;
+  }, 1000);
+}
+
   document.addEventListener('DOMContentLoaded', () => {
-    renderGrid('popular-grid', PRODUCTS.slice(0, 6));
-    renderScroll('new-scroll', PRODUCTS.slice(4, 12));
+    renderMktScroll('flash-scroll', MKT.flash);
+    renderMktScroll('electronics-scroll', MKT.electronics);
+    renderMktScroll('fashion-scroll', MKT.fashion);
+    renderMktScroll('home-scroll', MKT.home);
+    renderMktScroll('beauty-scroll', MKT.beauty);
+    renderMktScroll('sports-scroll', MKT.sports);
+    startFlashTimer();
   });
 
   function showLocPicker() {
