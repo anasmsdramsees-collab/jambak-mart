@@ -43,9 +43,19 @@ img{display:block;max-width:100%}
    HERO BANNER SLIDESHOW
 ═══════════════════════════════════════ */
 .hero{position:relative;overflow:hidden;background:#140028;margin-top:68px}
-.slides{display:flex;transition:transform .75s cubic-bezier(.77,0,.175,1);direction:ltr}
-.slide{min-width:100%;position:relative;cursor:pointer}
-.slide-banner{width:100%;display:block;object-fit:cover;max-height:80vh}
+
+/* Fixed 3:1 container — standard web hero ratio */
+.slides-wrap{position:relative;width:100%;aspect-ratio:3/1;overflow:hidden}
+.slides{display:flex;height:100%;transition:transform .75s cubic-bezier(.77,0,.175,1);direction:ltr}
+.slide{min-width:100%;height:100%;position:relative;cursor:pointer;overflow:hidden}
+
+/* Every banner fills the 3:1 box uniformly */
+.slide-banner{
+  width:100%;height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center center;
+}
 
 /* Side arrows */
 .hero-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;background:rgba(20,0,40,.55);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:20px;transition:all .2s;backdrop-filter:blur(8px);z-index:10;user-select:none}
@@ -54,9 +64,17 @@ img{display:block;max-width:100%}
 .hero-arrow-l{right:20px}
 
 /* Dots */
-.hero-nav{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
-.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s;border:none;padding:0}
+.hero-nav{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:all .3s;border:none;padding:0}
 .hero-dot.active{width:28px;border-radius:4px;background:#F05020}
+
+/* Mobile: taller ratio to show more content */
+@media(max-width:768px){
+  .slides-wrap{aspect-ratio:16/9}
+  .hero-arrow{width:36px;height:36px;font-size:16px}
+  .hero-arrow-r{left:10px}
+  .hero-arrow-l{right:10px}
+}
 
 /* ═══════════════════════════════════════
    STATS
@@ -321,30 +339,32 @@ textarea.fi{resize:vertical;min-height:110px}
      HERO SLIDESHOW
 ══════════════════════════ -->
 <section class="hero">
-  <div class="slides" id="slides">
-    <div class="slide" onclick="location.href='index.html'">
-      <img class="slide-banner" src="banners/banner-mart.jpg" alt="جمبك مارت">
-    </div>
-    <div class="slide" onclick="location.href='jambak.html'">
-      <img class="slide-banner" src="banners/banner-jambak.jpg" alt="جمبك ماركت">
-    </div>
-    <div class="slide" onclick="location.href='hypermall.html'">
-      <img class="slide-banner" src="banners/banner-hypermall.jpg" alt="هايبر مول">
-    </div>
-    <div class="slide" onclick="location.href='taga.html'">
-      <img class="slide-banner" src="banners/banner-foodz.jpg" alt="جمبك فودز">
-    </div>
-    <div class="slide" onclick="location.href='services.html'">
-      <img class="slide-banner" src="banners/banner-services.jpg" alt="جمبك سيرفيس">
-    </div>
-  </div><!-- /slides -->
+  <div class="slides-wrap">
+    <div class="slides" id="slides">
+      <div class="slide" onclick="location.href='index.html'">
+        <img class="slide-banner" src="banners/banner-mart.jpg" alt="جمبك مارت">
+      </div>
+      <div class="slide" onclick="location.href='jambak.html'">
+        <img class="slide-banner" src="banners/banner-jambak.jpg" alt="جمبك ماركت">
+      </div>
+      <div class="slide" onclick="location.href='hypermall.html'">
+        <img class="slide-banner" src="banners/banner-hypermall.jpg" alt="هايبر مول">
+      </div>
+      <div class="slide" onclick="location.href='taga.html'">
+        <img class="slide-banner" src="banners/banner-foodz.jpg" alt="جمبك فودز">
+      </div>
+      <div class="slide" onclick="location.href='services.html'">
+        <img class="slide-banner" src="banners/banner-services.jpg" alt="جمبك سيرفيس">
+      </div>
+    </div><!-- /slides -->
 
-  <!-- Side arrows -->
-  <div class="hero-arrow hero-arrow-r" onclick="prevSlide()">›</div>
-  <div class="hero-arrow hero-arrow-l" onclick="nextSlide()">‹</div>
+    <!-- Side arrows -->
+    <div class="hero-arrow hero-arrow-r" onclick="prevSlide()">›</div>
+    <div class="hero-arrow hero-arrow-l" onclick="nextSlide()">‹</div>
 
-  <!-- Dots -->
-  <div class="hero-nav" id="hero-dots"></div>
+    <!-- Dots -->
+    <div class="hero-nav" id="hero-dots"></div>
+  </div><!-- /slides-wrap -->
 </section>
 
 <!-- ══════════════════════════
