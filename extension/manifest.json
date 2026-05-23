@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "جمبك مارت — كنترول بانل",
+  "description": "لوحة تحكم سريعة لإدارة جمبك مارت — الطلبات والتجار والإحصائيات",
+  "version": "1.0.0",
+  "default_locale": "ar",
+
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "جمبك مارت — كنترول بانل"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://anasmsdramsees-collab.github.io/jambak-mart/*",
+        "http://localhost:*/*",
+        "http://127.0.0.1:*/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "permissions": [
+    "storage",
+    "tabs",
+    "alarms",
+    "notifications"
+  ],
+
+  "host_permissions": [
+    "*://anasmsdramsees-collab.github.io/*",
+    "http://localhost:*/*",
+    "http://127.0.0.1:*/*"
+  ]
+}
