@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جمبك — لوحة الإدارة</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  *{box-sizing:border-box}
+  body{background:#F0F2F5;margin:0;font-family:'Cairo',sans-serif;min-height:100vh}
+  .dash-wrap{display:flex;min-height:100vh}
+  /* Sidebar */
+  .sidebar{width:250px;background:linear-gradient(180deg,#2D0B6B 0%,#4A148C 100%);display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:100}
+  .sb-logo{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .sb-logo-top{display:flex;align-items:center;gap:10px}
+  .sb-logo-ico{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:22px}
+  .sb-logo-name{font-size:16px;font-weight:900;color:#fff}
+  .sb-logo-role{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
+  .sb-nav{flex:1;padding:12px 0;overflow-y:auto}
+  .sb-item{display:flex;align-items:center;gap:10px;padding:13px 20px;font-size:14px;font-weight:700;color:rgba(255,255,255,.7);cursor:pointer;border-radius:0;transition:all .2s;border-right:3px solid transparent;text-decoration:none}
+  .sb-item:hover{background:rgba(255,255,255,.1);color:#fff}
+  .sb-item.active{background:rgba(255,255,255,.15);color:#fff;border-right-color:#E1BEE7}
+  .sb-item .si{width:20px;text-align:center;font-size:17px}
+  .sb-badge{background:#E53935;color:#fff;border-radius:999px;font-size:10px;font-weight:900;padding:1px 7px;margin-right:auto}
+  .sb-bottom{padding:16px 20px;border-top:1px solid rgba(255,255,255,.12)}
+  .sb-logout{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.6);font-size:13px;font-weight:700;cursor:pointer;padding:8px 0}
+  .sb-logout:hover{color:#fff}
+  /* Main */
+  .main-area{margin-right:250px;flex:1}
+  .top-bar{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+  .top-bar-title{font-size:18px;font-weight:900;color:#1a1a1a}
+  .top-bar-right{display:flex;align-items:center;gap:10px}
+  .admin-pill{background:#F3E5F5;color:#7B1FA2;border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700}
+  .page-content{padding:28px}
+  /* KPIs */
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+  .kpi-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .kpi-icon{font-size:30px;margin-bottom:8px}
+  .kpi-val{font-size:28px;font-weight:900;color:#1a1a1a}
+  .kpi-label{font-size:12px;color:#888;font-weight:700;margin-top:2px}
+  .kpi-sub{font-size:11px;color:#7B1FA2;font-weight:700;margin-top:6px}
+  /* Section */
+  .sec-title{font-size:16px;font-weight:900;color:#1a1a1a;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+  .sec-title-left{display:flex;align-items:center;gap:8px}
+  /* Tables */
+  .data-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .data-table th{padding:13px 16px;font-size:12px;font-weight:700;color:#888;background:#FAFAFA;border-bottom:1px solid #F0F0F0;text-align:right;white-space:nowrap}
+  .data-table td{padding:13px 16px;font-size:13px;border-bottom:1px solid #F8F8F8;vertical-align:middle}
+  .data-table tr:last-child td{border-bottom:none}
+  .data-table tr:hover td{background:#FDFBFF}
+  .store-name{font-weight:700;color:#1a1a1a}
+  .store-type{font-size:11px;color:#aaa;margin-top:2px}
+  /* Status badges */
+  .sbadge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+  .sb-active{background:#E8F5E9;color:#2E7D32}
+  .sb-pending{background:#FFF8E1;color:#F57F17}
+  .sb-suspended{background:#FFEBEE;color:#C62828}
+  /* App type badges */
+  .ab-mart{background:#E8F5E9;color:#2E7D32}
+  .ab-market{background:#FFF3EC;color:#E55B00}
+  .ab-hyper{background:#E3F2FD;color:#1565C0}
+  .ab-foodz{background:#FFEBEE;color:#C62828}
+  .ab-service{background:#F3E5F5;color:#7B1FA2}
+  /* Action buttons */
+  .ta-btn{padding:5px 11px;border-radius:8px;border:none;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;margin-left:4px}
+  .ta-approve{background:#E8F5E9;color:#2E7D32}
+  .ta-suspend{background:#FFF8E1;color:#E65100}
+  .ta-delete{background:#FFEBEE;color:#C62828}
+  .ta-edit{background:#E3F2FD;color:#1565C0}
+  /* Toolbar */
+  .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .tb-search{padding:10px 14px;border:1.5px solid #E5E5E5;border-radius:12px;font-family:inherit;font-size:13px;width:220px;outline:none}
+  .tb-search:focus{border-color:#7B1FA2}
+  .tb-select{padding:10px 14px;border:1.5px solid #E5E5E5;border-radius:12px;font-family:inherit;font-size:13px;outline:none;background:#fff}
+  .btn-primary{padding:10px 18px;background:linear-gradient(135deg,#7B1FA2,#4A148C);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .btn-export{padding:10px 16px;background:#E8F5E9;color:#2E7D32;border:none;border-radius:12px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+  /* Modal */
+  .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-ov.show{display:flex}
+  .modal-box{background:#fff;border-radius:20px;width:100%;max-width:500px;padding:28px;box-shadow:0 8px 40px rgba(0,0,0,.15);max-height:90vh;overflow-y:auto}
+  .modal-title{font-size:18px;font-weight:900;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
+  .modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:#aaa}
+  .mfg{margin-bottom:14px}
+  .mfl{display:block;font-size:12px;font-weight:700;color:#555;margin-bottom:5px}
+  .mfi{width:100%;padding:10px 12px;border:1.5px solid #E5E5E5;border-radius:10px;font-family:inherit;font-size:13px;outline:none}
+  .mfi:focus{border-color:#7B1FA2}
+  .mfi-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btn-save{width:100%;padding:12px;background:linear-gradient(135deg,#7B1FA2,#4A148C);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;margin-top:4px}
+  .app-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .app-type-btn{padding:10px 6px;border:2px solid #E5E5E5;border-radius:10px;background:#FAFAFA;cursor:pointer;text-align:center;font-family:inherit;font-size:11px;font-weight:700;color:#555;transition:all .2s}
+  .app-type-btn.selected{border-color:#7B1FA2;background:#F3E5F5;color:#7B1FA2}
+  .at-ico{font-size:20px;display:block;margin-bottom:3px}
+  /* Charts */
+  .chart-bars{display:flex;align-items:flex-end;gap:12px;height:120px;margin-bottom:8px}
+  .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .bar{width:100%;border-radius:6px 6px 0 0;transition:height .5s;min-height:4px}
+  .bar-label{font-size:11px;font-weight:700;color:#888;text-align:center}
+  .bar-val{font-size:11px;font-weight:900}
+  /* Settings */
+  .settings-card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:16px}
+  .settings-card h3{font-size:15px;font-weight:900;color:#1a1a1a;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #F0F0F0}
+  .setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #F8F8F8}
+  .setting-row:last-child{border-bottom:none}
+  .setting-label{font-size:14px;font-weight:700;color:#333}
+  .setting-sub{font-size:12px;color:#aaa;margin-top:2px}
+  .setting-val{display:flex;align-items:center;gap:10px}
+  .toggle-sw{position:relative;display:inline-block;width:44px;height:24px}
+  .toggle-sw input{opacity:0;width:0;height:0}
+  .toggle-slider{position:absolute;inset:0;background:#ccc;border-radius:24px;cursor:pointer;transition:.3s}
+  .toggle-slider:before{content:'';position:absolute;width:18px;height:18px;right:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
+  .toggle-sw input:checked + .toggle-slider{background:#7B1FA2}
+  .toggle-sw input:checked + .toggle-slider:before{right:unset;left:3px}
+  .num-input{width:90px;padding:7px 10px;border:1.5px solid #E5E5E5;border-radius:10px;font-family:inherit;font-size:13px;text-align:center;outline:none}
+  .num-input:focus{border-color:#7B1FA2}
+  /* Empty */
+  .empty-state{text-align:center;padding:40px 20px;color:#bbb}
+  .empty-state .ei{font-size:48px;margin-bottom:10px}
+  .empty-state p{font-size:14px;font-weight:700}
+  /* Responsive */
+  @media(max-width:900px){.kpi-grid{grid-template-columns:1fr 1fr}.sidebar{width:200px}.main-area{margin-right:200px}}
+</style>
+</head>
+<body>
+
+<div class="dash-wrap">
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-top">
+        <div class="sb-logo-ico">🛡️</div>
+        <div>
+          <div class="sb-logo-name">جمبك مارت</div>
+          <div class="sb-logo-role">لوحة الإدارة</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sb-nav">
+      <a class="sb-item active" onclick="showSection('dashboard')" id="nav-dashboard">
+        <span class="si">📊</span> لوحة التحكم
+      </a>
+      <a class="sb-item" onclick="showSection('vendors')" id="nav-vendors">
+        <span class="si">🏪</span> التجار
+        <span class="sb-badge" id="pending-badge" style="display:none">0</span>
+      </a>
+      <a class="sb-item" onclick="showSection('products')" id="nav-products">
+        <span class="si">📦</span> المنتجات
+      </a>
+      <a class="sb-item" onclick="showSection('orders')" id="nav-orders">
+        <span class="si">🛒</span> الطلبات
+      </a>
+      <a class="sb-item" onclick="showSection('settings')" id="nav-settings">
+        <span class="si">⚙️</span> الإعدادات
+      </a>
+    </nav>
+    <div class="sb-bottom">
+      <a href="index.html" class="sb-item" style="margin-bottom:4px">
+        <span class="si">🏠</span> العودة للتطبيق
+      </a>
+      <div class="sb-logout" onclick="logout()">
+        <span>🚪</span> تسجيل الخروج
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <div class="main-area">
+    <div class="top-bar">
+      <div class="top-bar-title" id="page-title">لوحة التحكم</div>
+      <div class="top-bar-right">
+        <span class="admin-pill">🛡️ الإدارة العليا</span>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <!-- ── DASHBOARD ── -->
+      <div id="section-dashboard">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon">🏪</div>
+            <div class="kpi-val" id="kpi-vendors">0</div>
+            <div class="kpi-label">إجمالي التجار</div>
+            <div class="kpi-sub" id="kpi-pending-vendors">0 في الانتظار</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">🛒</div>
+            <div class="kpi-val" id="kpi-orders-total">0</div>
+            <div class="kpi-label">إجمالي الطلبات</div>
+            <div class="kpi-sub" id="kpi-orders-today-count">0 اليوم</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">💰</div>
+            <div class="kpi-val" id="kpi-revenue">0</div>
+            <div class="kpi-label">الإيراد الإجمالي (SDG)</div>
+            <div class="kpi-sub" id="kpi-commission">عمولة: 0 SDG</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">📦</div>
+            <div class="kpi-val" id="kpi-products-total">0</div>
+            <div class="kpi-label">إجمالي المنتجات</div>
+          </div>
+        </div>
+
+        <!-- Chart by app type -->
+        <div style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:24px">
+          <div class="sec-title"><span class="sec-title-left">📊 الطلبات حسب التطبيق</span></div>
+          <div class="chart-bars" id="app-chart"></div>
+        </div>
+
+        <!-- Recent vendors -->
+        <div class="sec-title">
+          <span class="sec-title-left">🕐 أحدث التجار</span>
+          <button class="btn-primary" onclick="showSection('vendors')">عرض الكل</button>
+        </div>
+        <table class="data-table" id="recent-vendors-table">
+          <thead><tr><th>المتجر</th><th>التطبيق</th><th>الحالة</th><th>الانضمام</th><th>إجراءات</th></tr></thead>
+          <tbody id="recent-vendors-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- ── VENDORS ── -->
+      <div id="section-vendors" style="display:none">
+        <div class="toolbar">
+          <input class="tb-search" type="text" placeholder="بحث عن متجر..." oninput="filterVendors(this.value)">
+          <select class="tb-select" id="vendor-filter-status" onchange="filterVendors()">
+            <option value="all">كل الحالات</option>
+            <option value="pending">في الانتظار</option>
+            <option value="active">نشط</option>
+            <option value="suspended">موقوف</option>
+          </select>
+          <select class="tb-select" id="vendor-filter-type" onchange="filterVendors()">
+            <option value="all">كل التطبيقات</option>
+            <option value="mart">جمبك مارت</option>
+            <option value="market">جمبك ماركت</option>
+            <option value="hyper">هايبر مول</option>
+            <option value="foodz">فودز</option>
+            <option value="service">سيرفيس</option>
+          </select>
+          <button class="btn-export" onclick="exportVendors()">📤 تصدير CSV</button>
+          <button class="btn-primary" onclick="openAddVendorModal()" style="margin-right:auto">+ إضافة تاجر</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>المتجر</th><th>التطبيق</th><th>رقم الهاتف</th><th>الحالة</th><th>تاريخ الانضمام</th><th>PIN</th><th>إجراءات</th></tr></thead>
+          <tbody id="vendors-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- ── PRODUCTS ── -->
+      <div id="section-products" style="display:none">
+        <div class="toolbar">
+          <input class="tb-search" type="text" placeholder="بحث في المنتجات..." oninput="filterAdminProducts(this.value)">
+          <select class="tb-select" id="prod-filter-vendor" onchange="filterAdminProducts()">
+            <option value="all">كل التجار</option>
+          </select>
+          <select class="tb-select" id="prod-filter-cat" onchange="filterAdminProducts()">
+            <option value="all">كل الفئات</option>
+            <option value="grocery">بقالة</option>
+            <option value="produce">خضار وفاكهة</option>
+            <option value="dairy">ألبان</option>
+            <option value="meat">لحوم</option>
+            <option value="bak">مخبوزات</option>
+            <option value="drinks">مشروبات</option>
+            <option value="snacks">وجبات خفيفة</option>
+            <option value="food">طعام</option>
+            <option value="service">خدمة</option>
+          </select>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>المنتج</th><th>المتجر</th><th>الفئة</th><th>السعر</th><th>الخصم</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+          <tbody id="admin-products-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- ── ORDERS ── -->
+      <div id="section-orders" style="display:none">
+        <div class="toolbar">
+          <select class="tb-select" id="ord-filter-vendor" onchange="renderAllOrders()">
+            <option value="all">كل التجار</option>
+          </select>
+          <select class="tb-select" id="ord-filter-status" onchange="renderAllOrders()">
+            <option value="all">كل الحالات</option>
+            <option value="new">جديد</option>
+            <option value="accepted">مقبول</option>
+            <option value="preparing">جاري التحضير</option>
+            <option value="out_for_delivery">في الطريق</option>
+            <option value="delivered">مكتمل</option>
+            <option value="cancelled">ملغي</option>
+          </select>
+          <button class="btn-export" onclick="exportOrders()">📤 تصدير CSV</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>رقم الطلب</th><th>الزبون</th><th>المتجر</th><th>المجموع</th><th>الحالة</th><th>التاريخ</th><th>التفاصيل</th></tr></thead>
+          <tbody id="all-orders-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- ── SETTINGS ── -->
+      <div id="section-settings" style="display:none">
+        <div class="settings-card">
+          <h3>⚙️ إعدادات المنصة</h3>
+          <div class="setting-row">
+            <div><div class="setting-label">رسوم التوصيل الافتراضية</div><div class="setting-sub">تطبق على الطلبات التي لا تحدد رسوم</div></div>
+            <div class="setting-val"><input class="num-input" type="number" id="s-delivery-fee" value="500">SDG</div>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">نسبة عمولة جمبك</div><div class="setting-sub">النسبة من كل طلب مكتمل</div></div>
+            <div class="setting-val"><input class="num-input" type="number" id="s-commission" value="10">%</div>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">طلب الموافقة للتجار الجدد</div><div class="setting-sub">تجار جدد يحتاجون موافقة قبل التفعيل</div></div>
+            <div class="setting-val"><label class="toggle-sw"><input type="checkbox" id="s-approval" checked><span class="toggle-slider"></span></label></div>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">وضع الصيانة</div><div class="setting-sub">إيقاف التطبيق مؤقتاً للصيانة</div></div>
+            <div class="setting-val"><label class="toggle-sw"><input type="checkbox" id="s-maintenance"><span class="toggle-slider"></span></label></div>
+          </div>
+          <div style="margin-top:16px"><button class="btn-save" onclick="saveSettings()">حفظ الإعدادات</button></div>
+        </div>
+
+        <div class="settings-card">
+          <h3>🔐 تغيير كلمة مرور الأدمن</h3>
+          <div class="mfi-row">
+            <div class="mfg"><label class="mfl">كلمة المرور الحالية</label><input class="mfi" type="password" id="s-old-pass"></div>
+            <div class="mfg"><label class="mfl">كلمة المرور الجديدة</label><input class="mfi" type="password" id="s-new-pass"></div>
+          </div>
+          <button class="btn-save" style="max-width:200px" onclick="changeAdminPass()">تغيير كلمة المرور</button>
+        </div>
+
+        <div class="settings-card">
+          <h3>🔧 بيانات تجريبية</h3>
+          <p style="font-size:13px;color:#888;margin-bottom:14px">أنشئ حسابات للمتاجر الموجودة في التطبيق (7 متاجر + 8 مطاعم + 6 خدمات). رمز PIN الافتراضي: 1234</p>
+          <button class="btn-primary" onclick="seedDemoVendors()">🚀 تفعيل البيانات التجريبية</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── ADD VENDOR MODAL ── -->
+<div class="modal-ov" id="vendor-modal">
+  <div class="modal-box">
+    <div class="modal-title">
+      <span id="v-modal-title">إضافة تاجر جديد</span>
+      <button class="modal-close" onclick="closeVendorModal()">✕</button>
+    </div>
+    <div class="mfi-row">
+      <div class="mfg"><label class="mfl">اسم المتجر</label><input class="mfi" type="text" id="vm-name"></div>
+      <div class="mfg"><label class="mfl">رقم الهاتف</label><input class="mfi" type="tel" id="vm-phone"></div>
+    </div>
+    <div class="mfg"><label class="mfl">نوع التطبيق</label>
+      <div class="app-type-grid">
+        <button class="app-type-btn" data-type="mart" onclick="selectVendorType(this)"><span class="at-ico">🛒</span>مارت</button>
+        <button class="app-type-btn" data-type="market" onclick="selectVendorType(this)"><span class="at-ico">🏪</span>ماركت</button>
+        <button class="app-type-btn" data-type="hyper" onclick="selectVendorType(this)"><span class="at-ico">🏬</span>هايبر</button>
+        <button class="app-type-btn" data-type="foodz" onclick="selectVendorType(this)"><span class="at-ico">🍕</span>فودز</button>
+        <button class="app-type-btn" data-type="service" onclick="selectVendorType(this)"><span class="at-ico">🛠️</span>سيرفيس</button>
+        <button class="app-type-btn" data-type="market" onclick="selectVendorType(this)" style="display:none"></button>
+      </div>
+    </div>
+    <div class="mfi-row">
+      <div class="mfg"><label class="mfl">PIN (4 أرقام)</label><input class="mfi" type="password" id="vm-pin" maxlength="4" inputmode="numeric" placeholder="••••"></div>
+      <div class="mfg"><label class="mfl">العنوان</label><input class="mfi" type="text" id="vm-address" placeholder="الخرطوم..."></div>
+    </div>
+    <div class="mfg">
+      <label class="mfl">الحالة</label>
+      <select class="mfi" id="vm-status">
+        <option value="active">نشط</option>
+        <option value="pending">في الانتظار</option>
+        <option value="suspended">موقوف</option>
+      </select>
+    </div>
+    <button class="btn-save" onclick="saveVendor()">حفظ ✓</button>
+  </div>
+</div>
+
+<!-- ── ORDER DETAILS MODAL ── -->
+<div class="modal-ov" id="order-modal">
+  <div class="modal-box">
+    <div class="modal-title">
+      <span>تفاصيل الطلب</span>
+      <button class="modal-close" onclick="closeOrderModal()">✕</button>
+    </div>
+    <div id="order-modal-content"></div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════
+   DB & Auth
+════════════════════════════════ */
+const DB = {
+  get:     k => JSON.parse(localStorage.getItem(k) || 'null'),
+  set:     (k,v) => localStorage.setItem(k, JSON.stringify(v)),
+  getArr:  k => JSON.parse(localStorage.getItem(k) || '[]'),
+  pushArr: (k,item) => { const a=DB.getArr(k); a.push(item); DB.set(k,a); },
+  updateArr: (k,id,field,updates) => {
+    const a=DB.getArr(k); const i=a.findIndex(x=>x[field]===id);
+    if(i!==-1){a[i]={...a[i],...updates};DB.set(k,a);}
+  },
+  removeFromArr: (k,id,field) => { DB.set(k, DB.getArr(k).filter(x=>x[field]!==id)); }
+};
+
+async function hashStr(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+const session = DB.get('jambak_auth_session');
+if (!session || session.role !== 'admin') { location.href = 'auth.html'; }
+
+const APP_LABELS = {mart:'جمبك مارت', market:'جمبك ماركت', hyper:'هايبر مول', foodz:'جمبك فودز', service:'جمبك سيرفيس'};
+const APP_CLS    = {mart:'ab-mart', market:'ab-market', hyper:'ab-hyper', foodz:'ab-foodz', service:'ab-service'};
+const CAT_LABELS = {grocery:'بقالة',produce:'خضار',dairy:'ألبان',meat:'لحوم',bak:'مخبوزات',drinks:'مشروبات',snacks:'وجبات خفيفة',house:'منزل',care:'عناية',frozen:'مجمدات',food:'طعام',service:'خدمة'};
+const STATUS_MAP = {new:'s-new جديد', accepted:'s-accepted مقبول', preparing:'s-preparing جاري التحضير', out_for_delivery:'s-out في الطريق', delivered:'s-delivered مكتمل', cancelled:'s-cancelled ملغي'};
+
+let editingVendorId = null;
+let selectedVendorType = '';
+
+/* ════════════════════════════════
+   Navigation
+════════════════════════════════ */
+const SECTIONS = ['dashboard','vendors','products','orders','settings'];
+const TITLES   = {dashboard:'لوحة التحكم', vendors:'إدارة التجار', products:'إدارة المنتجات', orders:'إدارة الطلبات', settings:'الإعدادات'};
+
+function showSection(id) {
+  SECTIONS.forEach(s => {
+    document.getElementById('section-'+s).style.display = s===id ? '' : 'none';
+    document.getElementById('nav-'+s).classList.toggle('active', s===id);
+  });
+  document.getElementById('page-title').textContent = TITLES[id];
+  if (id==='dashboard') renderDashboard();
+  if (id==='vendors')  { populateVendorSelects(); renderVendors(); }
+  if (id==='products') { populateProdVendorSelect(); renderAdminProducts(); }
+  if (id==='orders')   { populateOrderVendorSelect(); renderAllOrders(); }
+  if (id==='settings') loadSettings();
+}
+
+/* ════════════════════════════════
+   Dashboard
+════════════════════════════════ */
+function renderDashboard() {
+  const vendors = DB.getArr('jambak_vendors');
+  const orders  = DB.getArr('jambak_orders');
+  const prods   = DB.getArr('jambak_products_override').filter(p=>p.status!=='deleted');
+  const today   = new Date().toDateString();
+  const todayOrds = orders.filter(o=>new Date(o.placedAt).toDateString()===today);
+  const delivered = orders.filter(o=>o.status==='delivered');
+  const revenue   = delivered.reduce((s,o)=>s+o.total,0);
+  const settings  = DB.get('jambak_admin_settings') || {};
+  const commission = (revenue * (settings.platformCommission||10) / 100);
+  const pending   = vendors.filter(v=>v.status==='pending').length;
+
+  document.getElementById('kpi-vendors').textContent = vendors.length;
+  document.getElementById('kpi-pending-vendors').textContent = pending + ' في الانتظار';
+  document.getElementById('kpi-orders-total').textContent = orders.length;
+  document.getElementById('kpi-orders-today-count').textContent = todayOrds.length + ' اليوم';
+  document.getElementById('kpi-revenue').textContent = revenue.toLocaleString();
+  document.getElementById('kpi-commission').textContent = 'عمولة: ' + Math.round(commission).toLocaleString() + ' SDG';
+  document.getElementById('kpi-products-total').textContent = prods.length;
+
+  const badge = document.getElementById('pending-badge');
+  badge.textContent = pending;
+  badge.style.display = pending > 0 ? '' : 'none';
+
+  // Chart
+  const types = ['mart','market','hyper','foodz','service'];
+  const typeCounts = {};
+  types.forEach(t => typeCounts[t] = orders.filter(o=>o.appType===t).length);
+  const max = Math.max(1, ...Object.values(typeCounts));
+  const colors = {mart:'#2E7D32',market:'#F46E19',hyper:'#1565C0',foodz:'#E53935',service:'#7B1FA2'};
+  document.getElementById('app-chart').innerHTML = types.map(t => {
+    const h = Math.max(8, Math.round((typeCounts[t]/max)*110));
+    return `<div class="bar-wrap">
+      <div class="bar-val" style="color:${colors[t]}">${typeCounts[t]}</div>
+      <div class="bar" style="height:${h}px;background:${colors[t]}"></div>
+      <div class="bar-label">${APP_LABELS[t].replace('جمبك ','')}</div>
+    </div>`;
+  }).join('');
+
+  // Recent vendors
+  const recent = vendors.slice(-5).reverse();
+  document.getElementById('recent-vendors-tbody').innerHTML = recent.length ? recent.map(v => vendorRow(v)).join('') :
+    '<tr><td colspan="5" style="text-align:center;color:#bbb;padding:20px">لا يوجد تجار بعد</td></tr>';
+}
+
+/* ════════════════════════════════
+   Vendors
+════════════════════════════════ */
+function populateVendorSelects() {}
+
+function renderVendors(search='') {
+  const status = document.getElementById('vendor-filter-status')?.value || 'all';
+  const type   = document.getElementById('vendor-filter-type')?.value   || 'all';
+  let vendors  = DB.getArr('jambak_vendors');
+  if (status !== 'all') vendors = vendors.filter(v=>v.status===status);
+  if (type   !== 'all') vendors = vendors.filter(v=>v.appType===type);
+  if (search) vendors = vendors.filter(v=>v.storeName.includes(search)||v.phone.includes(search));
+  const tbody = document.getElementById('vendors-tbody');
+  tbody.innerHTML = vendors.length ? vendors.map(v => vendorRow(v, true)).join('') :
+    '<tr><td colspan="7" class="empty-state"><div class="ei">🏪</div><p>لا يوجد تجار</p></td></tr>';
+}
+
+function filterVendors(search='') {
+  if (typeof search !== 'string') search = document.querySelector('.tb-search')?.value || '';
+  renderVendors(search);
+}
+
+function vendorRow(v, showPin=false) {
+  const [sClass, sLabel] = {active:['sb-active','نشط'],pending:['sb-pending','في الانتظار'],suspended:['sb-suspended','موقوف']}[v.status] || ['sb-pending','—'];
+  const date = new Date(v.joinedAt).toLocaleDateString('ar-EG');
+  return `<tr>
+    <td><div class="store-name">${v.storeName}</div></td>
+    <td><span class="sbadge ${APP_CLS[v.appType]||''}">${APP_LABELS[v.appType]||v.appType}</span></td>
+    <td>${v.phone||'—'}</td>
+    <td><span class="sbadge ${sClass}">${sLabel}</span></td>
+    <td>${date}</td>
+    ${showPin ? `<td style="font-family:monospace;color:#888">${v.uid.slice(-6)}</td>` : ''}
+    <td>
+      ${v.status==='pending' ? `<button class="ta-btn ta-approve" onclick="setVendorStatus('${v.uid}','active')">موافقة ✓</button>` : ''}
+      ${v.status==='active'  ? `<button class="ta-btn ta-suspend" onclick="setVendorStatus('${v.uid}','suspended')">تعليق</button>` : ''}
+      ${v.status==='suspended' ? `<button class="ta-btn ta-approve" onclick="setVendorStatus('${v.uid}','active')">تفعيل</button>` : ''}
+      <button class="ta-btn ta-edit" onclick="openEditVendorModal('${v.uid}')">تعديل</button>
+      <button class="ta-btn ta-delete" onclick="deleteVendor('${v.uid}')">حذف</button>
+    </td>
+  </tr>`;
+}
+
+function setVendorStatus(uid, status) {
+  DB.updateArr('jambak_vendors', uid, 'uid', {status});
+  renderVendors();
+  renderDashboard();
+}
+
+function deleteVendor(uid) {
+  if (!confirm('هل تريد حذف هذا التاجر نهائياً؟')) return;
+  DB.removeFromArr('jambak_vendors', uid, 'uid');
+  renderVendors();
+  renderDashboard();
+}
+
+function exportVendors() {
+  const vendors = DB.getArr('jambak_vendors');
+  const csv = 'الاسم,الهاتف,التطبيق,الحالة,تاريخ الانضمام\n' +
+    vendors.map(v => `${v.storeName},${v.phone},${APP_LABELS[v.appType]||v.appType},${v.status},${new Date(v.joinedAt).toLocaleDateString('ar-EG')}`).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF'+csv);
+  a.download = 'jambak-vendors.csv'; a.click();
+}
+
+/* ════════════════════════════════
+   Vendor Modal
+════════════════════════════════ */
+function openAddVendorModal() {
+  editingVendorId = null;
+  document.getElementById('v-modal-title').textContent = 'إضافة تاجر جديد';
+  ['vm-name','vm-phone','vm-pin','vm-address'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('vm-status').value = 'active';
+  document.querySelectorAll('.app-type-btn').forEach(b=>b.classList.remove('selected'));
+  selectedVendorType = '';
+  document.getElementById('vendor-modal').classList.add('show');
+}
+
+function openEditVendorModal(uid) {
+  editingVendorId = uid;
+  const v = DB.getArr('jambak_vendors').find(x=>x.uid===uid);
+  if (!v) return;
+  document.getElementById('v-modal-title').textContent = 'تعديل بيانات التاجر';
+  document.getElementById('vm-name').value = v.storeName;
+  document.getElementById('vm-phone').value = v.phone;
+  document.getElementById('vm-address').value = v.address||'';
+  document.getElementById('vm-pin').value = '';
+  document.getElementById('vm-status').value = v.status;
+  selectedVendorType = v.appType;
+  document.querySelectorAll('.app-type-btn').forEach(b=>b.classList.toggle('selected',b.dataset.type===v.appType));
+  document.getElementById('vendor-modal').classList.add('show');
+}
+
+function selectVendorType(btn) {
+  document.querySelectorAll('.app-type-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedVendorType = btn.dataset.type;
+}
+
+async function saveVendor() {
+  const name    = document.getElementById('vm-name').value.trim();
+  const phone   = document.getElementById('vm-phone').value.trim();
+  const pin     = document.getElementById('vm-pin').value.trim();
+  const address = document.getElementById('vm-address').value.trim();
+  const status  = document.getElementById('vm-status').value;
+  if (!name || !phone) return alert('أدخل الاسم ورقم الهاتف');
+  if (!selectedVendorType) return alert('اختر نوع التطبيق');
+
+  if (editingVendorId) {
+    const updates = {storeName:name, phone, appType:selectedVendorType, address, status};
+    if (pin.length === 4) updates.pinHash = await hashStr(pin);
+    DB.updateArr('jambak_vendors', editingVendorId, 'uid', updates);
+  } else {
+    if (!pin || pin.length !== 4) return alert('أدخل PIN مكون من 4 أرقام');
+    const pinHash = await hashStr(pin);
+    const uid = 'v_' + Date.now();
+    DB.pushArr('jambak_vendors', {
+      uid, storeName:name, phone, pinHash, appType:selectedVendorType,
+      storeId: uid, address, status, joinedAt: Date.now(),
+      stats: {totalOrders:0, totalRevenue:0, rating:0}
+    });
+  }
+  closeVendorModal();
+  renderVendors();
+  renderDashboard();
+}
+
+function closeVendorModal() { document.getElementById('vendor-modal').classList.remove('show'); }
+
+/* ════════════════════════════════
+   Products (Admin)
+════════════════════════════════ */
+function populateProdVendorSelect() {
+  const sel = document.getElementById('prod-filter-vendor');
+  const vendors = DB.getArr('jambak_vendors');
+  sel.innerHTML = '<option value="all">كل التجار</option>' +
+    vendors.map(v=>`<option value="${v.uid}">${v.storeName}</option>`).join('');
+}
+
+function renderAdminProducts(search='') {
+  const vendorId = document.getElementById('prod-filter-vendor')?.value || 'all';
+  const cat      = document.getElementById('prod-filter-cat')?.value    || 'all';
+  let prods = DB.getArr('jambak_products_override').filter(p=>p.status!=='deleted');
+  if (vendorId !== 'all') prods = prods.filter(p=>p.vendorId===vendorId||p.storeId===vendorId);
+  if (cat !== 'all') prods = prods.filter(p=>p.cat===cat);
+  if (search) prods = prods.filter(p=>p.name.includes(search));
+  const vendors = DB.getArr('jambak_vendors');
+  const tbody = document.getElementById('admin-products-tbody');
+  if (!prods.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><div class="ei">📦</div><p>لا توجد منتجات</p></td></tr>';
+    return;
+  }
+  tbody.innerHTML = prods.map(p => {
+    const v = vendors.find(x=>x.uid===p.vendorId||x.storeId===p.storeId);
+    return `<tr>
+      <td><div style="display:flex;align-items:center;gap:8px"><span style="font-size:22px">${p.emoji||'📦'}</span><div class="store-name">${p.name}</div></div></td>
+      <td>${v?.storeName||'—'}</td>
+      <td>${CAT_LABELS[p.cat]||p.cat}</td>
+      <td style="font-weight:700;color:#7B1FA2">${Number(p.price).toLocaleString()} SDG</td>
+      <td>${p.discount||0}%</td>
+      <td><span class="sbadge ${p.status==='active'?'sb-active':'sb-suspended'}">${p.status==='active'?'نشط':'موقوف'}</span></td>
+      <td><button class="ta-btn ta-delete" onclick="adminDeleteProduct('${p.id}')">حذف</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function filterAdminProducts(search='') {
+  if (typeof search !== 'string') search = '';
+  renderAdminProducts(search);
+}
+
+function adminDeleteProduct(id) {
+  if (!confirm('هل تريد حذف هذا المنتج؟')) return;
+  DB.updateArr('jambak_products_override', id, 'id', {status:'deleted'});
+  renderAdminProducts();
+}
+
+/* ════════════════════════════════
+   Orders (Admin)
+════════════════════════════════ */
+function populateOrderVendorSelect() {
+  const sel = document.getElementById('ord-filter-vendor');
+  const vendors = DB.getArr('jambak_vendors');
+  sel.innerHTML = '<option value="all">كل التجار</option>' +
+    vendors.map(v=>`<option value="${v.storeId}">${v.storeName}</option>`).join('');
+}
+
+function renderAllOrders() {
+  const vendorId = document.getElementById('ord-filter-vendor')?.value || 'all';
+  const status   = document.getElementById('ord-filter-status')?.value || 'all';
+  let orders = DB.getArr('jambak_orders').sort((a,b)=>b.placedAt-a.placedAt);
+  if (vendorId !== 'all') orders = orders.filter(o=>o.storeId===vendorId);
+  if (status   !== 'all') orders = orders.filter(o=>o.status===status);
+  const vendors = DB.getArr('jambak_vendors');
+  const tbody = document.getElementById('all-orders-tbody');
+  if (!orders.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><div class="ei">📭</div><p>لا توجد طلبات</p></td></tr>';
+    return;
+  }
+  tbody.innerHTML = orders.map(o => {
+    const v = vendors.find(x=>x.storeId===o.storeId||x.uid===o.storeId);
+    const sm = STATUS_MAP[o.status]||'s-new جديد';
+    const [cls,...rest] = sm.split(' '); const label = rest.join(' ');
+    const date = new Date(o.placedAt).toLocaleDateString('ar-EG');
+    return `<tr>
+      <td style="font-weight:700">#${o.orderId}</td>
+      <td>${o.customerName||'زبون'}</td>
+      <td>${v?.storeName||o.storeId}</td>
+      <td style="font-weight:700;color:#7B1FA2">${o.total.toLocaleString()} SDG</td>
+      <td><span class="sbadge ${cls}">${label}</span></td>
+      <td>${date}</td>
+      <td><button class="ta-btn ta-edit" onclick="showOrderDetails('${o.orderId}')">التفاصيل</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function showOrderDetails(orderId) {
+  const o = DB.getArr('jambak_orders').find(x=>x.orderId===orderId);
+  if (!o) return;
+  const items = o.items.map(i=>`<tr><td>${i.name}</td><td>×${i.qty}</td><td>${(i.price*i.qty).toLocaleString()} SDG</td></tr>`).join('');
+  document.getElementById('order-modal-content').innerHTML = `
+    <p><strong>رقم الطلب:</strong> #${o.orderId}</p>
+    <p><strong>الزبون:</strong> ${o.customerName||'—'} | <strong>الهاتف:</strong> ${o.customerPhone||'—'}</p>
+    <p><strong>العنوان:</strong> ${o.address||'—'}</p>
+    <table class="data-table" style="margin:12px 0"><thead><tr><th>المنتج</th><th>الكمية</th><th>السعر</th></tr></thead><tbody>${items}</tbody></table>
+    <p><strong>رسوم التوصيل:</strong> ${(o.deliveryFee||0).toLocaleString()} SDG</p>
+    <p style="font-size:16px;font-weight:900;color:#7B1FA2">المجموع الكلي: ${o.total.toLocaleString()} SDG</p>
+  `;
+  document.getElementById('order-modal').classList.add('show');
+}
+
+function closeOrderModal() { document.getElementById('order-modal').classList.remove('show'); }
+
+function exportOrders() {
+  const orders = DB.getArr('jambak_orders');
+  const csv = 'رقم الطلب,الزبون,المتجر,المجموع,الحالة,التاريخ\n' +
+    orders.map(o=>`${o.orderId},${o.customerName||'—'},${o.storeId},${o.total},${o.status},${new Date(o.placedAt).toLocaleDateString('ar-EG')}`).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF'+csv);
+  a.download = 'jambak-orders.csv'; a.click();
+}
+
+/* ════════════════════════════════
+   Settings
+════════════════════════════════ */
+function loadSettings() {
+  const s = DB.get('jambak_admin_settings') || {};
+  document.getElementById('s-delivery-fee').value = s.deliveryFeeDefault || 500;
+  document.getElementById('s-commission').value   = s.platformCommission || 10;
+  document.getElementById('s-approval').checked   = s.approvalRequired !== false;
+  document.getElementById('s-maintenance').checked = s.maintenanceMode === true;
+}
+
+function saveSettings() {
+  const s = DB.get('jambak_admin_settings') || {};
+  s.deliveryFeeDefault  = parseFloat(document.getElementById('s-delivery-fee').value) || 500;
+  s.platformCommission  = parseFloat(document.getElementById('s-commission').value)    || 10;
+  s.approvalRequired    = document.getElementById('s-approval').checked;
+  s.maintenanceMode     = document.getElementById('s-maintenance').checked;
+  DB.set('jambak_admin_settings', s);
+  alert('✅ تم حفظ الإعدادات');
+}
+
+async function changeAdminPass() {
+  const old = document.getElementById('s-old-pass').value;
+  const nw  = document.getElementById('s-new-pass').value;
+  if (!old || !nw) return alert('أدخل كلمة المرور الحالية والجديدة');
+  const s = DB.get('jambak_admin_settings');
+  const oldHash = await hashStr(old);
+  if (oldHash !== s.adminHash) return alert('كلمة المرور الحالية غير صحيحة');
+  s.adminHash = await hashStr(nw);
+  DB.set('jambak_admin_settings', s);
+  document.getElementById('s-old-pass').value = '';
+  document.getElementById('s-new-pass').value = '';
+  alert('✅ تم تغيير كلمة المرور');
+}
+
+/* ════════════════════════════════
+   Seed Demo Vendors
+════════════════════════════════ */
+async function seedDemoVendors() {
+  if (!confirm('سيضيف هذا الزر متاجر تجريبية — المتاجر الموجودة لن تُحذف. هل تريد المتابعة؟')) return;
+  const pinHash = await hashStr('1234');
+  const existing = DB.getArr('jambak_vendors').map(v=>v.storeName);
+
+  const demos = [
+    // Mart stores
+    {storeName:'الانفال ماركت',  phone:'0911000001', appType:'mart',    status:'active'},
+    {storeName:'جمبك مارت',      phone:'0911000002', appType:'mart',    status:'active'},
+    {storeName:'سنا مارت',       phone:'0911000003', appType:'mart',    status:'active'},
+    {storeName:'التسامح',        phone:'0911000004', appType:'mart',    status:'active'},
+    {storeName:'الجزيرة للخضار', phone:'0911000005', appType:'mart',    status:'active'},
+    {storeName:'مسلخ النور',     phone:'0911000006', appType:'mart',    status:'active'},
+    {storeName:'المجمدات الممتازة',phone:'0911000007',appType:'mart',   status:'active'},
+    // Foodz restaurants
+    {storeName:'مامولا',         phone:'0912000001', appType:'foodz',   status:'active'},
+    {storeName:'الست السعدانة',  phone:'0912000002', appType:'foodz',   status:'active'},
+    {storeName:'ملك البرجر',     phone:'0912000003', appType:'foodz',   status:'active'},
+    {storeName:'بيتزا تيمس',    phone:'0912000004', appType:'foodz',   status:'active'},
+    {storeName:'مطبخ الأمهات',  phone:'0912000005', appType:'foodz',   status:'active'},
+    {storeName:'شيف الخليج',    phone:'0912000006', appType:'foodz',   status:'active'},
+    {storeName:'أكلات آسيوية',  phone:'0912000007', appType:'foodz',   status:'active'},
+    {storeName:'فول وتميس التراثي',phone:'0912000008',appType:'foodz',  status:'active'},
+    // Services
+    {storeName:'مساج ليدي',     phone:'0913000001', appType:'service', status:'active'},
+    {storeName:'نظافة المنزل',  phone:'0913000002', appType:'service', status:'active'},
+    {storeName:'صيانة المنزل',  phone:'0913000003', appType:'service', status:'active'},
+    {storeName:'مكافحة الحشرات',phone:'0913000004', appType:'service', status:'active'},
+    {storeName:'غسيل وكوي',    phone:'0913000005', appType:'service', status:'active'},
+    {storeName:'دهانات الديار', phone:'0913000006', appType:'service', status:'active'},
+  ];
+
+  let added = 0;
+  for (const d of demos) {
+    if (existing.includes(d.storeName)) continue;
+    const uid = 'v_seed_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
+    DB.pushArr('jambak_vendors', {
+      uid, pinHash, storeId: uid,
+      joinedAt: Date.now(),
+      stats: {totalOrders:0, totalRevenue:0, rating:0},
+      ...d
+    });
+    added++;
+    await new Promise(r=>setTimeout(r,5)); // avoid same uid collision
+  }
+  alert(`✅ تم إضافة ${added} متجر جديد بنجاح! رمز PIN لكلهم: 1234`);
+  renderDashboard();
+}
+
+/* ════════════════════════════════
+   Logout
+════════════════════════════════ */
+function logout() {
+  localStorage.removeItem('jambak_auth_session');
+  location.href = 'auth.html';
+}
+
+// Close modals on overlay click
+['vendor-modal','order-modal'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target===this) this.classList.remove('show');
+  });
+});
+
+renderDashboard();
+</script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جمبك — دخول التجار والإدارة</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  body { background: #F5F5F5; min-height: 100vh; display: flex; flex-direction: column; }
+  .auth-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+  .auth-card { background: #fff; border-radius: 20px; box-shadow: 0 4px 24px rgba(0,0,0,.10); width: 100%; max-width: 420px; overflow: hidden; }
+  .auth-header { padding: 32px 28px 24px; text-align: center; }
+  .auth-logo { font-size: 48px; margin-bottom: 8px; }
+  .auth-title { font-size: 20px; font-weight: 900; color: #1a1a1a; }
+  .auth-sub { font-size: 13px; color: #888; margin-top: 4px; }
+  .auth-tabs { display: flex; border-bottom: 2px solid #f0f0f0; }
+  .auth-tab { flex: 1; padding: 14px; text-align: center; font-family: inherit; font-size: 14px; font-weight: 700; background: none; border: none; cursor: pointer; color: #999; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; }
+  .auth-tab.active-vendor { color: #F46E19; border-bottom-color: #F46E19; }
+  .auth-tab.active-admin  { color: #7B1FA2; border-bottom-color: #7B1FA2; }
+  .auth-body { padding: 24px 28px 28px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .fg { margin-bottom: 16px; }
+  .fl-lbl { display: block; font-size: 12px; font-weight: 700; color: #555; margin-bottom: 6px; }
+  .fi { width: 100%; padding: 12px 14px; border: 1.5px solid #E5E5E5; border-radius: 12px; font-family: inherit; font-size: 14px; outline: none; transition: border-color .2s; box-sizing: border-box; background: #FAFAFA; }
+  .fi:focus { border-color: #F46E19; background: #fff; }
+  .fi-admin:focus { border-color: #7B1FA2; }
+  .btn-vendor { width: 100%; padding: 14px; background: linear-gradient(135deg, #F46E19, #E55B00); color: #fff; border: none; border-radius: 12px; font-family: inherit; font-size: 15px; font-weight: 900; cursor: pointer; margin-top: 8px; transition: opacity .2s; }
+  .btn-admin  { width: 100%; padding: 14px; background: linear-gradient(135deg, #7B1FA2, #4A148C); color: #fff; border: none; border-radius: 12px; font-family: inherit; font-size: 15px; font-weight: 900; cursor: pointer; margin-top: 8px; transition: opacity .2s; }
+  .btn-vendor:active, .btn-admin:active { opacity: .85; }
+  .auth-footer { padding: 16px 28px 24px; text-align: center; border-top: 1px solid #f0f0f0; }
+  .auth-footer p { font-size: 13px; color: #888; }
+  .auth-footer a { color: #F46E19; font-weight: 700; text-decoration: none; }
+  .auth-err { background: #FFF0F0; border: 1px solid #FFCDD2; color: #C62828; border-radius: 10px; padding: 10px 14px; font-size: 13px; margin-bottom: 14px; display: none; }
+  .auth-err.show { display: block; }
+  .register-form { display: none; }
+  .register-form.show { display: block; }
+  .app-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+  .app-type-btn { padding: 10px 8px; border: 2px solid #E5E5E5; border-radius: 12px; background: #FAFAFA; cursor: pointer; text-align: center; font-family: inherit; font-size: 12px; font-weight: 700; color: #555; transition: all .2s; }
+  .app-type-btn.selected { border-color: #F46E19; background: #FFF3EC; color: #F46E19; }
+  .app-type-btn .at-ico { font-size: 24px; display: block; margin-bottom: 4px; }
+  .divider { display: flex; align-items: center; gap: 10px; margin: 16px 0; }
+  .divider::before, .divider::after { content:''; flex:1; height:1px; background:#eee; }
+  .divider span { font-size: 12px; color: #bbb; font-weight: 600; }
+  .back-link { color: #999; font-size: 13px; text-decoration: none; font-weight: 700; cursor: pointer; }
+  .success-box { background: #F1F8E9; border: 1px solid #C5E1A5; border-radius: 12px; padding: 16px; text-align: center; display: none; }
+  .success-box.show { display: block; }
+  .success-box .si { font-size: 36px; }
+  .success-box p { font-size: 14px; color: #2E7D32; font-weight: 700; margin-top: 8px; }
+  .success-box small { font-size: 12px; color: #558B2F; }
+</style>
+</head>
+<body>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+
+    <div class="auth-header">
+      <div class="auth-logo">🏪</div>
+      <div class="auth-title">بوابة جمبك للتجار</div>
+      <div class="auth-sub">إدارة متجرك ومنتجاتك وطلباتك</div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab active-vendor" id="tab-vendor" onclick="switchTab('vendor')">🏪 دخول التجار</button>
+      <button class="auth-tab" id="tab-admin" onclick="switchTab('admin')">🛡️ الإدارة</button>
+    </div>
+
+    <div class="auth-body">
+
+      <!-- ── VENDOR TAB ── -->
+      <div class="tab-panel active" id="panel-vendor">
+        <!-- Login form -->
+        <div id="vendor-login-form">
+          <div class="auth-err" id="vendor-err"></div>
+          <div class="fg">
+            <label class="fl-lbl">رقم الهاتف</label>
+            <input class="fi" type="tel" id="v-phone" placeholder="09X XXXX XXXX" maxlength="15">
+          </div>
+          <div class="fg">
+            <label class="fl-lbl">رمز PIN (4 أرقام)</label>
+            <input class="fi" type="password" id="v-pin" placeholder="••••" maxlength="4" inputmode="numeric">
+          </div>
+          <button class="btn-vendor" onclick="vendorLogin()">دخول ←</button>
+        </div>
+
+        <!-- Register form -->
+        <div class="register-form" id="vendor-register-form">
+          <div class="divider"><span>تسجيل متجر جديد</span></div>
+          <div class="auth-err" id="reg-err"></div>
+          <div class="success-box" id="reg-success">
+            <div class="si">✅</div>
+            <p>تم تسجيل طلبك بنجاح!</p>
+            <small>سيتم مراجعة طلبك من قِبَل فريق جمبك وإشعارك خلال 24 ساعة</small>
+          </div>
+          <div id="reg-fields">
+            <div class="fg">
+              <label class="fl-lbl">اسم المتجر أو الخدمة</label>
+              <input class="fi" type="text" id="r-name" placeholder="مثال: مطعم المأكولات السودانية">
+            </div>
+            <div class="fg">
+              <label class="fl-lbl">رقم الهاتف</label>
+              <input class="fi" type="tel" id="r-phone" placeholder="09X XXXX XXXX">
+            </div>
+            <div class="fg">
+              <label class="fl-lbl">نوع التطبيق</label>
+              <div class="app-type-grid">
+                <button class="app-type-btn" data-type="mart" onclick="selectType(this)"><span class="at-ico">🛒</span>جمبك مارت</button>
+                <button class="app-type-btn" data-type="market" onclick="selectType(this)"><span class="at-ico">🏪</span>جمبك ماركت</button>
+                <button class="app-type-btn" data-type="hyper" onclick="selectType(this)"><span class="at-ico">🏬</span>هايبر مول</button>
+                <button class="app-type-btn" data-type="foodz" onclick="selectType(this)"><span class="at-ico">🍕</span>جمبك فودز</button>
+                <button class="app-type-btn" data-type="service" onclick="selectType(this)" style="grid-column:1/-1"><span class="at-ico">🛠️</span>جمبك سيرفيس</button>
+              </div>
+            </div>
+            <div class="fg">
+              <label class="fl-lbl">رمز PIN (4 أرقام) — سيكون كلمة المرور</label>
+              <input class="fi" type="password" id="r-pin" placeholder="••••" maxlength="4" inputmode="numeric">
+            </div>
+            <button class="btn-vendor" onclick="registerVendor()">تقديم الطلب 📤</button>
+          </div>
+          <div style="text-align:center;margin-top:14px">
+            <a class="back-link" onclick="toggleRegister(false)">← العودة لتسجيل الدخول</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADMIN TAB ── -->
+      <div class="tab-panel" id="panel-admin">
+        <div class="auth-err" id="admin-err"></div>
+        <div class="fg">
+          <label class="fl-lbl">البريد الإلكتروني</label>
+          <input class="fi fi-admin" type="email" id="a-email" placeholder="admin@jambak.sd" value="admin@jambak.sd">
+        </div>
+        <div class="fg">
+          <label class="fl-lbl">كلمة المرور</label>
+          <input class="fi fi-admin" type="password" id="a-pass" placeholder="••••••••">
+        </div>
+        <button class="btn-admin" onclick="adminLogin()">دخول الإدارة ←</button>
+      </div>
+
+    </div><!-- auth-body -->
+
+    <div class="auth-footer" id="vendor-footer">
+      <p>متجرك مش مسجل بعد؟ <a onclick="toggleRegister(true)" style="cursor:pointer">سجّل الآن</a></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   DB helpers
+══════════════════════════════════════════ */
+const DB = {
+  get:     k => JSON.parse(localStorage.getItem(k) || 'null'),
+  set:     (k,v) => localStorage.setItem(k, JSON.stringify(v)),
+  getArr:  k => JSON.parse(localStorage.getItem(k) || '[]'),
+  pushArr: (k, item) => { const a = DB.getArr(k); a.push(item); DB.set(k,a); },
+  updateArr: (k, id, field, updates) => {
+    const a = DB.getArr(k);
+    const i = a.findIndex(x => x[field] === id);
+    if (i !== -1) { a[i] = {...a[i], ...updates}; DB.set(k,a); }
+  }
+};
+
+// Simple hash using Web Crypto
+async function hashStr(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+/* ══════════════════════════════════════════
+   Seed default admin if first run
+══════════════════════════════════════════ */
+(async()=>{
+  if (!DB.get('jambak_admin_settings')) {
+    const pwHash = await hashStr('jambak2026');
+    DB.set('jambak_admin_settings', {
+      adminEmail: 'admin@jambak.sd',
+      adminHash: pwHash,
+      deliveryFeeDefault: 500,
+      platformCommission: 10,
+      approvalRequired: true,
+      maintenanceMode: false
+    });
+  }
+})();
+
+/* ══════════════════════════════════════════
+   UI helpers
+══════════════════════════════════════════ */
+let activeTab = 'vendor';
+let selectedType = '';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('panel-vendor').classList.toggle('active', tab==='vendor');
+  document.getElementById('panel-admin').classList.toggle('active', tab==='admin');
+  document.getElementById('tab-vendor').className = 'auth-tab' + (tab==='vendor' ? ' active-vendor' : '');
+  document.getElementById('tab-admin').className  = 'auth-tab' + (tab==='admin'  ? ' active-admin'  : '');
+  document.getElementById('vendor-footer').style.display = tab==='vendor' ? '' : 'none';
+}
+
+function toggleRegister(show) {
+  document.getElementById('vendor-login-form').style.display = show ? 'none' : '';
+  document.getElementById('vendor-register-form').classList.toggle('show', show);
+  document.getElementById('vendor-footer').style.display = show ? 'none' : '';
+}
+
+function selectType(btn) {
+  document.querySelectorAll('.app-type-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedType = btn.dataset.type;
+}
+
+function showErr(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 4000);
+}
+
+/* ══════════════════════════════════════════
+   Vendor Login
+══════════════════════════════════════════ */
+async function vendorLogin() {
+  const phone = document.getElementById('v-phone').value.trim();
+  const pin   = document.getElementById('v-pin').value.trim();
+  if (!phone || !pin) return showErr('vendor-err','أدخل رقم الهاتف ورمز PIN');
+  if (pin.length !== 4) return showErr('vendor-err','رمز PIN يجب أن يكون 4 أرقام');
+
+  const vendors = DB.getArr('jambak_vendors');
+  const vendor  = vendors.find(v => v.phone === phone);
+  if (!vendor)  return showErr('vendor-err','رقم الهاتف غير مسجل');
+  if (vendor.status === 'pending')   return showErr('vendor-err','طلبك قيد المراجعة — ستصلك رسالة بعد الموافقة');
+  if (vendor.status === 'suspended') return showErr('vendor-err','هذا الحساب موقوف — تواصل مع الدعم');
+
+  const hash = await hashStr(pin);
+  if (hash !== vendor.pinHash) return showErr('vendor-err','رمز PIN غير صحيح');
+
+  DB.set('jambak_auth_session', {
+    uid: vendor.uid, role: 'vendor', vendorId: vendor.uid,
+    storeId: vendor.storeId, name: vendor.storeName, loginTime: Date.now()
+  });
+  location.href = 'vendor.html';
+}
+
+/* ══════════════════════════════════════════
+   Admin Login
+══════════════════════════════════════════ */
+async function adminLogin() {
+  const email = document.getElementById('a-email').value.trim();
+  const pass  = document.getElementById('a-pass').value;
+  const settings = DB.get('jambak_admin_settings');
+  if (!settings) return showErr('admin-err','خطأ في الإعدادات — أعد تحميل الصفحة');
+  if (email !== settings.adminEmail) return showErr('admin-err','البريد الإلكتروني غير صحيح');
+  const hash = await hashStr(pass);
+  if (hash !== settings.adminHash) return showErr('admin-err','كلمة المرور غير صحيحة');
+
+  DB.set('jambak_auth_session', {
+    uid: 'admin_001', role: 'admin', vendorId: null,
+    name: 'الإدارة — جمبك', loginTime: Date.now()
+  });
+  location.href = 'admin.html';
+}
+
+/* ══════════════════════════════════════════
+   Register New Vendor
+══════════════════════════════════════════ */
+async function registerVendor() {
+  const name  = document.getElementById('r-name').value.trim();
+  const phone = document.getElementById('r-phone').value.trim();
+  const pin   = document.getElementById('r-pin').value.trim();
+  if (!name)  return showErr('reg-err','أدخل اسم المتجر');
+  if (!phone) return showErr('reg-err','أدخل رقم الهاتف');
+  if (!selectedType) return showErr('reg-err','اختر نوع التطبيق');
+  if (!pin || pin.length !== 4) return showErr('reg-err','أدخل رمز PIN مكون من 4 أرقام');
+
+  const vendors = DB.getArr('jambak_vendors');
+  if (vendors.find(v=>v.phone===phone)) return showErr('reg-err','رقم الهاتف مسجل بالفعل');
+
+  const pinHash = await hashStr(pin);
+  const uid = 'v_' + Date.now();
+  DB.pushArr('jambak_vendors', {
+    uid, phone, pinHash,
+    storeName: name,
+    storeId: uid,
+    appType: selectedType,
+    status: 'pending',
+    joinedAt: Date.now(),
+    stats: { totalOrders:0, totalRevenue:0, rating:0 }
+  });
+
+  document.getElementById('reg-fields').style.display = 'none';
+  document.getElementById('reg-success').classList.add('show');
+}
+
+// Allow Enter key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    if (activeTab === 'vendor') vendorLogin();
+    else adminLogin();
+  }
+});
+</script>
+</body>
+</html>

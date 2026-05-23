@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جمبك — لوحة التاجر</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  *{box-sizing:border-box}
+  body{background:#F0F2F5;margin:0;font-family:'Cairo',sans-serif;min-height:100vh}
+  /* Layout */
+  .dash-wrap{display:flex;min-height:100vh}
+  .sidebar{width:240px;background:#fff;border-left:1px solid #E8E8E8;display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:100;box-shadow:2px 0 12px rgba(0,0,0,.06)}
+  .sb-logo{padding:24px 20px 16px;border-bottom:1px solid #F0F0F0}
+  .sb-logo-top{display:flex;align-items:center;gap:10px}
+  .sb-logo-ico{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#F46E19,#E55B00);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .sb-logo-name{font-size:15px;font-weight:900;color:#1a1a1a}
+  .sb-logo-role{font-size:11px;color:#F46E19;font-weight:700;margin-top:2px}
+  .sb-store-badge{margin-top:10px;padding:6px 10px;background:#FFF3EC;border-radius:8px;font-size:12px;color:#E55B00;font-weight:700;text-align:center}
+  .sb-nav{flex:1;padding:12px 0;overflow-y:auto}
+  .sb-item{display:flex;align-items:center;gap:10px;padding:12px 20px;font-size:14px;font-weight:700;color:#666;cursor:pointer;border-radius:0;transition:all .2s;border-right:3px solid transparent;text-decoration:none}
+  .sb-item:hover{background:#FFF8F4;color:#F46E19}
+  .sb-item.active{background:#FFF3EC;color:#F46E19;border-right-color:#F46E19}
+  .sb-item .si{width:20px;text-align:center;font-size:16px}
+  .sb-badge{background:#E53935;color:#fff;border-radius:999px;font-size:10px;font-weight:900;padding:1px 6px;margin-right:auto}
+  .sb-bottom{padding:16px 20px;border-top:1px solid #F0F0F0}
+  .sb-logout{display:flex;align-items:center;gap:8px;color:#999;font-size:13px;font-weight:700;cursor:pointer;padding:8px 0}
+  .sb-logout:hover{color:#E53935}
+  /* Main */
+  .main-area{margin-right:240px;flex:1;min-height:100vh}
+  .top-bar{background:#fff;border-bottom:1px solid #E8E8E8;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+  .top-bar-title{font-size:18px;font-weight:900;color:#1a1a1a}
+  .top-bar-right{display:flex;align-items:center;gap:12px}
+  .notif-btn{position:relative;width:38px;height:38px;border-radius:10px;background:#F5F5F5;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .notif-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:#E53935;display:none}
+  .notif-dot.show{display:block}
+  .page-content{padding:28px}
+  /* KPI cards */
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+  .kpi-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .kpi-icon{font-size:28px;margin-bottom:8px}
+  .kpi-val{font-size:26px;font-weight:900;color:#1a1a1a}
+  .kpi-label{font-size:12px;color:#888;font-weight:700;margin-top:2px}
+  .kpi-change{font-size:11px;margin-top:6px;font-weight:700}
+  .kpi-change.up{color:#2E7D32} .kpi-change.dn{color:#C62828}
+  /* Section titles */
+  .sec-title{font-size:16px;font-weight:900;color:#1a1a1a;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+  /* Orders */
+  .order-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .otab{padding:8px 16px;border-radius:999px;border:1.5px solid #E5E5E5;background:#fff;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;color:#666;transition:all .2s}
+  .otab.active{background:#F46E19;color:#fff;border-color:#F46E19}
+  .order-list{display:flex;flex-direction:column;gap:12px}
+  .order-card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .order-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .order-id{font-size:13px;font-weight:900;color:#1a1a1a}
+  .order-time{font-size:11px;color:#aaa}
+  .status-badge{padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700}
+  .s-new{background:#FFF3E0;color:#E65100} .s-accepted{background:#E3F2FD;color:#1565C0}
+  .s-preparing{background:#FFF8E1;color:#F57F17} .s-out{background:#E8F5E9;color:#2E7D32}
+  .s-delivered{background:#E8F5E9;color:#1B5E20} .s-cancelled{background:#FFEBEE;color:#C62828}
+  .order-items{font-size:12px;color:#666;margin-bottom:12px;line-height:1.8}
+  .order-foot{display:flex;align-items:center;justify-content:space-between}
+  .order-total{font-size:15px;font-weight:900;color:#F46E19}
+  .order-actions{display:flex;gap:8px}
+  .oa-btn{padding:7px 14px;border-radius:8px;border:none;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:opacity .2s}
+  .oa-btn:active{opacity:.8}
+  .oa-accept{background:#E3F2FD;color:#1565C0} .oa-ready{background:#FFF8E1;color:#F57F17}
+  .oa-deliver{background:#E8F5E9;color:#2E7D32} .oa-cancel{background:#FFEBEE;color:#C62828}
+  /* Products */
+  .prod-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+  .prod-search{padding:10px 14px;border:1.5px solid #E5E5E5;border-radius:12px;font-family:inherit;font-size:13px;width:220px;outline:none}
+  .prod-search:focus{border-color:#F46E19}
+  .btn-add{padding:10px 18px;background:#F46E19;color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .btn-add:hover{background:#E55B00}
+  .prod-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .prod-table th{padding:12px 16px;font-size:12px;font-weight:700;color:#888;background:#FAFAFA;border-bottom:1px solid #F0F0F0;text-align:right}
+  .prod-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid #F8F8F8;vertical-align:middle}
+  .prod-table tr:last-child td{border-bottom:none}
+  .prod-table tr:hover td{background:#FFFBF8}
+  .prod-img{width:40px;height:40px;border-radius:10px;object-fit:cover;background:#F5F5F5;display:flex;align-items:center;justify-content:center;font-size:22px}
+  .prod-name{font-weight:700;color:#1a1a1a}
+  .prod-cat{font-size:11px;color:#aaa;margin-top:2px}
+  .prod-price{font-weight:900;color:#F46E19}
+  .toggle-sw{position:relative;display:inline-block;width:40px;height:22px}
+  .toggle-sw input{opacity:0;width:0;height:0}
+  .toggle-slider{position:absolute;inset:0;background:#ccc;border-radius:22px;cursor:pointer;transition:.3s}
+  .toggle-slider:before{content:'';position:absolute;width:16px;height:16px;right:3px;top:3px;background:#fff;border-radius:50%;transition:.3s}
+  .toggle-sw input:checked + .toggle-slider{background:#4CAF50}
+  .toggle-sw input:checked + .toggle-slider:before{right:unset;left:3px}
+  .ta-btn{padding:5px 10px;border-radius:8px;border:none;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;transition:opacity .2s}
+  .ta-edit{background:#E3F2FD;color:#1565C0} .ta-del{background:#FFEBEE;color:#C62828}
+  /* Modal */
+  .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-ov.show{display:flex}
+  .modal-box{background:#fff;border-radius:20px;width:100%;max-width:480px;padding:28px;box-shadow:0 8px 40px rgba(0,0,0,.15);max-height:90vh;overflow-y:auto}
+  .modal-title{font-size:18px;font-weight:900;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between}
+  .modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:#aaa;padding:0}
+  .mfg{margin-bottom:14px}
+  .mfl{display:block;font-size:12px;font-weight:700;color:#555;margin-bottom:5px}
+  .mfi{width:100%;padding:10px 12px;border:1.5px solid #E5E5E5;border-radius:10px;font-family:inherit;font-size:13px;outline:none}
+  .mfi:focus{border-color:#F46E19}
+  .mfi-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .emoji-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:8px}
+  .emoji-opt{font-size:22px;cursor:pointer;padding:4px;border-radius:8px;text-align:center;transition:background .15s}
+  .emoji-opt:hover{background:#FFF3EC}
+  .emoji-opt.sel{background:#FFF3EC;outline:2px solid #F46E19}
+  .btn-save{width:100%;padding:12px;background:linear-gradient(135deg,#F46E19,#E55B00);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;margin-top:6px}
+  /* Empty state */
+  .empty-state{text-align:center;padding:60px 20px;color:#bbb}
+  .empty-state .ei{font-size:48px;margin-bottom:12px}
+  .empty-state p{font-size:14px;font-weight:700}
+  /* Profile section */
+  .profile-card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:20px}
+  .profile-card h3{font-size:16px;font-weight:900;color:#1a1a1a;margin-bottom:16px}
+  /* Responsive */
+  @media(max-width:768px){
+    .sidebar{width:200px}
+    .main-area{margin-right:200px}
+    .kpi-grid{grid-template-columns:1fr 1fr}
+    .page-content{padding:16px}
+  }
+  @media(max-width:600px){
+    .sidebar{transform:translateX(100%);transition:transform .3s}
+    .sidebar.open{transform:none}
+    .main-area{margin-right:0}
+  }
+</style>
+</head>
+<body>
+
+<div class="dash-wrap">
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-logo-top">
+        <div class="sb-logo-ico">🏪</div>
+        <div>
+          <div class="sb-logo-name">جمبك</div>
+          <div class="sb-logo-role">لوحة التاجر</div>
+        </div>
+      </div>
+      <div class="sb-store-badge" id="store-name-badge">—</div>
+    </div>
+    <nav class="sb-nav">
+      <a class="sb-item active" onclick="showSection('home')" id="nav-home">
+        <span class="si">📊</span> الرئيسية
+      </a>
+      <a class="sb-item" onclick="showSection('products')" id="nav-products">
+        <span class="si">📦</span> المنتجات والخدمات
+      </a>
+      <a class="sb-item" onclick="showSection('orders')" id="nav-orders">
+        <span class="si">🛒</span> الطلبات
+        <span class="sb-badge" id="new-orders-badge" style="display:none">0</span>
+      </a>
+      <a class="sb-item" onclick="showSection('profile')" id="nav-profile">
+        <span class="si">⚙️</span> إعدادات المتجر
+      </a>
+    </nav>
+    <div class="sb-bottom">
+      <a href="index.html" class="sb-item" style="margin-bottom:4px">
+        <span class="si">🏠</span> العودة للتطبيق
+      </a>
+      <div class="sb-logout" onclick="logout()">
+        <span>🚪</span> تسجيل الخروج
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <div class="main-area">
+    <div class="top-bar">
+      <div class="top-bar-title" id="page-title">الرئيسية</div>
+      <div class="top-bar-right">
+        <button class="notif-btn" onclick="showSection('orders')">
+          🔔<span class="notif-dot" id="notif-dot"></span>
+        </button>
+        <div style="font-size:13px;font-weight:700;color:#1a1a1a" id="top-store-name">—</div>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <!-- ── HOME ── -->
+      <div id="section-home">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon">🛒</div>
+            <div class="kpi-val" id="kpi-orders-today">0</div>
+            <div class="kpi-label">طلبات اليوم</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">💰</div>
+            <div class="kpi-val" id="kpi-revenue-today">0</div>
+            <div class="kpi-label">الإيراد اليوم (SDG)</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">⏳</div>
+            <div class="kpi-val" id="kpi-pending">0</div>
+            <div class="kpi-label">طلبات معلقة</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-icon">📦</div>
+            <div class="kpi-val" id="kpi-products">0</div>
+            <div class="kpi-label">إجمالي المنتجات</div>
+          </div>
+        </div>
+
+        <!-- Recent orders preview -->
+        <div class="sec-title">🕐 آخر الطلبات</div>
+        <div class="order-list" id="recent-orders-list">
+          <div class="empty-state"><div class="ei">📭</div><p>لا توجد طلبات بعد</p></div>
+        </div>
+      </div>
+
+      <!-- ── PRODUCTS ── -->
+      <div id="section-products" style="display:none">
+        <div class="prod-toolbar">
+          <div class="sec-title" style="margin:0">📦 المنتجات والخدمات</div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <input class="prod-search" type="text" placeholder="بحث..." oninput="filterProducts(this.value)">
+            <button class="btn-add" onclick="openAddModal()">+ إضافة منتج</button>
+          </div>
+        </div>
+        <table class="prod-table">
+          <thead>
+            <tr>
+              <th>المنتج</th><th>الفئة</th><th>السعر</th><th>الخصم</th><th>الحالة</th><th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody">
+            <tr><td colspan="6" class="empty-state"><div class="ei">📦</div><p>لا توجد منتجات</p></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ── ORDERS ── -->
+      <div id="section-orders" style="display:none">
+        <div class="sec-title">🛒 الطلبات الواردة</div>
+        <div class="order-tabs">
+          <button class="otab active" onclick="filterOrders('all',this)">الكل</button>
+          <button class="otab" onclick="filterOrders('new',this)">🔴 جديد</button>
+          <button class="otab" onclick="filterOrders('accepted',this)">🔵 مقبول</button>
+          <button class="otab" onclick="filterOrders('preparing',this)">🟡 جاري التحضير</button>
+          <button class="otab" onclick="filterOrders('out_for_delivery',this)">🟢 في الطريق</button>
+          <button class="otab" onclick="filterOrders('delivered',this)">✅ مكتمل</button>
+        </div>
+        <div class="order-list" id="orders-list">
+          <div class="empty-state"><div class="ei">📭</div><p>لا توجد طلبات</p></div>
+        </div>
+      </div>
+
+      <!-- ── PROFILE ── -->
+      <div id="section-profile" style="display:none">
+        <div class="sec-title">⚙️ إعدادات المتجر</div>
+        <div class="profile-card">
+          <h3>معلومات المتجر</h3>
+          <div class="mfi-row" style="margin-bottom:14px">
+            <div class="mfg">
+              <label class="mfl">اسم المتجر</label>
+              <input class="mfi" type="text" id="prof-name">
+            </div>
+            <div class="mfg">
+              <label class="mfl">رقم الهاتف</label>
+              <input class="mfi" type="tel" id="prof-phone">
+            </div>
+          </div>
+          <div class="mfg">
+            <label class="mfl">العنوان</label>
+            <input class="mfi" type="text" id="prof-address" placeholder="الخرطوم — حي...">
+          </div>
+          <button class="btn-save" onclick="saveProfile()">حفظ التغييرات ✓</button>
+        </div>
+        <div class="profile-card">
+          <h3>تغيير رمز PIN</h3>
+          <div class="mfi-row">
+            <div class="mfg">
+              <label class="mfl">PIN الحالي</label>
+              <input class="mfi" type="password" id="old-pin" maxlength="4" inputmode="numeric">
+            </div>
+            <div class="mfg">
+              <label class="mfl">PIN الجديد</label>
+              <input class="mfi" type="password" id="new-pin" maxlength="4" inputmode="numeric">
+            </div>
+          </div>
+          <button class="btn-save" onclick="changePin()">تغيير PIN</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── ADD/EDIT PRODUCT MODAL ── -->
+<div class="modal-ov" id="prod-modal">
+  <div class="modal-box">
+    <div class="modal-title">
+      <span id="modal-title-text">إضافة منتج جديد</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mfg">
+      <label class="mfl">اسم المنتج أو الخدمة</label>
+      <input class="mfi" type="text" id="m-name" placeholder="مثال: برجر سوداني">
+    </div>
+    <div class="mfi-row">
+      <div class="mfg">
+        <label class="mfl">السعر (SDG)</label>
+        <input class="mfi" type="number" id="m-price" placeholder="0">
+      </div>
+      <div class="mfg">
+        <label class="mfl">خصم (%)</label>
+        <input class="mfi" type="number" id="m-discount" placeholder="0" min="0" max="90">
+      </div>
+    </div>
+    <div class="mfi-row">
+      <div class="mfg">
+        <label class="mfl">الفئة</label>
+        <select class="mfi" id="m-cat">
+          <option value="grocery">بقالة</option>
+          <option value="produce">خضار وفاكهة</option>
+          <option value="dairy">ألبان</option>
+          <option value="meat">لحوم</option>
+          <option value="bak">مخبوزات</option>
+          <option value="drinks">مشروبات</option>
+          <option value="snacks">وجبات خفيفة</option>
+          <option value="house">منزل</option>
+          <option value="care">عناية</option>
+          <option value="frozen">مجمدات</option>
+          <option value="food">طعام</option>
+          <option value="service">خدمة</option>
+        </select>
+      </div>
+      <div class="mfg">
+        <label class="mfl">الوحدة</label>
+        <input class="mfi" type="text" id="m-unit" placeholder="كجم، قطعة، علبة...">
+      </div>
+    </div>
+    <div class="mfg">
+      <label class="mfl">الأيقون (اختر إيموجي)</label>
+      <div class="emoji-grid" id="emoji-grid"></div>
+    </div>
+    <button class="btn-save" onclick="saveProduct()">حفظ المنتج ✓</button>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════
+   DB & Auth
+════════════════════════════════ */
+const DB = {
+  get:     k => JSON.parse(localStorage.getItem(k) || 'null'),
+  set:     (k,v) => localStorage.setItem(k, JSON.stringify(v)),
+  getArr:  k => JSON.parse(localStorage.getItem(k) || '[]'),
+  pushArr: (k,item) => { const a=DB.getArr(k); a.push(item); DB.set(k,a); },
+  updateArr: (k,id,field,updates) => {
+    const a=DB.getArr(k); const i=a.findIndex(x=>x[field]===id);
+    if(i!==-1){a[i]={...a[i],...updates};DB.set(k,a);}
+  },
+  removeFromArr: (k,id,field) => {
+    const a=DB.getArr(k).filter(x=>x[field]!==id); DB.set(k,a);
+  }
+};
+
+async function hashStr(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+// Auth guard
+const session = DB.get('jambak_auth_session');
+if (!session || session.role !== 'vendor') { location.href = 'auth.html'; }
+
+let currentVendor = null;
+let currentOrders = [];
+let orderFilter = 'all';
+let editingProductId = null;
+let selectedEmoji = '📦';
+
+/* ════════════════════════════════
+   Init
+════════════════════════════════ */
+function init() {
+  const vendors = DB.getArr('jambak_vendors');
+  currentVendor = vendors.find(v => v.uid === session.uid);
+  if (!currentVendor) { logout(); return; }
+
+  document.getElementById('store-name-badge').textContent = currentVendor.storeName;
+  document.getElementById('top-store-name').textContent = currentVendor.storeName;
+  document.getElementById('prof-name').value  = currentVendor.storeName  || '';
+  document.getElementById('prof-phone').value = currentVendor.phone      || '';
+  document.getElementById('prof-address').value = currentVendor.address  || '';
+
+  renderKPIs();
+  renderRecentOrders();
+  renderProducts();
+  buildEmojiGrid();
+  checkNewOrders();
+
+  // Poll for new orders every 15 seconds
+  setInterval(() => {
+    renderOrders();
+    renderKPIs();
+    checkNewOrders();
+  }, 15000);
+}
+
+/* ════════════════════════════════
+   Navigation
+════════════════════════════════ */
+const SECTIONS = ['home','products','orders','profile'];
+const TITLES   = {home:'الرئيسية', products:'المنتجات والخدمات', orders:'الطلبات الواردة', profile:'إعدادات المتجر'};
+
+function showSection(id) {
+  SECTIONS.forEach(s => {
+    document.getElementById('section-'+s).style.display = s===id ? '' : 'none';
+    document.getElementById('nav-'+s).classList.toggle('active', s===id);
+  });
+  document.getElementById('page-title').textContent = TITLES[id];
+  if (id==='orders') renderOrders();
+  if (id==='home') { renderKPIs(); renderRecentOrders(); }
+}
+
+/* ════════════════════════════════
+   KPIs
+════════════════════════════════ */
+function renderKPIs() {
+  const orders = DB.getArr('jambak_orders').filter(o => o.storeId === session.storeId);
+  const today = new Date().toDateString();
+  const todayOrders = orders.filter(o => new Date(o.placedAt).toDateString() === today);
+  const pending = orders.filter(o => ['new','accepted','preparing','out_for_delivery'].includes(o.status));
+  const products = DB.getArr('jambak_products_override').filter(p => p.storeId===session.storeId && p.status!=='deleted');
+
+  document.getElementById('kpi-orders-today').textContent = todayOrders.length;
+  document.getElementById('kpi-revenue-today').textContent = todayOrders.filter(o=>o.status==='delivered').reduce((s,o)=>s+o.total,0).toLocaleString();
+  document.getElementById('kpi-pending').textContent = pending.length;
+  document.getElementById('kpi-products').textContent = products.length;
+}
+
+/* ════════════════════════════════
+   Orders
+════════════════════════════════ */
+function getMyOrders() {
+  return DB.getArr('jambak_orders').filter(o => o.storeId === session.storeId)
+    .sort((a,b) => b.placedAt - a.placedAt);
+}
+
+function checkNewOrders() {
+  const newCount = getMyOrders().filter(o => o.status === 'new').length;
+  const badge = document.getElementById('new-orders-badge');
+  const dot   = document.getElementById('notif-dot');
+  badge.textContent = newCount;
+  badge.style.display = newCount > 0 ? '' : 'none';
+  dot.classList.toggle('show', newCount > 0);
+}
+
+function filterOrders(status, btn) {
+  orderFilter = status;
+  document.querySelectorAll('.otab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderOrders();
+}
+
+function renderOrders() {
+  let orders = getMyOrders();
+  if (orderFilter !== 'all') orders = orders.filter(o => o.status === orderFilter);
+  const container = document.getElementById('orders-list');
+  if (!orders.length) {
+    container.innerHTML = '<div class="empty-state"><div class="ei">📭</div><p>لا توجد طلبات</p></div>';
+    return;
+  }
+  container.innerHTML = orders.map(o => orderCard(o)).join('');
+}
+
+function renderRecentOrders() {
+  const orders = getMyOrders().slice(0,5);
+  const container = document.getElementById('recent-orders-list');
+  if (!orders.length) {
+    container.innerHTML = '<div class="empty-state"><div class="ei">📭</div><p>لا توجد طلبات بعد</p></div>';
+    return;
+  }
+  container.innerHTML = orders.map(o => orderCard(o)).join('');
+}
+
+const STATUS_MAP = {
+  new: ['s-new','جديد'],
+  accepted: ['s-accepted','مقبول'],
+  preparing: ['s-preparing','جاري التحضير'],
+  out_for_delivery: ['s-out','في الطريق'],
+  delivered: ['s-delivered','تم التسليم'],
+  cancelled: ['s-cancelled','ملغي']
+};
+
+function orderCard(o) {
+  const [cls,label] = STATUS_MAP[o.status] || ['s-new','جديد'];
+  const items = o.items.map(i=>`${i.name} ×${i.qty}`).join(' · ');
+  const time = new Date(o.placedAt).toLocaleString('ar-EG', {hour:'2-digit',minute:'2-digit',month:'short',day:'numeric'});
+
+  let actions = '';
+  if (o.status === 'new')       actions = `<button class="oa-btn oa-accept" onclick="updateOrderStatus('${o.orderId}','accepted')">قبول الطلب ✓</button><button class="oa-btn oa-cancel" onclick="updateOrderStatus('${o.orderId}','cancelled')">رفض</button>`;
+  if (o.status === 'accepted')  actions = `<button class="oa-btn oa-ready" onclick="updateOrderStatus('${o.orderId}','preparing')">بدء التحضير 🔥</button>`;
+  if (o.status === 'preparing') actions = `<button class="oa-btn oa-deliver" onclick="updateOrderStatus('${o.orderId}','out_for_delivery')">إرسال للتوصيل 🚴</button>`;
+  if (o.status === 'out_for_delivery') actions = `<button class="oa-btn oa-deliver" onclick="updateOrderStatus('${o.orderId}','delivered')">تم التسليم ✅</button>`;
+
+  return `<div class="order-card">
+    <div class="order-head">
+      <div>
+        <div class="order-id">#${o.orderId}</div>
+        <div class="order-time">${time} · ${o.customerName||'زبون'}</div>
+      </div>
+      <span class="status-badge ${cls}">${label}</span>
+    </div>
+    <div class="order-items">${items}</div>
+    <div class="order-foot">
+      <div class="order-total">${o.total.toLocaleString()} SDG</div>
+      <div class="order-actions">${actions}</div>
+    </div>
+  </div>`;
+}
+
+function updateOrderStatus(orderId, status) {
+  const orders = DB.getArr('jambak_orders');
+  const i = orders.findIndex(o => o.orderId === orderId);
+  if (i !== -1) { orders[i].status = status; orders[i].updatedAt = Date.now(); DB.set('jambak_orders', orders); }
+  renderOrders();
+  renderRecentOrders();
+  renderKPIs();
+  checkNewOrders();
+}
+
+/* ════════════════════════════════
+   Products
+════════════════════════════════ */
+const CAT_LABELS = {grocery:'بقالة',produce:'خضار وفاكهة',dairy:'ألبان',meat:'لحوم',bak:'مخبوزات',drinks:'مشروبات',snacks:'وجبات خفيفة',house:'منزل',care:'عناية',frozen:'مجمدات',food:'طعام',service:'خدمة'};
+
+function getMyProducts() {
+  return DB.getArr('jambak_products_override').filter(p => p.storeId===session.storeId && p.status!=='deleted');
+}
+
+function renderProducts(filter='') {
+  let prods = getMyProducts();
+  if (filter) prods = prods.filter(p => p.name.includes(filter));
+  const tbody = document.getElementById('products-tbody');
+  if (!prods.length) {
+    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><div class="ei">📦</div><p>لا توجد منتجات — أضف منتجك الأول</p></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = prods.map(p => `<tr>
+    <td><div style="display:flex;align-items:center;gap:10px">
+      <div class="prod-img">${p.emoji||'📦'}</div>
+      <div><div class="prod-name">${p.name}</div><div class="prod-cat">${p.unit||''}</div></div>
+    </div></td>
+    <td>${CAT_LABELS[p.cat]||p.cat}</td>
+    <td class="prod-price">${Number(p.price).toLocaleString()} SDG</td>
+    <td>${p.discount||0}%</td>
+    <td><label class="toggle-sw"><input type="checkbox" ${p.status==='active'?'checked':''} onchange="toggleProduct('${p.id}',this.checked)"><span class="toggle-slider"></span></label></td>
+    <td><button class="ta-btn ta-edit" onclick="openEditModal('${p.id}')">تعديل</button>
+        <button class="ta-btn ta-del" onclick="deleteProduct('${p.id}')">حذف</button></td>
+  </tr>`).join('');
+}
+
+function filterProducts(val) { renderProducts(val); }
+
+function toggleProduct(id, active) {
+  DB.updateArr('jambak_products_override', id, 'id', {status: active ? 'active' : 'paused'});
+  renderKPIs();
+}
+
+function deleteProduct(id) {
+  if (!confirm('هل تريد حذف هذا المنتج؟')) return;
+  DB.updateArr('jambak_products_override', id, 'id', {status:'deleted'});
+  renderProducts();
+  renderKPIs();
+}
+
+/* ════════════════════════════════
+   Emoji Grid
+════════════════════════════════ */
+const EMOJIS = ['🥩','🍗','🥦','🍅','🥕','🧅','🥔','🧄','🍞','🥐','🧈','🥛','🧀','🥚','🍚','🍜','🥘','🍲','🍕','🍔','🌮','🥗','🍱','🥫','🫙','🧃','🥤','🧊','🍎','🍌','🍊','🍋','🍇','🍓','🫐','🥭','🍦','🍰','🎂','🍫','🧹','🫧','🧺','🔧','⚡','🚿','❄️','🖌️','🌿','💆','💅','✨','📦','🏷️','🛒','🏠','🍾','🫒'];
+
+function buildEmojiGrid() {
+  document.getElementById('emoji-grid').innerHTML = EMOJIS.map(e =>
+    `<div class="emoji-opt ${e===selectedEmoji?'sel':''}" onclick="pickEmoji('${e}')">${e}</div>`
+  ).join('');
+}
+
+function pickEmoji(e) {
+  selectedEmoji = e;
+  document.querySelectorAll('.emoji-opt').forEach(el => el.classList.toggle('sel', el.textContent===e));
+}
+
+/* ════════════════════════════════
+   Modal
+════════════════════════════════ */
+function openAddModal() {
+  editingProductId = null;
+  document.getElementById('modal-title-text').textContent = 'إضافة منتج جديد';
+  ['m-name','m-price','m-discount','m-unit'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('m-cat').value = 'grocery';
+  selectedEmoji = '📦';
+  buildEmojiGrid();
+  document.getElementById('prod-modal').classList.add('show');
+}
+
+function openEditModal(id) {
+  editingProductId = id;
+  const p = DB.getArr('jambak_products_override').find(x=>x.id===id);
+  if (!p) return;
+  document.getElementById('modal-title-text').textContent = 'تعديل المنتج';
+  document.getElementById('m-name').value     = p.name;
+  document.getElementById('m-price').value    = p.price;
+  document.getElementById('m-discount').value = p.discount||0;
+  document.getElementById('m-unit').value     = p.unit||'';
+  document.getElementById('m-cat').value      = p.cat;
+  selectedEmoji = p.emoji || '📦';
+  buildEmojiGrid();
+  document.getElementById('prod-modal').classList.add('show');
+}
+
+function closeModal() { document.getElementById('prod-modal').classList.remove('show'); }
+
+function saveProduct() {
+  const name     = document.getElementById('m-name').value.trim();
+  const price    = parseFloat(document.getElementById('m-price').value) || 0;
+  const discount = parseFloat(document.getElementById('m-discount').value) || 0;
+  const cat      = document.getElementById('m-cat').value;
+  const unit     = document.getElementById('m-unit').value.trim();
+  if (!name || !price) return alert('أدخل اسم المنتج والسعر');
+
+  if (editingProductId) {
+    DB.updateArr('jambak_products_override', editingProductId, 'id', {name, price, discount, cat, unit, emoji:selectedEmoji, updatedAt:Date.now()});
+  } else {
+    DB.pushArr('jambak_products_override', {
+      id: 'vp_' + Date.now(),
+      storeId: session.storeId,
+      vendorId: session.uid,
+      name, price, discount, cat, unit,
+      emoji: selectedEmoji,
+      status: 'active',
+      createdAt: Date.now()
+    });
+  }
+  closeModal();
+  renderProducts();
+  renderKPIs();
+}
+
+/* ════════════════════════════════
+   Profile
+════════════════════════════════ */
+function saveProfile() {
+  const name    = document.getElementById('prof-name').value.trim();
+  const phone   = document.getElementById('prof-phone').value.trim();
+  const address = document.getElementById('prof-address').value.trim();
+  DB.updateArr('jambak_vendors', session.uid, 'uid', {storeName:name, phone, address});
+  document.getElementById('store-name-badge').textContent = name;
+  document.getElementById('top-store-name').textContent = name;
+  alert('✅ تم الحفظ بنجاح');
+}
+
+async function changePin() {
+  const oldPin = document.getElementById('old-pin').value.trim();
+  const newPin = document.getElementById('new-pin').value.trim();
+  if (!oldPin || !newPin) return alert('أدخل PIN الحالي والجديد');
+  if (newPin.length !== 4) return alert('PIN الجديد يجب أن يكون 4 أرقام');
+
+  const vendors = DB.getArr('jambak_vendors');
+  const vendor  = vendors.find(v => v.uid === session.uid);
+  const oldHash = await hashStr(oldPin);
+  if (oldHash !== vendor.pinHash) return alert('PIN الحالي غير صحيح');
+
+  const newHash = await hashStr(newPin);
+  DB.updateArr('jambak_vendors', session.uid, 'uid', {pinHash: newHash});
+  document.getElementById('old-pin').value = '';
+  document.getElementById('new-pin').value = '';
+  alert('✅ تم تغيير PIN بنجاح');
+}
+
+/* ════════════════════════════════
+   Logout
+════════════════════════════════ */
+function logout() {
+  localStorage.removeItem('jambak_auth_session');
+  location.href = 'auth.html';
+}
+
+// Close modal on overlay click
+document.getElementById('prod-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+init();
+</script>
+</body>
+</html>
