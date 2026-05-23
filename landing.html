@@ -40,57 +40,23 @@ img{display:block;max-width:100%}
 .nav-toggle{display:none;background:none;border:none;font-size:24px;color:#fff;cursor:pointer}
 
 /* ═══════════════════════════════════════
-   HERO SLIDESHOW
+   HERO BANNER SLIDESHOW
 ═══════════════════════════════════════ */
-.hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
-.slides{display:flex;height:100%;transition:transform .8s cubic-bezier(.77,0,.175,1);direction:ltr}
-.slide{min-width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
+.hero{position:relative;overflow:hidden;background:#140028;margin-top:68px}
+.slides{display:flex;transition:transform .75s cubic-bezier(.77,0,.175,1);direction:ltr}
+.slide{min-width:100%;position:relative;cursor:pointer}
+.slide-banner{width:100%;display:block;object-fit:cover;max-height:80vh}
 
-/* Slide backgrounds */
-.slide-1{background:linear-gradient(135deg,#140028 0%,#2B005E 50%,#140028 100%)}
-.slide-2{background:linear-gradient(135deg,#1a0800 0%,#8B2500 50%,#1a0800 100%)}
-.slide-3{background:linear-gradient(135deg,#000d24 0%,#0D47A1 50%,#000d24 100%)}
-.slide-4{background:linear-gradient(135deg,#1a0000 0%,#B71C1C 50%,#1a0000 100%)}
-.slide-5{background:linear-gradient(135deg,#120024 0%,#4A148C 50%,#120024 100%)}
+/* Side arrows */
+.hero-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;background:rgba(20,0,40,.55);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:20px;transition:all .2s;backdrop-filter:blur(8px);z-index:10;user-select:none}
+.hero-arrow:hover{background:rgba(58,0,133,.8);border-color:rgba(240,80,32,.5)}
+.hero-arrow-r{left:20px}
+.hero-arrow-l{right:20px}
 
-/* Particle grid overlay */
-.slide::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
-
-.slide-inner{position:relative;z-index:2;max-width:1200px;width:100%;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
-.slide-content{color:#fff}
-.slide-badge{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;font-size:13px;font-weight:700;margin-bottom:20px;backdrop-filter:blur(8px)}
-.slide-badge img{width:24px;height:24px;object-fit:contain;border-radius:6px}
-.slide-title{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.15;margin-bottom:16px}
-.slide-title span{display:block}
-.slide-sub{font-size:18px;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:32px;max-width:440px}
-.slide-btns{display:flex;gap:14px;flex-wrap:wrap}
-.slide-btn-primary{padding:14px 28px;background:#fff;color:var(--dk);border-radius:999px;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;border:none;transition:transform .2s}
-.slide-btn-primary:hover{transform:translateY(-2px)}
-.slide-btn-secondary{padding:14px 28px;background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:999px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;border-style:solid;transition:background .2s}
-.slide-btn-secondary:hover{background:rgba(255,255,255,.2)}
-
-/* Phone mockup */
-.phone-mockup{position:relative;display:flex;align-items:center;justify-content:center}
-.phone-frame{width:240px;height:480px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);border-radius:36px;position:relative;overflow:hidden;backdrop-filter:blur(20px);box-shadow:0 40px 80px rgba(0,0,0,.4)}
-.phone-notch{width:80px;height:20px;background:rgba(0,0,0,.4);border-radius:0 0 14px 14px;margin:0 auto}
-.phone-screen{padding:10px;height:calc(100% - 30px);display:flex;flex-direction:column;gap:8px}
-.phone-app-icon{width:100%;height:56px;background:rgba(255,255,255,.1);border-radius:14px;display:flex;align-items:center;gap:10px;padding:0 12px;font-size:13px;color:#fff;font-weight:700}
-.phone-app-icon span{font-size:22px}
-.phone-hero-card{flex:1;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:60px;overflow:hidden;padding:12px}
-.phone-hero-card img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
-.phone-glow{position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(80px);opacity:.3;pointer-events:none}
-
-/* Slide nav */
-.hero-nav{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:24px;z-index:10}
-.hero-dots{display:flex;gap:8px}
-.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:all .3s}
-.hero-dot.active{width:28px;border-radius:4px;background:#fff}
-.hero-arrow{width:40px;height:40px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:16px;transition:background .2s;backdrop-filter:blur(8px)}
-.hero-arrow:hover{background:rgba(255,255,255,.25)}
-
-/* Scroll hint */
-.scroll-hint{position:absolute;bottom:36px;right:40px;display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:12px;font-weight:600;z-index:10}
-.scroll-line{width:40px;height:1px;background:rgba(255,255,255,.3)}
+/* Dots */
+.hero-nav{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s;border:none;padding:0}
+.hero-dot.active{width:28px;border-radius:4px;background:#F05020}
 
 /* ═══════════════════════════════════════
    STATS
@@ -356,175 +322,29 @@ textarea.fi{resize:vertical;min-height:110px}
 ══════════════════════════ -->
 <section class="hero">
   <div class="slides" id="slides">
-
-    <!-- Slide 1 — جمبك مارت -->
-    <div class="slide slide-1">
-      <div class="slide-inner">
-        <div class="slide-content">
-          <div class="slide-badge"><img src="icons/icon-mart.png" alt="">جمبك مارت</div>
-          <div class="slide-title">
-            <span>البقالة</span>
-            <span>على بابك</span>
-            <span style="color:#F05020">خلال 25 دقيقة</span>
-          </div>
-          <div class="slide-sub">اطلب من أقرب سوبر ماركت — خضار، لحوم، ألبان، وأكثر من 500 منتج يومي.</div>
-          <div class="slide-btns">
-            <a href="index.html" class="slide-btn-primary">اطلب الآن</a>
-            <a href="#apps" class="slide-btn-secondary">اعرف أكثر</a>
-          </div>
-        </div>
-        <div class="phone-mockup">
-          <div class="phone-frame" style="border-color:rgba(58,0,133,.3)">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(58,0,133,.15)"><img src="icons/icon-mart.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك مارت</div>
-              <div class="phone-hero-card" style="background:rgba(58,0,133,.1)"><img src="icons/icon-mart.png" alt="مارت"></div>
-              <div class="phone-app-icon" style="background:rgba(58,0,133,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M18 8h1a4 4 0 010 8h-1M6 8H5a4 4 0 000 8h1M6 12h12"/><rect x="6" y="6" width="12" height="12" rx="2"/></svg> لحوم طازجة</div>
-              <div class="phone-app-icon" style="background:rgba(58,0,133,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M8 2h8l2 4H6L8 2z"/><path d="M6 6l-1 16h14L18 6H6z"/><path d="M8 12a4 4 0 008 0"/></svg> ألبان يومية</div>
-            </div>
-          </div>
-          <div class="phone-glow" style="background:#3A0085;top:20%;left:50%;transform:translateX(-50%)"></div>
-        </div>
-      </div>
+    <div class="slide" onclick="location.href='index.html'">
+      <img class="slide-banner" src="banners/banner-mart.jpg" alt="جمبك مارت">
     </div>
-
-    <!-- Slide 2 — جمبك ماركت -->
-    <div class="slide slide-2">
-      <div class="slide-inner">
-        <div class="slide-content">
-          <div class="slide-badge"><img src="icons/icon-jambak.png" alt="">جمبك ماركت</div>
-          <div class="slide-title">
-            <span>تسوّق</span>
-            <span>كل حاجة</span>
-            <span style="color:#FF8A50">بضغطة واحدة</span>
-          </div>
-          <div class="slide-sub">إلكترونيات، موضة، منزل، وآلاف المنتجات بخصومات تصل لـ 70%.</div>
-          <div class="slide-btns">
-            <a href="jambak.html" class="slide-btn-primary">تسوق الآن</a>
-            <a href="#apps" class="slide-btn-secondary">استكشف</a>
-          </div>
-        </div>
-        <div class="phone-mockup">
-          <div class="phone-frame" style="border-color:rgba(255,107,53,.3)">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(255,107,53,.15)"><img src="icons/icon-jambak.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك ماركت</div>
-              <div class="phone-hero-card" style="background:rgba(255,107,53,.1)"><img src="icons/icon-jambak.png" alt="ماركت"></div>
-              <div class="phone-app-icon" style="background:rgba(255,107,53,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> إلكترونيات</div>
-              <div class="phone-app-icon" style="background:rgba(255,107,53,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> عروض اليوم</div>
-            </div>
-          </div>
-          <div class="phone-glow" style="background:#FF6B35;top:20%;left:50%;transform:translateX(-50%)"></div>
-        </div>
-      </div>
+    <div class="slide" onclick="location.href='jambak.html'">
+      <img class="slide-banner" src="banners/banner-jambak.jpg" alt="جمبك ماركت">
     </div>
-
-    <!-- Slide 3 — هايبر مول -->
-    <div class="slide slide-3">
-      <div class="slide-inner">
-        <div class="slide-content">
-          <div class="slide-badge"><img src="icons/icon-hypermall.png" alt="">جمبك هايبر مول</div>
-          <div class="slide-title">
-            <span>خصومات</span>
-            <span>تصل إلى</span>
-            <span style="color:#64B5F6">80%</span>
-          </div>
-          <div class="slide-sub">هايبر ماركت في جيبك — آلاف المنتجات بأسعار الجملة مع توصيل خلال 60 دقيقة.</div>
-          <div class="slide-btns">
-            <a href="hypermall.html" class="slide-btn-primary">تصفح العروض</a>
-            <a href="#apps" class="slide-btn-secondary">اعرف أكثر</a>
-          </div>
-        </div>
-        <div class="phone-mockup">
-          <div class="phone-frame" style="border-color:rgba(30,136,229,.3)">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(30,136,229,.15)"><img src="icons/icon-hypermall.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">هايبر مول</div>
-              <div class="phone-hero-card" style="background:rgba(30,136,229,.1)"><img src="icons/icon-hypermall.png" alt="هايبر مول"></div>
-              <div class="phone-app-icon" style="background:rgba(30,136,229,.1)"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> صفقات فلاش</div>
-              <div class="phone-app-icon" style="background:rgba(30,136,229,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg> عروض حصرية</div>
-            </div>
-          </div>
-          <div class="phone-glow" style="background:#1E88E5;top:20%;left:50%;transform:translateX(-50%)"></div>
-        </div>
-      </div>
+    <div class="slide" onclick="location.href='hypermall.html'">
+      <img class="slide-banner" src="banners/banner-hypermall.jpg" alt="هايبر مول">
     </div>
-
-    <!-- Slide 4 — فودز -->
-    <div class="slide slide-4">
-      <div class="slide-inner">
-        <div class="slide-content">
-          <div class="slide-badge"><img src="icons/icon-foodz.png" alt="">جمبك فودز</div>
-          <div class="slide-title">
-            <span>أكلك المفضل</span>
-            <span>من أفضل</span>
-            <span style="color:#EF9A9A">المطاعم</span>
-          </div>
-          <div class="slide-sub">من فول التراث لبيتزا الخليج — اطلب من أكثر من 50 مطعم في الخرطوم ووصلك في 30 دقيقة.</div>
-          <div class="slide-btns">
-            <a href="taga.html" class="slide-btn-primary">اطلب طعامك</a>
-            <a href="#apps" class="slide-btn-secondary">شوف المطاعم</a>
-          </div>
-        </div>
-        <div class="phone-mockup">
-          <div class="phone-frame" style="border-color:rgba(229,57,53,.3)">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(229,57,53,.15)"><img src="icons/icon-foodz.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك فودز</div>
-              <div class="phone-hero-card" style="background:rgba(229,57,53,.1)"><img src="icons/icon-foodz.png" alt="فودز"></div>
-              <div class="phone-app-icon" style="background:rgba(229,57,53,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25-40 دقيقة</div>
-              <div class="phone-app-icon" style="background:rgba(229,57,53,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> توصيل مجاني</div>
-            </div>
-          </div>
-          <div class="phone-glow" style="background:#E53935;top:20%;left:50%;transform:translateX(-50%)"></div>
-        </div>
-      </div>
+    <div class="slide" onclick="location.href='taga.html'">
+      <img class="slide-banner" src="banners/banner-foodz.jpg" alt="جمبك فودز">
     </div>
-
-    <!-- Slide 5 — سيرفيس -->
-    <div class="slide slide-5">
-      <div class="slide-inner">
-        <div class="slide-content">
-          <div class="slide-badge"><img src="icons/icon-services.png" alt="">جمبك سيرفيس</div>
-          <div class="slide-title">
-            <span>الخدمات</span>
-            <span>بين إيديك</span>
-            <span style="color:#CE93D8">بضغطة واحدة</span>
-          </div>
-          <div class="slide-sub">تنظيف، صيانة، عناية شخصية، وأكثر — متخصصون موثوقون يصلونك في الوقت المناسب.</div>
-          <div class="slide-btns">
-            <a href="services.html" class="slide-btn-primary">احجز الآن</a>
-            <a href="#apps" class="slide-btn-secondary">كل الخدمات</a>
-          </div>
-        </div>
-        <div class="phone-mockup">
-          <div class="phone-frame" style="border-color:rgba(123,31,162,.3)">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(123,31,162,.15)"><img src="icons/icon-services.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك سيرفيس</div>
-              <div class="phone-hero-card" style="background:rgba(123,31,162,.1)"><img src="icons/icon-services.png" alt="سيرفيس"></div>
-              <div class="phone-app-icon" style="background:rgba(123,31,162,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> عناية شخصية</div>
-              <div class="phone-app-icon" style="background:rgba(123,31,162,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> صيانة منزلية</div>
-            </div>
-          </div>
-          <div class="phone-glow" style="background:#7B1FA2;top:20%;left:50%;transform:translateX(-50%)"></div>
-        </div>
-      </div>
+    <div class="slide" onclick="location.href='services.html'">
+      <img class="slide-banner" src="banners/banner-services.jpg" alt="جمبك سيرفيس">
     </div>
-
   </div><!-- /slides -->
 
-  <!-- Nav controls -->
-  <div class="hero-nav">
-    <div class="hero-arrow" onclick="prevSlide()">›</div>
-    <div class="hero-dots" id="hero-dots"></div>
-    <div class="hero-arrow" onclick="nextSlide()">‹</div>
-  </div>
+  <!-- Side arrows -->
+  <div class="hero-arrow hero-arrow-r" onclick="prevSlide()">›</div>
+  <div class="hero-arrow hero-arrow-l" onclick="nextSlide()">‹</div>
 
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    اسكرول للأسفل
-  </div>
+  <!-- Dots -->
+  <div class="hero-nav" id="hero-dots"></div>
 </section>
 
 <!-- ══════════════════════════
@@ -978,7 +798,7 @@ const dotsEl   = document.getElementById('hero-dots');
 
 // Build dots
 for (let i = 0; i < TOTAL; i++) {
-  const d = document.createElement('div');
+  const d = document.createElement('button');
   d.className = 'hero-dot' + (i===0?' active':'');
   d.onclick = () => goTo(i);
   dotsEl.appendChild(d);
@@ -987,7 +807,7 @@ for (let i = 0; i < TOTAL; i++) {
 function goTo(n) {
   current = (n + TOTAL) % TOTAL;
   slidesEl.style.transform = `translateX(${-current * 100}%)`;
-  document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('active', i===current));
+  dotsEl.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('active', i===current));
   resetAuto();
 }
 function nextSlide() { goTo(current + 1); }
