@@ -28,7 +28,8 @@ img{display:block;max-width:100%}
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;transition:all .3s}
 .nav.scrolled{background:rgba(13,27,18,.95);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.3)}
 .nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo-ico{width:40px;height:40px;background:linear-gradient(135deg,var(--grn),var(--grn2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.nav-logo-ico{width:44px;height:44px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.nav-logo-ico img{width:100%;height:100%;object-fit:cover}
 .nav-logo-text{font-size:22px;font-weight:900;color:#fff}
 .nav-links{display:flex;align-items:center;gap:32px}
 .nav-link{font-size:14px;font-weight:700;color:rgba(255,255,255,.8);transition:color .2s}
@@ -41,7 +42,7 @@ img{display:block;max-width:100%}
    HERO SLIDESHOW
 ═══════════════════════════════════════ */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
-.slides{display:flex;height:100%;transition:transform .8s cubic-bezier(.77,0,.175,1)}
+.slides{display:flex;height:100%;transition:transform .8s cubic-bezier(.77,0,.175,1);direction:ltr}
 .slide{min-width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
 
 /* Slide backgrounds */
@@ -56,7 +57,8 @@ img{display:block;max-width:100%}
 
 .slide-inner{position:relative;z-index:2;max-width:1200px;width:100%;padding:0 40px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px}
 .slide-content{color:#fff}
-.slide-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;font-size:13px;font-weight:700;margin-bottom:20px;backdrop-filter:blur(8px)}
+.slide-badge{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;font-size:13px;font-weight:700;margin-bottom:20px;backdrop-filter:blur(8px)}
+.slide-badge img{width:24px;height:24px;object-fit:contain;border-radius:6px}
 .slide-title{font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.15;margin-bottom:16px}
 .slide-title span{display:block}
 .slide-sub{font-size:18px;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:32px;max-width:440px}
@@ -73,7 +75,8 @@ img{display:block;max-width:100%}
 .phone-screen{padding:10px;height:calc(100% - 30px);display:flex;flex-direction:column;gap:8px}
 .phone-app-icon{width:100%;height:56px;background:rgba(255,255,255,.1);border-radius:14px;display:flex;align-items:center;gap:10px;padding:0 12px;font-size:13px;color:#fff;font-weight:700}
 .phone-app-icon span{font-size:22px}
-.phone-hero-card{flex:1;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:60px}
+.phone-hero-card{flex:1;background:rgba(255,255,255,.15);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:60px;overflow:hidden;padding:12px}
+.phone-hero-card img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
 .phone-glow{position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(80px);opacity:.3;pointer-events:none}
 
 /* Slide nav */
@@ -132,6 +135,7 @@ img{display:block;max-width:100%}
 .app-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s;cursor:pointer}
 .app-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.12)}
 .app-card-hero{height:160px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;overflow:hidden}
+.app-card-hero img{width:90px;height:90px;object-fit:contain;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4));position:relative;z-index:1}
 .app-card-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.15))}
 .app-card-body{padding:22px 24px}
 .app-card-name{font-size:18px;font-weight:900;color:var(--txt);margin-bottom:6px}
@@ -295,6 +299,22 @@ textarea.fi{resize:vertical;min-height:110px}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 .reveal-delay-4{transition-delay:.4s}
+
+/* Vector icons */
+.vi{width:1em;height:1em;display:inline-block;vertical-align:middle;flex-shrink:0}
+.phone-app-icon .vi,.phone-hero-card .vi{width:22px;height:22px}
+.how-ico .vi{width:32px;height:32px}
+.about-feat-ico .vi{width:22px;height:22px}
+.contact-ico .vi{width:22px;height:22px}
+.store-btn-ico .vi{width:24px;height:24px}
+.qr-ico .vi{width:36px;height:36px}
+.sec-eyebrow .vi{width:14px;height:14px}
+.nav-toggle .vi{width:22px;height:22px}
+.mobile-close .vi{width:20px;height:20px}
+.social-btn .vi{width:16px;height:16px}
+.footer-logo-ico .vi{width:22px;height:22px}
+.testi-avatar .vi{width:28px;height:28px;opacity:.7}
+.shield-ico .vi{width:14px;height:14px}
 </style>
 </head>
 <body>
@@ -304,7 +324,7 @@ textarea.fi{resize:vertical;min-height:110px}
 ══════════════════════════ -->
 <nav class="nav" id="main-nav">
   <div class="nav-logo">
-    <div class="nav-logo-ico">🛒</div>
+    <div class="nav-logo-ico"><img src="icons/logo.jpg" alt="جمبك"></div>
     <div class="nav-logo-text">جمبك</div>
   </div>
   <div class="nav-links">
@@ -315,19 +335,19 @@ textarea.fi{resize:vertical;min-height:110px}
     <a href="auth.html" class="nav-link">بوابة التجار</a>
     <button class="nav-cta" onclick="scrollTo({top:document.getElementById('download').offsetTop,behavior:'smooth'})">حمّل التطبيق ↓</button>
   </div>
-  <button class="nav-toggle" onclick="toggleDrawer(true)">☰</button>
+  <button class="nav-toggle" onclick="toggleDrawer(true)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
 </nav>
 
 <!-- Mobile Drawer -->
 <div class="drawer-overlay" id="drawer-ov" onclick="toggleDrawer(false)"></div>
 <div class="mobile-drawer" id="mobile-drawer">
-  <button class="mobile-close" onclick="toggleDrawer(false)">✕</button>
+  <button class="mobile-close" onclick="toggleDrawer(false)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></button>
   <a href="#about"    class="mobile-drawer-link" onclick="toggleDrawer(false)">من نحن</a>
   <a href="#apps"     class="mobile-drawer-link" onclick="toggleDrawer(false)">تطبيقاتنا</a>
   <a href="#how"      class="mobile-drawer-link" onclick="toggleDrawer(false)">كيف يعمل</a>
   <a href="#contact"  class="mobile-drawer-link" onclick="toggleDrawer(false)">تواصل معنا</a>
-  <a href="auth.html" class="mobile-drawer-link">🏪 بوابة التجار</a>
-  <a href="#download" class="mobile-drawer-link" onclick="toggleDrawer(false)" style="color:#4CAF50;font-weight:900">📲 حمّل التطبيق</a>
+  <a href="auth.html" class="mobile-drawer-link">بوابة التجار</a>
+  <a href="#download" class="mobile-drawer-link" onclick="toggleDrawer(false)" style="color:#4CAF50;font-weight:900">حمّل التطبيق</a>
 </div>
 
 <!-- ══════════════════════════
@@ -340,7 +360,7 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="slide slide-1">
       <div class="slide-inner">
         <div class="slide-content">
-          <div class="slide-badge">🟢 جمبك مارت</div>
+          <div class="slide-badge"><img src="icons/icon-mart.png" alt="">جمبك مارت</div>
           <div class="slide-title">
             <span>البقالة</span>
             <span>على بابك</span>
@@ -356,10 +376,10 @@ textarea.fi{resize:vertical;min-height:110px}
           <div class="phone-frame" style="border-color:rgba(76,175,80,.3)">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(76,175,80,.15)"><span>🛒</span>جمبك مارت</div>
-              <div class="phone-hero-card" style="background:rgba(76,175,80,.1)">🥦</div>
-              <div class="phone-app-icon" style="background:rgba(76,175,80,.1)"><span>🥩</span> لحوم طازجة</div>
-              <div class="phone-app-icon" style="background:rgba(76,175,80,.08)"><span>🥛</span> ألبان يومية</div>
+              <div class="phone-app-icon" style="background:rgba(76,175,80,.15)"><img src="icons/icon-mart.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك مارت</div>
+              <div class="phone-hero-card" style="background:rgba(76,175,80,.1)"><img src="icons/icon-mart.png" alt="مارت"></div>
+              <div class="phone-app-icon" style="background:rgba(76,175,80,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M18 8h1a4 4 0 010 8h-1M6 8H5a4 4 0 000 8h1M6 12h12"/><rect x="6" y="6" width="12" height="12" rx="2"/></svg> لحوم طازجة</div>
+              <div class="phone-app-icon" style="background:rgba(76,175,80,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M8 2h8l2 4H6L8 2z"/><path d="M6 6l-1 16h14L18 6H6z"/><path d="M8 12a4 4 0 008 0"/></svg> ألبان يومية</div>
             </div>
           </div>
           <div class="phone-glow" style="background:#4CAF50;top:20%;left:50%;transform:translateX(-50%)"></div>
@@ -371,7 +391,7 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="slide slide-2">
       <div class="slide-inner">
         <div class="slide-content">
-          <div class="slide-badge">🟠 جمبك ماركت</div>
+          <div class="slide-badge"><img src="icons/icon-jambak.png" alt="">جمبك ماركت</div>
           <div class="slide-title">
             <span>تسوّق</span>
             <span>كل حاجة</span>
@@ -387,10 +407,10 @@ textarea.fi{resize:vertical;min-height:110px}
           <div class="phone-frame" style="border-color:rgba(255,107,53,.3)">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(255,107,53,.15)"><span>🏪</span>جمبك ماركت</div>
-              <div class="phone-hero-card" style="background:rgba(255,107,53,.1)">👗</div>
-              <div class="phone-app-icon" style="background:rgba(255,107,53,.1)"><span>📱</span> إلكترونيات</div>
-              <div class="phone-app-icon" style="background:rgba(255,107,53,.08)"><span>🏷️</span> عروض اليوم</div>
+              <div class="phone-app-icon" style="background:rgba(255,107,53,.15)"><img src="icons/icon-jambak.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك ماركت</div>
+              <div class="phone-hero-card" style="background:rgba(255,107,53,.1)"><img src="icons/icon-jambak.png" alt="ماركت"></div>
+              <div class="phone-app-icon" style="background:rgba(255,107,53,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> إلكترونيات</div>
+              <div class="phone-app-icon" style="background:rgba(255,107,53,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> عروض اليوم</div>
             </div>
           </div>
           <div class="phone-glow" style="background:#FF6B35;top:20%;left:50%;transform:translateX(-50%)"></div>
@@ -402,11 +422,11 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="slide slide-3">
       <div class="slide-inner">
         <div class="slide-content">
-          <div class="slide-badge">🔵 جمبك هايبر مول</div>
+          <div class="slide-badge"><img src="icons/icon-hypermall.png" alt="">جمبك هايبر مول</div>
           <div class="slide-title">
             <span>خصومات</span>
             <span>تصل إلى</span>
-            <span style="color:#64B5F6">80% ✨</span>
+            <span style="color:#64B5F6">80%</span>
           </div>
           <div class="slide-sub">هايبر ماركت في جيبك — آلاف المنتجات بأسعار الجملة مع توصيل خلال 60 دقيقة.</div>
           <div class="slide-btns">
@@ -418,10 +438,10 @@ textarea.fi{resize:vertical;min-height:110px}
           <div class="phone-frame" style="border-color:rgba(30,136,229,.3)">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(30,136,229,.15)"><span>🏬</span>هايبر مول</div>
-              <div class="phone-hero-card" style="background:rgba(30,136,229,.1)">🛍️</div>
-              <div class="phone-app-icon" style="background:rgba(30,136,229,.1)"><span>⚡</span> صفقات فلاش</div>
-              <div class="phone-app-icon" style="background:rgba(30,136,229,.08)"><span>🎁</span> عروض حصرية</div>
+              <div class="phone-app-icon" style="background:rgba(30,136,229,.15)"><img src="icons/icon-hypermall.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">هايبر مول</div>
+              <div class="phone-hero-card" style="background:rgba(30,136,229,.1)"><img src="icons/icon-hypermall.png" alt="هايبر مول"></div>
+              <div class="phone-app-icon" style="background:rgba(30,136,229,.1)"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> صفقات فلاش</div>
+              <div class="phone-app-icon" style="background:rgba(30,136,229,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg> عروض حصرية</div>
             </div>
           </div>
           <div class="phone-glow" style="background:#1E88E5;top:20%;left:50%;transform:translateX(-50%)"></div>
@@ -433,11 +453,11 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="slide slide-4">
       <div class="slide-inner">
         <div class="slide-content">
-          <div class="slide-badge">🔴 جمبك فودز</div>
+          <div class="slide-badge"><img src="icons/icon-foodz.png" alt="">جمبك فودز</div>
           <div class="slide-title">
             <span>أكلك المفضل</span>
             <span>من أفضل</span>
-            <span style="color:#EF9A9A">المطاعم 🍕</span>
+            <span style="color:#EF9A9A">المطاعم</span>
           </div>
           <div class="slide-sub">من فول التراث لبيتزا الخليج — اطلب من أكثر من 50 مطعم في الخرطوم ووصلك في 30 دقيقة.</div>
           <div class="slide-btns">
@@ -449,10 +469,10 @@ textarea.fi{resize:vertical;min-height:110px}
           <div class="phone-frame" style="border-color:rgba(229,57,53,.3)">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(229,57,53,.15)"><span>🍕</span>جمبك فودز</div>
-              <div class="phone-hero-card" style="background:rgba(229,57,53,.1)">🍔</div>
-              <div class="phone-app-icon" style="background:rgba(229,57,53,.1)"><span>🕐</span> 25-40 دقيقة</div>
-              <div class="phone-app-icon" style="background:rgba(229,57,53,.08)"><span>🚗</span> توصيل مجاني</div>
+              <div class="phone-app-icon" style="background:rgba(229,57,53,.15)"><img src="icons/icon-foodz.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك فودز</div>
+              <div class="phone-hero-card" style="background:rgba(229,57,53,.1)"><img src="icons/icon-foodz.png" alt="فودز"></div>
+              <div class="phone-app-icon" style="background:rgba(229,57,53,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 25-40 دقيقة</div>
+              <div class="phone-app-icon" style="background:rgba(229,57,53,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> توصيل مجاني</div>
             </div>
           </div>
           <div class="phone-glow" style="background:#E53935;top:20%;left:50%;transform:translateX(-50%)"></div>
@@ -464,7 +484,7 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="slide slide-5">
       <div class="slide-inner">
         <div class="slide-content">
-          <div class="slide-badge">🟣 جمبك سيرفيس</div>
+          <div class="slide-badge"><img src="icons/icon-services.png" alt="">جمبك سيرفيس</div>
           <div class="slide-title">
             <span>الخدمات</span>
             <span>بين إيديك</span>
@@ -480,10 +500,10 @@ textarea.fi{resize:vertical;min-height:110px}
           <div class="phone-frame" style="border-color:rgba(123,31,162,.3)">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <div class="phone-app-icon" style="background:rgba(123,31,162,.15)"><span>🛠️</span>جمبك سيرفيس</div>
-              <div class="phone-hero-card" style="background:rgba(123,31,162,.1)">🧹</div>
-              <div class="phone-app-icon" style="background:rgba(123,31,162,.1)"><span>💆</span> عناية شخصية</div>
-              <div class="phone-app-icon" style="background:rgba(123,31,162,.08)"><span>🔧</span> صيانة منزلية</div>
+              <div class="phone-app-icon" style="background:rgba(123,31,162,.15)"><img src="icons/icon-services.png" alt="" style="width:22px;height:22px;border-radius:6px;object-fit:contain">جمبك سيرفيس</div>
+              <div class="phone-hero-card" style="background:rgba(123,31,162,.1)"><img src="icons/icon-services.png" alt="سيرفيس"></div>
+              <div class="phone-app-icon" style="background:rgba(123,31,162,.1)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> عناية شخصية</div>
+              <div class="phone-app-icon" style="background:rgba(123,31,162,.08)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> صيانة منزلية</div>
             </div>
           </div>
           <div class="phone-glow" style="background:#7B1FA2;top:20%;left:50%;transform:translateX(-50%)"></div>
@@ -537,33 +557,41 @@ textarea.fi{resize:vertical;min-height:110px}
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-img reveal">
-        <div class="about-img-main">🇸🇩</div>
+        <div class="about-img-main" style="position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0D1B12 0%,#1B4D2E 60%,#0D5C2E 100%)"></div>
+  <svg style="position:relative;z-index:1;width:120px;height:120px;opacity:.6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="35" r="22" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+    <circle cx="50" cy="35" r="14" fill="rgba(255,255,255,.2)"/>
+    <path d="M28 57c0 0 5-8 22-8s22 8 22 8v20c0 4-4 7-8 7H36c-4 0-8-3-8-7V57z" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+  </svg>
+  <div style="position:relative;z-index:2;color:rgba(255,255,255,.5);font-size:13px;font-weight:700;margin-top:8px;letter-spacing:2px">SUDAN</div>
+</div>
         <div class="about-badge">
           <div class="about-badge-val">#1</div>
           <div class="about-badge-lbl">تطبيق توصيل<br>في السودان</div>
         </div>
       </div>
       <div class="reveal reveal-delay-1">
-        <div class="sec-eyebrow">🌍 قصتنا</div>
+        <div class="sec-eyebrow">قصتنا</div>
         <h2 class="sec-title">نوصّل حياتك —<br>من الخرطوم للسودان</h2>
         <p class="sec-sub">جمبك بدأت برؤية بسيطة: نجعل حياة السودانيين أسهل. من بقالة الصبح لصيانة المكيف لطلب العشاء — كل حاجة في تطبيق واحد.</p>
         <div class="about-features">
           <div class="about-feat reveal reveal-delay-1">
-            <div class="about-feat-ico">⚡</div>
+            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
             <div>
               <div class="about-feat-title">سرعة التوصيل</div>
               <div class="about-feat-sub">نوصّل البقالة خلال 25 دقيقة والطعام خلال 30 دقيقة — مضمون.</div>
             </div>
           </div>
           <div class="about-feat reveal reveal-delay-2">
-            <div class="about-feat-ico">✅</div>
+            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
             <div>
               <div class="about-feat-title">جودة موثوقة</div>
               <div class="about-feat-sub">كل متجر وخدمة عندنا تمر بمراجعة دقيقة قبل الانضمام للمنصة.</div>
             </div>
           </div>
           <div class="about-feat reveal reveal-delay-3">
-            <div class="about-feat-ico">🤝</div>
+            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M9 11V6a2 2 0 014 0v5m-4 5v-1a2 2 0 012-2h1"/><path d="M17 11V8a2 2 0 014 0v8a8 8 0 01-8 8H9a8 8 0 01-8-8v-1a2 2 0 012-2h.18"/></svg></div>
             <div>
               <div class="about-feat-title">ندعم التجار المحليين</div>
               <div class="about-feat-sub">جمبك منصة لتجار السودان — نوفر لهم التقنية والعملاء والتوصيل.</div>
@@ -581,63 +609,63 @@ textarea.fi{resize:vertical;min-height:110px}
 <section class="section apps" id="apps">
   <div class="section-inner">
     <div class="text-center reveal">
-      <div class="sec-eyebrow">📱 تطبيقاتنا</div>
+      <div class="sec-eyebrow">تطبيقاتنا</div>
       <h2 class="sec-title">5 تطبيقات — عالم واحد</h2>
       <p class="sec-sub">كل تطبيق مصمم لتجربة واحدة فقط — بدون تعقيد، بدون تشويش.</p>
     </div>
     <div class="apps-grid">
       <!-- Featured: جمبك مارت -->
       <div class="app-card featured reveal">
-        <div class="app-card-hero" style="background:linear-gradient(135deg,#0D1B12,#1B8A3A)">🛒</div>
+        <div class="app-card-hero" style="background:linear-gradient(135deg,#0D1B12,#1B8A3A)"><img src="icons/icon-mart.png" alt="جمبك مارت"></div>
         <div class="app-card-body">
-          <div class="app-card-name">جمبك مارت 🟢</div>
+          <div class="app-card-name">جمبك مارت</div>
           <div class="app-card-desc">توصيل البقالة والمواد الغذائية من أقرب سوبر ماركت — خضار طازجة، لحوم، ألبان، ومنظفات. كل احتياجاتك اليومية في دقائق.</div>
           <div class="app-card-tags">
-            <span class="app-tag">🥦 خضار وفاكهة</span>
-            <span class="app-tag">🥩 لحوم</span>
-            <span class="app-tag">🥛 ألبان</span>
-            <span class="app-tag">🧹 منظفات</span>
+            <span class="app-tag">خضار وفاكهة</span>
+            <span class="app-tag">لحوم</span>
+            <span class="app-tag">ألبان</span>
+            <span class="app-tag">منظفات</span>
           </div>
           <a href="index.html" class="app-card-link">افتح التطبيق →</a>
         </div>
       </div>
 
       <div class="app-card reveal reveal-delay-1">
-        <div class="app-card-hero" style="background:linear-gradient(135deg,#3E1A00,#E65100)">🏪</div>
+        <div class="app-card-hero" style="background:linear-gradient(135deg,#3E1A00,#E65100)"><img src="icons/icon-jambak.png" alt="جمبك ماركت"></div>
         <div class="app-card-body">
-          <div class="app-card-name">جمبك ماركت 🟠</div>
+          <div class="app-card-name">جمبك ماركت</div>
           <div class="app-card-desc">ماركت بلايس شامل — إلكترونيات، موضة، منزل، وأكثر بأفضل الأسعار.</div>
-          <div class="app-card-tags"><span class="app-tag">📱 إلكترونيات</span><span class="app-tag">👗 موضة</span><span class="app-tag">🏷️ خصومات</span></div>
+          <div class="app-card-tags"><span class="app-tag">إلكترونيات</span><span class="app-tag">موضة</span><span class="app-tag">خصومات</span></div>
           <a href="jambak.html" class="app-card-link">افتح التطبيق →</a>
         </div>
       </div>
 
       <div class="app-card reveal reveal-delay-2">
-        <div class="app-card-hero" style="background:linear-gradient(135deg,#000d24,#0D47A1)">🏬</div>
+        <div class="app-card-hero" style="background:linear-gradient(135deg,#000d24,#0D47A1)"><img src="icons/icon-hypermall.png" alt="هايبر مول"></div>
         <div class="app-card-body">
-          <div class="app-card-name">هايبر مول 🔵</div>
+          <div class="app-card-name">هايبر مول</div>
           <div class="app-card-desc">خصومات تصل لـ 80% على آلاف المنتجات — عروض يومية وصفقات حصرية.</div>
-          <div class="app-card-tags"><span class="app-tag">⚡ صفقات فلاش</span><span class="app-tag">🎁 عروض حصرية</span></div>
+          <div class="app-card-tags"><span class="app-tag">صفقات فلاش</span><span class="app-tag">عروض حصرية</span></div>
           <a href="hypermall.html" class="app-card-link">افتح التطبيق →</a>
         </div>
       </div>
 
       <div class="app-card reveal reveal-delay-1">
-        <div class="app-card-hero" style="background:linear-gradient(135deg,#1a0000,#C62828)">🍕</div>
+        <div class="app-card-hero" style="background:linear-gradient(135deg,#1a0000,#C62828)"><img src="icons/icon-foodz.png" alt="جمبك فودز"></div>
         <div class="app-card-body">
-          <div class="app-card-name">جمبك فودز 🔴</div>
+          <div class="app-card-name">جمبك فودز</div>
           <div class="app-card-desc">من فول التراث للبيتزا — اطلب من أفضل المطاعم السودانية والعالمية.</div>
-          <div class="app-card-tags"><span class="app-tag">🍔 برجر</span><span class="app-tag">🍕 بيتزا</span><span class="app-tag">🥘 سوداني</span></div>
+          <div class="app-card-tags"><span class="app-tag">برجر</span><span class="app-tag">بيتزا</span><span class="app-tag">سوداني</span></div>
           <a href="taga.html" class="app-card-link">افتح التطبيق →</a>
         </div>
       </div>
 
       <div class="app-card reveal reveal-delay-2">
-        <div class="app-card-hero" style="background:linear-gradient(135deg,#120024,#4A148C)">🛠️</div>
+        <div class="app-card-hero" style="background:linear-gradient(135deg,#120024,#4A148C)"><img src="icons/icon-services.png" alt="جمبك سيرفيس"></div>
         <div class="app-card-body">
-          <div class="app-card-name">جمبك سيرفيس 🟣</div>
+          <div class="app-card-name">جمبك سيرفيس</div>
           <div class="app-card-desc">خدمات منزلية موثوقة — تنظيف، صيانة، عناية شخصية، ومكافحة حشرات.</div>
-          <div class="app-card-tags"><span class="app-tag">🧹 تنظيف</span><span class="app-tag">🔧 صيانة</span><span class="app-tag">💆 عناية</span></div>
+          <div class="app-card-tags"><span class="app-tag">تنظيف</span><span class="app-tag">صيانة</span><span class="app-tag">عناية</span></div>
           <a href="services.html" class="app-card-link">افتح التطبيق →</a>
         </div>
       </div>
@@ -651,28 +679,28 @@ textarea.fi{resize:vertical;min-height:110px}
 <section class="section" id="how">
   <div class="section-inner">
     <div class="text-center reveal">
-      <div class="sec-eyebrow">⚡ كيف يعمل</div>
+      <div class="sec-eyebrow">كيف يعمل</div>
       <h2 class="sec-title">3 خطوات وبس</h2>
       <p class="sec-sub">ما في تعقيد — اختار، اطلب، واستنّى على بابك.</p>
     </div>
     <div class="how-grid">
       <div class="how-step reveal reveal-delay-1">
-        <div class="how-ico" data-num="1" style="background:#E8F5E9">📲</div>
+        <div class="how-ico" data-num="1" style="background:#E8F5E9"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
         <div class="how-title">حمّل التطبيق</div>
         <div class="how-desc">حمّل جمبك من App Store أو Google Play وسجّل في ثانية.</div>
       </div>
       <div class="how-step reveal reveal-delay-2">
-        <div class="how-ico" data-num="2" style="background:#FFF3EC">🛒</div>
+        <div class="how-ico" data-num="2" style="background:#FFF3EC"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div>
         <div class="how-title">اختار واطلب</div>
         <div class="how-desc">تصفح التطبيق المناسب وضيف ما تحتاجه للسلة واتمم الطلب.</div>
       </div>
       <div class="how-step reveal reveal-delay-3">
-        <div class="how-ico" data-num="3" style="background:#E3F2FD">📍</div>
+        <div class="how-ico" data-num="3" style="background:#E3F2FD"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <div class="how-title">تتبع بالوقت الحقيقي</div>
         <div class="how-desc">شوف توصيلك على الخريطة وتواصل مع السائق مباشرة.</div>
       </div>
       <div class="how-step reveal reveal-delay-4">
-        <div class="how-ico" data-num="4" style="background:#F3E5F5">😍</div>
+        <div class="how-ico" data-num="4" style="background:#F3E5F5"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
         <div class="how-title">استمتع بطلبك</div>
         <div class="how-desc">استلم طلبك وقيّم التجربة — رأيك يهمنا.</div>
       </div>
@@ -686,19 +714,19 @@ textarea.fi{resize:vertical;min-height:110px}
 <section class="section download" id="download">
   <div class="download-inner">
     <div class="download-content reveal">
-      <div class="sec-eyebrow" style="background:rgba(255,255,255,.1);color:#fff">📲 حمّل التطبيق</div>
-      <h2 class="sec-title">جمبك في جيبك<br>24/7 🕐</h2>
+      <div class="sec-eyebrow" style="background:rgba(255,255,255,.1);color:#fff">حمّل التطبيق</div>
+      <h2 class="sec-title">جمبك في جيبك<br>24/7</h2>
       <p class="sec-sub">متاح الآن على iOS و Android — مجاناً تماماً. حمّل وابدأ طلبك الأول في دقيقة.</p>
       <div class="store-btns">
         <a href="#" class="store-btn" onclick="alert('قريباً على App Store!')">
-          <div class="store-btn-ico">🍎</div>
+          <div class="store-btn-ico"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg></div>
           <div class="store-btn-text">
             <div class="store-btn-sub">Download on the</div>
             <div class="store-btn-name">App Store</div>
           </div>
         </a>
         <a href="#" class="store-btn" onclick="alert('قريباً على Google Play!')">
-          <div class="store-btn-ico">▶️</div>
+          <div class="store-btn-ico"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3l14 9L5 21V3z"/></svg></div>
           <div class="store-btn-text">
             <div class="store-btn-sub">Get it on</div>
             <div class="store-btn-name">Google Play</div>
@@ -706,7 +734,7 @@ textarea.fi{resize:vertical;min-height:110px}
         </a>
       </div>
       <div class="qr-box">
-        <div class="qr-ico">📱</div>
+        <div class="qr-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
         <div class="qr-text">
           <strong>أو افتح الويب أبليكيشن مباشرة</strong>
           متاح على أي متصفح — بدون تحميل
@@ -718,26 +746,26 @@ textarea.fi{resize:vertical;min-height:110px}
       <div class="dl-phone">
         <div class="dl-phone-top"><div class="dl-phone-notch"></div></div>
         <div class="dl-phone-screen">
-          <div class="dl-screen-item" style="background:rgba(229,57,53,.2)">🍕 فودز</div>
-          <div class="dl-screen-item" style="background:rgba(30,136,229,.2)">🏬 هايبر مول</div>
-          <div class="dl-screen-item" style="background:rgba(123,31,162,.2)">🛠️ سيرفيس</div>
+          <div class="dl-screen-item" style="background:rgba(229,57,53,.2)">فودز</div>
+          <div class="dl-screen-item" style="background:rgba(30,136,229,.2)">هايبر مول</div>
+          <div class="dl-screen-item" style="background:rgba(123,31,162,.2)">سيرفيس</div>
         </div>
       </div>
       <div class="dl-phone main">
         <div class="dl-phone-top"><div class="dl-phone-notch"></div></div>
         <div class="dl-phone-screen">
-          <div class="dl-screen-item" style="background:rgba(27,138,58,.25);font-size:22px;height:80px">🛒</div>
-          <div class="dl-screen-item" style="background:rgba(27,138,58,.15)">🥦 خضار طازجة</div>
-          <div class="dl-screen-item" style="background:rgba(27,138,58,.12)">🥩 لحوم</div>
-          <div class="dl-screen-item" style="background:rgba(27,138,58,.1)">🛒 السلة</div>
+          <div class="dl-screen-item" style="background:rgba(27,138,58,.25);height:80px;padding:12px"><img src="icons/icon-mart.png" style="width:40px;height:40px;object-fit:contain"></div>
+          <div class="dl-screen-item" style="background:rgba(27,138,58,.15)">خضار طازجة</div>
+          <div class="dl-screen-item" style="background:rgba(27,138,58,.12)">لحوم</div>
+          <div class="dl-screen-item" style="background:rgba(27,138,58,.1)">السلة</div>
         </div>
       </div>
       <div class="dl-phone">
         <div class="dl-phone-top"><div class="dl-phone-notch"></div></div>
         <div class="dl-phone-screen">
-          <div class="dl-screen-item" style="background:rgba(230,81,0,.2)">🏪 ماركت</div>
-          <div class="dl-screen-item" style="background:rgba(76,175,80,.2)">📦 طلباتي</div>
-          <div class="dl-screen-item" style="background:rgba(255,255,255,.08)">👤 حسابي</div>
+          <div class="dl-screen-item" style="background:rgba(230,81,0,.2)">ماركت</div>
+          <div class="dl-screen-item" style="background:rgba(76,175,80,.2)">طلباتي</div>
+          <div class="dl-screen-item" style="background:rgba(255,255,255,.08)">حسابي</div>
         </div>
       </div>
     </div>
@@ -750,7 +778,7 @@ textarea.fi{resize:vertical;min-height:110px}
 <section class="section testimonials" id="reviews">
   <div class="section-inner">
     <div class="text-center reveal">
-      <div class="sec-eyebrow">💬 آراء عملاؤنا</div>
+      <div class="sec-eyebrow">آراء عملاؤنا</div>
       <h2 class="sec-title">بيقولوا عنّا إيه؟</h2>
     </div>
     <div class="testi-grid">
@@ -758,7 +786,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"جمبك غيّر حياتي — بعدين ما رحت السوق بنفسي. الطازجية بتيجي على البيت وسعر معقول."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#E8F5E9">👩</div>
+          <div class="testi-avatar" style="background:#E8F5E9"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">فاطمة موسى</div>
             <div class="testi-city">الخرطوم بحري</div>
@@ -769,7 +797,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"جربت فودز وطلبت من مامولا — الأكل وصل سخن وفي وقته. ما توقعت بالجودة دي."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#FFEBEE">👨</div>
+          <div class="testi-avatar" style="background:#FFEBEE"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">أحمد خالد</div>
             <div class="testi-city">أم درمان</div>
@@ -780,7 +808,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★☆</div>
         <div class="testi-text">"خدمة التنظيف كانت ممتازة — الفريق محترف ومنظم. هحجز مرة تانية قريباً."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#F3E5F5">👩</div>
+          <div class="testi-avatar" style="background:#F3E5F5"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">سمية إبراهيم</div>
             <div class="testi-city">الخرطوم</div>
@@ -797,16 +825,16 @@ textarea.fi{resize:vertical;min-height:110px}
 <section class="section" style="padding-top:48px;padding-bottom:64px">
   <div class="section-inner">
     <div class="text-center reveal">
-      <div class="sec-eyebrow">🤝 شركاؤنا</div>
+      <div class="sec-eyebrow">شركاؤنا</div>
       <h2 class="sec-title">متاجر تثق بجمبك</h2>
     </div>
     <div class="partners-row reveal">
-      <div class="partner">🏪 الانفال ماركت</div>
-      <div class="partner">🏬 سنا مارت</div>
-      <div class="partner">🥬 الجزيرة للخضار</div>
-      <div class="partner">🥩 مسلخ النور</div>
-      <div class="partner">🍕 مامولا</div>
-      <div class="partner">❄️ المجمدات الممتازة</div>
+      <div class="partner">الانفال ماركت</div>
+      <div class="partner">سنا مارت</div>
+      <div class="partner">الجزيرة للخضار</div>
+      <div class="partner">مسلخ النور</div>
+      <div class="partner">مامولا</div>
+      <div class="partner">المجمدات الممتازة</div>
     </div>
     <div class="text-center" style="margin-top:28px">
       <a href="auth.html" style="color:var(--grn);font-size:14px;font-weight:700">+ انضم كتاجر في جمبك ←</a>
@@ -820,35 +848,35 @@ textarea.fi{resize:vertical;min-height:110px}
 <section class="section" id="contact" style="background:#F7F9F7">
   <div class="section-inner">
     <div class="reveal">
-      <div class="sec-eyebrow">📬 تواصل معنا</div>
+      <div class="sec-eyebrow">تواصل معنا</div>
       <h2 class="sec-title">نحن هنا لمساعدتك</h2>
       <p class="sec-sub">فريق جمبك متاح 24/7 — سواء كنت عميلاً أو تاجراً.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="contact-item">
-          <div class="contact-ico">📞</div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
           <div>
             <div class="contact-item-title">اتصل بنا</div>
             <div class="contact-item-val">+249 91 234 5678<br>متاح 24/7</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-ico">📧</div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
           <div>
             <div class="contact-item-title">البريد الإلكتروني</div>
             <div class="contact-item-val">hello@jambak.sd<br>support@jambak.sd</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-ico">📍</div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div>
             <div class="contact-item-title">موقعنا</div>
             <div class="contact-item-val">الخرطوم، السودان<br>شارع الجامعة — المبنى 12</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-ico">🏪</div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div>
             <div class="contact-item-title">بوابة التجار</div>
             <div class="contact-item-val">سجّل متجرك أو خدمتك<br>
@@ -870,7 +898,7 @@ textarea.fi{resize:vertical;min-height:110px}
           </select>
         </div>
         <div class="fg"><label class="fl">رسالتك</label><textarea class="fi" placeholder="اكتب رسالتك هنا..."></textarea></div>
-        <button class="btn-submit" onclick="this.textContent='✅ تم الإرسال — شكراً!';setTimeout(()=>this.textContent='إرسال الرسالة ←',3000)">إرسال الرسالة ←</button>
+        <button class="btn-submit" onclick="this.textContent='تم الإرسال — شكراً!';setTimeout(()=>this.textContent='إرسال الرسالة',3000)">إرسال الرسالة</button>
       </div>
     </div>
   </div>
@@ -884,25 +912,25 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="footer-top">
       <div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
-          <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--grn),var(--grn2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px">🛒</div>
+          <div style="width:44px;height:44px;border-radius:12px;overflow:hidden;flex-shrink:0"><img src="icons/logo.jpg" alt="جمبك" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="footer-brand-name">جمبك</div>
         </div>
         <div class="footer-brand-sub">نوصّل حياتك — بقالة، طعام، خدمات، وأكثر. جمبك: كل حاجة في تطبيق واحد.</div>
         <div class="social-row">
           <a href="#" class="social-btn">f</a>
           <a href="#" class="social-btn">𝕏</a>
-          <a href="#" class="social-btn">📷</a>
-          <a href="#" class="social-btn">▶</a>
+          <a href="#" class="social-btn"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="social-btn"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98l5.75 3.02-5.75 3.02z"/></svg></a>
         </div>
       </div>
       <div>
         <div class="footer-col-title">التطبيقات</div>
         <div class="footer-links">
-          <a href="index.html"     class="footer-link">🟢 جمبك مارت</a>
-          <a href="jambak.html"    class="footer-link">🟠 جمبك ماركت</a>
-          <a href="hypermall.html" class="footer-link">🔵 هايبر مول</a>
-          <a href="taga.html"      class="footer-link">🔴 جمبك فودز</a>
-          <a href="services.html"  class="footer-link">🟣 جمبك سيرفيس</a>
+          <a href="index.html"     class="footer-link">جمبك مارت</a>
+          <a href="jambak.html"    class="footer-link">جمبك ماركت</a>
+          <a href="hypermall.html" class="footer-link">هايبر مول</a>
+          <a href="taga.html"      class="footer-link">جمبك فودز</a>
+          <a href="services.html"  class="footer-link">جمبك سيرفيس</a>
         </div>
       </div>
       <div>
@@ -922,15 +950,15 @@ textarea.fi{resize:vertical;min-height:110px}
           <a href="#" class="footer-link">شروط الاستخدام</a>
           <a href="#" class="footer-link">سياسة الخصوصية</a>
           <a href="#" class="footer-link">سياسة الإرجاع</a>
-          <a href="admin.html" class="footer-link" style="color:rgba(255,255,255,.25)">🛡️ الإدارة</a>
+          <a href="admin.html" class="footer-link" style="color:rgba(255,255,255,.25)">الإدارة</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 جمبك — جميع الحقوق محفوظة · صُنع بـ ❤️ في السودان 🇸🇩</div>
+      <div class="footer-copy">© 2026 جمبك — جميع الحقوق محفوظة · صُنع بـ ♥ في السودان</div>
       <div class="footer-apps">
-        <span class="footer-app-tag">🍎 App Store — قريباً</span>
-        <span class="footer-app-tag">▶️ Google Play — قريباً</span>
+        <span class="footer-app-tag"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> App Store — قريباً</span>
+        <span class="footer-app-tag"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 3l14 9L5 21V3z"/></svg> Google Play — قريباً</span>
       </div>
     </div>
   </div>
@@ -957,7 +985,7 @@ for (let i = 0; i < TOTAL; i++) {
 
 function goTo(n) {
   current = (n + TOTAL) % TOTAL;
-  slidesEl.style.transform = `translateX(${current * 100}%)`;
+  slidesEl.style.transform = `translateX(${-current * 100}%)`;
   document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('active', i===current));
   resetAuto();
 }
