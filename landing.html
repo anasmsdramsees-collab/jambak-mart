@@ -17,10 +17,12 @@
   --dk:#0A0015; --dk2:#140028; --dk3:#0D001A;
   --txt:#1a0035; --txt-light:#fff; --muted:#8a7aaa; --bdr:#E8E8E8;
   --r:18px; --sh:0 4px 24px rgba(0,0,0,.08);
-  --glass-dark-bg:rgba(255,255,255,0.06);
-  --glass-dark-border:rgba(255,255,255,0.10);
-  --glass-light-bg:rgba(255,255,255,0.72);
-  --glass-light-border:rgba(255,255,255,0.5);
+  --glass-dark-bg:rgba(255,255,255,0.05);
+  --glass-dark-border:rgba(255,255,255,0.12);
+  --glass-dark-shadow:0 8px 40px rgba(0,0,0,0.45);
+  --glass-light-bg:rgba(255,255,255,0.78);
+  --glass-light-border:rgba(255,255,255,0.6);
+  --glass-light-shadow:0 4px 28px rgba(58,0,133,0.09);
   --trans:all 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 html{scroll-behavior:smooth}
@@ -36,8 +38,8 @@ img{display:block;max-width:100%}
   padding:0 40px;height:68px;
   display:flex;align-items:center;justify-content:space-between;
   background:rgba(10,0,21,0.75);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(24px) saturate(1.8);
+  -webkit-backdrop-filter:blur(24px) saturate(1.8);
   border-bottom:1px solid rgba(255,255,255,0.08);
   box-shadow:0 4px 32px rgba(0,0,0,0.4);
   transition:var(--trans);
@@ -94,7 +96,7 @@ img{display:block;max-width:100%}
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;color:#fff;font-size:22px;
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   z-index:10;user-select:none;
   transition:var(--trans);
 }
@@ -110,7 +112,7 @@ img{display:block;max-width:100%}
 .hero-nav{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;
   padding:6px 12px;
   background:rgba(10,0,21,0.4);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px) saturate(1.8);-webkit-backdrop-filter:blur(12px) saturate(1.8);
   border:1px solid rgba(255,255,255,0.12);
   border-radius:999px;
 }
@@ -137,7 +139,7 @@ img{display:block;max-width:100%}
 .stat-item{
   text-align:center;
   background:var(--glass-dark-bg);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
   border:1px solid var(--glass-dark-border);
   border-radius:24px;
   padding:28px 16px;
@@ -197,7 +199,7 @@ img{display:block;max-width:100%}
 .about-badge{
   position:absolute;bottom:-20px;right:-20px;
   background:rgba(255,255,255,0.72);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid rgba(255,255,255,0.5);
   border-radius:18px;padding:18px 24px;
   box-shadow:0 12px 40px rgba(58,0,133,0.12);
@@ -210,7 +212,7 @@ img{display:block;max-width:100%}
   display:flex;align-items:flex-start;gap:14px;
   padding:16px;
   background:var(--glass-light-bg);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid var(--glass-light-border);
   border-radius:16px;
   box-shadow:0 4px 20px rgba(58,0,133,0.06);
@@ -222,10 +224,12 @@ img{display:block;max-width:100%}
   transform:translateX(-4px);
 }
 .about-feat-ico{
-  width:44px;height:44px;border-radius:12px;
-  background:rgba(58,0,133,0.1);
+  width:48px;height:48px;border-radius:16px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;margin-top:2px;
+  background:rgba(58,0,133,0.1);
+  backdrop-filter:blur(12px) saturate(1.8);
+  -webkit-backdrop-filter:blur(12px) saturate(1.8);
+  border:1px solid rgba(58,0,133,0.15);
   color:var(--prp);
 }
 .about-feat-title{font-size:15px;font-weight:900;color:var(--txt);margin-bottom:4px}
@@ -238,7 +242,7 @@ img{display:block;max-width:100%}
 .apps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
 .app-card{
   background:var(--glass-dark-bg);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
   border:1px solid var(--glass-dark-border);
   border-radius:24px;overflow:hidden;
   box-shadow:0 8px 40px rgba(0,0,0,0.35);
@@ -296,7 +300,7 @@ img{display:block;max-width:100%}
 .how-step{text-align:center;position:relative;z-index:1}
 .how-step-inner{
   background:var(--glass-light-bg);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid var(--glass-light-border);
   border-radius:24px;
   padding:28px 20px;
@@ -309,9 +313,15 @@ img{display:block;max-width:100%}
   transform:translateY(-6px);
 }
 .how-ico{
-  width:80px;height:80px;border-radius:50%;
+  width:64px;height:64px;border-radius:20px;
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;font-size:32px;position:relative;
+  margin:0 auto 20px;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(16px) saturate(1.8);
+  -webkit-backdrop-filter:blur(16px) saturate(1.8);
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 4px 24px rgba(58,0,133,0.15);
+  position:relative;
 }
 .how-ico::before{
   content:attr(data-num);position:absolute;top:-4px;right:-4px;
@@ -349,7 +359,7 @@ img{display:block;max-width:100%}
 .store-btn{
   display:flex;align-items:center;gap:12px;padding:14px 24px;border-radius:16px;
   background:rgba(255,255,255,0.07);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid rgba(255,255,255,0.14);
   color:#fff;transition:var(--trans);
 }
@@ -367,7 +377,7 @@ img{display:block;max-width:100%}
 .dl-phone{
   width:160px;
   background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);
   border:1px solid rgba(255,255,255,0.14);
   border-radius:28px;overflow:hidden;
 }
@@ -379,7 +389,7 @@ img{display:block;max-width:100%}
 .qr-box{
   margin-top:24px;display:flex;align-items:center;gap:16px;padding:16px 20px;
   background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px) saturate(1.8);-webkit-backdrop-filter:blur(12px) saturate(1.8);
   border-radius:16px;border:1px solid rgba(255,255,255,0.10);
 }
 .qr-ico{width:56px;height:56px;background:rgba(255,255,255,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px}
@@ -393,7 +403,7 @@ img{display:block;max-width:100%}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
 .testi-card{
   background:var(--glass-light-bg);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid var(--glass-light-border);
   border-radius:24px;padding:28px;
   box-shadow:0 4px 24px rgba(58,0,133,0.07);
@@ -423,7 +433,7 @@ img{display:block;max-width:100%}
 .partner{
   padding:14px 24px;
   background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid rgba(255,255,255,0.10);
   border-radius:14px;font-size:14px;font-weight:700;
   color:rgba(255,255,255,0.7);
@@ -446,7 +456,7 @@ img{display:block;max-width:100%}
   display:flex;align-items:flex-start;gap:16px;
   padding:18px;
   background:var(--glass-light-bg);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid var(--glass-light-border);
   border-radius:18px;
   box-shadow:0 4px 20px rgba(58,0,133,0.06);
@@ -458,16 +468,20 @@ img{display:block;max-width:100%}
   transform:translateX(-4px);
 }
 .contact-ico{
-  width:48px;height:48px;
-  background:rgba(58,0,133,0.1);
-  border-radius:14px;display:flex;align-items:center;justify-content:center;
-  font-size:22px;flex-shrink:0;color:var(--prp);
+  width:52px;height:52px;border-radius:16px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(58,0,133,0.08);
+  backdrop-filter:blur(12px) saturate(1.8);
+  -webkit-backdrop-filter:blur(12px) saturate(1.8);
+  border:1px solid rgba(58,0,133,0.12);
+  color:var(--prp);
+  transition:var(--trans);
 }
 .contact-item-title{font-size:15px;font-weight:700;color:var(--txt);margin-bottom:4px}
 .contact-item-val{font-size:14px;color:#5a4a80;line-height:1.7}
 .contact-form{
   background:var(--glass-light-bg);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);
   border:1px solid var(--glass-light-border);
   border-radius:24px;padding:32px;
   box-shadow:0 8px 40px rgba(58,0,133,0.08);
@@ -480,7 +494,7 @@ img{display:block;max-width:100%}
   border:1.5px solid rgba(255,255,255,0.5);
   border-radius:12px;font-family:inherit;font-size:14px;
   color:var(--txt);outline:none;transition:var(--trans);
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px) saturate(1.8);
 }
 .fi:focus{border-color:var(--prp);background:rgba(255,255,255,0.85)}
 .fi-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -543,7 +557,7 @@ textarea.fi{resize:vertical;min-height:110px}
 .mobile-drawer{
   position:fixed;top:0;right:-280px;width:280px;height:100vh;
   background:rgba(10,0,21,0.97);
-  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+  backdrop-filter:blur(32px) saturate(1.8);-webkit-backdrop-filter:blur(32px) saturate(1.8);
   border-left:1px solid rgba(255,255,255,0.08);
   z-index:2000;transition:right .35s cubic-bezier(0.4,0,0.2,1);
   padding:80px 24px 32px;display:flex;flex-direction:column;gap:4px;
@@ -555,7 +569,7 @@ textarea.fi{resize:vertical;min-height:110px}
   transition:var(--trans);
 }
 .mobile-drawer-link:hover{background:rgba(255,255,255,0.07);color:#fff}
-.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:1999;display:none}
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px) saturate(1.8);z-index:1999;display:none}
 .drawer-overlay.show{display:block}
 .mobile-close{position:absolute;top:20px;left:20px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:10px;font-size:24px;color:#fff;cursor:pointer;width:38px;height:38px;display:flex;align-items:center;justify-content:center;transition:var(--trans)}
 .mobile-close:hover{background:rgba(255,255,255,0.14)}
@@ -734,21 +748,21 @@ textarea.fi{resize:vertical;min-height:110px}
         <p class="sec-sub">منصة سودانية متكاملة، أُسِّست لتجعل احتياجاتك اليومية في متناول يدك — من التسوق الصباحي إلى الصيانة المنزلية إلى وجبة العشاء.</p>
         <div class="about-features">
           <div class="about-feat reveal reveal-delay-1">
-            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
+            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
             <div>
               <div class="about-feat-title">التوصيل السريع</div>
               <div class="about-feat-sub">نضمن توصيل البقالة في أقل من 25 دقيقة، والطعام في أقل من 30 دقيقة — في كل طلب.</div>
             </div>
           </div>
           <div class="about-feat reveal reveal-delay-2">
-            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
             <div>
               <div class="about-feat-title">معايير موثوقة</div>
               <div class="about-feat-sub">نُخضِع كل متجر ومزود خدمة لمعايير صارمة قبل انضمامه إلى منصتنا.</div>
             </div>
           </div>
           <div class="about-feat reveal reveal-delay-3">
-            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M9 11V6a2 2 0 014 0v5m-4 5v-1a2 2 0 012-2h1"/><path d="M17 11V8a2 2 0 014 0v8a8 8 0 01-8 8H9a8 8 0 01-8-8v-1a2 2 0 012-2h.18"/></svg></div>
+            <div class="about-feat-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M9 11V6a2 2 0 014 0v5m-4 5v-1a2 2 0 012-2h1"/><path d="M17 11V8a2 2 0 014 0v8a8 8 0 01-8 8H9a8 8 0 01-8-8v-1a2 2 0 012-2h.18"/></svg></div>
             <div>
               <div class="about-feat-title">شريك التاجر السوداني</div>
               <div class="about-feat-sub">نُمكِّن التجار المحليين بالتقنية اللازمة، والوصول إلى قاعدة واسعة من العملاء، وشبكة توصيل متكاملة.</div>
@@ -858,28 +872,28 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="how-grid">
       <div class="how-step reveal reveal-delay-1">
         <div class="how-step-inner">
-          <div class="how-ico" data-num="1" style="background:rgba(242,234,255,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <div class="how-ico" data-num="1" style="background:rgba(242,234,255,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
           <div class="how-title">نزِّل التطبيق</div>
           <div class="how-desc">نزِّل جمبك من App Store أو Google Play وأنشئ حسابك في لحظات.</div>
         </div>
       </div>
       <div class="how-step reveal reveal-delay-2">
         <div class="how-step-inner">
-          <div class="how-ico" data-num="2" style="background:rgba(255,240,232,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div>
+          <div class="how-ico" data-num="2" style="background:rgba(255,240,232,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div>
           <div class="how-title">اختر وأضِف إلى سلتك</div>
           <div class="how-desc">تصفح التطبيق المناسب، وأضِف ما تحتاجه إلى السلة، وأتمِّم طلبك بخطوة واحدة.</div>
         </div>
       </div>
       <div class="how-step reveal reveal-delay-3">
         <div class="how-step-inner">
-          <div class="how-ico" data-num="3" style="background:rgba(227,242,253,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="how-ico" data-num="3" style="background:rgba(227,242,253,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div class="how-title">تابع طلبك لحظة بلحظة</div>
           <div class="how-desc">تابع مسار التوصيل على الخريطة، وتواصل مع المندوب مباشرةً عند الحاجة.</div>
         </div>
       </div>
       <div class="how-step reveal reveal-delay-4">
         <div class="how-step-inner">
-          <div class="how-ico" data-num="4" style="background:rgba(243,229,245,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+          <div class="how-ico" data-num="4" style="background:rgba(243,229,245,0.8)"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
           <div class="how-title">استلم وقيِّم</div>
           <div class="how-desc">استلم طلبك، وشاركنا تقييمك — آراؤكم تُحسِّن تجربتنا باستمرار.</div>
         </div>
@@ -914,7 +928,7 @@ textarea.fi{resize:vertical;min-height:110px}
         </a>
       </div>
       <div class="qr-box">
-        <div class="qr-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="qr-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
         <div class="qr-text">
           <strong>أو افتح الويب أبليكيشن مباشرة</strong>
           متاح على أي متصفح — بدون تحميل
@@ -966,7 +980,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"جمبك غيَّر طريقة تسوقي تماماً. أطلب من المنزل وتصلني احتياجاتي طازجة وبسعر مناسب — تجربة لا يمكنني الاستغناء عنها."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#F2EAFF"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="testi-avatar" style="background:#F2EAFF"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">فاطمة موسى</div>
             <div class="testi-city">الخرطوم بحري</div>
@@ -977,7 +991,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"طلبت وجبة الإفطار صباحاً من جمبك فودز، فوصلت ساخنة وفي الوقت المحدد. مستوى الخدمة تجاوز توقعاتي بكثير."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#FFEBEE"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="testi-avatar" style="background:#FFEBEE"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">أحمد خالد</div>
             <div class="testi-city">أم درمان</div>
@@ -988,7 +1002,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"استعنت بخدمة التنظيف من جمبك سيرفيس — الفريق كان محترفاً وملتزماً، والنتيجة فاقت توقعاتي. سأكرر التجربة بلا تردد."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#F3E5F5"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="testi-avatar" style="background:#F3E5F5"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">سمية إبراهيم</div>
             <div class="testi-city">الخرطوم</div>
@@ -999,7 +1013,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"اقتنيت هاتفاً من هايبر مول بخصم لم أتوقعه، والتوصيل كان سريعاً وبلا أي مشكلات. تجربة شراء سلسة من البداية إلى النهاية."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#E3F2FD"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="testi-avatar" style="background:#E3F2FD"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">عمر عبدالله</div>
             <div class="testi-city">بحري</div>
@@ -1010,7 +1024,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"استعننا بجمبك مارت لتجهيز حفل زفاف — فاكهة، حلويات، مشروبات. وصل كل شيء في الوقت المحدد وبجودة عالية. خدمة تستحق الثقة."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#FFF8E1"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="testi-avatar" style="background:#FFF8E1"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">نجاة الحسن</div>
             <div class="testi-city">الكلاكلة</div>
@@ -1021,7 +1035,7 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="testi-stars">★★★★★</div>
         <div class="testi-text">"توقف مكيفنا عن العمل فجأة في ذروة الصيف. طلبت صيانة من جمبك سيرفيس، فأتى الفني في الموعد المحدد وأنهى العمل في ساعة واحدة. أداء احترافي بامتياز."</div>
         <div class="testi-author">
-          <div class="testi-avatar" style="background:#E8F5E9"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="testi-avatar" style="background:#E8F5E9"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div>
             <div class="testi-name">مصطفى سليمان</div>
             <div class="testi-city">الرياض — الخرطوم</div>
@@ -1068,28 +1082,28 @@ textarea.fi{resize:vertical;min-height:110px}
     <div class="contact-grid">
       <div class="contact-info reveal">
         <div class="contact-item">
-          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 012 2.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
           <div>
             <div class="contact-item-title">الدعم الهاتفي</div>
             <div class="contact-item-val">+249 91 234 5678<br>متاح طوال اليوم</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
           <div>
             <div class="contact-item-title">البريد الإلكتروني</div>
             <div class="contact-item-val">hello@jambak.sd<br>support@jambak.sd</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div>
             <div class="contact-item-title">مقرنا</div>
             <div class="contact-item-val">الخرطوم، السودان<br>شارع الجامعة — المبنى 12</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="contact-ico"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div>
             <div class="contact-item-title">انضمام التجار</div>
             <div class="contact-item-val">سجِّل متجرك وابدأ البيع عبر جمبك.<br>
@@ -1132,8 +1146,8 @@ textarea.fi{resize:vertical;min-height:110px}
         <div class="social-row">
           <a href="#" class="social-btn">f</a>
           <a href="#" class="social-btn">𝕏</a>
-          <a href="#" class="social-btn"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="#" class="social-btn"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98l5.75 3.02-5.75 3.02z"/></svg></a>
+          <a href="#" class="social-btn"><svg class="vi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="social-btn"><svg class="vi" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" ><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98l5.75 3.02-5.75 3.02z"/></svg></a>
         </div>
       </div>
       <div>
