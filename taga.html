@@ -4,54 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>طقة, توصيل الطعام</title>
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="app.css?v=4">
 </head>
 <body>
 
 <!-- ── APP SWITCHER ── -->
 <div class="app-sw-wrap">
   <div class="app-sw">
-    <button class="app-tab" onclick="location.href='jambak.html'">
-      <img src="icons/icon-jambak.png" alt="جمبك" class="app-tab-logo">
-      <span>جمبك</span>
+    <button class="app-tab app-tab-featured" onclick="location.href='index.html'">
+      <img src="icons/icon-mart.png?v=3" alt="مارت" class="app-tab-logo">
+      <span>مارت</span>
+    </button>
+    <button class="app-tab app-tab-featured active" onclick="void(0)">
+      <img src="icons/icon-foodz.png?v=3" alt="فود" class="app-tab-logo">
+      <span>فود</span>
     </button>
     <button class="app-tab" onclick="location.href='hypermall.html'">
-      <img src="icons/icon-hypermall.png" alt="هايبر مول" class="app-tab-logo">
+      <img src="icons/icon-hypermall.png?v=3" alt="هايبر مول" class="app-tab-logo">
       <span>هايبر مول</span>
     </button>
-    <button class="app-tab active" onclick="void(0)">
-      <img src="icons/icon-foodz.png" alt="فودز" class="app-tab-logo">
-      <span>فودز</span>
-    </button>
     <button class="app-tab" onclick="location.href='services.html'">
-      <img src="icons/icon-services.png" alt="الخدمات" class="app-tab-logo">
-      <span>الخدمات</span>
+      <img src="icons/icon-services.png?v=3" alt="سيرفيس" class="app-tab-logo">
+      <span>سيرفيس</span>
     </button>
-    <button class="app-tab" onclick="location.href='index.html'">
-      <img src="icons/icon-mart.png" alt="جمبك مارت" class="app-tab-logo">
-      <span>جمبك مارت</span>
-    </button>
-    <button class="app-tab" onclick="showToast('المزيد قريباً!')">
-      <span class="app-tab-ico" style="background:#7B1FA2;color:#fff">⋯</span>
-      <span>المزيد</span>
+    <button class="app-tab" onclick="location.href='jambak.html'">
+      <img src="icons/icon-jambak.png?v=3" alt="ماركت" class="app-tab-logo">
+      <span>ماركت</span>
     </button>
   </div>
 </div>
+<script>!function(){function u(){var e=document.querySelector(".app-sw-wrap");if(e){var h=e.getBoundingClientRect().height||e.offsetHeight;if(h>0)document.documentElement.style.setProperty("--swh",h+"px")}}window.addEventListener("load",u);window.addEventListener("resize",u);requestAnimationFrame(function(){u();setTimeout(u,80);setTimeout(u,300)});}();</script>
 
 <!-- ── HEADER ── -->
-<header class="hdr hdr-home" style="top:57px;background:linear-gradient(135deg,#E53935,#B71C1C)!important;border-bottom:none;">
+<header class="hdr hdr-home" style="top:var(--swh);background:linear-gradient(135deg,#E53935,#B71C1C)!important;border-bottom:none;">
   <div style="display:flex;flex-direction:column;justify-content:center;flex:1">
     <div style="font-size:17px;font-weight:900;color:#fff;">جمبك فودز</div>
     <div style="font-size:10px;color:rgba(255,255,255,.75);margin-top:1px;">الخرطوم · 25-40 دقيقة</div>
   </div>
   <a href="cart.html" class="hdr-cart" style="background:rgba(255,255,255,.2);" title="السلة">
-    🛒<span class="cbadge" id="cbadge">0</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg><span class="cbadge" id="cbadge">0</span>
   </a>
 </header>
 
 <!-- ── DELIVERY STRIP ── -->
 <div class="delivery-strip" style="background:#FFEBEE;color:#B71C1C;border-bottom:1px solid #FFCDD2;">
-  🍽️ <strong>توصيل طعام سريع</strong> · 25-40 دقيقة · الخرطوم وضواحيها
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg> <strong>توصيل طعام سريع</strong> · 25-40 دقيقة · الخرطوم وضواحيها
 </div>
 
 <main class="page page-home">
@@ -59,7 +56,7 @@
   <!-- ── SEARCH ── -->
   <div class="srch-wrap">
     <div class="search-wrap">
-      <span class="si">🔍</span>
+      <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
       <input type="text" placeholder='ابحث في طقة...' onfocus="showToast('البحث قريباً!')" readonly>
     </div>
   </div>
@@ -67,35 +64,35 @@
   <!-- ── FOOD CATEGORY TABS ── -->
   <div class="food-cat-row">
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#FFF3E0">🍰</div>
+      <div class="food-cat-circle" style="background:#FFF3E0"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="20" height="20"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
       <span class="food-cat-label">حلويات</span>
     </div>
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#E8F5E9">🥘</div>
+      <div class="food-cat-circle" style="background:#E8F5E9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
       <span class="food-cat-label">سوداني</span>
     </div>
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#FFF8E1">🫓</div>
+      <div class="food-cat-circle" style="background:#FFF8E1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
       <span class="food-cat-label">مصري</span>
     </div>
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#E3F2FD">🍣</div>
+      <div class="food-cat-circle" style="background:#E3F2FD"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
       <span class="food-cat-label">آسيوي</span>
     </div>
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#FCE4EC">🍕</div>
+      <div class="food-cat-circle" style="background:#FCE4EC"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
       <span class="food-cat-label">بيتزا</span>
     </div>
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#FBE9E7">🌯</div>
+      <div class="food-cat-circle" style="background:#FBE9E7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
       <span class="food-cat-label">شاورما</span>
     </div>
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#EFEBE9">☕</div>
+      <div class="food-cat-circle" style="background:#EFEBE9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
       <span class="food-cat-label">مشروبات</span>
     </div>
     <div class="food-cat-item">
-      <div class="food-cat-circle" style="background:#E8F5E9">🥗</div>
+      <div class="food-cat-circle" style="background:#E8F5E9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M17 8C8 10 5.9 16.17 3.82 19.34a1 1 0 001.66 1.14L6 20"/><path d="M17 8L11 14"/><path d="M17 8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v7a1 1 0 001 1h4"/></svg></div>
       <span class="food-cat-label">صحي</span>
     </div>
   </div>
@@ -112,20 +109,20 @@
 
   <!-- ── NEARBY RESTAURANTS ── -->
   <div class="sec-h" style="padding-top:20px;">
-    <h2>🏪 المطاعم القريبة منك</h2>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> المطاعم القريبة منك</h2>
     <button style="font-size:12px;color:var(--p2);font-weight:700;background:none;border:none;font-family:inherit;cursor:pointer;" onclick="showToast('عرض الكل')">الكل</button>
   </div>
 
   <div class="rest-list">
 
     <div class="rest-card" onclick="showToast('مامولا, قريباً!')">
-      <div class="rest-logo">🍫</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">مامولا</div>
         <div class="rest-cuisine">حلويات ومخبوزات</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 0.6 كم</span>
-          <span class="rest-rating">⭐ 4.8</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 0.6 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.8</span>
           <span class="rest-del rest-del-free">مجاني</span>
         </div>
       </div>
@@ -133,13 +130,13 @@
     </div>
 
     <div class="rest-card" onclick="showToast('البيت السوداني, قريباً!')">
-      <div class="rest-logo">🥘</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">البيت السوداني</div>
         <div class="rest-cuisine">أكل سوداني أصيل</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 1.2 كم</span>
-          <span class="rest-rating">⭐ 4.9</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 1.2 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9</span>
           <span class="rest-del rest-del-free">مجاني</span>
         </div>
       </div>
@@ -147,13 +144,13 @@
     </div>
 
     <div class="rest-card" onclick="showToast('شاورما الريان, قريباً!')">
-      <div class="rest-logo">🌯</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">شاورما الريان</div>
         <div class="rest-cuisine">شاورما وساندويتشات</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 1.8 كم</span>
-          <span class="rest-rating">⭐ 4.7</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 1.8 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.7</span>
           <span class="rest-del rest-del-free">مجاني</span>
         </div>
       </div>
@@ -161,13 +158,13 @@
     </div>
 
     <div class="rest-card" onclick="showToast('بيتزا الخرطوم, قريباً!')">
-      <div class="rest-logo">🍕</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">بيتزا الخرطوم</div>
         <div class="rest-cuisine">بيتزا وباستا</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 2.5 كم</span>
-          <span class="rest-rating">⭐ 4.6</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 2.5 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.6</span>
           <span class="rest-del rest-del-paid">200 SDG</span>
         </div>
       </div>
@@ -175,13 +172,13 @@
     </div>
 
     <div class="rest-card" onclick="showToast('قهوة الديوان, قريباً!')">
-      <div class="rest-logo">☕</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">قهوة الديوان</div>
         <div class="rest-cuisine">قهوة ومشروبات</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 0.9 كم</span>
-          <span class="rest-rating">⭐ 4.9</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 0.9 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9</span>
           <span class="rest-del rest-del-free">مجاني</span>
         </div>
       </div>
@@ -189,13 +186,13 @@
     </div>
 
     <div class="rest-card" onclick="showToast('ريفريش, قريباً!')">
-      <div class="rest-logo">🥗</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">ريفريش</div>
         <div class="rest-cuisine">أكل صحي وسلطات</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 3.1 كم</span>
-          <span class="rest-rating">⭐ 4.5</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 3.1 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.5</span>
           <span class="rest-del rest-del-free">مجاني</span>
         </div>
       </div>
@@ -203,13 +200,13 @@
     </div>
 
     <div class="rest-card" onclick="showToast('فول وطعمية الصباح, قريباً!')">
-      <div class="rest-logo">🔥</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">فول وطعمية الصباح</div>
         <div class="rest-cuisine">فول ومدمس</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 0.4 كم</span>
-          <span class="rest-rating">⭐ 4.8</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 0.4 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.8</span>
           <span class="rest-del rest-del-free">مجاني</span>
         </div>
       </div>
@@ -217,13 +214,13 @@
     </div>
 
     <div class="rest-card" onclick="showToast('كبسة الملوك, قريباً!')">
-      <div class="rest-logo">🍗</div>
+      <div class="rest-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="rest-body">
         <div class="rest-name">كبسة الملوك</div>
         <div class="rest-cuisine">كبسة ومندي</div>
         <div class="rest-meta">
-          <span class="rest-dist">📍 2.0 كم</span>
-          <span class="rest-rating">⭐ 4.7</span>
+          <span class="rest-dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> 2.0 كم</span>
+          <span class="rest-rating"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.7</span>
           <span class="rest-del rest-del-paid">150 SDG</span>
         </div>
       </div>
@@ -235,63 +232,63 @@
   <!-- ── MOST ORDERED ── -->
   <div class="dv"></div>
   <div class="sec-h">
-    <h2>🔥 الأكثر طلباً</h2>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg> الأكثر طلباً</h2>
     <button style="font-size:12px;color:var(--p2);font-weight:700;background:none;border:none;font-family:inherit;cursor:pointer;" onclick="showToast('عرض الكل')">الكل</button>
   </div>
 
   <!-- Horizontal scrollable restaurant cards -->
   <div style="display:flex;overflow-x:auto;scrollbar-width:none;padding:0 16px 16px;gap:12px;">
     <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('مامولا')">
-      <div style="height:90px;background:linear-gradient(135deg,#5D4037,#3E2723);display:flex;align-items:center;justify-content:center;font-size:44px;">🍫</div>
+      <div style="height:90px;background:linear-gradient(135deg,#5D4037,#3E2723);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div style="padding:10px;">
         <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">مامولا</div>
         <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">حلويات ومخبوزات</div>
         <div style="display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.8</span>
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.8</span>
           <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
         </div>
       </div>
     </div>
     <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('البيت السوداني')">
-      <div style="height:90px;background:linear-gradient(135deg,#388E3C,#1B5E20);display:flex;align-items:center;justify-content:center;font-size:44px;">🥘</div>
+      <div style="height:90px;background:linear-gradient(135deg,#388E3C,#1B5E20);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
       <div style="padding:10px;">
         <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">البيت السوداني</div>
         <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">أكل سوداني أصيل</div>
         <div style="display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.9</span>
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9</span>
           <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
         </div>
       </div>
     </div>
     <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('شاورما الريان')">
-      <div style="height:90px;background:linear-gradient(135deg,#E64A19,#BF360C);display:flex;align-items:center;justify-content:center;font-size:44px;">🌯</div>
+      <div style="height:90px;background:linear-gradient(135deg,#E64A19,#BF360C);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div style="padding:10px;">
         <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">شاورما الريان</div>
         <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">شاورما وساندويتشات</div>
         <div style="display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.7</span>
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.7</span>
           <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
         </div>
       </div>
     </div>
     <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('قهوة الديوان')">
-      <div style="height:90px;background:linear-gradient(135deg,#4E342E,#3E2723);display:flex;align-items:center;justify-content:center;font-size:44px;">☕</div>
+      <div style="height:90px;background:linear-gradient(135deg,#4E342E,#3E2723);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
       <div style="padding:10px;">
         <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">قهوة الديوان</div>
         <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">قهوة ومشروبات</div>
         <div style="display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.9</span>
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.9</span>
           <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
         </div>
       </div>
     </div>
     <div style="flex-shrink:0;width:160px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--sh);border:1px solid rgba(221,214,254,.4);cursor:pointer;" onclick="showToast('فول وطعمية الصباح')">
-      <div style="height:90px;background:linear-gradient(135deg,#F57F17,#E65100);display:flex;align-items:center;justify-content:center;font-size:44px;">🔥</div>
+      <div style="height:90px;background:linear-gradient(135deg,#F57F17,#E65100);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
       <div style="padding:10px;">
         <div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:2px;">فول الصباح</div>
         <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">فول ومدمس</div>
         <div style="display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:10px;font-weight:700;color:#FF6B35;">⭐ 4.8</span>
+          <span style="font-size:10px;font-weight:700;color:#FF6B35;"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.8</span>
           <span style="font-size:9px;font-weight:800;background:#E8F5E9;color:#2E7D32;padding:2px 7px;border-radius:999px;">مجاني</span>
         </div>
       </div>
@@ -300,7 +297,7 @@
 
   <!-- ── PROMO BANNER ── -->
   <div style="margin:0 16px 8px;background:linear-gradient(135deg,#FFEBEE,#FFCDD2);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;">
-    <span style="font-size:42px;">🎁</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg></span>
     <div>
       <div style="font-size:14px;font-weight:800;color:#B71C1C;">اشترك في جمبك فودز بلس</div>
       <div style="font-size:11px;color:#E53935;margin-top:2px;">توصيل مجاني غير محدود لمدة شهر</div>
@@ -313,7 +310,7 @@
 
 <!-- ── FLOATING CART BAR ── -->
 <a href="cart.html" class="cart-bar" id="cart-bar">
-  <span class="cb-ico">🛒</span>
+  <span class="cb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></span>
   <span class="cb-label">عرض السلة</span>
   <span class="cb-count" id="cb-count">0</span>
   <span class="cb-total" id="cb-total">0 SDG</span>
@@ -326,6 +323,12 @@
   </a>
   <a href="browse.html" class="bn">
     <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>تصفح
+  </a>
+  <a href="browse.html?filter=offers" class="bn-center">
+    <span class="bn-center-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      عروض
+    </span>
   </a>
   <a href="orders.html" class="bn active">
     <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>طلباتي

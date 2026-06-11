@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>جمبك — لوحة الإدارة</title>
+<title>جمبك | لوحة الإدارة</title>
 <link rel="stylesheet" href="app.css">
 <style>
   *{box-sizing:border-box}
@@ -127,7 +127,7 @@
   <aside class="sidebar">
     <div class="sb-logo">
       <div class="sb-logo-top">
-        <div class="sb-logo-ico">🛡️</div>
+        <div class="sb-logo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div>
           <div class="sb-logo-name">جمبك مارت</div>
           <div class="sb-logo-role">لوحة الإدارة</div>
@@ -136,28 +136,28 @@
     </div>
     <nav class="sb-nav">
       <a class="sb-item active" onclick="showSection('dashboard')" id="nav-dashboard">
-        <span class="si">📊</span> لوحة التحكم
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span> لوحة التحكم
       </a>
       <a class="sb-item" onclick="showSection('vendors')" id="nav-vendors">
-        <span class="si">🏪</span> التجار
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span> التجار
         <span class="sb-badge" id="pending-badge" style="display:none">0</span>
       </a>
       <a class="sb-item" onclick="showSection('products')" id="nav-products">
-        <span class="si">📦</span> المنتجات
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span> المنتجات
       </a>
       <a class="sb-item" onclick="showSection('orders')" id="nav-orders">
-        <span class="si">🛒</span> الطلبات
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></span> الطلبات
       </a>
       <a class="sb-item" onclick="showSection('settings')" id="nav-settings">
-        <span class="si">⚙️</span> الإعدادات
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span> الإعدادات
       </a>
     </nav>
     <div class="sb-bottom">
       <a href="index.html" class="sb-item" style="margin-bottom:4px">
-        <span class="si">🏠</span> العودة للتطبيق
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> العودة للتطبيق
       </a>
       <div class="sb-logout" onclick="logout()">
-        <span>🚪</span> تسجيل الخروج
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span> تسجيل الخروج
       </div>
     </div>
   </aside>
@@ -167,7 +167,7 @@
     <div class="top-bar">
       <div class="top-bar-title" id="page-title">لوحة التحكم</div>
       <div class="top-bar-right">
-        <span class="admin-pill">🛡️ الإدارة العليا</span>
+        <span class="admin-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> الإدارة العليا</span>
       </div>
     </div>
 
@@ -177,25 +177,25 @@
       <div id="section-dashboard">
         <div class="kpi-grid">
           <div class="kpi-card">
-            <div class="kpi-icon">🏪</div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
             <div class="kpi-val" id="kpi-vendors">0</div>
             <div class="kpi-label">إجمالي التجار</div>
             <div class="kpi-sub" id="kpi-pending-vendors">0 في الانتظار</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-icon">🛒</div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></div>
             <div class="kpi-val" id="kpi-orders-total">0</div>
             <div class="kpi-label">إجمالي الطلبات</div>
             <div class="kpi-sub" id="kpi-orders-today-count">0 اليوم</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-icon">💰</div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
             <div class="kpi-val" id="kpi-revenue">0</div>
             <div class="kpi-label">الإيراد الإجمالي (SDG)</div>
             <div class="kpi-sub" id="kpi-commission">عمولة: 0 SDG</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-icon">📦</div>
+            <div class="kpi-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
             <div class="kpi-val" id="kpi-products-total">0</div>
             <div class="kpi-label">إجمالي المنتجات</div>
           </div>
@@ -203,13 +203,13 @@
 
         <!-- Chart by app type -->
         <div style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:24px">
-          <div class="sec-title"><span class="sec-title-left">📊 الطلبات حسب التطبيق</span></div>
+          <div class="sec-title"><span class="sec-title-left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> الطلبات حسب التطبيق</span></div>
           <div class="chart-bars" id="app-chart"></div>
         </div>
 
         <!-- Recent vendors -->
         <div class="sec-title">
-          <span class="sec-title-left">🕐 أحدث التجار</span>
+          <span class="sec-title-left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> أحدث التجار</span>
           <button class="btn-primary" onclick="showSection('vendors')">عرض الكل</button>
         </div>
         <table class="data-table" id="recent-vendors-table">
@@ -236,7 +236,7 @@
             <option value="foodz">فودز</option>
             <option value="service">سيرفيس</option>
           </select>
-          <button class="btn-export" onclick="exportVendors()">📤 تصدير CSV</button>
+          <button class="btn-export" onclick="exportVendors()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg> تصدير CSV</button>
           <button class="btn-primary" onclick="openAddVendorModal()" style="margin-right:auto">+ إضافة تاجر</button>
         </div>
         <table class="data-table">
@@ -286,7 +286,7 @@
             <option value="delivered">مكتمل</option>
             <option value="cancelled">ملغي</option>
           </select>
-          <button class="btn-export" onclick="exportOrders()">📤 تصدير CSV</button>
+          <button class="btn-export" onclick="exportOrders()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg> تصدير CSV</button>
         </div>
         <table class="data-table">
           <thead><tr><th>رقم الطلب</th><th>الزبون</th><th>المتجر</th><th>المجموع</th><th>الحالة</th><th>التاريخ</th><th>التفاصيل</th></tr></thead>
@@ -297,7 +297,7 @@
       <!-- ── SETTINGS ── -->
       <div id="section-settings" style="display:none">
         <div class="settings-card">
-          <h3>⚙️ إعدادات المنصة</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg> إعدادات المنصة</h3>
           <div class="setting-row">
             <div><div class="setting-label">رسوم التوصيل الافتراضية</div><div class="setting-sub">تطبق على الطلبات التي لا تحدد رسوم</div></div>
             <div class="setting-val"><input class="num-input" type="number" id="s-delivery-fee" value="500">SDG</div>
@@ -318,7 +318,7 @@
         </div>
 
         <div class="settings-card">
-          <h3>🔐 تغيير كلمة مرور الأدمن</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> تغيير كلمة مرور الأدمن</h3>
           <div class="mfi-row">
             <div class="mfg"><label class="mfl">كلمة المرور الحالية</label><input class="mfi" type="password" id="s-old-pass"></div>
             <div class="mfg"><label class="mfl">كلمة المرور الجديدة</label><input class="mfi" type="password" id="s-new-pass"></div>
@@ -327,9 +327,9 @@
         </div>
 
         <div class="settings-card">
-          <h3>🔧 بيانات تجريبية</h3>
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> بيانات تجريبية</h3>
           <p style="font-size:13px;color:#888;margin-bottom:14px">أنشئ حسابات للمتاجر الموجودة في التطبيق (7 متاجر + 8 مطاعم + 6 خدمات). رمز PIN الافتراضي: 1234</p>
-          <button class="btn-primary" onclick="seedDemoVendors()">🚀 تفعيل البيانات التجريبية</button>
+          <button class="btn-primary" onclick="seedDemoVendors()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> تفعيل البيانات التجريبية</button>
         </div>
       </div>
 
@@ -342,7 +342,7 @@
   <div class="modal-box">
     <div class="modal-title">
       <span id="v-modal-title">إضافة تاجر جديد</span>
-      <button class="modal-close" onclick="closeVendorModal()">✕</button>
+      <button class="modal-close" onclick="closeVendorModal()">&times;</button>
     </div>
     <div class="mfi-row">
       <div class="mfg"><label class="mfl">اسم المتجر</label><input class="mfi" type="text" id="vm-name"></div>
@@ -350,11 +350,11 @@
     </div>
     <div class="mfg"><label class="mfl">نوع التطبيق</label>
       <div class="app-type-grid">
-        <button class="app-type-btn" data-type="mart" onclick="selectVendorType(this)"><span class="at-ico">🛒</span>مارت</button>
-        <button class="app-type-btn" data-type="market" onclick="selectVendorType(this)"><span class="at-ico">🏪</span>ماركت</button>
-        <button class="app-type-btn" data-type="hyper" onclick="selectVendorType(this)"><span class="at-ico">🏬</span>هايبر</button>
-        <button class="app-type-btn" data-type="foodz" onclick="selectVendorType(this)"><span class="at-ico">🍕</span>فودز</button>
-        <button class="app-type-btn" data-type="service" onclick="selectVendorType(this)"><span class="at-ico">🛠️</span>سيرفيس</button>
+        <button class="app-type-btn" data-type="mart" onclick="selectVendorType(this)"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></span>مارت</button>
+        <button class="app-type-btn" data-type="market" onclick="selectVendorType(this)"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>ماركت</button>
+        <button class="app-type-btn" data-type="hyper" onclick="selectVendorType(this)"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>هايبر</button>
+        <button class="app-type-btn" data-type="foodz" onclick="selectVendorType(this)"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></span>فودز</button>
+        <button class="app-type-btn" data-type="service" onclick="selectVendorType(this)"><span class="at-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>سيرفيس</button>
         <button class="app-type-btn" data-type="market" onclick="selectVendorType(this)" style="display:none"></button>
       </div>
     </div>
@@ -370,7 +370,7 @@
         <option value="suspended">موقوف</option>
       </select>
     </div>
-    <button class="btn-save" onclick="saveVendor()">حفظ ✓</button>
+    <button class="btn-save" onclick="saveVendor()">حفظ</button>
   </div>
 </div>
 
@@ -379,7 +379,7 @@
   <div class="modal-box">
     <div class="modal-title">
       <span>تفاصيل الطلب</span>
-      <button class="modal-close" onclick="closeOrderModal()">✕</button>
+      <button class="modal-close" onclick="closeOrderModal()">&times;</button>
     </div>
     <div id="order-modal-content"></div>
   </div>
@@ -498,7 +498,7 @@ function renderVendors(search='') {
   if (search) vendors = vendors.filter(v=>v.storeName.includes(search)||v.phone.includes(search));
   const tbody = document.getElementById('vendors-tbody');
   tbody.innerHTML = vendors.length ? vendors.map(v => vendorRow(v, true)).join('') :
-    '<tr><td colspan="7" class="empty-state"><div class="ei">🏪</div><p>لا يوجد تجار</p></td></tr>';
+    '<tr><td colspan="7" class="empty-state"><div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div><p>لا يوجد تجار</p></td></tr>';
 }
 
 function filterVendors(search='') {
@@ -632,7 +632,7 @@ function renderAdminProducts(search='') {
   const vendors = DB.getArr('jambak_vendors');
   const tbody = document.getElementById('admin-products-tbody');
   if (!prods.length) {
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><div class="ei">📦</div><p>لا توجد منتجات</p></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div><p>لا توجد منتجات</p></td></tr>';
     return;
   }
   tbody.innerHTML = prods.map(p => {
@@ -679,7 +679,7 @@ function renderAllOrders() {
   const vendors = DB.getArr('jambak_vendors');
   const tbody = document.getElementById('all-orders-tbody');
   if (!orders.length) {
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><div class="ei">📭</div><p>لا توجد طلبات</p></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><div class="ei"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div><p>لا توجد طلبات</p></td></tr>';
     return;
   }
   tbody.innerHTML = orders.map(o => {
@@ -764,7 +764,7 @@ async function changeAdminPass() {
    Seed Demo Vendors
 ════════════════════════════════ */
 async function seedDemoVendors() {
-  if (!confirm('سيضيف هذا الزر متاجر تجريبية — المتاجر الموجودة لن تُحذف. هل تريد المتابعة؟')) return;
+  if (!confirm('سيضيف هذا الزر متاجر تجريبية: المتاجر الموجودة لن تُحذف. هل تريد المتابعة؟')) return;
   const pinHash = await hashStr('1234');
   const existing = DB.getArr('jambak_vendors').map(v=>v.storeName);
 

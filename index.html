@@ -4,53 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>جمبك مارت, توصيل سريع في الخرطوم</title>
-<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="app.css?v=4">
 </head>
 <body>
 
 <!-- ── APP SWITCHER ── -->
 <div class="app-sw-wrap">
   <div class="app-sw">
-    <button class="app-tab" onclick="location.href='jambak.html'">
-      <img src="icons/icon-jambak.png" alt="جمبك" class="app-tab-logo">
-      <span>جمبك</span>
+    <button class="app-tab app-tab-featured active" onclick="void(0)">
+      <img src="icons/icon-mart.png?v=3" alt="مارت" class="app-tab-logo">
+      <span>مارت</span>
+    </button>
+    <button class="app-tab app-tab-featured" onclick="location.href='taga.html'">
+      <img src="icons/icon-foodz.png?v=3" alt="فود" class="app-tab-logo">
+      <span>فود</span>
     </button>
     <button class="app-tab" onclick="location.href='hypermall.html'">
-      <img src="icons/icon-hypermall.png" alt="هايبر مول" class="app-tab-logo">
+      <img src="icons/icon-hypermall.png?v=3" alt="هايبر مول" class="app-tab-logo">
       <span>هايبر مول</span>
     </button>
-    <button class="app-tab" onclick="location.href='taga.html'">
-      <img src="icons/icon-foodz.png" alt="فودز" class="app-tab-logo">
-      <span>فودز</span>
-    </button>
     <button class="app-tab" onclick="location.href='services.html'">
-      <img src="icons/icon-services.png" alt="الخدمات" class="app-tab-logo">
-      <span>الخدمات</span>
+      <img src="icons/icon-services.png?v=3" alt="سيرفيس" class="app-tab-logo">
+      <span>سيرفيس</span>
     </button>
-    <button class="app-tab active" onclick="void(0)">
-      <img src="icons/icon-mart.png" alt="جمبك مارت" class="app-tab-logo">
-      <span>جمبك مارت</span>
-    </button>
-    <button class="app-tab app-tab-more" onclick="showToast('المزيد قريباً!')">
-      <span class="app-tab-ico" style="background:#7B1FA2;color:#fff">⋯</span>
-      <span>المزيد</span>
+    <button class="app-tab" onclick="location.href='jambak.html'">
+      <img src="icons/icon-jambak.png?v=3" alt="ماركت" class="app-tab-logo">
+      <span>ماركت</span>
     </button>
   </div>
 </div>
+<script>!function(){function u(){var e=document.querySelector(".app-sw-wrap");if(e){var h=e.getBoundingClientRect().height||e.offsetHeight;if(h>0)document.documentElement.style.setProperty("--swh",h+"px")}}window.addEventListener("load",u);window.addEventListener("resize",u);requestAnimationFrame(function(){u();setTimeout(u,80);setTimeout(u,300)});}();</script>
 
 <!-- ── HEADER ── -->
 <header class="hdr hdr-home">
   <button class="hdr-loc" onclick="showLocPicker()">
-    📍 <span id="loc-label">الخرطوم بحري</span> ▾
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span id="loc-label">الخرطوم بحري</span> ▾
   </button>
   <a href="cart.html" class="hdr-cart" title="السلة">
-    🛒<span class="cbadge" id="cbadge">0</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg><span class="cbadge" id="cbadge">0</span>
   </a>
 </header>
 
 <!-- ── DELIVERY STRIP ── -->
 <div class="delivery-strip">
-  ⚡ <strong>توصيل خلال 25 دقيقة</strong> · بقالة، خضار، لحوم وأكثر
+  <span class="ds-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    25 دقيقة
+  </span>
+  <span class="ds-sep">·</span>
+  <span>توصيل سريع للخرطوم</span>
+  <span class="ds-sep">·</span>
+  <span style="color:var(--muted)">بقالة، خضار، لحوم</span>
 </div>
 
 <main class="page page-home">
@@ -58,7 +62,7 @@
   <!-- ── SEARCH ── -->
   <div class="srch-wrap">
     <div class="search-wrap">
-      <span class="si">🔍</span>
+      <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
       <input type="text" placeholder='ابحث عن "خبز، حليب، أرز..."' onfocus="location.href='browse.html'" readonly>
     </div>
   </div>
@@ -66,47 +70,47 @@
   <!-- ── CATEGORY ICONS (horizontal scroll) ── -->
   <div class="cat-tabs">
     <button class="cat-tab cat-tab-active" onclick="location.href='browse.html'">
-      <span class="ct-ico" style="background:#F3E5F5">🛒</span>
+      <span class="ct-ico" style="background:#F3E5F5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></span>
       <span>الكل</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=produce'">
-      <span class="ct-ico" style="background:#E8F5E9">🥦</span>
+      <span class="ct-ico" style="background:#E8F5E9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M17 8C8 10 5.9 16.17 3.82 19.34a1 1 0 001.66 1.14L6 20"/><path d="M17 8L11 14"/><path d="M17 8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v7a1 1 0 001 1h4"/></svg></span>
       <span>خضار</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=meat'">
-      <span class="ct-ico" style="background:#FCE4EC">🥩</span>
+      <span class="ct-ico" style="background:#FCE4EC"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></span>
       <span>لحوم</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=dairy'">
-      <span class="ct-ico" style="background:#E3F2FD">🥛</span>
+      <span class="ct-ico" style="background:#E3F2FD"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></span>
       <span>ألبان</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=grocery'">
-      <span class="ct-ico" style="background:#FFF8E1">🍚</span>
+      <span class="ct-ico" style="background:#FFF8E1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
       <span>بقالة</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=drinks'">
-      <span class="ct-ico" style="background:#E0F7FA">🧃</span>
+      <span class="ct-ico" style="background:#E0F7FA"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
       <span>مشروبات</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=snacks'">
-      <span class="ct-ico" style="background:#FFF3E0">🍫</span>
+      <span class="ct-ico" style="background:#FFF3E0"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="20" height="20"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
       <span>حلويات</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=bak'">
-      <span class="ct-ico" style="background:#FFF3E0">🍞</span>
+      <span class="ct-ico" style="background:#FFF3E0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
       <span>مخبوزات</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=frozen'">
-      <span class="ct-ico" style="background:#E1F5FE">❄️</span>
+      <span class="ct-ico" style="background:#E1F5FE"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg></span>
       <span>مجمدات</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=care'">
-      <span class="ct-ico" style="background:#FDE8F0">🧴</span>
+      <span class="ct-ico" style="background:#FDE8F0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></span>
       <span>عناية</span>
     </button>
     <button class="cat-tab" onclick="location.href='browse.html?cat=house'">
-      <span class="ct-ico" style="background:#E8EAF6">🧹</span>
+      <span class="ct-ico" style="background:#E8EAF6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>
       <span>منزليات</span>
     </button>
   </div>
@@ -136,39 +140,39 @@
     <a href="browse.html?filter=offers" class="ccard ccard-wide" style="background:linear-gradient(135deg,#FF6B35,#e8500a)">
       <div class="ccard-label">عروض اليوم</div>
       <div class="ccard-sub">خصومات تصل لـ 20%</div>
-      <div class="ccard-badge">🔥</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
     </a>
     <a href="browse.html?cat=produce" class="ccard" style="background:linear-gradient(135deg,#43A047,#2E7D32)">
       <div class="ccard-label">خضار وفاكهة</div>
-      <div class="ccard-badge">🥦</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M17 8C8 10 5.9 16.17 3.82 19.34a1 1 0 001.66 1.14L6 20"/><path d="M17 8L11 14"/><path d="M17 8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v7a1 1 0 001 1h4"/></svg></div>
     </a>
     <a href="browse.html?cat=meat" class="ccard" style="background:linear-gradient(135deg,#E53935,#B71C1C)">
       <div class="ccard-label">لحوم وسمك</div>
-      <div class="ccard-badge">🥩</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
     </a>
     <a href="browse.html?cat=dairy" class="ccard" style="background:linear-gradient(135deg,#1E88E5,#1565C0)">
       <div class="ccard-label">ألبان وبيض</div>
-      <div class="ccard-badge">🥛</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
     </a>
     <a href="browse.html?cat=drinks" class="ccard" style="background:linear-gradient(135deg,#00ACC1,#006064)">
       <div class="ccard-label">مشروبات</div>
-      <div class="ccard-badge">🧃</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
     </a>
     <a href="browse.html?cat=snacks" class="ccard" style="background:linear-gradient(135deg,#FB8C00,#E65100)">
       <div class="ccard-label">حلويات وسناكس</div>
-      <div class="ccard-badge">🍫</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
     </a>
     <a href="browse.html?cat=frozen" class="ccard" style="background:linear-gradient(135deg,#26C6DA,#0097A7)">
       <div class="ccard-label">مجمدات</div>
-      <div class="ccard-badge">❄️</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg></div>
     </a>
     <a href="browse.html?cat=care" class="ccard" style="background:linear-gradient(135deg,#AB47BC,#6A1B9A)">
       <div class="ccard-label">عناية شخصية</div>
-      <div class="ccard-badge">🧴</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
     </a>
     <a href="browse.html?cat=house" class="ccard" style="background:linear-gradient(135deg,#5C6BC0,#283593)">
       <div class="ccard-label">منزليات</div>
-      <div class="ccard-badge">🧹</div>
+      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
     </a>
   </div>
 
@@ -181,7 +185,7 @@
 
   <!-- ── TODAY'S OFFERS ── -->
   <div class="sec-h">
-    <h2>🔥 عروض اليوم</h2>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg> عروض اليوم</h2>
     <a href="browse.html?filter=offers">الكل</a>
   </div>
   <div class="pscroll" id="offers-scroll"></div>
@@ -190,7 +194,7 @@
 
   <!-- ── NEARBY STORES ── -->
   <div class="sec-h">
-    <h2>🏪 المتاجر القريبة</h2>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> المتاجر القريبة</h2>
     <a href="stores.html">الكل</a>
   </div>
   <div id="stores-list"></div>
@@ -199,7 +203,7 @@
 
   <!-- ── MOST POPULAR ── -->
   <div class="sec-h">
-    <h2>⭐ الأكثر طلباً</h2>
+    <h2><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="20" height="20"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> الأكثر طلباً</h2>
     <a href="browse.html">عرض الكل</a>
   </div>
   <div class="pgrid" id="popular-grid"></div>
@@ -208,7 +212,7 @@
 
   <!-- ── NEW ARRIVALS ── -->
   <div class="sec-h">
-    <h2>🆕 وصل حديثاً</h2>
+    <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> وصل حديثاً</h2>
     <a href="browse.html">عرض الكل</a>
   </div>
   <div class="pscroll" id="new-scroll"></div>
@@ -218,7 +222,7 @@
 
 <!-- ── FLOATING CART BAR ── -->
 <a href="cart.html" class="cart-bar" id="cart-bar">
-  <span class="cb-ico">🛒</span>
+  <span class="cb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></span>
   <span class="cb-label">عرض السلة</span>
   <span class="cb-count" id="cb-count">0</span>
   <span class="cb-total" id="cb-total">0 SDG</span>
@@ -232,6 +236,12 @@
   <a href="browse.html" class="bn" data-page="browse.html">
     <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>تصفح
   </a>
+  <a href="browse.html?filter=offers" class="bn-center">
+    <span class="bn-center-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      عروض
+    </span>
+  </a>
   <a href="orders.html" class="bn" data-page="orders.html">
     <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span>طلباتي
     <span class="bn-dot" id="bn-orders"></span>
@@ -244,7 +254,7 @@
 <!-- ── LOCATION PICKER ── -->
 <div class="ov-back" id="loc-back" onclick="hideLocPicker()"></div>
 <div class="ov-sheet" id="loc-sheet">
-  <h3 style="font-size:17px;font-weight:800;margin-bottom:16px;color:var(--tx)">📍 اختر منطقتك</h3>
+  <h3 style="font-size:17px;font-weight:800;margin-bottom:16px;color:var(--tx)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> اختر منطقتك</h3>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
     <button class="topt" onclick="setLoc('الخرطوم')"><strong>الخرطوم</strong></button>
     <button class="topt" onclick="setLoc('الخرطوم بحري')"><strong>الخرطوم بحري</strong></button>
