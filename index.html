@@ -76,28 +76,6 @@
     </button>
   </div>
 
-  <!-- ── SLIDESHOW ── -->
-  <div class="hero-slider" id="hero-slider">
-    <div class="hero-slides" id="hero-slides">
-      <a href="stores.html" class="hero-slide">
-        <img src="banners/banner-mart.jpg" alt="جمبك مارت">
-      </a>
-      <a href="browse.html?filter=offers" class="hero-slide">
-        <img src="banners/banner-jambak.jpg" alt="جمبك">
-      </a>
-      <a href="browse.html" class="hero-slide">
-        <img src="banners/banner-offers.png" alt="عروض اليوم">
-      </a>
-    </div>
-    <div class="hero-dots" id="hero-dots">
-      <span class="hdot active"></span>
-      <span class="hdot"></span>
-      <span class="hdot"></span>
-    </div>
-  </div>
-
-  <div class="dv"></div>
-
   <!-- ── TODAY'S OFFERS ── -->
   <div class="sec-h">
     <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg> عروض اليوم</h2>
@@ -194,26 +172,6 @@
       ['meat','frozen','care','produce'].includes(p.cat)
     ).slice(0, 8));
 
-    // Slideshow — auto-play 3 slides
-    const totalSlides = 3;
-    let slide = 0;
-    const slides = document.getElementById('hero-slides');
-    const dots = document.querySelectorAll('.hdot');
-    function goSlide(n) {
-      slide = (n + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(${slide * 100}%)`;
-      dots.forEach((d,i) => d.classList.toggle('active', i === slide));
-    }
-    dots.forEach((d,i) => d.addEventListener('click', () => goSlide(i)));
-    const autoPlay = setInterval(() => goSlide(slide + 1), 3500);
-
-    // Touch swipe
-    let startX = 0;
-    slides.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
-    slides.addEventListener('touchend', e => {
-      const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) { clearInterval(autoPlay); goSlide(dx > 0 ? slide - 1 : slide + 1); }
-    }, {passive:true});
   });
 
   function showLocPicker() {
