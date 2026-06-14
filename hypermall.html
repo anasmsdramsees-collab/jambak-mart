@@ -35,30 +35,16 @@
 
 <main class="page page-home" style="padding-top:115px">
 
-  <div class="jm-promo">
-    <div>
-      <div class="jm-promo-title">عروض ما بتنتهي 🔥</div>
-      <div class="jm-promo-sub">أجهزة وإلكترونيات بأفضل الأسعار</div>
-      <a href="browse.html?filter=offers" class="jm-promo-btn">اطلب هسه</a>
+  <div class="jm-slider" id="hm-slider">
+    <div class="jm-slides" id="hm-slides">
+      <a href="hypermall.html" class="jm-slide"><img src="banners/banner-new-hypermall-mart-1.png" alt="هايبر مول ومارت"></a>
+      <a href="hypermall.html" class="jm-slide"><img src="banners/banner-new-hypermall-mart-2.png" alt="هايبر مول ومارت"></a>
+      <a href="jambak.html" class="jm-slide"><img src="banners/banner-new-market-hypermall.png" alt="ماركت وهايبر مول"></a>
     </div>
-    <div style="font-size:52px;opacity:0.9">📱</div>
-  </div>
-
-  <!-- ── SEARCH ── -->
-  <div class="srch-wrap">
-    <div class="search-wrap">
-      <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-      <input type="text" placeholder='ابحث في هايبر مول...' onfocus="showToast('البحث قريباً!')" readonly>
-    </div>
-  </div>
-
-  <!-- ── HERO BANNER ── -->
-  <div style="position:relative;margin:0 0 4px;">
-    <img src="banners/banner-hypermall.jpg" alt="هايبر مول" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
-    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(204,85,0,.88),transparent);padding:20px 16px 16px;color:#fff;">
-      <div style="font-size:18px;font-weight:900;">خصومات تصل إلى 80%</div>
-      <div style="font-size:12px;opacity:.85;margin-top:4px;">على آلاف المنتجات في هايبر مول</div>
-      <a href="#categories" style="display:inline-block;margin-top:12px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:8px 22px;font-family:inherit;font-size:13px;font-weight:800;text-decoration:none;">تصفح العروض ↓</a>
+    <div class="jm-sdots" id="hm-sdots">
+      <span class="jm-dot active"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
     </div>
   </div>
 
@@ -197,6 +183,24 @@
   document.addEventListener('DOMContentLoaded', () => {
     renderScroll('new-scroll', PRODUCTS.slice(0, 8));
     renderGrid('flash-grid', PRODUCTS.filter(p => p.discount > 0).slice(0, 6));
+
+    // Banner slideshow
+    const total = 3, slides = document.getElementById('hm-slides');
+    const dots = document.querySelectorAll('#hm-sdots .jm-dot');
+    let cur = 0;
+    function goTo(n) {
+      cur = (n + total) % total;
+      slides.style.transform = `translateX(${cur * 100}%)`;
+      dots.forEach((d,i) => d.classList.toggle('active', i === cur));
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => goTo(i)));
+    const timer = setInterval(() => goTo(cur + 1), 3500);
+    let sx = 0;
+    slides.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+    slides.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) { clearInterval(timer); goTo(dx > 0 ? cur - 1 : cur + 1); }
+    }, {passive:true});
   });
 
   // Flash deal countdown
