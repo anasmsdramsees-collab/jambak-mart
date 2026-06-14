@@ -3,30 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>جمبك</title>
+<title>جمبك مارت</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --p1:#5514BE;
-  --p2:#6B20D4;
-  --p3:#8B3AED;
-  --acc:#FF8C00;
+  --p1:#FF8C00;
+  --p2:#E07800;
+  --p3:#FFB347;
+  --p4:#FFF4E0;
+  --acc:#5514BE;
   --tx:#1A1A2E;
-  --tx2:#44426E;
-  --muted:#9490B5;
-  --bdr:#EEEAF8;
+  --tx2:#3D3D5C;
+  --muted:#9494B8;
+  --bdr:#F0ECE0;
   --r:16px;--r2:20px;--r3:28px;
   --bnh:68px;
   --sh:0 2px 12px rgba(0,0,0,0.07);
-  --sh2:0 6px 28px rgba(59,15,140,0.14);
+  --sh2:0 6px 28px rgba(255,140,0,0.18);
   --trans:all 0.25s cubic-bezier(0.4,0,0.2,1);
 }
 html{font-size:16px}
 body{
   font-family:'Cairo',sans-serif;direction:rtl;
-  background:#fff;color:var(--tx);
+  background:#FAFAFA;color:var(--tx);
   min-height:100vh;
   padding-bottom:calc(var(--bnh) + 12px);
   overscroll-behavior-y:none;
@@ -35,11 +36,11 @@ a{text-decoration:none;color:inherit}
 ::-webkit-scrollbar{display:none}
 
 /* ══════════════════════
-   SPLASH — solid purple
+   SPLASH
 ══════════════════════ */
 #splash{
   position:fixed;inset:0;z-index:999;
-  background:#5514BE;
+  background:#FF8C00;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   transition:opacity 0.5s ease, transform 0.6s cubic-bezier(0.4,0,0.2,1);
 }
@@ -48,8 +49,8 @@ a{text-decoration:none;color:inherit}
 .spl-logo{
   width:120px;height:120px;border-radius:32px;
   object-fit:contain;background:#fff;padding:12px;
-  box-shadow:0 24px 64px rgba(0,0,0,0.35);
-  border:2px solid rgba(255,255,255,0.4);
+  box-shadow:0 24px 64px rgba(0,0,0,0.22);
+  border:2px solid rgba(255,255,255,0.5);
   opacity:0;transform:scale(0.65);
   animation:spl-in 0.55s cubic-bezier(0.34,1.56,0.64,1) 0.15s forwards;
 }
@@ -89,16 +90,15 @@ a{text-decoration:none;color:inherit}
 
 /* ─── HERO ─── */
 .hm-hero{
-  background:linear-gradient(170deg,#220878 0%,#5514BE 55%,#6B20D4 100%);
-  padding:max(50px,env(safe-area-inset-top,18px)) 20px 36px;
+  background:linear-gradient(160deg,#CC6A00 0%,#FF8C00 55%,#FFB347 100%);
+  padding:max(52px,env(safe-area-inset-top,18px)) 20px 48px;
   display:flex;flex-direction:column;align-items:center;
   position:relative;overflow:hidden;
 }
-/* subtle glow only — no big circles */
 .hm-hero::after{
-  content:'';position:absolute;bottom:-80px;right:-60px;
-  width:220px;height:220px;
-  background:radial-gradient(circle,rgba(124,58,237,0.22) 0%,transparent 70%);
+  content:'';position:absolute;bottom:-80px;left:-50px;
+  width:240px;height:240px;
+  background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 70%);
   border-radius:50%;pointer-events:none;
 }
 .hm-hero-top{
@@ -107,8 +107,8 @@ a{text-decoration:none;color:inherit}
 }
 .hm-cart-btn{
   width:40px;height:40px;border-radius:14px;
-  background:rgba(255,255,255,0.15);
-  border:1px solid rgba(255,255,255,0.22);
+  background:rgba(255,255,255,0.20);
+  border:1px solid rgba(255,255,255,0.30);
   display:flex;align-items:center;justify-content:center;color:#fff;
 }
 .hm-logo-wrap{
@@ -116,91 +116,109 @@ a{text-decoration:none;color:inherit}
   display:flex;flex-direction:column;align-items:center;gap:12px;
 }
 .hm-logo-img{
-  width:120px;height:120px;border-radius:30px;
+  width:110px;height:110px;border-radius:28px;
   object-fit:contain;background:#fff;padding:10px;
-  box-shadow:0 16px 48px rgba(0,0,0,0.30),0 0 0 2px rgba(255,255,255,0.4);
+  box-shadow:0 16px 48px rgba(0,0,0,0.20),0 0 0 2px rgba(255,255,255,0.45);
 }
 .hm-logo-tag{
   font-size:14px;font-weight:700;
-  color:rgba(255,255,255,0.90);
-  text-shadow:0 1px 8px rgba(0,0,0,0.25);
+  color:rgba(255,255,255,0.95);
+  text-shadow:0 1px 6px rgba(0,0,0,0.18);
 }
 .hm-loc-pill{
   display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,0.16);
-  border:1.5px solid rgba(255,255,255,0.30);
+  background:rgba(255,255,255,0.20);
+  border:1.5px solid rgba(255,255,255,0.35);
   border-radius:999px;padding:7px 16px;
-  font-size:12px;font-weight:800;
-  color:#fff;
-  cursor:pointer;
-  text-shadow:0 1px 4px rgba(0,0,0,0.20);
+  font-size:12px;font-weight:800;color:#fff;cursor:pointer;
 }
 
-/* ─── APPS ─── */
-.hm-apps-wrap{padding:20px 16px 8px;background:#fff}
-.hm-apps-big{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.hm-apps-small{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+/* ─── SEARCH (floats below hero) ─── */
+.hm-search-wrap{
+  margin:0 16px;
+  margin-top:-22px;
+  position:relative;z-index:10;
+}
+.hm-search-wrap input{
+  width:100%;height:50px;
+  background:#fff;
+  border:none;
+  border-radius:16px;
+  padding:0 48px 0 16px;
+  font-family:'Cairo',sans-serif;font-size:14px;color:var(--tx);
+  outline:none;
+  box-shadow:0 8px 28px rgba(0,0,0,0.13);
+}
+.hm-search-wrap input::placeholder{color:var(--muted)}
+.hm-search-ico{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  color:var(--muted);pointer-events:none;
+}
 
-.hm-app-big{
-  background:#fff;border:1.5px solid #EEEAF8;border-radius:24px;
-  padding:20px 14px 16px;
+/* ─── CATEGORIES ─── */
+.hm-cats-wrap{padding:24px 16px 8px}
+.hm-sec-title{
+  font-size:15px;font-weight:900;color:var(--tx);
+  margin-bottom:14px;display:flex;align-items:center;gap:7px;
+}
+.hm-sec-title::before{
+  content:'';display:block;width:4px;height:18px;
+  background:var(--p1);border-radius:4px;
+}
+
+.hm-cats-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.hm-cat{
+  background:#fff;
+  border:1.5px solid #F0ECE0;
+  border-radius:20px;
+  padding:20px 14px 18px;
   display:flex;flex-direction:column;align-items:center;gap:10px;
-  box-shadow:0 4px 20px rgba(59,15,140,0.09);
-  transition:var(--trans);position:relative;overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  transition:var(--trans);
+  position:relative;overflow:hidden;
+  cursor:pointer;
 }
-.hm-app-big::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:24px 24px 0 0;
+.hm-cat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--p1);
+  border-radius:20px 20px 0 0;
 }
-.hm-app-big-mart::before{background:linear-gradient(90deg,#5514BE,#8B3AED)}
-.hm-app-big-food::before{background:linear-gradient(90deg,#E53935,#FF6B35)}
-.hm-app-big:active{transform:scale(0.96)}
-.hm-app-big-icon{
-  width:68px;height:68px;border-radius:18px;object-fit:cover;
-  box-shadow:0 4px 14px rgba(0,0,0,0.12);
-  border:1.5px solid rgba(255,255,255,0.8);
+.hm-cat:active{transform:scale(0.96)}
+.hm-cat-icon{
+  width:64px;height:64px;border-radius:18px;
+  object-fit:cover;
+  box-shadow:0 3px 12px rgba(0,0,0,0.09);
 }
-.hm-app-big-name{font-size:14px;font-weight:900;color:#1A1A2E;text-align:center}
-.hm-app-big-eta{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;white-space:nowrap}
-.hm-app-big-mart .hm-app-big-eta{background:#F3EEFF;color:#5514BE}
-.hm-app-big-food .hm-app-big-eta{background:#FFF8EE;color:#FF8C00}
-
-.hm-app-sm{
-  background:#fff;border:1.5px solid #EEEAF8;border-radius:18px;
-  padding:14px 8px 12px;
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.06);transition:var(--trans);
-}
-.hm-app-sm:active{transform:scale(0.95)}
-.hm-app-sm-icon{
-  width:48px;height:48px;border-radius:14px;object-fit:cover;
-  box-shadow:0 2px 8px rgba(0,0,0,0.10);
-}
-.hm-app-sm-name{font-size:10px;font-weight:800;color:#44426E;text-align:center;line-height:1.3}
-.hm-app-sm-sub{font-size:9px;font-weight:700;color:#9490B5;text-align:center}
+.hm-cat-name{font-size:13px;font-weight:900;color:var(--tx);text-align:center}
+.hm-cat-sub{font-size:10px;font-weight:700;color:var(--muted);text-align:center;line-height:1.4}
 
 /* ─── CONTACT ─── */
 .hm-contact{
   margin:20px 16px 0;
-  background:#fff;border:1.5px solid #EEEAF8;
+  background:#fff;border:1.5px solid #F0ECE0;
   border-radius:20px;overflow:hidden;
-  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
 .hm-contact-hdr{
-  padding:14px 18px;font-size:13px;font-weight:900;color:#1A1A2E;
-  border-bottom:1px solid #EEEAF8;
-  background:linear-gradient(135deg,rgba(85,20,190,0.04),rgba(139,58,237,0.04));
+  padding:14px 18px;font-size:13px;font-weight:900;color:var(--tx);
+  border-bottom:1px solid #F0ECE0;
+  background:linear-gradient(135deg,rgba(255,140,0,0.05),rgba(255,179,71,0.03));
 }
 .hm-contact-row{
   display:flex;align-items:center;gap:12px;padding:13px 18px;
-  border-bottom:1px solid #EEEAF8;transition:var(--trans);
+  border-bottom:1px solid #F0ECE0;transition:var(--trans);
 }
 .hm-contact-row:last-child{border-bottom:none}
-.hm-contact-row:active{background:rgba(59,15,140,0.03)}
-.hm-cico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
-.hm-cico-wa,.hm-cico-ph,.hm-cico-em{background:#F8F8F8}
-.hm-clabel{font-size:10px;color:#9490B5;font-weight:700}
-.hm-cval{font-size:13px;font-weight:800;color:#1A1A2E;direction:ltr;text-align:right;margin-top:1px}
-.hm-chev{color:#9490B5}
+.hm-contact-row:active{background:rgba(255,140,0,0.04)}
+.hm-cico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;background:#F8F8F8}
+.hm-clabel{font-size:10px;color:var(--muted);font-weight:700}
+.hm-cval{font-size:13px;font-weight:800;color:var(--tx);direction:ltr;text-align:right;margin-top:1px}
+.hm-chev{color:var(--muted)}
 
 /* ─── BOTTOM NAV ─── */
 .bnav{
@@ -212,23 +230,23 @@ a{text-decoration:none;color:inherit}
   backdrop-filter:blur(20px) saturate(1.8);
   -webkit-backdrop-filter:blur(20px) saturate(1.8);
   border-top:1px solid rgba(0,0,0,0.06);
-  box-shadow:0 -2px 14px rgba(59,15,140,0.07);
+  box-shadow:0 -2px 14px rgba(0,0,0,0.06);
   display:flex;z-index:100;
   -webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);
 }
 .bn{
   flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:3px;font-size:10px;font-weight:700;color:#9490B5;
+  gap:3px;font-size:10px;font-weight:700;color:#9494B8;
   text-decoration:none;padding:8px 0 max(8px,env(safe-area-inset-bottom));
   transition:var(--trans);position:relative;
 }
-.bn.active{color:#5514BE}
+.bn.active{color:var(--p1)}
 .bn.active::before{
   content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:28px;height:3px;background:#5514BE;border-radius:0 0 6px 6px;
+  width:28px;height:3px;background:var(--p1);border-radius:0 0 6px 6px;
 }
 .bn .ico svg{stroke:currentColor}
-.bn.active .ico svg{stroke:#5514BE}
+.bn.active .ico svg{stroke:var(--p1)}
 
 @media(min-width:600px){
   body{max-width:540px;margin:0 auto}
@@ -240,7 +258,7 @@ a{text-decoration:none;color:inherit}
 
 <!-- SPLASH -->
 <div id="splash">
-  <img src="icons/logo.jpg" alt="جمبك" class="spl-logo">
+  <img src="icons/logo.jpg" alt="جمبك مارت" class="spl-logo">
   <div class="spl-tag">
     <div class="spl-word">بتلقانا</div>
     <div class="spl-dots"><span></span><span></span><span></span></div>
@@ -258,7 +276,7 @@ a{text-decoration:none;color:inherit}
       </a>
     </div>
     <div class="hm-logo-wrap">
-      <img src="icons/logo.jpg" alt="جمبك" class="hm-logo-img">
+      <img src="icons/logo.jpg" alt="جمبك مارت" class="hm-logo-img">
       <div class="hm-logo-tag">كل احتياجاتك في مكان واحد</div>
       <div class="hm-loc-pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -267,44 +285,57 @@ a{text-decoration:none;color:inherit}
     </div>
   </div>
 
-  <!-- APPS -->
-  <div class="hm-apps-wrap">
-    <div class="hm-apps-big">
-      <a href="index.html" class="hm-app-big hm-app-big-mart">
-        <img src="icons/icon-mart.png?v=3" alt="مارت" class="hm-app-big-icon">
-        <div class="hm-app-big-name">حاجات البيت</div>
-        <div class="hm-app-big-eta">🛒 25 دقيقة</div>
+  <!-- SEARCH -->
+  <div class="hm-search-wrap">
+    <input type="text" placeholder="ابحث في جمبك مارت...">
+    <span class="hm-search-ico">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </span>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="hm-cats-wrap">
+    <div class="hm-sec-title">اختار قسمك</div>
+    <div class="hm-cats-grid">
+
+      <a href="index.html" class="hm-cat">
+        <img src="icons/icon-mart.png?v=3" alt="حاجات البيت" class="hm-cat-icon">
+        <div class="hm-cat-name">حاجات البيت</div>
+        <div class="hm-cat-sub">بقالة · خضار · منظفات</div>
       </a>
-      <a href="taga.html" class="hm-app-big hm-app-big-food">
-        <img src="icons/icon-foodz.png?v=3" alt="مطاعم" class="hm-app-big-icon">
-        <div class="hm-app-big-name">مطاعم</div>
-        <div class="hm-app-big-eta">🍕 30 دقيقة</div>
+
+      <a href="taga.html" class="hm-cat">
+        <img src="icons/icon-foodz.png?v=3" alt="مطاعم" class="hm-cat-icon">
+        <div class="hm-cat-name">مطاعم</div>
+        <div class="hm-cat-sub">وجبات · مشروبات · حلويات</div>
       </a>
-    </div>
-    <div class="hm-apps-small">
-      <a href="hypermall.html" class="hm-app-sm">
-        <img src="icons/icon-hypermall.png?v=3" alt="هايبر مول" class="hm-app-sm-icon">
-        <div class="hm-app-sm-name">هايبر مول</div>
-        <div class="hm-app-sm-sub">٦٠ دقيقة</div>
+
+      <a href="hypermall.html" class="hm-cat">
+        <img src="icons/icon-hypermall.png?v=3" alt="هايبر مول" class="hm-cat-icon">
+        <div class="hm-cat-name">هايبر مول</div>
+        <div class="hm-cat-sub">إلكترونيات · أجهزة</div>
       </a>
-      <a href="services.html" class="hm-app-sm">
-        <img src="icons/icon-services.png?v=3" alt="سيرفيس" class="hm-app-sm-icon">
-        <div class="hm-app-sm-name">سيرفيس</div>
-        <div class="hm-app-sm-sub">حجز مسبق</div>
+
+      <a href="services.html" class="hm-cat">
+        <img src="icons/icon-services.png?v=3" alt="سيرفيس" class="hm-cat-icon">
+        <div class="hm-cat-name">سيرفيس</div>
+        <div class="hm-cat-sub">صيانة · تنظيف · حجوزات</div>
       </a>
-      <a href="jambak.html" class="hm-app-sm">
-        <img src="icons/icon-jambak.png?v=3" alt="ماركت" class="hm-app-sm-icon">
-        <div class="hm-app-sm-name">ماركت</div>
-        <div class="hm-app-sm-sub">العالم في تلفونك</div>
+
+      <a href="jambak.html" class="hm-cat">
+        <img src="icons/icon-jambak.png?v=3" alt="ماركت" class="hm-cat-icon">
+        <div class="hm-cat-name">ماركت</div>
+        <div class="hm-cat-sub">تسوّق من العالم</div>
       </a>
+
     </div>
   </div>
 
   <!-- CONTACT -->
   <div class="hm-contact">
-    <div class="hm-contact-hdr">📍 جمبك · الخرطوم، السودان</div>
+    <div class="hm-contact-hdr">📍 جمبك مارت · الخرطوم، السودان</div>
     <a href="https://wa.me/249539460440" class="hm-contact-row">
-      <div class="hm-cico hm-cico-wa">💬</div>
+      <div class="hm-cico">💬</div>
       <div style="flex:1">
         <div class="hm-clabel">واتساب</div>
         <div class="hm-cval">0539 460 440</div>
@@ -312,7 +343,7 @@ a{text-decoration:none;color:inherit}
       <svg class="hm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="15 18 9 12 15 6"/></svg>
     </a>
     <a href="tel:+249539460440" class="hm-contact-row">
-      <div class="hm-cico hm-cico-ph">📞</div>
+      <div class="hm-cico">📞</div>
       <div style="flex:1">
         <div class="hm-clabel">اتصل بنا</div>
         <div class="hm-cval">+249 539 460 440</div>
@@ -320,7 +351,7 @@ a{text-decoration:none;color:inherit}
       <svg class="hm-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="15 18 9 12 15 6"/></svg>
     </a>
     <div class="hm-contact-row">
-      <div class="hm-cico hm-cico-em">📧</div>
+      <div class="hm-cico">✉️</div>
       <div style="flex:1">
         <div class="hm-clabel">البريد الإلكتروني</div>
         <div class="hm-cval">hello@jambak.sd</div>
@@ -341,12 +372,8 @@ a{text-decoration:none;color:inherit}
     <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
     الأقسام
   </a>
-  <a href="cart.html" class="bn">
-    <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></div>
-    السلة
-  </a>
   <a href="orders.html" class="bn">
-    <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+    <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
     طلباتي
   </a>
   <a href="account.html" class="bn">
@@ -356,16 +383,19 @@ a{text-decoration:none;color:inherit}
 </nav>
 
 <script>
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    document.getElementById('splash').classList.add('hide');
-    document.getElementById('main').classList.add('show');
-    setTimeout(function(){
-      var s = document.getElementById('splash');
-      if(s) s.style.display='none';
-    }, 700);
-  }, 2400);
-});
+(function(){
+  var sp=document.getElementById('splash');
+  var mn=document.getElementById('main');
+  setTimeout(function(){
+    sp.classList.add('hide');
+    mn.classList.add('show');
+  },2000);
+  sp.addEventListener('click',function(){
+    sp.classList.add('hide');
+    mn.classList.add('show');
+  });
+})();
 </script>
+
 </body>
 </html>
