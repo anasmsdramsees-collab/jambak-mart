@@ -4,23 +4,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --p1:  #3B0F8C;
-  --p2:  #5A1DC8;
-  --p3:  #7C3AED;
-  --p4:  #EDE9FE;
-  --p5:  #F5F3FF;
-  --acc: #FF6B35;
-  --acc2:#FFF0EB;
+  --p1:  #5514BE;
+  --p2:  #6B20D4;
+  --p3:  #8B3AED;
+  --p4:  #F3EEFF;
+  --p5:  #F8F5FF;
+  --acc: #FF8C00;
+  --acc2:#FFF8EE;
   --grn: #16A34A;
   --grn2:#DCFCE7;
-  --yel: #FFC107;
+  --yel: #FF8C00;
   --red: #DC2626;
   --bg:  #FFFFFF;
   --bg2: #FFFFFF;
   --wh:  #FFFFFF;
   --tx:  #1A1A2E;
-  --tx2: #44426E;
-  --muted:#9490B5;
+  --tx2: #3D3D5C;
+  --muted:#9494B8;
   --bdr: #EEEAF8;
   --sh:  0 1px 6px rgba(0,0,0,.06);
   --sh2: 0 4px 20px rgba(0,0,0,.10);
@@ -121,14 +121,14 @@ body{
 
 .hdr-cart{
   position:relative;
-  background:var(--p1);
-  border:none;border-radius:999px;
+  background:#FFFFFF;
+  border:1.5px solid #EEEAF8;border-radius:999px;
   width:40px;height:40px;display:flex;align-items:center;justify-content:center;
   cursor:pointer;font-size:18px;flex-shrink:0;text-decoration:none;
-  box-shadow:0 4px 16px rgba(59,15,140,0.3);
-  transition:var(--trans);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  transition:var(--trans);color:var(--p1);
 }
-.hdr-cart:hover{background:var(--p2);box-shadow:0 6px 24px rgba(59,15,140,0.4)}
+.hdr-cart:hover{background:#F3EEFF;box-shadow:0 4px 16px rgba(85,20,190,0.12)}
 .cbadge{
   position:absolute;top:-3px;left:-3px;
   background:var(--acc);color:#fff;font-size:10px;font-weight:800;
@@ -266,9 +266,7 @@ body{
 }
 .cat-lbl{font-size:11px;font-weight:700;color:var(--tx2);white-space:nowrap}
 .cat.on .cat-lbl{color:var(--p1)}
-.bg1{background:#FFF8E1}.bg2{background:#E8F5E9}.bg3{background:#FCE4EC}
-.bg4{background:#E3F2FD}.bg5{background:#F3EAFF}.bg6{background:#E0F7FA}
-.bg7{background:#FFF3E0}.bg8{background:#E8EAF6}
+.bg1,.bg2,.bg3,.bg4,.bg5,.bg6,.bg7,.bg8{background:#FFFFFF}
 
 /* ── SECTION HEAD ── */
 .sec-h{display:flex;align-items:center;justify-content:space-between;padding:16px 12px 10px}
