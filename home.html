@@ -9,10 +9,10 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --p1:#3B0F8C;--p2:#5A1DC8;--p3:#7C3AED;
-  --acc:#FF6B35;
-  --tx:#1A1A2E;--tx2:#44426E;--muted:#9490B5;
-  --bdr:#EEEAF8;--bg:#F7F5FF;
+  --p1:var(--p1);--p2:var(--p2);--p3:var(--p3);
+  --acc:var(--acc);
+  --tx:var(--tx);--tx2:var(--tx2);--muted:var(--muted);
+  --bdr:var(--bdr);--bg:var(--bg);
   --r:16px;--r2:20px;--r3:28px;
   --bnh:68px;
   --sh:0 2px 16px rgba(59,15,140,0.08);
@@ -35,7 +35,7 @@ a{text-decoration:none;color:inherit}
 ══════════════════════════════════ */
 #splash{
   position:fixed;inset:0;z-index:999;
-  background:linear-gradient(160deg,#0D0230 0%,#2A0870 50%,#5A1DC8 100%);
+  background:linear-gradient(160deg,#0D0230 0%,#2A0870 50%,var(--p2) 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:0;
   /* stays visible, then slides up and fades */
@@ -120,7 +120,7 @@ a{text-decoration:none;color:inherit}
 
 /* ─── HERO ─── */
 .hm-hero{
-  background:linear-gradient(160deg,#1A0550 0%,#3B0F8C 50%,#6D28D9 100%);
+  background:linear-gradient(160deg,#1A0550 0%,var(--p1) 50%,#6D28D9 100%);
   padding:max(52px,env(safe-area-inset-top,20px)) 24px 40px;
   display:flex;flex-direction:column;align-items:center;
   position:relative;overflow:hidden;
@@ -188,8 +188,8 @@ a{text-decoration:none;color:inherit}
   content:'';position:absolute;top:0;left:0;right:0;height:4px;
   border-radius:var(--r3) var(--r3) 0 0;
 }
-.hm-app-big-mart::before{background:linear-gradient(90deg,#3B0F8C,#7C3AED)}
-.hm-app-big-food::before{background:linear-gradient(90deg,#E53935,#FF6B35)}
+.hm-app-big-mart::before{background:linear-gradient(90deg,var(--p1),var(--p3))}
+.hm-app-big-food::before{background:linear-gradient(90deg,#E53935,var(--acc))}
 .hm-app-big:active{transform:scale(0.96)}
 .hm-app-big-icon{
   width:66px;height:66px;border-radius:18px;
@@ -274,7 +274,7 @@ a{text-decoration:none;color:inherit}
 .bn.active .ico svg{stroke:var(--p1)}
 
 @media(min-width:600px){
-  body{max-width:540px;margin:0 auto;background:#EDE9F8}
+  body{max-width:540px;margin:0 auto;background:#FFFFFF}
   .hm-hero{max-width:540px}
 }
 </style>
