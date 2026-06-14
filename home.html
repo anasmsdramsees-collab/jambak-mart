@@ -9,10 +9,10 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --p1:#FF8C00;
-  --p2:#E07800;
-  --p3:#FFB347;
-  --p4:#FFF4E0;
+  --p1:#FF6B00;
+  --p2:#D45800;
+  --p3:#FF9040;
+  --p4:#FFF1E6;
   --acc:#5514BE;
   --tx:#1A1A2E;
   --tx2:#3D3D5C;
@@ -21,7 +21,7 @@
   --r:16px;--r2:20px;--r3:28px;
   --bnh:68px;
   --sh:0 2px 12px rgba(0,0,0,0.07);
-  --sh2:0 6px 28px rgba(255,140,0,0.18);
+  --sh2:0 6px 28px rgba(255,107,0,0.18);
   --trans:all 0.25s cubic-bezier(0.4,0,0.2,1);
 }
 html{font-size:16px}
@@ -40,7 +40,7 @@ a{text-decoration:none;color:inherit}
 ══════════════════════ */
 #splash{
   position:fixed;inset:0;z-index:999;
-  background:#FF8C00;
+  background:#FF6B00;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   transition:opacity 0.5s ease, transform 0.6s cubic-bezier(0.4,0,0.2,1);
 }
@@ -90,7 +90,7 @@ a{text-decoration:none;color:inherit}
 
 /* ─── HERO ─── */
 .hm-hero{
-  background:linear-gradient(160deg,#CC6A00 0%,#FF8C00 55%,#FFB347 100%);
+  background:linear-gradient(160deg,#CC6A00 0%,#FF6B00 55%,#FF9040 100%);
   padding:max(52px,env(safe-area-inset-top,18px)) 20px 48px;
   display:flex;flex-direction:column;align-items:center;
   position:relative;overflow:hidden;
@@ -207,14 +207,14 @@ a{text-decoration:none;color:inherit}
 .hm-contact-hdr{
   padding:14px 18px;font-size:13px;font-weight:900;color:var(--tx);
   border-bottom:1px solid #F0ECE0;
-  background:linear-gradient(135deg,rgba(255,140,0,0.05),rgba(255,179,71,0.03));
+  background:linear-gradient(135deg,rgba(255,107,0,0.05),rgba(255,179,71,0.03));
 }
 .hm-contact-row{
   display:flex;align-items:center;gap:12px;padding:13px 18px;
   border-bottom:1px solid #F0ECE0;transition:var(--trans);
 }
 .hm-contact-row:last-child{border-bottom:none}
-.hm-contact-row:active{background:rgba(255,140,0,0.04)}
+.hm-contact-row:active{background:rgba(255,107,0,0.04)}
 .hm-cico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;background:#F8F8F8}
 .hm-clabel{font-size:10px;color:var(--muted);font-weight:700}
 .hm-cval{font-size:13px;font-weight:800;color:var(--tx);direction:ltr;text-align:right;margin-top:1px}
