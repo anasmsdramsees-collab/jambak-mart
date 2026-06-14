@@ -29,14 +29,20 @@
 
 <main class="page page-home">
 
-  <!-- ── PROMO BANNER ── -->
-  <div class="jm-promo">
-    <div>
-      <div class="jm-promo-title">عروض ما بتنتهي 🔥</div>
-      <div class="jm-promo-sub">خصومات تصل لـ 20% على كل المنتجات</div>
-      <a href="browse.html?filter=offers" class="jm-promo-btn">اطلب هسه</a>
+  <!-- ── BANNER SLIDESHOW ── -->
+  <div class="jm-slider" id="jm-slider">
+    <div class="jm-slides" id="jm-slides">
+      <a href="browse.html" class="jm-slide"><img src="banners/banner-new-1.png" alt="جمبك مارت"></a>
+      <a href="browse.html" class="jm-slide"><img src="banners/banner-new-2.png" alt="جمبك مارت"></a>
+      <a href="browse.html" class="jm-slide"><img src="banners/banner-new-3.png" alt="جمبك مارت"></a>
+      <a href="taga.html"   class="jm-slide"><img src="banners/banner-new-food.png" alt="مطاعم"></a>
     </div>
-    <div style="font-size:52px;opacity:0.9">🛒</div>
+    <div class="jm-sdots" id="jm-sdots">
+      <span class="jm-dot active"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
+    </div>
   </div>
 
   <!-- ── EMOJI CATEGORY PILLS ── -->
@@ -172,6 +178,23 @@
       ['meat','frozen','care','produce'].includes(p.cat)
     ).slice(0, 8));
 
+    // Banner slideshow
+    const total = 4, slides = document.getElementById('jm-slides');
+    const dots = document.querySelectorAll('.jm-dot');
+    let cur = 0;
+    function goTo(n) {
+      cur = (n + total) % total;
+      slides.style.transform = `translateX(${cur * 100}%)`;
+      dots.forEach((d,i) => d.classList.toggle('active', i === cur));
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => goTo(i)));
+    const timer = setInterval(() => goTo(cur + 1), 3500);
+    let sx = 0;
+    slides.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+    slides.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) { clearInterval(timer); goTo(dx > 0 ? cur - 1 : cur + 1); }
+    }, {passive:true});
   });
 
   function showLocPicker() {
