@@ -36,7 +36,7 @@
 <script>!function(){function u(){var e=document.querySelector(".app-sw-wrap");if(e){var h=e.getBoundingClientRect().height||e.offsetHeight;if(h>0)document.documentElement.style.setProperty("--swh",h+"px")}}window.addEventListener("load",u);window.addEventListener("resize",u);requestAnimationFrame(function(){u();setTimeout(u,80);setTimeout(u,300)});}();</script>
 
 <!-- ── HEADER ── -->
-<header class="hdr hdr-home" style="top:var(--swh);background:linear-gradient(135deg,#1565C0,#0D47A1)!important;border-bottom:none;">
+<header class="hdr hdr-home" style="top:var(--swh);background:linear-gradient(135deg,#CC5500,#FF6B00)!important;border-bottom:none;">
   <button class="hdr-loc" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);" onclick="showToast('الخرطوم')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span>الخرطوم</span> ▾
   </button>
@@ -47,7 +47,7 @@
 </header>
 
 <!-- ── DELIVERY STRIP ── -->
-<div class="delivery-strip" style="background:#E3F2FD;color:#0D47A1;border-bottom:1px solid #BBDEFB;">
+<div class="delivery-strip" style="background:#FFF1E6;color:#CC5500;border-bottom:1px solid #FFD8B0;">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> <strong>توصيل خلال 60 دقيقة</strong> · جمبك هايبر مول الخرطوم
 </div>
 
@@ -64,7 +64,7 @@
   <!-- ── HERO BANNER ── -->
   <div style="position:relative;margin:0 0 4px;">
     <img src="banners/banner-hypermall.jpg" alt="هايبر مول" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
-    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(13,71,161,.88),transparent);padding:20px 16px 16px;color:#fff;">
+    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(204,85,0,.88),transparent);padding:20px 16px 16px;color:#fff;">
       <div style="font-size:18px;font-weight:900;">خصومات تصل إلى 80%</div>
       <div style="font-size:12px;opacity:.85;margin-top:4px;">على آلاف المنتجات في هايبر مول</div>
       <a href="#categories" style="display:inline-block;margin-top:12px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:8px 22px;font-family:inherit;font-size:13px;font-weight:800;text-decoration:none;">تصفح العروض ↓</a>
@@ -140,7 +140,7 @@
   <div class="dv"></div>
 
   <!-- ── PROMO STRIP ── -->
-  <div style="margin:0 16px 16px;background:linear-gradient(135deg,#E3F2FD,#BBDEFB);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;">
+  <div style="margin:0 16px 16px;background:linear-gradient(135deg,#FFF1E6,#FFD8B0);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;">
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
     <div>
       <div style="font-size:14px;font-weight:800;color:#0D47A1;">توصيل مجاني</div>
@@ -162,7 +162,7 @@
     <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> صفقات فلاش</h2>
     <div style="display:flex;align-items:center;gap:6px;">
       <span style="font-size:11px;color:var(--muted)">تنتهي في</span>
-      <span id="countdown" style="font-size:12px;font-weight:800;color:#E53935;background:#FEE2E2;padding:2px 8px;border-radius:999px;">02:47:15</span>
+      <span id="countdown" style="font-size:12px;font-weight:800;color:#CC5500;background:#FFF1E6;padding:2px 8px;border-radius:999px;">02:47:15</span>
     </div>
   </div>
   <div class="pgrid" id="flash-grid"></div>
