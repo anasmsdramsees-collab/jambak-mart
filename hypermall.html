@@ -40,9 +40,15 @@
       <a href="hypermall.html" class="jm-slide"><img src="banners/banner-new-hypermall-mart-1.png" alt="هايبر مول ومارت"></a>
       <a href="hypermall.html" class="jm-slide"><img src="banners/banner-new-hypermall-mart-2.png" alt="هايبر مول ومارت"></a>
       <a href="jambak.html" class="jm-slide"><img src="banners/banner-new-market-hypermall.png" alt="ماركت وهايبر مول"></a>
+      <a href="hypermall.html" class="jm-slide"><img src="banners/banner-new-all-1.png" alt="جمبك"></a>
+      <a href="hypermall.html" class="jm-slide"><img src="banners/banner-new-all-2.png" alt="جمبك"></a>
+      <a href="hypermall.html" class="jm-slide"><img src="banners/banner-new-all-3.png" alt="جمبك"></a>
     </div>
     <div class="jm-sdots" id="hm-sdots">
       <span class="jm-dot active"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
       <span class="jm-dot"></span>
       <span class="jm-dot"></span>
     </div>
@@ -185,7 +191,7 @@
     renderGrid('flash-grid', PRODUCTS.filter(p => p.discount > 0).slice(0, 6));
 
     // Banner slideshow
-    const total = 3, slides = document.getElementById('hm-slides');
+    const total = 6, slides = document.getElementById('hm-slides');
     const dots = document.querySelectorAll('#hm-sdots .jm-dot');
     let cur = 0;
     function goTo(n) {

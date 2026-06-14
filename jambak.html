@@ -35,10 +35,19 @@
 
 <main class="page page-home" style="padding-top:115px">
 
-  <div class="jm-slider">
-    <a href="jambak.html" class="jm-slide">
-      <img src="banners/banner-new-market-hypermall.png" alt="ماركت جمبك">
-    </a>
+  <div class="jm-slider" id="jk-slider">
+    <div class="jm-slides" id="jk-slides">
+      <a href="jambak.html" class="jm-slide"><img src="banners/banner-new-market-hypermall.png" alt="ماركت جمبك"></a>
+      <a href="jambak.html" class="jm-slide"><img src="banners/banner-new-all-1.png" alt="جمبك"></a>
+      <a href="jambak.html" class="jm-slide"><img src="banners/banner-new-all-2.png" alt="جمبك"></a>
+      <a href="jambak.html" class="jm-slide"><img src="banners/banner-new-all-3.png" alt="جمبك"></a>
+    </div>
+    <div class="jm-sdots" id="jk-sdots">
+      <span class="jm-dot active"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
+    </div>
   </div>
 
   <!-- ── SEARCH ── -->
@@ -81,8 +90,6 @@
     </button>
   </div>
 
-  <!-- ── HERO BANNER ── -->
-  <a href="browse.html"><img src="banners/banner-jambak.jpg" alt="جمبك" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:16px;margin:12px 0"></a>
 
   <!-- ── CATEGORY CARDS GRID ── -->
   <div style="padding:16px 16px 4px">
@@ -328,6 +335,24 @@ function startFlashTimer() {
     renderMktScroll('electronics-scroll', MKT.electronics);
     renderMktScroll('fashion-scroll', MKT.fashion);
     renderMktScroll('home-scroll', MKT.home);
+
+    // Banner slideshow
+    const total = 4, slides = document.getElementById('jk-slides');
+    const dots = document.querySelectorAll('#jk-sdots .jm-dot');
+    let cur = 0;
+    function goTo(n) {
+      cur = (n + total) % total;
+      slides.style.transform = `translateX(${cur * 100}%)`;
+      dots.forEach((d,i) => d.classList.toggle('active', i === cur));
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => goTo(i)));
+    const timer = setInterval(() => goTo(cur + 1), 3500);
+    let sx = 0;
+    slides.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+    slides.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) { clearInterval(timer); goTo(dx > 0 ? cur - 1 : cur + 1); }
+    }, {passive:true});
     renderMktScroll('beauty-scroll', MKT.beauty);
     renderMktScroll('sports-scroll', MKT.sports);
     startFlashTimer();

@@ -35,10 +35,19 @@
 
 <main class="page" style="background:#FAFAFA;padding-top:115px">
 
-  <div class="jm-slider">
-    <a href="services.html" class="jm-slide">
-      <img src="banners/banner-new-service.png" alt="خدمات جمبك">
-    </a>
+  <div class="jm-slider" id="sv-slider">
+    <div class="jm-slides" id="sv-slides">
+      <a href="services.html" class="jm-slide"><img src="banners/banner-new-service.png" alt="خدمات جمبك"></a>
+      <a href="services.html" class="jm-slide"><img src="banners/banner-new-all-1.png" alt="جمبك"></a>
+      <a href="services.html" class="jm-slide"><img src="banners/banner-new-all-2.png" alt="جمبك"></a>
+      <a href="services.html" class="jm-slide"><img src="banners/banner-new-all-3.png" alt="جمبك"></a>
+    </div>
+    <div class="jm-sdots" id="sv-sdots">
+      <span class="jm-dot active"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
+      <span class="jm-dot"></span>
+    </div>
   </div>
 
   <!-- Search -->
@@ -179,6 +188,25 @@
   function bookService(name) {
     showToast('✅ تم تسجيل طلبك لـ ' + name + ', سنتصل بك قريباً');
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const total = 4, slides = document.getElementById('sv-slides');
+    const dots = document.querySelectorAll('#sv-sdots .jm-dot');
+    let cur = 0;
+    function goTo(n) {
+      cur = (n + total) % total;
+      slides.style.transform = `translateX(${cur * 100}%)`;
+      dots.forEach((d,i) => d.classList.toggle('active', i === cur));
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => goTo(i)));
+    const timer = setInterval(() => goTo(cur + 1), 3500);
+    let sx = 0;
+    slides.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+    slides.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) { clearInterval(timer); goTo(dx > 0 ? cur - 1 : cur + 1); }
+    }, {passive:true});
+  });
 </script>
 </body>
 </html>
