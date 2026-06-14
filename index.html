@@ -5,113 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>جمبك مارت, توصيل سريع في الخرطوم</title>
 <link rel="stylesheet" href="app.css?v=5">
+<style>:root{--swh:0px}</style>
 </head>
 <body>
 
-<!-- ── APP SWITCHER ── -->
-<div class="app-sw-wrap">
-  <div class="app-sw">
-    <button class="app-tab app-tab-featured active" onclick="void(0)">
-      <img src="icons/icon-mart.png?v=3" alt="مارت" class="app-tab-logo">
-      <span>حاجات البيت</span>
-    </button>
-    <button class="app-tab app-tab-featured" onclick="location.href='taga.html'">
-      <img src="icons/icon-foodz.png?v=3" alt="فود" class="app-tab-logo">
-      <span>مطاعم</span>
-    </button>
-    <button class="app-tab" onclick="location.href='hypermall.html'">
-      <img src="icons/icon-hypermall.png?v=3" alt="هايبر مول" class="app-tab-logo">
-      <span>هايبر مول</span>
-    </button>
-    <button class="app-tab" onclick="location.href='services.html'">
-      <img src="icons/icon-services.png?v=3" alt="سيرفيس" class="app-tab-logo">
-      <span>سيرفيس</span>
-    </button>
-    <button class="app-tab" onclick="location.href='jambak.html'">
-      <img src="icons/icon-jambak.png?v=3" alt="ماركت" class="app-tab-logo">
-      <span>ماركت</span>
-    </button>
+<!-- ── CLEAN PAGE HEADER ── -->
+<div class="jm-hdr">
+  <div class="jm-hdr-top">
+    <div class="jm-loc" onclick="showLocPicker()">
+      <span class="jm-loc-lbl">التوصيل إلى</span>
+      <span class="jm-loc-val">📍 <span id="loc-label">الخرطوم بحري</span> ▾</span>
+    </div>
+    <div style="display:flex;gap:8px">
+      <a href="home.html" class="jm-icon-btn">🏠</a>
+      <a href="cart.html" class="jm-icon-btn" style="position:relative">🛒<span class="cbadge" id="cbadge">0</span></a>
+    </div>
   </div>
-</div>
-<script>!function(){function u(){var e=document.querySelector(".app-sw-wrap");if(e){var h=e.getBoundingClientRect().height||e.offsetHeight;if(h>0)document.documentElement.style.setProperty("--swh",h+"px")}}window.addEventListener("load",u);window.addEventListener("resize",u);requestAnimationFrame(function(){u();setTimeout(u,80);setTimeout(u,300)});}();</script>
-
-<!-- ── HEADER ── -->
-<header class="hdr hdr-home">
-  <button class="hdr-loc" onclick="showLocPicker()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> <span id="loc-label">الخرطوم بحري</span> ▾
-  </button>
-  <a href="cart.html" class="hdr-cart" title="السلة">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg><span class="cbadge" id="cbadge">0</span>
-  </a>
-</header>
-
-<!-- ── DELIVERY STRIP ── -->
-<div class="delivery-strip">
-  <span class="ds-badge">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-    25 دقيقة
-  </span>
-  <span class="ds-sep">·</span>
-  <span>توصيل سريع للخرطوم</span>
-  <span class="ds-sep">·</span>
-  <span style="color:var(--muted)">بقالة، خضار، لحوم</span>
+  <div class="jm-search">
+    <input type="text" placeholder='ابحث عن "خبز، حليب، أرز..."' onfocus="location.href='browse.html'" readonly>
+    <svg class="jm-search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  </div>
 </div>
 
 <main class="page page-home">
 
-  <!-- ── SEARCH ── -->
-  <div class="srch-wrap">
-    <div class="search-wrap">
-      <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-      <input type="text" placeholder='ابحث عن "خبز، حليب، أرز..."' onfocus="location.href='browse.html'" readonly>
+  <!-- ── PROMO BANNER ── -->
+  <div class="jm-promo">
+    <div>
+      <div class="jm-promo-title">عروض ما بتنتهي 🔥</div>
+      <div class="jm-promo-sub">خصومات تصل لـ 20% على كل المنتجات</div>
+      <a href="browse.html?filter=offers" class="jm-promo-btn">اطلب هسه</a>
     </div>
+    <div style="font-size:52px;opacity:0.9">🛒</div>
   </div>
 
-  <!-- ── CATEGORY ICONS (horizontal scroll) ── -->
-  <div class="cat-tabs">
-    <button class="cat-tab cat-tab-active" onclick="location.href='browse.html'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg></span>
-      <span>الكل</span>
+  <!-- ── EMOJI CATEGORY PILLS ── -->
+  <div class="jm-cats">
+    <button class="jm-cat active" onclick="location.href='browse.html'">
+      <div class="jm-cat-ico">🛍️</div><span>الكل</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=produce'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M17 8C8 10 5.9 16.17 3.82 19.34a1 1 0 001.66 1.14L6 20"/><path d="M17 8L11 14"/><path d="M17 8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v7a1 1 0 001 1h4"/></svg></span>
-      <span>خضار</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=produce'">
+      <div class="jm-cat-ico">🥬</div><span>خضار</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=meat'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></span>
-      <span>لحوم</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=meat'">
+      <div class="jm-cat-ico">🥩</div><span>لحوم</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=dairy'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></span>
-      <span>ألبان</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=dairy'">
+      <div class="jm-cat-ico">🥛</div><span>ألبان</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=grocery'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-      <span>بقالة</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=grocery'">
+      <div class="jm-cat-ico">🛒</div><span>بقالة</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=drinks'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
-      <span>مشروبات</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=drinks'">
+      <div class="jm-cat-ico">🧃</div><span>مشروبات</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=snacks'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="20" height="20"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-      <span>حلويات</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=snacks'">
+      <div class="jm-cat-ico">🍫</div><span>حلويات</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=bak'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
-      <span>مخبوزات</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=bak'">
+      <div class="jm-cat-ico">🍞</div><span>مخبوزات</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=frozen'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg></span>
-      <span>مجمدات</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=frozen'">
+      <div class="jm-cat-ico">🧊</div><span>مجمدات</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=care'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></span>
-      <span>عناية</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=care'">
+      <div class="jm-cat-ico">🧴</div><span>عناية</span>
     </button>
-    <button class="cat-tab" onclick="location.href='browse.html?cat=house'">
-      <span class="ct-ico" style="background:#FFF1E6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>
-      <span>منزليات</span>
+    <button class="jm-cat" onclick="location.href='browse.html?cat=house'">
+      <div class="jm-cat-ico">🏠</div><span>منزليات</span>
     </button>
   </div>
 
@@ -133,52 +94,6 @@
       <span class="hdot"></span>
       <span class="hdot"></span>
     </div>
-  </div>
-
-  <!-- ── CATEGORY CARDS GRID ── -->
-  <div class="cat-cards-grid">
-    <a href="browse.html?filter=offers" class="ccard ccard-wide" style="background:linear-gradient(135deg,#CC5500,#FF6B00)">
-      <div class="ccard-label">عروض اليوم</div>
-      <div class="ccard-sub">خصومات تصل لـ 20%</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
-    </a>
-    <a href="browse.html?cat=produce" class="ccard" style="background:linear-gradient(135deg,#D45800,#FF6B00)">
-      <div class="ccard-label">خضار وفاكهة</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M17 8C8 10 5.9 16.17 3.82 19.34a1 1 0 001.66 1.14L6 20"/><path d="M17 8L11 14"/><path d="M17 8V3a1 1 0 00-1-1H5a1 1 0 00-1 1v7a1 1 0 001 1h4"/></svg></div>
-    </a>
-    <a href="browse.html?cat=meat" class="ccard" style="background:linear-gradient(135deg,#CC5500,#FF6B00)">
-      <div class="ccard-label">لحوم وسمك</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 01-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 3z"/></svg></div>
-    </a>
-    <a href="browse.html?cat=dairy" class="ccard" style="background:linear-gradient(135deg,#CC5500,#FF6B00)">
-      <div class="ccard-label">ألبان وبيض</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
-    </a>
-    <a href="browse.html?cat=drinks" class="ccard" style="background:linear-gradient(135deg,#D45800,#FF6B00)">
-      <div class="ccard-label">مشروبات</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-    </a>
-    <a href="browse.html?cat=snacks" class="ccard" style="background:linear-gradient(135deg,#CC5500,#FF6B00)">
-      <div class="ccard-label">حلويات وسناكس</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-    </a>
-    <a href="browse.html?cat=frozen" class="ccard" style="background:linear-gradient(135deg,#D45800,#FF8040)">
-      <div class="ccard-label">مجمدات</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/></svg></div>
-    </a>
-    <a href="browse.html?cat=care" class="ccard" style="background:linear-gradient(135deg,#CC5500,#FF6B00)">
-      <div class="ccard-label">عناية شخصية</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
-    </a>
-    <a href="browse.html?cat=house" class="ccard" style="background:linear-gradient(135deg,#D45800,#FF6B00)">
-      <div class="ccard-label">منزليات</div>
-      <div class="ccard-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-    </a>
-  </div>
-
-  <!-- ── EXPLORE ALL ── -->
-  <div style="padding:0 16px 4px">
-    <a href="browse.html" class="explore-all-btn">تصفح كل الفئات</a>
   </div>
 
   <div class="dv"></div>
